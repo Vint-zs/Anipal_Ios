@@ -9,23 +9,22 @@ import UIKit
 
 class NewLetterViewController: UIViewController {
 
-    
-    @IBOutlet var name_from: UILabel!
-    @IBOutlet var content_label: UILabel!
-    
-    var name_from_var:String?
-    var content_var:String?
-    
+    @IBOutlet var nameFrom: UILabel!
+    @IBOutlet var contentLabel: UILabel!
+
+    var nameFromVar: String?
+    var contentVar: String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        content_label.sizeToFit()
-        name_from.text = name_from_var
-        content_label.text = content_var
+
+        contentLabel.sizeToFit()
+        nameFrom.text = nameFromVar
+        contentLabel.text = contentVar
         // Do any additional setup after loading the view.
     }
-    
-    //MARK: -  네비게이션바 숨기기
+
+    // MARK: - 네비게이션바 숨기기
 //    override func viewWillAppear(_ animated: Bool) {
 //        navigationController?.isNavigationBarHidden = true
 //    }
@@ -33,13 +32,13 @@ class NewLetterViewController: UIViewController {
 //    override func viewWillDisappear(_ animated: Bool) {
 //        navigationController?.isNavigationBarHidden = false
 //    }
-    
-    //MARK: - 버리기 버튼 클릭시
+
+    // MARK: - 버리기 버튼 클릭시
     @IBAction func clickDismiss(_ sender: UIButton) {
         self.presentingViewController?.dismiss(animated: true)
     }
-    
-    //MARK: - 답장 버튼 클릭시
+
+    // MARK: - 답장 버튼 클릭시
     @IBAction func clickReply(_ sender: UIButton) {
         guard let nextVC = self.storyboard?.instantiateViewController(identifier: "WritingPage") as? WritingPage else {
             return
@@ -48,17 +47,16 @@ class NewLetterViewController: UIViewController {
 //        guard let prevVC = self.presentingViewController else {
 //            return
 //        }
-        
-        nextVC.name_var = "RE: " + name_from_var!
-        
+
+        nextVC.nameVar = "RE: " + nameFromVar!
+
 //        self.presentingViewController?.dismiss(animated: true) {
 //            prevVC.navigationController?.pushViewController(nextVC, animated: true)
 //        }
 
         self.navigationController?.pushViewController(nextVC, animated: true)
-        //nextVC.modalPresentationStyle = .fullScreen
-        //self.present(nextVC, animated: true)
+        // nextVC.modalPresentationStyle = .fullScreen
+        // self.present(nextVC, animated: true)
     }
-    
-    
+
 }

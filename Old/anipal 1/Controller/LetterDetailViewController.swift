@@ -9,32 +9,27 @@ import UIKit
 
 class LetterDetailViewController: UIViewController {
 
-    @IBOutlet weak var name_from: UILabel!
-    @IBOutlet weak var textview_content: UITextView!
+    @IBOutlet weak var nameFrom: UILabel!
+    @IBOutlet weak var textviewContent: UITextView!
     
-    var name_from_var:String?
-    var content_var:String?
-   
-    
-    
+    var nameFromVar: String?
+    var contentVar: String?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        name_from.text = name_from_var
-        textview_content.text = content_var
- 
+
+        nameFrom.text = nameFromVar
+        textviewContent.text = contentVar
     }
-    
     
     @IBAction func wrtieBtn(_ sender: UIButton) {
-        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "WritingPage")as? WritingPage else{
+        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "WritingPage")as? WritingPage else {
             return
         }
-        
+
         // name_to nil처리 수정필요 guard let?
-        nextVC.name_var = "RE: " + name_from_var!
-        
+        nextVC.nameVar = "RE: " + nameFromVar!
+
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
-    
+
 }

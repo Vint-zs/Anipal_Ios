@@ -8,9 +8,8 @@
 import UIKit
 import GoogleSignIn
 
-class GoogleLogin: UIViewController{
+class GoogleLogin: UIViewController {
   
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         GIDSignIn.sharedInstance()?.delegate = self
@@ -21,10 +20,9 @@ class GoogleLogin: UIViewController{
         navigationController?.isNavigationBarHidden = false
     }
 
-    
     @IBAction func googleLogin(_ sender: UIButton) {
         GIDSignIn.sharedInstance()?.presentingViewController = self
-        //GIDSignIn.sharedInstance()?.restorePreviousSignIn()
+        // GIDSignIn.sharedInstance()?.restorePreviousSignIn()
         GIDSignIn.sharedInstance()?.signIn()
     }
     
@@ -40,24 +38,22 @@ extension GoogleLogin: GIDSignInDelegate {
         
         if let error = error {
             if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
-                print ("The user has not signed in before or they have since signed out.")
+                print("The user has not signed in before or they have since signed out.")
             } else {
                 print("\(error.localizedDescription)")
             }
             return
         }
         
-        
         guard let email = user.profile.email, email != "" else {
             return
         }
         
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let TabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
+        let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
         
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController)
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
         
 //        guard let homeVC = self.storyboard?.instantiateViewController(identifier: "TabBarController") else {
 //            return
@@ -79,7 +75,3 @@ extension GoogleLogin: GIDSignInDelegate {
         print("Disconnect")
     }
 }
-   
-
-
-

@@ -20,7 +20,7 @@ class MainPage: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    //MARK: - 네비게이션바 숨김
+    // MARK: - 네비게이션바 숨김
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
     }
@@ -29,12 +29,12 @@ class MainPage: UIViewController {
         navigationController?.isNavigationBarHidden = false
     }
     
-    //MARK: - 편지함 클릭시
+    // MARK: - 편지함 클릭시
     @IBAction func postBoxClick(_ sender: UIButton) {
         
     }
     
-    //MARK: - 편지도착 텍스트 클릭시
+    // MARK: - 편지도착 텍스트 클릭시
     @IBAction func textBtnClick(_ sender: UIButton) {
 //        guard let letterListVC = self.storyboard?.instantiateViewController(identifier: "LetterListVC") else {
 //            return
@@ -44,15 +44,13 @@ class MainPage: UIViewController {
         self.tabBarController?.selectedIndex = 2
     }
     
-    
-    //MARK: - 글쓰기버튼 클릭시
+    // MARK: - 글쓰기버튼 클릭시
     @IBAction func writeButton(_ sender: UIButton) {
-        guard let writingVC = self.storyboard?.instantiateViewController(identifier: "WritingPage") else{
+        guard let writingVC = self.storyboard?.instantiateViewController(identifier: "WritingPage") else {
             return
         }
 
         self.navigationController?.pushViewController(writingVC, animated: true)
     }
-    
 
 }

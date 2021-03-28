@@ -9,9 +9,8 @@ import UIKit
 
 class LetterListTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var user_img: UIImageView!
-    @IBOutlet weak var user_name: UILabel!
-    
+    @IBOutlet weak var userImg: UIImageView!
+    @IBOutlet weak var userName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

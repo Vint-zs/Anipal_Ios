@@ -15,8 +15,6 @@ class SingUpViewController2: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
-
     @IBAction func nextBtn(_ sender: UIButton) {
         
         guard let loginVC = self.storyboard?.instantiateViewController(identifier: "GoogleLogin") else {
@@ -30,5 +28,4 @@ class SingUpViewController2: UIViewController {
         
     }
     
-
 }

@@ -18,7 +18,6 @@ class SignUpViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
     }
 
-    
 //    @IBAction func backBtn(_ sender: UIButton) {
 //        self.presentingViewController?.dismiss(animated: true, completion: nil)
 //    }
@@ -44,6 +43,5 @@ class SignUpViewController: UIViewController {
         nextVC.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
-    
 
 }

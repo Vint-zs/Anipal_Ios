@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//logoutBtn.layer.cornerRadius = 10
+// logoutBtn.layer.cornerRadius = 10
 
 class StartPage: UIViewController {
 
@@ -24,20 +24,20 @@ class StartPage: UIViewController {
         navigationController?.isNavigationBarHidden = true
     }
     
-//MARK: - 회원가입버튼
+// MARK: - 회원가입버튼
     @IBAction func clickSignupBtn(_ sender: UIButton) {
         
         guard let signupVC = self.storyboard?.instantiateViewController(identifier: "SignUpVC1") else {
             return
         }
 
-        //signupVC.modalTransitionStyle = .coverVertical
-        //signupVC.modalPresentationStyle = .fullScreen
-        //self.present(signupVC, animated: true)
+        // signupVC.modalTransitionStyle = .coverVertical
+        // signupVC.modalPresentationStyle = .fullScreen
+        // self.present(signupVC, animated: true)
         self.navigationController?.pushViewController(signupVC, animated: true)
     }
     
-//MARK: - 로그인버튼
+// MARK: - 로그인버튼
     
     @IBAction func clickLoginBtn(_ sender: UIButton) {
         
@@ -45,9 +45,9 @@ class StartPage: UIViewController {
             return
         }
         
-        //loginVC.modalTransitionStyle = .coverVertical
-        //loginVC.modalPresentationStyle = .fullScreen
-        //self.present(loginVC, animated: true)
+        // loginVC.modalTransitionStyle = .coverVertical
+        // loginVC.modalPresentationStyle = .fullScreen
+        // self.present(loginVC, animated: true)
         self.navigationController?.pushViewController(loginVC, animated: true)
     }
 }

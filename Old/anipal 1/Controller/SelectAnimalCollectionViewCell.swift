@@ -11,13 +11,11 @@ class SelectAnimalCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var animalImage: UIImageView!
     @IBOutlet weak var animalName: UILabel!
     
-    
     override var isSelected: Bool {
         didSet {
             if isSelected {
                 backgroundColor = .blue
-            }
-            else {
+            } else {
                 backgroundColor = .gray
             }
         }
