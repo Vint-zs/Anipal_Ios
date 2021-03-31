@@ -21,6 +21,8 @@ class SettingPage: UIViewController {
         super.viewDidLoad()
         logoutBtn.layer.cornerRadius = 10
         
+        self.settingTableView.tableFooterView = UIView(frame: .zero)
+        
         // Do any additional setup after loading the view.
     }
     
@@ -47,4 +49,15 @@ extension SettingPage: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        switch indexPath.row {
+        case 0: self.performSegue(withIdentifier: "DefaultInfoVC", sender: nil)
+        case 1: self.performSegue(withIdentifier: "LanguageSettingVC", sender: nil)
+        case 2: self.performSegue(withIdentifier: "ConceptSettingVC", sender: nil)
+        case 3: self.performSegue(withIdentifier: "FavoriteSettingVC", sender: nil)
+        default:
+            return
+        }
+    }
 }
