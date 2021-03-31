@@ -9,7 +9,12 @@ import UIKit
 import GoogleSignIn
 
 class SettingPage: UIViewController {
+    
+    let settings: [String] = ["정보 수정", "언어", "컨셉", "관심사"]
 
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var settingTableView: UITableView!
+    
     @IBOutlet weak var logoutBtn: UIButton!
     
     override func viewDidLoad() {
@@ -27,4 +32,19 @@ class SettingPage: UIViewController {
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
         
     }
+}
+
+extension SettingPage: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return settings.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingPageTableViewCell", for: indexPath) as? SettingPageTableViewCell else { return UITableViewCell() }
+        cell.settingLabel.text = settings[indexPath.row]
+        
+        return cell
+    }
+    
 }

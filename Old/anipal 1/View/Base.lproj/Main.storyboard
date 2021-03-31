@@ -152,8 +152,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="동물얼굴-돼지" translatesAutoresizingMaskIntoConstraints="NO" id="cTi-9s-jFB">
+                                <rect key="frame" x="131" y="138" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="cTi-9s-jFB" secondAttribute="height" multiplier="15:8" constant="-112" id="hAf-aK-8ZE"/>
+                                </constraints>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="05q-Mr-rss">
+                                <rect key="frame" x="0.0" y="287" width="390" height="233"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingPageTableViewCell" textLabel="j4H-p7-Tdo" style="IBUITableViewCellStyleDefault" id="WcI-ws-xV1" customClass="SettingPageTableViewCell" customModule="anipal_1" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="390" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WcI-ws-xV1" id="htj-X9-zuX">
+                                            <rect key="frame" x="0.0" y="0.0" width="358.66666666666669" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j4H-p7-Tdo">
+                                                    <rect key="frame" x="20" y="0.0" width="330.66666666666669" height="43.666667938232422"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="settingLabel" destination="j4H-p7-Tdo" id="Hpm-kU-pV1"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Xgh-F7-Hle" id="i61-4K-uRk"/>
+                                    <outlet property="delegate" destination="Xgh-F7-Hle" id="ZfB-79-O80"/>
+                                </connections>
+                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xl8-4o-YW5">
-                                <rect key="frame" x="40" y="138" width="310" height="39"/>
+                                <rect key="frame" x="40" y="555" width="310" height="39"/>
                                 <color key="backgroundColor" systemColor="systemTealColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -166,19 +202,29 @@
                         <viewLayoutGuide key="safeArea" id="4Av-u3-hdV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="xl8-4o-YW5" firstAttribute="top" secondItem="05q-Mr-rss" secondAttribute="bottom" constant="35" id="0qY-Ac-3VA"/>
                             <constraint firstItem="xl8-4o-YW5" firstAttribute="leading" secondItem="4Av-u3-hdV" secondAttribute="leading" constant="40" id="2n3-Ad-esR"/>
-                            <constraint firstItem="xl8-4o-YW5" firstAttribute="top" secondItem="4Av-u3-hdV" secondAttribute="top" constant="50" id="OaY-YF-lqS"/>
+                            <constraint firstItem="cTi-9s-jFB" firstAttribute="leading" secondItem="4Av-u3-hdV" secondAttribute="leading" constant="131" id="3nx-vi-EUf"/>
+                            <constraint firstItem="05q-Mr-rss" firstAttribute="trailing" secondItem="4Av-u3-hdV" secondAttribute="trailing" id="KTP-X4-isI"/>
+                            <constraint firstItem="cTi-9s-jFB" firstAttribute="top" secondItem="4Av-u3-hdV" secondAttribute="top" constant="50" id="aUZ-BW-IPf"/>
+                            <constraint firstItem="05q-Mr-rss" firstAttribute="leading" secondItem="4Av-u3-hdV" secondAttribute="leading" id="cmj-MT-Ifp"/>
+                            <constraint firstItem="4Av-u3-hdV" firstAttribute="bottom" secondItem="xl8-4o-YW5" secondAttribute="bottom" constant="167" id="dxs-j2-ISN"/>
                             <constraint firstItem="4Av-u3-hdV" firstAttribute="trailing" secondItem="xl8-4o-YW5" secondAttribute="trailing" constant="40" id="mdr-Si-Lfl"/>
+                            <constraint firstItem="4Av-u3-hdV" firstAttribute="trailing" secondItem="cTi-9s-jFB" secondAttribute="trailing" constant="131" id="pA2-0F-TLf"/>
+                            <constraint firstItem="cTi-9s-jFB" firstAttribute="top" secondItem="4Av-u3-hdV" secondAttribute="top" constant="50" id="qmo-3s-Hop"/>
+                            <constraint firstItem="05q-Mr-rss" firstAttribute="top" secondItem="cTi-9s-jFB" secondAttribute="bottom" constant="21" id="sPR-oy-4oy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Pnj-vh-P7i"/>
                     <connections>
                         <outlet property="logoutBtn" destination="xl8-4o-YW5" id="Hji-XL-8in"/>
+                        <outlet property="profileImage" destination="cTi-9s-jFB" id="DIn-Sd-gqj"/>
+                        <outlet property="settingTableView" destination="05q-Mr-rss" id="mAC-6I-bM6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="akF-cD-IK8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6768" y="1163"/>
+            <point key="canvasLocation" x="6767.6923076923076" y="1162.3222748815165"/>
         </scene>
         <!--Main Page2-->
         <scene sceneID="AfG-2q-pP3">
@@ -933,6 +979,7 @@
         <image name="구글로고.jpg" width="500" height="500"/>
         <image name="동물얼굴-닭" width="174" height="152"/>
         <image name="동물얼굴-돼지" width="174" height="136"/>
+        <image name="동물얼굴-돼지" width="174" height="136"/>
         <image name="동물얼굴-얼룩말" width="176" height="176"/>
         <image name="우체통2" width="258" height="318"/>
         <image name="집" width="464" height="372"/>
