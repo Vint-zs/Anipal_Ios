@@ -285,7 +285,7 @@
                     </view>
                     <connections>
                         <outlet property="contentLabel" destination="bTt-gM-dgI" id="KjF-6Q-qDk"/>
-                        <outlet property="name_from" destination="XDy-TT-3TS" id="dik-6f-Bqe"/>
+                        <outlet property="nameFrom" destination="XDy-TT-3TS" id="51L-a0-M0e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mg6-Xc-r6T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
