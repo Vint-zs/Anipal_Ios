@@ -159,7 +159,7 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="05q-Mr-rss">
-                                <rect key="frame" x="0.0" y="287" width="390" height="233"/>
+                                <rect key="frame" x="0.0" y="287" width="390" height="328"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingPageTableViewCell" textLabel="j4H-p7-Tdo" style="IBUITableViewCellStyleDefault" id="WcI-ws-xV1" customClass="SettingPageTableViewCell" customModule="anipal_1" customModuleProvider="target">
@@ -189,7 +189,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xl8-4o-YW5">
-                                <rect key="frame" x="40" y="555" width="310" height="39"/>
+                                <rect key="frame" x="40" y="654" width="310" height="39"/>
                                 <color key="backgroundColor" systemColor="systemTealColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -202,17 +202,18 @@
                         <viewLayoutGuide key="safeArea" id="4Av-u3-hdV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="xl8-4o-YW5" firstAttribute="top" secondItem="05q-Mr-rss" secondAttribute="bottom" constant="35" id="0qY-Ac-3VA"/>
                             <constraint firstItem="xl8-4o-YW5" firstAttribute="leading" secondItem="4Av-u3-hdV" secondAttribute="leading" constant="40" id="2n3-Ad-esR"/>
                             <constraint firstItem="cTi-9s-jFB" firstAttribute="leading" secondItem="4Av-u3-hdV" secondAttribute="leading" constant="131" id="3nx-vi-EUf"/>
                             <constraint firstItem="05q-Mr-rss" firstAttribute="trailing" secondItem="4Av-u3-hdV" secondAttribute="trailing" id="KTP-X4-isI"/>
+                            <constraint firstItem="xl8-4o-YW5" firstAttribute="top" secondItem="05q-Mr-rss" secondAttribute="bottom" constant="39" id="RfE-27-d1D"/>
                             <constraint firstItem="cTi-9s-jFB" firstAttribute="top" secondItem="4Av-u3-hdV" secondAttribute="top" constant="50" id="aUZ-BW-IPf"/>
                             <constraint firstItem="05q-Mr-rss" firstAttribute="leading" secondItem="4Av-u3-hdV" secondAttribute="leading" id="cmj-MT-Ifp"/>
-                            <constraint firstItem="4Av-u3-hdV" firstAttribute="bottom" secondItem="xl8-4o-YW5" secondAttribute="bottom" constant="167" id="dxs-j2-ISN"/>
+                            <constraint firstItem="4Av-u3-hdV" firstAttribute="bottom" secondItem="xl8-4o-YW5" secondAttribute="bottom" constant="68" id="dFT-hw-pf4"/>
+                            <constraint firstItem="xl8-4o-YW5" firstAttribute="top" secondItem="05q-Mr-rss" secondAttribute="bottom" constant="39" id="fXO-6b-YGz"/>
                             <constraint firstItem="4Av-u3-hdV" firstAttribute="trailing" secondItem="xl8-4o-YW5" secondAttribute="trailing" constant="40" id="mdr-Si-Lfl"/>
+                            <constraint firstItem="05q-Mr-rss" firstAttribute="top" secondItem="cTi-9s-jFB" secondAttribute="bottom" constant="21" id="o5Q-PD-8dJ"/>
                             <constraint firstItem="4Av-u3-hdV" firstAttribute="trailing" secondItem="cTi-9s-jFB" secondAttribute="trailing" constant="131" id="pA2-0F-TLf"/>
                             <constraint firstItem="cTi-9s-jFB" firstAttribute="top" secondItem="4Av-u3-hdV" secondAttribute="top" constant="50" id="qmo-3s-Hop"/>
-                            <constraint firstItem="05q-Mr-rss" firstAttribute="top" secondItem="cTi-9s-jFB" secondAttribute="bottom" constant="21" id="sPR-oy-4oy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Pnj-vh-P7i"/>
@@ -249,7 +250,7 @@
         <!--Language SettingVC-->
         <scene sceneID="hwG-f4-SYd">
             <objects>
-                <viewController id="IUR-GF-ffJ" customClass="LanguageSettingVC" customModule="anipal_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LanguageSettingVC" id="IUR-GF-ffJ" customClass="LanguageSettingVC" customModule="anipal_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I9e-Gl-0TY">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -265,7 +266,7 @@
         <!--Concept SettingVC-->
         <scene sceneID="ibe-xt-gmV">
             <objects>
-                <viewController id="yFK-tt-IQm" customClass="ConceptSettingVC" customModule="anipal_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConceptSettingVC" id="yFK-tt-IQm" customClass="ConceptSettingVC" customModule="anipal_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="njE-4a-GmH">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -281,7 +282,7 @@
         <!--Favorite SettingVC-->
         <scene sceneID="d6G-IO-Zxe">
             <objects>
-                <viewController id="OVa-X9-Is2" customClass="FavoriteSettingVC" customModule="anipal_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavoriteSettingVC" id="OVa-X9-Is2" customClass="FavoriteSettingVC" customModule="anipal_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7sd-bE-3eM">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1046,8 +1047,8 @@
         <image name="zebra" width="300" height="300"/>
         <image name="구글로고.jpg" width="500" height="500"/>
         <image name="동물얼굴-닭" width="174" height="152"/>
-        <image name="동물얼굴-돼지" width="174" height="136"/>
         <image name="동물얼굴-돼지" width="174" height="136"/>
+        <image name="동물얼굴-돼지" width="174" height="136"/>
         <image name="동물얼굴-얼룩말" width="176" height="176"/>
         <image name="우체통2" width="258" height="318"/>
         <image name="집" width="464" height="372"/>
