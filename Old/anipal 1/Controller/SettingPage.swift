@@ -10,7 +10,7 @@ import GoogleSignIn
 
 class SettingPage: UIViewController {
     
-    let settings: [String] = ["정보 수정", "언어", "컨셉", "관심사"]
+    let settings: [String] = ["User info".localized, "Language".localized, "Concept".localized, "Favorite".localized]
 
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var settingTableView: UITableView!
@@ -20,6 +20,7 @@ class SettingPage: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         logoutBtn.layer.cornerRadius = 10
+        logoutBtn.setTitle("Logout".localized, for: .normal)
         
         self.settingTableView.tableFooterView = UIView(frame: .zero)
         
@@ -59,5 +60,11 @@ extension SettingPage: UITableViewDelegate, UITableViewDataSource {
         default:
             return
         }
+    }
+}
+
+extension String {
+    var localized: String {
+        return NSLocalizedString(self, tableName: "Localizable", value: self, comment: "")
     }
 }
