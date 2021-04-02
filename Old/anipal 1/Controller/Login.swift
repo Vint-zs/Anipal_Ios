@@ -34,11 +34,12 @@ class Login: UIViewController {
             case .success(granted:_, declined:_, token:_):
                 print("success facebook login")
                 if let token = AccessToken.current, !token.isExpired {
+                    print(token)
                 // getData(url: "http://9075cd62c831.ngrok.io", token: user.authentication.accessToken) // 서버로 b토큰 전송
-                moveMainScreen()
+                    moveMainScreen()
                 }
             case .cancelled:
-                  print("user cancel the login")
+                print("user cancel the login")
             case .failed(let error):
                 print("error occured: \(error.localizedDescription)")
             }
