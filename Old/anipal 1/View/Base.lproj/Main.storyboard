@@ -264,9 +264,6 @@
                         <outlet property="profileImage" destination="cTi-9s-jFB" id="DIn-Sd-gqj"/>
                         <outlet property="settingTableView" destination="05q-Mr-rss" id="mAC-6I-bM6"/>
                         <segue destination="Md1-BK-ijH" kind="show" identifier="DefaultInfoVC" id="MeE-fU-H2U"/>
-                        <segue destination="IUR-GF-ffJ" kind="show" identifier="LanguageSettingVC" id="p0I-wp-9tP"/>
-                        <segue destination="yFK-tt-IQm" kind="show" identifier="ConceptSettingVC" id="gIG-fR-VI4"/>
-                        <segue destination="OVa-X9-Is2" kind="show" identifier="FavoriteSettingVC" id="6g4-09-tyl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="akF-cD-IK8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1089,8 +1086,8 @@
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <image name="zebra" width="300" height="300"/>
         <image name="동물얼굴-닭" width="174" height="152"/>
-        <image name="동물얼굴-돼지" width="174" height="136"/>
         <image name="동물얼굴-돼지" width="174" height="136"/>
+        <image name="동물얼굴-돼지" width="174" height="136"/>
         <image name="동물얼굴-얼룩말" width="176" height="176"/>
         <image name="우체통2" width="258" height="318"/>
         <image name="집" width="464" height="372"/>
