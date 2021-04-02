@@ -325,6 +325,13 @@
                     <view key="view" contentMode="scaleToFill" id="7sd-bE-3eM">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rec-pz-5KX" customClass="FavoriteView" customModule="anipal_1" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="401" height="844"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="CHQ-1b-bkz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -332,7 +339,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AY0-hG-7Rj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10408" y="1162"/>
+            <point key="canvasLocation" x="10407.692307692307" y="1161.6113744075828"/>
         </scene>
         <!--Main Page2-->
         <scene sceneID="AfG-2q-pP3">
@@ -1086,8 +1093,8 @@
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <image name="zebra" width="300" height="300"/>
         <image name="동물얼굴-닭" width="174" height="152"/>
-        <image name="동물얼굴-돼지" width="174" height="136"/>
         <image name="동물얼굴-돼지" width="174" height="136"/>
+        <image name="동물얼굴-돼지" width="174" height="136"/>
         <image name="동물얼굴-얼룩말" width="176" height="176"/>
         <image name="우체통2" width="258" height="318"/>
         <image name="집" width="464" height="372"/>
