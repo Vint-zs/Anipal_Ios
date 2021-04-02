@@ -7,14 +7,23 @@
 
 import UIKit
 import GoogleSignIn
+import FBSDKCoreKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        sleep(1)
+        
+        // Google
         GIDSignIn.sharedInstance().clientID = "609953406443-h7c70g1bgk89t41ap53bdnvr6shrggr7.apps.googleusercontent.com"
+        
+        // Facebook
+        ApplicationDelegate.shared.application(
+            application,
+            didFinishLaunchingWithOptions:
+            launchOptions
+        )
         return true
     }
 
@@ -33,6 +42,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        return (GIDSignIn.sharedInstance()?.handle(url))!
+        return (GIDSignIn.sharedInstance()?.handle(url))! || ApplicationDelegate.shared.application(
+            app,
+            open: url,
+            sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+            annotation: options[UIApplication.OpenURLOptionsKey.annotation]
+        )
     }
 }
