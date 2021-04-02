@@ -6,7 +6,8 @@
 //
 
 import UIKit
-// logoutBtn.layer.cornerRadius = 10
+import GoogleSignIn
+import FBSDKLoginKit
 
 class StartPage: UIViewController {
 
@@ -15,9 +16,18 @@ class StartPage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        GIDSignIn.sharedInstance()?.delegate = self
+        GIDSignIn.sharedInstance()?.restorePreviousSignIn() // 구글 로그인여부 확인
         loginBtn.layer.cornerRadius = 10
         signupBtn.layer.cornerRadius = 10
         // Do any additional setup after loading the view.
+        
+        // 페이스북 로그인여부 확인
+        if AccessToken.current != nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,4 +60,24 @@ class StartPage: UIViewController {
         // self.present(loginVC, animated: true)
         self.navigationController?.pushViewController(loginVC, animated: true)
     }
+}
+    
+// MARK: - 구글 로그인 설정
+extension StartPage: GIDSignInDelegate {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
+                print("The user has not signed in before or they have since signed out.")
+            } else {
+                print("\(error.localizedDescription)")
+            }
+            return
+        }
+        guard let email = user.profile.email, email != "" else {
+            return
+        }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+        }
 }
