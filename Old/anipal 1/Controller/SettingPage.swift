@@ -7,6 +7,7 @@
 
 import UIKit
 import GoogleSignIn
+import FBSDKLoginKit
 
 class SettingPage: UIViewController {
     
@@ -31,7 +32,7 @@ class SettingPage: UIViewController {
     
     @IBAction func clickLogoutBtn(_ sender: UIButton) {
         GIDSignIn.sharedInstance()?.signOut()
-        
+        LoginManager.init().logOut()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginNavController = storyboard.instantiateViewController(identifier: "LoginNavigationController")
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
