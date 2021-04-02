@@ -23,11 +23,10 @@ class StartPage: UIViewController {
         // Do any additional setup after loading the view.
         
         // 페이스북 로그인여부 확인
-        if AccessToken.current != nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
-            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
-        }
+//        if let token = AccessToken.current, !token.isExpired {
+//            print(token)
+//            moveMainScreen()
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,5 +78,5 @@ extension StartPage: GIDSignInDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
-        }
+    }
 }
