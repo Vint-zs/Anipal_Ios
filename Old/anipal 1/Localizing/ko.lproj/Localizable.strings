@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  anipal 1
+
+  Created by 이예주 on 2021/04/01.
+  
+*/
+
+"User info" = "내 정보";
+
+"Language" = "언어";
+
+"Concept" = "컨셉";
+
+"Favorite" = "관심사";
+
+"Logout" = "로그아웃";
