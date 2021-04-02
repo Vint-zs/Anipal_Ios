@@ -23,10 +23,10 @@ class StartPage: UIViewController {
         // Do any additional setup after loading the view.
         
         // 페이스북 로그인여부 확인
-//        if let token = AccessToken.current, !token.isExpired {
-//            print(token)
-//            moveMainScreen()
-//        }
+        if let token = AccessToken.current, !token.isExpired {
+            print(token)
+            moveMainScreen()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
