@@ -12,14 +12,13 @@ protocol FavoriteViewDelegate {
 }
 
 @IBDesignable
-class FavoriteView: UIView {
-    
+class FavoriteView: UIView, UICollectionViewDataSource {
     public var delegate: FavoriteViewDelegate?
     
-    @IBOutlet weak var favoriteTitle: UILabel!
-    @IBOutlet weak var movieFav: UILabel!
-    @IBOutlet weak var tripFav: UILabel!
-    @IBOutlet weak var singFav: UILabel!
+    let favorites: [String] = ["🍿Movie".localized, "✈️Travel".localized, "🎤Sing".localized]
+    
+    @IBOutlet var favView: UIView!
+    @IBOutlet weak var favCell: UICollectionView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,20 +32,37 @@ class FavoriteView: UIView {
     
     private func commonInit() {
         let bundle = Bundle.init(for: self.classForCoder)
-        let view = bundle.loadNibNamed("FavoriteView", owner: self, options: nil)?.first as! UIView
+        guard let view = bundle.loadNibNamed("FavoriteView", owner: self, options: nil)?.first as? UIView else {
+            fatalError("Can't load FavoriteView")
+        }
         view.frame = self.bounds
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
-        
-        favoriteTitle.text = "Choose you favorites.".localized
-        
-        movieFav.text = "🍿Movie".localized
-        movieFav.layer.cornerRadius = 5
-        
-        tripFav.text = "✈️Travel".localized
-        tripFav.layer.cornerRadius = 5
-        
-        singFav.text = "🎤Sing".localized
-        singFav.layer.cornerRadius = 5
+        initCollectionView()
+    }
+    
+    private func initCollectionView() {
+        let nib = UINib(nibName: "FavoriteCell", bundle: nil)
+        favCell.register(nib, forCellWithReuseIdentifier: "FavCell")
+        favCell.dataSource = self
     }
 
+}
+
+extension FavoriteView {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return favorites.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavCell", for: indexPath) as? FavoriteCell else {
+            fatalError("Can't dequeue FavCell")
+        }
+        cell.favBtn.setTitle(favorites[indexPath.item], for: .normal)
+        cell.favBtn.layer.cornerRadius = 5
+        cell.favBtn.layer.backgroundColor = CGColor(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        return cell
+    }
+    
 }
