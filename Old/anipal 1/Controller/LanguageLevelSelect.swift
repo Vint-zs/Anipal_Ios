@@ -27,11 +27,11 @@ extension LanguageLevelSelect: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "levelSelectCell", for: indexPath) as? LevelSelectTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.levelButton.layer.cornerRadius = 5
+        cell.levelButton.setTitle(levelList[indexPath.row], for: .normal)
+        return cell
     }
-    
-    
-    
-    
 }
-
-
