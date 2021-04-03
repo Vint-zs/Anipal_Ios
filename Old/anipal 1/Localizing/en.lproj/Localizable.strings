@@ -6,6 +6,7 @@
   
 */
 
+// 설정 탭
 "User info" = "User info";
 
 "Language" = "Language";
@@ -16,6 +17,7 @@
 
 "Logout" = "Logout";
 
+// 관심사
 "Choose you favorites." = "Choose you favorites.";
 
 "🍿Movie" = "🍿Movie";
@@ -23,3 +25,25 @@
 "✈️Travel" = "✈️Travel";
 
 "🎤Sing" = "🎤Sing";
+
+"💪Fitness" = "💪피트니스";
+
+"🎨Design" = "🎨디자인";
+
+"🍳Cook" = "🍳요리";
+
+"🕺Dance" = "🕺춤";
+
+"📚Book" = "📚Book";
+
+"💅Beauty" = "💅Beauty";
+
+"🛍Shopping" = "🛍Shopping";
+
+"🎮Game" = "🎮Game";
+
+"💻IT" = "💻IT";
+
+"🏛Architecture" = "🏛Architecture";
+
+"💰Economy" = "💰Economy";

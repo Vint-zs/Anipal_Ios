@@ -333,7 +333,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CHQ-1b-bkz"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.97254901960784312" blue="1" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="ZNy-fZ-Z2z"/>
                 </viewController>

@@ -15,7 +15,7 @@ protocol FavoriteViewDelegate {
 class FavoriteView: UIView, UICollectionViewDataSource {
     public var delegate: FavoriteViewDelegate?
     
-    let favorites: [String] = ["🍿Movie".localized, "✈️Travel".localized, "🎤Sing".localized]
+    let favorites: [String] = ["🍿Movie".localized, "✈️Travel".localized, "🎤Sing".localized, "💪Fitness".localized, "🎨Design".localized, "🍳Cook".localized, "🕺Dance".localized, "📚Book".localized, "💅Beauty".localized, "🛍Shopping".localized, "🎮Game".localized, "💻IT".localized, "🏛Architecture".localized, "💰Economy".localized]
     
     @IBOutlet var favView: UIView!
     @IBOutlet weak var favCell: UICollectionView!
@@ -30,6 +30,7 @@ class FavoriteView: UIView, UICollectionViewDataSource {
         self.commonInit()
     }
     
+    // View 초기화
     private func commonInit() {
         let bundle = Bundle.init(for: self.classForCoder)
         guard let view = bundle.loadNibNamed("FavoriteView", owner: self, options: nil)?.first as? UIView else {
@@ -41,6 +42,7 @@ class FavoriteView: UIView, UICollectionViewDataSource {
         initCollectionView()
     }
     
+    // Cell 초기화
     private func initCollectionView() {
         let nib = UINib(nibName: "FavoriteCell", bundle: nil)
         favCell.register(nib, forCellWithReuseIdentifier: "FavCell")
