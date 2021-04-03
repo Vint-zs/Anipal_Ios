@@ -11,7 +11,7 @@ class SingUpViewController2: UIViewController {
 
     @IBOutlet var languageTableView: UITableView!
     let languageList = ["English", "한국어", "日本語", "中文", "Italiano"]
-    let levelList = ["초급", "중급", "고급"]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,5 +54,9 @@ extension SingUpViewController2: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
 }
