@@ -14,4 +14,5 @@ class FavoriteCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
 }

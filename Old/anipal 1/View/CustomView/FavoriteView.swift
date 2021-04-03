@@ -64,7 +64,19 @@ extension FavoriteView {
         cell.favBtn.layer.cornerRadius = 5
         cell.favBtn.layer.backgroundColor = CGColor(red: 1, green: 1, blue: 1, alpha: 1)
         
+        cell.favBtn.tag = indexPath.row
+        cell.favBtn.addTarget(self, action: #selector(favBtnClick), for: .touchUpInside)
+        
         return cell
+    }
+    
+    @objc func favBtnClick(sender: UIButton) {
+        if sender.layer.backgroundColor == CGColor(red: 1, green: 1, blue: 1, alpha: 1) {
+            sender.layer.backgroundColor = CGColor(red: 0.682, green: 0.753, blue: 0.961, alpha: 1)
+        } else {
+            sender.layer.backgroundColor = CGColor(red: 1, green: 1, blue: 1, alpha: 1)
+        }
+        
     }
     
 }
