@@ -6,6 +6,7 @@
   
 */
 
+// 설정 탭
 "User info" = "내 정보";
 
 "Language" = "언어";
@@ -15,3 +16,34 @@
 "Favorite" = "관심사";
 
 "Logout" = "로그아웃";
+
+// 관심사
+"Choose you favorites." = "관심사를 선택하세요.";
+
+"🍿Movie" = "🍿영화";
+
+"✈️Travel" = "✈️여행";
+
+"🎤Sing" = "🎤노래";
+
+"💪Fitness" = "💪피트니스";
+
+"🎨Design" = "🎨디자인";
+
+"🍳Cook" = "🍳요리";
+
+"🕺Dance" = "🕺춤";
+
+"📚Book" = "📚독서";
+
+"💅Beauty" = "💅미용";
+
+"🛍Shopping" = "🛍쇼핑";
+
+"🎮Game" = "🎮게임";
+
+"💻IT" = "💻IT";
+
+"🏛Architecture" = "🏛건축";
+
+"💰Economy" = "💰경제";

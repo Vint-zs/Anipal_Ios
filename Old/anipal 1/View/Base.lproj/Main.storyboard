@@ -264,9 +264,6 @@
                         <outlet property="profileImage" destination="cTi-9s-jFB" id="DIn-Sd-gqj"/>
                         <outlet property="settingTableView" destination="05q-Mr-rss" id="mAC-6I-bM6"/>
                         <segue destination="Md1-BK-ijH" kind="show" identifier="DefaultInfoVC" id="MeE-fU-H2U"/>
-                        <segue destination="IUR-GF-ffJ" kind="show" identifier="LanguageSettingVC" id="p0I-wp-9tP"/>
-                        <segue destination="yFK-tt-IQm" kind="show" identifier="ConceptSettingVC" id="gIG-fR-VI4"/>
-                        <segue destination="OVa-X9-Is2" kind="show" identifier="FavoriteSettingVC" id="6g4-09-tyl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="akF-cD-IK8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -328,14 +325,21 @@
                     <view key="view" contentMode="scaleToFill" id="7sd-bE-3eM">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rec-pz-5KX" customClass="FavoriteView" customModule="anipal_1" customModuleProvider="target">
+                                <rect key="frame" x="16" y="0.0" width="358" height="844"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="CHQ-1b-bkz"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.97254901960784312" blue="1" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="ZNy-fZ-Z2z"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AY0-hG-7Rj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10408" y="1162"/>
+            <point key="canvasLocation" x="10407.692307692307" y="1161.6113744075828"/>
         </scene>
         <!--Main Page2-->
         <scene sceneID="AfG-2q-pP3">
