@@ -12,7 +12,6 @@ class SingUpViewController2: UIViewController {
     @IBOutlet var languageTableView: UITableView!
     let languageList = ["English", "한국어", "日本語", "中文", "Italiano"]
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         languageTableView.delegate = self
@@ -21,7 +20,7 @@ class SingUpViewController2: UIViewController {
     }
     
     @IBAction func nextPageButton(_ sender: UIButton) {
-        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "signupVC3") else {
+        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "conceptSelectVC") else {
             return
         }
         self.navigationController?.pushViewController(nextVC, animated: true)
@@ -48,7 +47,6 @@ extension SingUpViewController2: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         cell.languageName.text = languageList[indexPath.row]
-        
         return cell
     }
     
@@ -57,6 +55,9 @@ extension SingUpViewController2: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "levelSelectVC") else {
+            return
+        }
+        self.present(nextVC, animated: true, completion: nil)
     }
 }
