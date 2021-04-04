@@ -9,6 +9,7 @@ import UIKit
 
 class ConceptTableViewCell: UITableViewCell {
 
+    @IBOutlet var conceptLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
