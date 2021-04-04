@@ -78,6 +78,7 @@ extension FavoriteView {
         cell.favBtn.setTitle(favorites[indexPath.row]["text"], for: .normal)
         cell.favBtn.layer.cornerRadius = 5
         cell.favBtn.layer.backgroundColor = CGColor(red: 1, green: 1, blue: 1, alpha: 1)
+        cell.favBtn.titleLabel?.adjustsFontSizeToFitWidth = true
         
         cell.favBtn.tag = indexPath.row
         cell.favBtn.addTarget(self, action: #selector(favBtnClick), for: .touchUpInside)

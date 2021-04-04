@@ -13,7 +13,7 @@ class FavoriteSettingVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        favLabelTitle.text = "Choose you favorites.".localized
+        favLabelTitle.text = "Choose your favorites.".localized
         // Do any additional setup after loading the view.
     }
 }
