@@ -9,14 +9,18 @@ import UIKit
 
 class SingUpViewController2: UIViewController {
 
+    @IBOutlet var titleLabel: UILabel!
     @IBOutlet var languageTableView: UITableView!
+    @IBOutlet var searchBar: UISearchBar!
+    
     let languageList = ["English", "한국어", "日本語", "中文", "Italiano"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         languageTableView.delegate = self
         languageTableView.dataSource = self
-        
+        // titleLabel.font = UIFont(name: "NotoSansKR-Bold", size: 18)
+        titleLabel.textColor = UIColor(red: 0.392, green: 0.392, blue: 0.392, alpha: 1)
     }
     
     @IBAction func nextPageButton(_ sender: UIButton) {
@@ -29,7 +33,6 @@ class SingUpViewController2: UIViewController {
     @IBAction func cancelBarButton(_ sender: UIBarButtonItem) {
         self.navigationController?.popToRootViewController(animated: true)
     }
-
 }
 extension SingUpViewController2: UITableViewDelegate, UITableViewDataSource {
     
@@ -47,6 +50,12 @@ extension SingUpViewController2: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         cell.languageName.text = languageList[indexPath.row]
+        cell.languageName.textColor = UIColor.init(red: 0.392, green: 0.392, blue: 0.392, alpha: 1)
+        // cell.languageName.font = UIFont(name: "Helvetica-Bold", size: 18)
+        
+        cell.checkBox.layer.borderWidth = 2
+        cell.checkBox.layer.borderColor = UIColor.init(red: 0.392, green: 0.392, blue: 0.392, alpha: 1).cgColor
+        cell.checkBox.layer.cornerRadius = 5
         return cell
     }
     

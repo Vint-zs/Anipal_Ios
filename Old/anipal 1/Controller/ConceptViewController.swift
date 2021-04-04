@@ -9,6 +9,7 @@ import UIKit
 
 class ConceptViewController: UIViewController {
 
+    @IBOutlet var titleLabel: UILabel!
     @IBOutlet var conceptTable: UITableView!
     
     let conceptList = ["우정", "사랑", "언어"]
@@ -17,6 +18,8 @@ class ConceptViewController: UIViewController {
         super.viewDidLoad()
         conceptTable.delegate = self
         conceptTable.dataSource = self
+        //titleLabel.font = UIFont(name: "NotoSansKR-Bold", size: 18)
+        titleLabel.textColor = UIColor(red: 0.392, green: 0.392, blue: 0.392, alpha: 1)
         
     }
     

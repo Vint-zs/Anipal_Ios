@@ -15,6 +15,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // UINavigationBar.appearance().barTintColor = UIColor(red: 174, green: 192, blue: 245, alpha: 1)
         
         // Make logoView Circle
         logoView.layer.borderWidth = 1

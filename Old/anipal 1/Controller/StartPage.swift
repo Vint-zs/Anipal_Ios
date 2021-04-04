@@ -15,6 +15,7 @@ class StartPage: UIViewController {
     @IBOutlet weak var loginBtn: UIButton!
     
     override func viewDidLoad() {
+//        UINavigationBar.appearance().barTintColor = UIColor(red: 174, green: 192, blue: 245, alpha: 1)
         super.viewDidLoad()
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.restorePreviousSignIn() // 구글 로그인여부 확인
