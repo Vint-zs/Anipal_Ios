@@ -21,7 +21,12 @@ class StartPage: UIViewController {
         GIDSignIn.sharedInstance()?.restorePreviousSignIn() // 구글 로그인여부 확인
         loginBtn.layer.cornerRadius = 10
         signupBtn.layer.cornerRadius = 10
-        // Do any additional setup after loading the view.
+        navigationController?.navigationBar.barTintColor = UIColor(red: 0.95, green: 0.973, blue: 1, alpha: 1)
+        navigationController?.navigationBar.tintColor = UIColor(red: 0.392, green: 0.392, blue: 0.392, alpha: 1)
+        
+        // 네이베이션바 선 없애기
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
         
         // 페이스북 로그인여부 확인
         if let token = AccessToken.current, !token.isExpired {
