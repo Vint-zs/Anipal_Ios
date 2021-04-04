@@ -9,7 +9,8 @@ import UIKit
 
 class LevelSelectTableViewCell: UITableViewCell {
 
-    @IBOutlet var levelButton: UIButton!
+    @IBOutlet var levelLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
