@@ -92,7 +92,8 @@ extension FavoriteView {
             sender.layer.backgroundColor = CGColor(red: 0.682, green: 0.753, blue: 0.961, alpha: 1)
             print(userFav)
         }
-        
+        // 유저 정보 갱신
+        users[0].favorites = userFav
     }
     
 }

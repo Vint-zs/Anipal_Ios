@@ -16,4 +16,8 @@ class FavoriteSettingVC: UIViewController {
         favLabelTitle.text = "Choose your favorites.".localized
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+    }
 }
