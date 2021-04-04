@@ -15,6 +15,9 @@
 		6CFB759B2615AD710017F160 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CFB759D2615AD710017F160 /* Localizable.strings */; };
 		6CFB75A62615F7460017F160 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFB75A52615F7460017F160 /* StringExtension.swift */; };
 		761165F125D8308400577F92 /* SingUpViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761165F025D8308400577F92 /* SingUpViewController2.swift */; };
+		761D515E2618C86A00089040 /* LanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761D515D2618C86A00089040 /* LanguageTableViewCell.swift */; };
+		761D51622618D46800089040 /* LanguageLevelSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761D51612618D46800089040 /* LanguageLevelSelect.swift */; };
+		761D51652618DD4700089040 /* LevelSelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761D51642618DD4700089040 /* LevelSelectTableViewCell.swift */; };
 		7657F0BD25CAE46400403881 /* 구글로고.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7657F0BC25CAE46400403881 /* 구글로고.jpg */; };
 		76686FC825CE2C5F00536E36 /* MainPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76686FC725CE2C5F00536E36 /* MainPage.swift */; };
 		76686FCB25CE2FFC00536E36 /* WritingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76686FCA25CE2FFC00536E36 /* WritingPage.swift */; };
@@ -24,6 +27,8 @@
 		7668701925D1318400536E36 /* Launch Screen2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7668701825D1318400536E36 /* Launch Screen2.storyboard */; };
 		7668701C25D13AB200536E36 /* StartPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7668701B25D13AB200536E36 /* StartPage.swift */; };
 		7668702525D15BB900536E36 /* SettingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7668702425D15BB900536E36 /* SettingPage.swift */; };
+		767BD809261968680051DDEC /* ConceptTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767BD808261968680051DDEC /* ConceptTableViewCell.swift */; };
+		767BD80C2619687C0051DDEC /* ConceptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767BD80B2619687C0051DDEC /* ConceptViewController.swift */; };
 		7691936C25D5000A0094B5BF /* LetterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691936B25D5000A0094B5BF /* LetterListViewController.swift */; };
 		7691937125D516630094B5BF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691937025D516630094B5BF /* SignUpViewController.swift */; };
 		7691937425D54DDA0094B5BF /* LetterListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691937325D54DDA0094B5BF /* LetterListTableViewCell.swift */; };
@@ -51,6 +56,9 @@
 		6CFB759F2615AD8F0017F160 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6CFB75A52615F7460017F160 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		761165F025D8308400577F92 /* SingUpViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpViewController2.swift; sourceTree = "<group>"; };
+		761D515D2618C86A00089040 /* LanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTableViewCell.swift; sourceTree = "<group>"; };
+		761D51612618D46800089040 /* LanguageLevelSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageLevelSelect.swift; sourceTree = "<group>"; };
+		761D51642618DD4700089040 /* LevelSelectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelectTableViewCell.swift; sourceTree = "<group>"; };
 		7657F0BC25CAE46400403881 /* 구글로고.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "구글로고.jpg"; sourceTree = "<group>"; };
 		76686FC725CE2C5F00536E36 /* MainPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage.swift; sourceTree = "<group>"; };
 		76686FCA25CE2FFC00536E36 /* WritingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingPage.swift; sourceTree = "<group>"; };
@@ -60,6 +68,8 @@
 		7668701825D1318400536E36 /* Launch Screen2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen2.storyboard"; sourceTree = "<group>"; };
 		7668701B25D13AB200536E36 /* StartPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPage.swift; sourceTree = "<group>"; };
 		7668702425D15BB900536E36 /* SettingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPage.swift; sourceTree = "<group>"; };
+		767BD808261968680051DDEC /* ConceptTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConceptTableViewCell.swift; sourceTree = "<group>"; };
+		767BD80B2619687C0051DDEC /* ConceptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConceptViewController.swift; sourceTree = "<group>"; };
 		7691936B25D5000A0094B5BF /* LetterListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterListViewController.swift; sourceTree = "<group>"; };
 		7691937025D516630094B5BF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		7691937325D54DDA0094B5BF /* LetterListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterListTableViewCell.swift; sourceTree = "<group>"; };
@@ -149,10 +159,15 @@
 				6C7D9BAA2614DD1A003596EB /* FavoriteSettingVC.swift */,
 				7691937025D516630094B5BF /* SignUpViewController.swift */,
 				761165F025D8308400577F92 /* SingUpViewController2.swift */,
+				761D51612618D46800089040 /* LanguageLevelSelect.swift */,
+				761D51642618DD4700089040 /* LevelSelectTableViewCell.swift */,
+				761D515D2618C86A00089040 /* LanguageTableViewCell.swift */,
 				7691936B25D5000A0094B5BF /* LetterListViewController.swift */,
 				7691937325D54DDA0094B5BF /* LetterListTableViewCell.swift */,
 				76AF5B4825D95A4300CA4183 /* LetterDetailViewController.swift */,
 				76B0B4BF25ED5E8300A025A2 /* NewLetterViewController.swift */,
+				767BD808261968680051DDEC /* ConceptTableViewCell.swift */,
+				767BD80B2619687C0051DDEC /* ConceptViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -358,24 +373,29 @@
 				7668702525D15BB900536E36 /* SettingPage.swift in Sources */,
 				6C7D9BAB2614DD1A003596EB /* FavoriteSettingVC.swift in Sources */,
 				76D1784D25CA922900C5ED37 /* AppDelegate.swift in Sources */,
+				767BD809261968680051DDEC /* ConceptTableViewCell.swift in Sources */,
 				76686FD225CE9F3E00536E36 /* SelectAnimalCollectionViewCell.swift in Sources */,
 				7691937425D54DDA0094B5BF /* LetterListTableViewCell.swift in Sources */,
 				7691936C25D5000A0094B5BF /* LetterListViewController.swift in Sources */,
+				761D51652618DD4700089040 /* LevelSelectTableViewCell.swift in Sources */,
 				76D1784F25CA922900C5ED37 /* SceneDelegate.swift in Sources */,
 				76AF5B3F25D93D8500CA4183 /* letters.swift in Sources */,
 				76ABF6EF25E7FE5000808652 /* MainPage2.swift in Sources */,
 				6C7D9BA52614DC0C003596EB /* LanguageSettingVC.swift in Sources */,
 				76686FE625CEAB7300536E36 /* animal.swift in Sources */,
+				767BD80C2619687C0051DDEC /* ConceptViewController.swift in Sources */,
 				76686FCB25CE2FFC00536E36 /* WritingPage.swift in Sources */,
 				6C7D9BA82614DCF7003596EB /* ConceptSettingVC.swift in Sources */,
 				76AF5B4925D95A4300CA4183 /* LetterDetailViewController.swift in Sources */,
 				6C7D9BA22614D730003596EB /* DefaultInfoVC.swift in Sources */,
 				6C7D9B9E2614BA4D003596EB /* SettingPageTableViewCell.swift in Sources */,
 				761165F125D8308400577F92 /* SingUpViewController2.swift in Sources */,
+				761D51622618D46800089040 /* LanguageLevelSelect.swift in Sources */,
 				76686FC825CE2C5F00536E36 /* MainPage.swift in Sources */,
 				7668701C25D13AB200536E36 /* StartPage.swift in Sources */,
 				6CFB75A62615F7460017F160 /* StringExtension.swift in Sources */,
 				7691937125D516630094B5BF /* SignUpViewController.swift in Sources */,
+				761D515E2618C86A00089040 /* LanguageTableViewCell.swift in Sources */,
 				76686FD525CE9FE800536E36 /* SelectAnimalPage.swift in Sources */,
 				76B0B4C025ED5E8300A025A2 /* NewLetterViewController.swift in Sources */,
 			);
