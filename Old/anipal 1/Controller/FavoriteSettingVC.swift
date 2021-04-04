@@ -9,9 +9,11 @@ import UIKit
 
 class FavoriteSettingVC: UIViewController {
     
+    @IBOutlet weak var favLabelTitle: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        favLabelTitle.text = "Choose you favorites.".localized
         // Do any additional setup after loading the view.
     }
 }

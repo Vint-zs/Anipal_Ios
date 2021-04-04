@@ -327,16 +327,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rec-pz-5KX" customClass="FavoriteView" customModule="anipal_1" customModuleProvider="target">
-                                <rect key="frame" x="16" y="0.0" width="358" height="844"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rec-pz-5KX" customClass="FavoriteView" customModule="anipal_1" customModuleProvider="target">
+                                <rect key="frame" x="16" y="116.33333333333331" width="358" height="727.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFb-zK-HCG">
+                                <rect key="frame" x="16" y="72" width="358" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CHQ-1b-bkz"/>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.97254901960784312" blue="1" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Rec-pz-5KX" secondAttribute="bottom" id="0Qv-LJ-SlF"/>
+                            <constraint firstItem="CHQ-1b-bkz" firstAttribute="trailing" secondItem="CFb-zK-HCG" secondAttribute="trailing" constant="16" id="K8x-sc-XIQ"/>
+                            <constraint firstItem="CHQ-1b-bkz" firstAttribute="trailing" secondItem="Rec-pz-5KX" secondAttribute="trailing" constant="16" id="KYm-eV-fWO"/>
+                            <constraint firstItem="Rec-pz-5KX" firstAttribute="top" secondItem="CFb-zK-HCG" secondAttribute="bottom" constant="24" id="OQh-fk-UvM"/>
+                            <constraint firstItem="CFb-zK-HCG" firstAttribute="top" secondItem="CHQ-1b-bkz" secondAttribute="top" constant="28" id="a1Q-8P-v93"/>
+                            <constraint firstItem="Rec-pz-5KX" firstAttribute="leading" secondItem="CHQ-1b-bkz" secondAttribute="leading" constant="16" id="trl-gk-Xgs"/>
+                            <constraint firstItem="CFb-zK-HCG" firstAttribute="leading" secondItem="CHQ-1b-bkz" secondAttribute="leading" constant="16" id="wTw-6l-hsW"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZNy-fZ-Z2z"/>
+                    <connections>
+                        <outlet property="favLabelTitle" destination="CFb-zK-HCG" id="rsY-19-axY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AY0-hG-7Rj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
