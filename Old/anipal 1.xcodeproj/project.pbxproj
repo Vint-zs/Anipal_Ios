@@ -17,6 +17,7 @@
 		6C7D9BA82614DCF7003596EB /* ConceptSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7D9BA72614DCF7003596EB /* ConceptSettingVC.swift */; };
 		6C7D9BAB2614DD1A003596EB /* FavoriteSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7D9BAA2614DD1A003596EB /* FavoriteSettingVC.swift */; };
 		6C9B77432619CBAF00E82303 /* userInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B77422619CBAF00E82303 /* userInfo.swift */; };
+		6C9B77462619E71400E82303 /* favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B77452619E71400E82303 /* favorites.swift */; };
 		6CFB759B2615AD710017F160 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CFB759D2615AD710017F160 /* Localizable.strings */; };
 		6CFB75A62615F7460017F160 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFB75A52615F7460017F160 /* StringExtension.swift */; };
 		761165F125D8308400577F92 /* SingUpViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761165F025D8308400577F92 /* SingUpViewController2.swift */; };
@@ -62,6 +63,7 @@
 		6C7D9BA72614DCF7003596EB /* ConceptSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConceptSettingVC.swift; sourceTree = "<group>"; };
 		6C7D9BAA2614DD1A003596EB /* FavoriteSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteSettingVC.swift; sourceTree = "<group>"; };
 		6C9B77422619CBAF00E82303 /* userInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userInfo.swift; sourceTree = "<group>"; };
+		6C9B77452619E71400E82303 /* favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favorites.swift; sourceTree = "<group>"; };
 		6CFB759C2615AD710017F160 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6CFB759F2615AD8F0017F160 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6CFB75A52615F7460017F160 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				76686FE525CEAB7300536E36 /* animal.swift */,
 				76AF5B3E25D93D8500CA4183 /* letters.swift */,
 				6C9B77422619CBAF00E82303 /* userInfo.swift */,
+				6C9B77452619E71400E82303 /* favorites.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				6CFB75A62615F7460017F160 /* StringExtension.swift in Sources */,
 				7691937125D516630094B5BF /* SignUpViewController.swift in Sources */,
 				761D515E2618C86A00089040 /* LanguageTableViewCell.swift in Sources */,
+				6C9B77462619E71400E82303 /* favorites.swift in Sources */,
 				76686FD525CE9FE800536E36 /* SelectAnimalPage.swift in Sources */,
 				76B0B4C025ED5E8300A025A2 /* NewLetterViewController.swift in Sources */,
 			);
