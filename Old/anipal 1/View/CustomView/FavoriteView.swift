@@ -15,6 +15,8 @@ protocol FavoriteViewDelegate {
 class FavoriteView: UIView, UICollectionViewDataSource {
     public var delegate: FavoriteViewDelegate?
     
+    var userFav = users[0].favorites
+    
     @IBOutlet var favView: UIView!
     @IBOutlet weak var favCell: UICollectionView!
     
@@ -37,6 +39,7 @@ class FavoriteView: UIView, UICollectionViewDataSource {
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
+        print("Init: ", userFav)
         initCollectionView()
     }
     
@@ -60,9 +63,15 @@ extension FavoriteView {
         }
         cell.favBtn.setTitle(favorites[indexPath.row]["text"], for: .normal)
         cell.favBtn.layer.cornerRadius = 5
-        cell.favBtn.layer.backgroundColor = CGColor(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        if userFav.contains(favorites[indexPath.row]["data"]!) {
+            cell.favBtn.layer.backgroundColor = CGColor(red: 0.682, green: 0.753, blue: 0.961, alpha: 1)
+        } else {
+            cell.favBtn.layer.backgroundColor = CGColor(red: 1, green: 1, blue: 1, alpha: 1)
+        }
         cell.favBtn.titleLabel?.adjustsFontSizeToFitWidth = true
         
+        // 버튼 액션
         cell.favBtn.tag = indexPath.row
         cell.favBtn.addTarget(self, action: #selector(favBtnClick), for: .touchUpInside)
         
@@ -70,10 +79,18 @@ extension FavoriteView {
     }
     
     @objc func favBtnClick(sender: UIButton) {
-        if sender.layer.backgroundColor == CGColor(red: 1, green: 1, blue: 1, alpha: 1) {
-            sender.layer.backgroundColor = CGColor(red: 0.682, green: 0.753, blue: 0.961, alpha: 1)
-        } else {
+        guard let favData = favorites[sender.tag]["data"] else { return }
+        // 선택
+        if userFav.contains(favData) {
+            if let idx = userFav.firstIndex(of: favData) {
+                userFav.remove(at: idx)
+            }
             sender.layer.backgroundColor = CGColor(red: 1, green: 1, blue: 1, alpha: 1)
+            print(userFav)
+        } else {    // 선택 해제
+            userFav.append(favData)
+            sender.layer.backgroundColor = CGColor(red: 0.682, green: 0.753, blue: 0.961, alpha: 1)
+            print(userFav)
         }
         
     }

@@ -8,26 +8,26 @@
 import Foundation
 
 struct User {
-    let userName: String
-    let userGender: String
-    let userAge: UInt
-    let userBirthday: String
-    let userEmail: String
-    let userProvider: String
-    let userConcept: String
-    let userFavorites: [String]
-    let userLanguages: [String]
+    let name: String
+    let gender: String
+    let age: UInt
+    let birthday: String
+    let email: String
+    let provider: String
+    let concept: String
+    let favorites: [String]
+    let languages: [String]
     
     init(name: String, gender: String, age: UInt, birthday: String, email: String, provider: String, concept: String, favorites: [String], languages: [String]) {
-        userName = name
-        userGender = gender
-        userAge = age
-        userBirthday = birthday
-        userEmail = email
-        userProvider = provider
-        userConcept = concept
-        userFavorites = favorites
-        userLanguages = languages
+        self.name = name
+        self.gender = gender
+        self.age = age
+        self.birthday = birthday
+        self.email = email
+        self.provider = provider
+        self.concept = concept
+        self.favorites = favorites
+        self.languages = languages
     }
 }
 
