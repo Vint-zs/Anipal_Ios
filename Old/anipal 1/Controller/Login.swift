@@ -13,6 +13,7 @@ class Login: UIViewController {
     @IBOutlet var facebookBtn: UIButton!
     @IBOutlet var googleBtn: UIButton!
     @IBOutlet var appleBtn: UIButton!
+    @IBOutlet var logoImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,7 @@ class Login: UIViewController {
         googleBtn.layer.borderColor = UIColor.gray.cgColor
         googleBtn.layer.borderWidth = 1
         appleBtn.layer.cornerRadius = 10
+        logoImage.layer.cornerRadius = logoImage.frame.height/2
     }
     
     override func viewWillAppear(_ animated: Bool) {
