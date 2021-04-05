@@ -20,8 +20,9 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6VF-nh-YEI">
                         <rect key="frame" x="0.0" y="0.0" width="107" height="50"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                         <state key="normal" title="Button">
-                            <color key="titleColor" systemColor="labelColor"/>
+                            <color key="titleColor" red="0.3921665251" green="0.39214932920000001" blue="0.39215728640000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </state>
                     </button>
                 </subviews>
@@ -40,9 +41,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
