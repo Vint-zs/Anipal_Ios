@@ -13,7 +13,9 @@ class LevelSelectTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        let view = UIView()
+        view.backgroundColor = UIColor(red: 0.682, green: 0.753, blue: 0.961, alpha: 1)
+        selectedBackgroundView = view
         // Initialization code
     }
 
