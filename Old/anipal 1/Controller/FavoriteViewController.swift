@@ -23,4 +23,7 @@ class FavoriteViewController: UIViewController {
 //        self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
+    @IBAction func cancelBarButton(_ sender: UIBarButtonItem) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
 }

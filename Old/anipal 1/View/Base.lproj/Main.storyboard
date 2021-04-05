@@ -1439,7 +1439,7 @@
                                     <constraint firstAttribute="height" constant="540" id="Akd-bu-Se0"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="klx-LC-Qhb">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="관심사를 선택해주세요." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="klx-LC-Qhb">
                                 <rect key="frame" x="53" y="118" width="285" height="22"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
@@ -1453,7 +1453,7 @@
                                     <constraint firstAttribute="width" constant="390" id="bej-cn-val"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="다음">
                                     <color key="titleColor" red="0.3921665251" green="0.39214932920000001" blue="0.39215728640000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
@@ -1477,7 +1477,13 @@
                             <constraint firstItem="klx-LC-Qhb" firstAttribute="top" secondItem="zGN-pB-k4P" secondAttribute="top" constant="30" id="yTk-sZ-PYO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="TXW-zf-4Tz"/>
+                    <navigationItem key="navigationItem" id="BYI-CR-Aw6">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="xmark" catalog="system" id="gQU-Eq-ltg">
+                            <connections>
+                                <action selector="cancelBarButton:" destination="eJW-sb-z4E" id="oDq-SC-D58"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="favLabelTitle" destination="klx-LC-Qhb" id="Yc3-i7-mlV"/>
                     </connections>
