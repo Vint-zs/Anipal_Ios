@@ -15,4 +15,12 @@ class FavoriteViewController: UIViewController {
         favLabelTitle.text = "Choose your favorites.".localized
         super.viewDidLoad()
     }
+    
+    @IBAction func nextPageButton(_ sender: UIButton) {
+//        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "FavoriteVC") else {
+//            return
+//        }
+//        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
 }

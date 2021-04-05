@@ -329,7 +329,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rec-pz-5KX" customClass="FavoriteView" customModule="anipal_1" customModuleProvider="target">
                                 <rect key="frame" x="16" y="116.33333333333331" width="358" height="727.66666666666674"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.94580787420000001" green="0.97216504810000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFb-zK-HCG">
                                 <rect key="frame" x="16" y="72" width="358" height="20.333333333333329"/>
@@ -339,7 +339,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CHQ-1b-bkz"/>
-                        <color key="backgroundColor" red="0.94901960784313721" green="0.97254901960784312" blue="1" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.94580787420000001" green="0.97216504810000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Rec-pz-5KX" secondAttribute="bottom" id="0Qv-LJ-SlF"/>
                             <constraint firstItem="CHQ-1b-bkz" firstAttribute="trailing" secondItem="CFb-zK-HCG" secondAttribute="trailing" constant="16" id="K8x-sc-XIQ"/>
@@ -1389,7 +1389,6 @@
                                     <color key="titleColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="nextPageButton:" destination="kFj-hX-XJl" eventType="touchUpInside" id="nAF-yf-aCd"/>
                                     <action selector="nextPageButton:" destination="nLf-Eh-dJP" eventType="touchUpInside" id="uBf-kd-yGH"/>
                                 </connections>
                             </button>
@@ -1434,8 +1433,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hyL-ZB-pNc" customClass="FavoriteView" customModule="anipal_1" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="190" width="390" height="540"/>
+                                <rect key="frame" x="16" y="190" width="358" height="540"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="540" id="Akd-bu-Se0"/>
+                                </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="klx-LC-Qhb">
                                 <rect key="frame" x="53" y="118" width="285" height="22"/>
@@ -1443,16 +1445,34 @@
                                 <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPa-8f-OY2">
+                                <rect key="frame" x="0.0" y="730" width="390" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="aJB-Tu-MLE"/>
+                                    <constraint firstAttribute="width" constant="390" id="bej-cn-val"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.3921665251" green="0.39214932920000001" blue="0.39215728640000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextPageButton:" destination="eJW-sb-z4E" eventType="touchUpInside" id="Znm-j2-VjM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zGN-pB-k4P"/>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.97216695549999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="HPa-8f-OY2" firstAttribute="leading" secondItem="zGN-pB-k4P" secondAttribute="leading" id="0CA-rb-spW"/>
                             <constraint firstItem="klx-LC-Qhb" firstAttribute="leading" secondItem="zGN-pB-k4P" secondAttribute="leading" constant="53" id="2D9-bP-ZyU"/>
-                            <constraint firstItem="zGN-pB-k4P" firstAttribute="bottom" secondItem="hyL-ZB-pNc" secondAttribute="bottom" constant="80" id="C7b-hu-4Gm"/>
+                            <constraint firstItem="hyL-ZB-pNc" firstAttribute="leading" secondItem="zGN-pB-k4P" secondAttribute="leading" constant="16" id="BGf-8N-OwJ"/>
                             <constraint firstItem="hyL-ZB-pNc" firstAttribute="top" secondItem="klx-LC-Qhb" secondAttribute="bottom" constant="50" id="CsD-is-exx"/>
                             <constraint firstItem="zGN-pB-k4P" firstAttribute="trailing" secondItem="klx-LC-Qhb" secondAttribute="trailing" constant="52" id="DwK-Ur-lfx"/>
-                            <constraint firstItem="hyL-ZB-pNc" firstAttribute="leading" secondItem="zGN-pB-k4P" secondAttribute="leading" id="X7w-Z4-thD"/>
-                            <constraint firstItem="hyL-ZB-pNc" firstAttribute="trailing" secondItem="zGN-pB-k4P" secondAttribute="trailing" id="mwd-63-2Qa"/>
+                            <constraint firstItem="zGN-pB-k4P" firstAttribute="trailing" secondItem="hyL-ZB-pNc" secondAttribute="trailing" constant="16" id="JBo-ET-9eE"/>
+                            <constraint firstItem="HPa-8f-OY2" firstAttribute="bottom" secondItem="zGN-pB-k4P" secondAttribute="bottom" id="LA4-Ve-0Db"/>
+                            <constraint firstItem="HPa-8f-OY2" firstAttribute="trailing" secondItem="zGN-pB-k4P" secondAttribute="trailing" id="aQv-wD-LAg"/>
+                            <constraint firstItem="HPa-8f-OY2" firstAttribute="top" secondItem="hyL-ZB-pNc" secondAttribute="bottom" id="ukQ-fi-ZtS"/>
                             <constraint firstItem="hyL-ZB-pNc" firstAttribute="top" secondItem="klx-LC-Qhb" secondAttribute="bottom" constant="50" id="wl8-F7-Qop"/>
                             <constraint firstItem="klx-LC-Qhb" firstAttribute="top" secondItem="zGN-pB-k4P" secondAttribute="top" constant="30" id="yTk-sZ-PYO"/>
                         </constraints>
