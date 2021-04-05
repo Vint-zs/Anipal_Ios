@@ -24,10 +24,10 @@ class ConceptViewController: UIViewController {
     }
     
     @IBAction func nextPageButton(_ sender: UIButton) {
-//        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "levelSelectVC") else {
-//            return
-//        }
-//        self.navigationController?.pushViewController(nextVC, animated: true)
+        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "FavoriteVC") else {
+            return
+        }
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
     @IBAction func cancelBarButton(_ sender: UIBarButtonItem) {
