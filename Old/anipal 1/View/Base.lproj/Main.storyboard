@@ -1433,31 +1433,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hyL-ZB-pNc" customClass="FavoriteView" customModule="anipal_1" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="190" width="390" height="540"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="klx-LC-Qhb">
-                                <rect key="frame" x="105" y="118" width="180" height="22"/>
+                                <rect key="frame" x="53" y="118" width="285" height="22"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hyL-ZB-pNc" customClass="FavoriteView" customModule="anipal_1" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="190" width="390" height="540"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zGN-pB-k4P"/>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.97216695549999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="zGN-pB-k4P" firstAttribute="trailing" secondItem="klx-LC-Qhb" secondAttribute="trailing" constant="105" id="9BZ-OX-mwE"/>
-                            <constraint firstItem="klx-LC-Qhb" firstAttribute="leading" secondItem="zGN-pB-k4P" secondAttribute="leading" constant="105" id="Es0-Bv-Qir"/>
+                            <constraint firstItem="klx-LC-Qhb" firstAttribute="leading" secondItem="zGN-pB-k4P" secondAttribute="leading" constant="53" id="2D9-bP-ZyU"/>
+                            <constraint firstItem="zGN-pB-k4P" firstAttribute="bottom" secondItem="hyL-ZB-pNc" secondAttribute="bottom" constant="80" id="C7b-hu-4Gm"/>
+                            <constraint firstItem="hyL-ZB-pNc" firstAttribute="top" secondItem="klx-LC-Qhb" secondAttribute="bottom" constant="50" id="CsD-is-exx"/>
+                            <constraint firstItem="zGN-pB-k4P" firstAttribute="trailing" secondItem="klx-LC-Qhb" secondAttribute="trailing" constant="52" id="DwK-Ur-lfx"/>
+                            <constraint firstItem="hyL-ZB-pNc" firstAttribute="leading" secondItem="zGN-pB-k4P" secondAttribute="leading" id="X7w-Z4-thD"/>
+                            <constraint firstItem="hyL-ZB-pNc" firstAttribute="trailing" secondItem="zGN-pB-k4P" secondAttribute="trailing" id="mwd-63-2Qa"/>
+                            <constraint firstItem="hyL-ZB-pNc" firstAttribute="top" secondItem="klx-LC-Qhb" secondAttribute="bottom" constant="50" id="wl8-F7-Qop"/>
                             <constraint firstItem="klx-LC-Qhb" firstAttribute="top" secondItem="zGN-pB-k4P" secondAttribute="top" constant="30" id="yTk-sZ-PYO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TXW-zf-4Tz"/>
+                    <connections>
+                        <outlet property="favLabelTitle" destination="klx-LC-Qhb" id="Yc3-i7-mlV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lls-RD-APf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4132" y="-700"/>
+            <point key="canvasLocation" x="4130.7692307692305" y="-700.23696682464447"/>
         </scene>
     </scenes>
     <resources>
@@ -1474,8 +1481,8 @@
         <image name="xmark" catalog="system" width="128" height="113"/>
         <image name="zebra" width="300" height="300"/>
         <image name="동물얼굴-닭" width="174" height="152"/>
-        <image name="동물얼굴-돼지" width="174" height="136"/>
         <image name="동물얼굴-돼지" width="174" height="136"/>
+        <image name="동물얼굴-돼지" width="174" height="136"/>
         <image name="동물얼굴-얼룩말" width="176" height="176"/>
         <image name="우체통2" width="258" height="318"/>
         <image name="집" width="464" height="372"/>
