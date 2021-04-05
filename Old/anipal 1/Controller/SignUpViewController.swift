@@ -7,24 +7,40 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
-
-    @IBOutlet var logoView: UIImageView!
+class SignUpViewController: UIViewController, sendBackDelegate {
+    
     @IBOutlet var dateField: UITextField!
     @IBOutlet var genderChoice: UISegmentedControl!
+    @IBOutlet var imgButton: UIButton!
+    let initAnimals: [Animal] = [
+        Animal(nameInit: "bird", image: #imageLiteral(resourceName: "bird")),
+        Animal(nameInit: "monkey2", image: #imageLiteral(resourceName: "monkey2")),
+        Animal(nameInit: "panda", image: #imageLiteral(resourceName: "panda"))
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // UINavigationBar.appearance().barTintColor = UIColor(red: 174, green: 192, blue: 245, alpha: 1)
         
-        // Make logoView Circle
-        logoView.layer.borderWidth = 1
-        logoView.layer.masksToBounds = false
-        logoView.layer.borderColor = UIColor.gray.cgColor
-        logoView.layer.cornerRadius = logoView.frame.height/2
-        logoView.clipsToBounds = true
-
+        // Make imgButton Circle
+        imgButton.layer.borderWidth = 1
+        imgButton.layer.masksToBounds = false
+        imgButton.layer.borderColor = UIColor.gray.cgColor
+        imgButton.layer.cornerRadius = imgButton.frame.height/2
+        imgButton.clipsToBounds = true
+        
         self.dateField.setInputViewDatePicker(target: self, selector: #selector(tapDone))
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "selectAnimal" {
+            let secondVC = segue.destination as! SelectAnimal
+            secondVC.delegate = self
+        }
+    }
+    
+    func dataReceived(data: Int) {
+        imgButton.setImage(animals[data].img, for: . normal)
     }
     
     @IBAction func nextPageButton(_ sender: UIButton) {

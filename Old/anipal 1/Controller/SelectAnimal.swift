@@ -7,8 +7,14 @@
 
 import UIKit
 
-class SelectAnimal: UIViewController {
+protocol sendBackDelegate {
+    func dataReceived(data: Int)
+}
 
+class SelectAnimal: UIViewController {
+    
+    var select = 0
+    var delegate: sendBackDelegate?
     @IBOutlet var collectionView: UICollectionView!
     let animalSelectCellId = "AnimalSelectCell"
     let initAnimals: [Animal] = [
@@ -18,6 +24,7 @@ class SelectAnimal: UIViewController {
     ]
     
     override func viewDidLoad() {
+
         super.viewDidLoad()
 
         self.collectionView.dataSource = self
@@ -47,22 +54,28 @@ extension SelectAnimal: UICollectionViewDelegate, UICollectionViewDataSource, UI
         
         cell.img.image = initAnimals[indexPath.row].img
         cell.name.text = initAnimals[indexPath.row].name
-        
+        cell.layer.cornerRadius = 10
+        cell.backgroundColor = .white
         return cell
     }
     
+    // 셀 선택
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.dataReceived(data: indexPath.row)
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     // 섹션의 여백
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         let inset: CGFloat = 25
-        return UIEdgeInsets(top: inset, left: inset, bottom: 10, right: inset)
+        return UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
     }
-
+    // 셀 행의 최소간격
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 30
+    }
     // 셀의 크기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: 240)
+        return CGSize(width: 160, height: 190)
     }
     
 }
