@@ -40,7 +40,8 @@ class NewLetterViewController: UIViewController {
 
     // MARK: - 답장 버튼 클릭시
     @IBAction func clickReply(_ sender: UIButton) {
-        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "WritingPage") as? WritingPage else {
+        let sub = UIStoryboard(name: "Tab1", bundle: nil)
+        guard let nextVC = sub.instantiateViewController(identifier: "WritingPage") as? WritingPage else {
             return
         }
 //
