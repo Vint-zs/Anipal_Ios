@@ -22,7 +22,9 @@ class LetterDetailViewController: UIViewController {
     }
     
     @IBAction func wrtieBtn(_ sender: UIButton) {
-        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "WritingPage")as? WritingPage else {
+        
+        let sub = UIStoryboard(name: "Tab1", bundle: nil)
+        guard let nextVC = sub.instantiateViewController(identifier: "WritingPage")as? WritingPage else {
             return
         }
 
