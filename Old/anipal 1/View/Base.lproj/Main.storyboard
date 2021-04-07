@@ -301,7 +301,7 @@
         <!--UINavigationController-EbV-gk-aVL-->
         <scene sceneID="Wnl-bV-dPh">
             <objects>
-                <viewControllerPlaceholder storyboardName="Tab4" referencedIdentifier="UINavigationController-EbV-gk-aVL" id="Lk7-AO-w0r" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="SettingTab" referencedIdentifier="UINavigationController-EbV-gk-aVL" id="Lk7-AO-w0r" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="LU9-NX-d2f"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6fG-VM-NsQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -311,7 +311,7 @@
         <!--DefaultInfoVC-->
         <scene sceneID="67c-sk-euX">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="DefaultInfoVC" storyboardName="Tab4" referencedIdentifier="DefaultInfoVC" id="kKg-nl-4fN" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="DefaultInfoVC" storyboardName="SettingTab" referencedIdentifier="DefaultInfoVC" id="kKg-nl-4fN" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RZR-Nb-xbr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6161" y="260"/>
@@ -319,7 +319,7 @@
         <!--LanguageSettingVC-->
         <scene sceneID="EjP-vy-1D3">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="LanguageSettingVC" storyboardName="Tab4" referencedIdentifier="LanguageSettingVC" id="OVa-K4-ZAU" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="LanguageSettingVC" storyboardName="SettingTab" referencedIdentifier="LanguageSettingVC" id="OVa-K4-ZAU" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ssd-qT-lDF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6167" y="337"/>
@@ -327,7 +327,7 @@
         <!--FavoriteSettingVC-->
         <scene sceneID="wTF-kG-EAZ">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="FavoriteSettingVC" storyboardName="Tab4" referencedIdentifier="FavoriteSettingVC" id="wGn-Mp-85A" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="FavoriteSettingVC" storyboardName="SettingTab" referencedIdentifier="FavoriteSettingVC" id="wGn-Mp-85A" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qvy-0I-QXA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6163" y="478"/>
@@ -335,7 +335,7 @@
         <!--ConceptSettingVC-->
         <scene sceneID="ZuT-WN-mJT">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="ConceptSettingVC" storyboardName="Tab4" referencedIdentifier="ConceptSettingVC" id="nNu-oL-fLe" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="ConceptSettingVC" storyboardName="SettingTab" referencedIdentifier="ConceptSettingVC" id="nNu-oL-fLe" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q3h-W0-IpE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6160" y="416"/>
