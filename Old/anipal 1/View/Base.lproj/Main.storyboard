@@ -275,7 +275,7 @@
         <!--UINavigationController-RFZ-cb-kSJ-->
         <scene sceneID="aVQ-zR-2wX">
             <objects>
-                <viewControllerPlaceholder storyboardName="Tab3" referencedIdentifier="UINavigationController-RFZ-cb-kSJ" id="0Wq-hq-6bd" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="LetterListTab" referencedIdentifier="UINavigationController-RFZ-cb-kSJ" id="0Wq-hq-6bd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="rHT-Zh-P6b"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XLY-Js-Qym" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -285,7 +285,7 @@
         <!--letterDetail-->
         <scene sceneID="0Oj-J4-eSU">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="letterDetail" storyboardName="Tab3" referencedIdentifier="letterDetail" id="Tdx-Bf-8cU" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="letterDetail" storyboardName="LetterListTab" referencedIdentifier="letterDetail" id="Tdx-Bf-8cU" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aEU-iX-9tc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6575" y="-5"/>
@@ -293,7 +293,7 @@
         <!--LetterListVC-->
         <scene sceneID="bTp-F9-wLj">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="LetterListVC" storyboardName="Tab3" referencedIdentifier="LetterListVC" id="ZUN-ZQ-owa" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="LetterListVC" storyboardName="LetterListTab" referencedIdentifier="LetterListVC" id="ZUN-ZQ-owa" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yC9-Qp-hR8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6200" y="2"/>
