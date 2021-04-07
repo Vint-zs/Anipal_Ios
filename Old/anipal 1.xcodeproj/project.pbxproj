@@ -12,6 +12,9 @@
 		6C2C429426178AFF007D2D71 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C429326178AFF007D2D71 /* FavoriteView.swift */; };
 		6C2C429726178B08007D2D71 /* FavoriteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C2C429626178B08007D2D71 /* FavoriteView.xib */; };
 		6C616339261AA8CE00998DF9 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C616338261AA8CE00998DF9 /* FavoriteViewController.swift */; };
+		6C6A9A09261E149700EF93F4 /* LetterListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6A9A08261E149700EF93F4 /* LetterListCell.swift */; };
+		6C6A9A0C261E14FF00EF93F4 /* LetterListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C6A9A0B261E14FE00EF93F4 /* LetterListCell.xib */; };
+		6C6A9A0F261E23C100EF93F4 /* LetterListColV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6A9A0E261E23C100EF93F4 /* LetterListColV.swift */; };
 		6C7D9B9E2614BA4D003596EB /* SettingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7D9B9D2614BA4D003596EB /* SettingTableView.swift */; };
 		6C7D9BA22614D730003596EB /* DefaultInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7D9BA12614D730003596EB /* DefaultInfoVC.swift */; };
 		6C7D9BA52614DC0C003596EB /* LanguageSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7D9BA42614DC0C003596EB /* LanguageSettingVC.swift */; };
@@ -67,6 +70,9 @@
 		6C2C429326178AFF007D2D71 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		6C2C429626178B08007D2D71 /* FavoriteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteView.xib; sourceTree = "<group>"; };
 		6C616338261AA8CE00998DF9 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		6C6A9A08261E149700EF93F4 /* LetterListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterListCell.swift; sourceTree = "<group>"; };
+		6C6A9A0B261E14FE00EF93F4 /* LetterListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LetterListCell.xib; sourceTree = "<group>"; };
+		6C6A9A0E261E23C100EF93F4 /* LetterListColV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterListColV.swift; sourceTree = "<group>"; };
 		6C7D9B9D2614BA4D003596EB /* SettingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableView.swift; sourceTree = "<group>"; };
 		6C7D9BA12614D730003596EB /* DefaultInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInfoVC.swift; sourceTree = "<group>"; };
 		6C7D9BA42614DC0C003596EB /* LanguageSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSettingVC.swift; sourceTree = "<group>"; };
@@ -146,6 +152,8 @@
 				6C05C15F2618405700FB744A /* FavoriteCell.xib */,
 				76F0FFFE261AE184004D080E /* AnimalCollectionViewCell.swift */,
 				76F0FFFF261AE184004D080E /* AnimalCollectionViewCell.xib */,
+				6C6A9A08261E149700EF93F4 /* LetterListCell.swift */,
+				6C6A9A0B261E14FE00EF93F4 /* LetterListCell.xib */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -191,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				7691936B25D5000A0094B5BF /* LetterListViewController.swift */,
+				6C6A9A0E261E23C100EF93F4 /* LetterListColV.swift */,
 				7691937325D54DDA0094B5BF /* LetterListTableViewCell.swift */,
 				76AF5B4825D95A4300CA4183 /* LetterDetailViewController.swift */,
 			);
@@ -372,6 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7686723E261C4FB90037A4F3 /* Tab1.storyboard in Resources */,
+				6C6A9A0C261E14FF00EF93F4 /* LetterListCell.xib in Resources */,
 				6CFB759B2615AD710017F160 /* Localizable.strings in Resources */,
 				76D1785625CA922900C5ED37 /* Assets.xcassets in Resources */,
 				6C2C429726178B08007D2D71 /* FavoriteView.xib in Resources */,
@@ -471,6 +481,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76D1785125CA922900C5ED37 /* Login.swift in Sources */,
+				6C6A9A09261E149700EF93F4 /* LetterListCell.swift in Sources */,
 				7668702525D15BB900536E36 /* SettingTab.swift in Sources */,
 				6C7D9BAB2614DD1A003596EB /* FavoriteSettingVC.swift in Sources */,
 				6C2C429426178AFF007D2D71 /* FavoriteView.swift in Sources */,
@@ -498,6 +509,7 @@
 				6C7D9B9E2614BA4D003596EB /* SettingTableView.swift in Sources */,
 				761165F125D8308400577F92 /* SingUpViewController2.swift in Sources */,
 				761D51622618D46800089040 /* LanguageLevelSelect.swift in Sources */,
+				6C6A9A0F261E23C100EF93F4 /* LetterListColV.swift in Sources */,
 				76686FC825CE2C5F00536E36 /* MainPage.swift in Sources */,
 				7668701C25D13AB200536E36 /* StartPage.swift in Sources */,
 				6CFB75A62615F7460017F160 /* StringExtension.swift in Sources */,
