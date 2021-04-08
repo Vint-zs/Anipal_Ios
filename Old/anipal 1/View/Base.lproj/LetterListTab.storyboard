@@ -19,21 +19,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="layoutMargins" id="X89-gk-gDZ">
-                            <size key="itemSize" width="150" height="212"/>
-                            <size key="estimatedItemSize" width="128" height="128"/>
+                            <size key="itemSize" width="140" height="200"/>
+                            <size key="estimatedItemSize" width="140" height="200"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="MvG-LS-och">
-                                <rect key="frame" x="28" y="8" width="140" height="212"/>
+                                <rect key="frame" x="28" y="8" width="140" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="QfU-yx-vhy">
-                                    <rect key="frame" x="0.0" y="0.0" width="140" height="212"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="140" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionViewCellContentView>
-                                <size key="customSize" width="140" height="212"/>
+                                <size key="customSize" width="140" height="200"/>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -48,42 +48,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="soR-wJ-ZR0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6583" y="-293"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="qnI-ms-KtU">
-            <objects>
-                <viewController storyboardIdentifier="LetterListVC" id="HQj-c6-DsV" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8Xu-x0-dzb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="T4e-v2-Ru2">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="15" sectionInsetReference="layoutMargins" id="dEq-vm-CEV">
-                                    <size key="itemSize" width="150" height="200"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="sQZ-TU-fbF"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="T4e-v2-Ru2" firstAttribute="trailing" secondItem="sQZ-TU-fbF" secondAttribute="trailing" id="6qi-1O-NuC"/>
-                            <constraint firstItem="T4e-v2-Ru2" firstAttribute="top" secondItem="sQZ-TU-fbF" secondAttribute="top" id="JZJ-uj-KdG"/>
-                            <constraint firstAttribute="bottom" secondItem="T4e-v2-Ru2" secondAttribute="bottom" id="Kbp-Pp-gbU"/>
-                            <constraint firstItem="T4e-v2-Ru2" firstAttribute="leading" secondItem="sQZ-TU-fbF" secondAttribute="leading" id="zGr-no-IRU"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="b0h-td-YwR"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="E7m-5A-1bh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6770" y="339"/>
+            <point key="canvasLocation" x="6777" y="328"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="LVU-Ay-iWQ">
