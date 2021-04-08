@@ -7,31 +7,30 @@
 
 import UIKit
 
-class LetterListViewController: UIViewController, UICollectionViewDataSource {
-
-    // @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var letterListColV: UICollectionView!
+class LetterListViewController: UICollectionViewController {
+    
+    @IBOutlet var letterListCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         initCollectionView()
-        // Do any additional setup after loading the view.
     }
     
     private func initCollectionView() {
         let nib = UINib(nibName: "LetterListCell", bundle: nil)
-        letterListColV.register(nib, forCellWithReuseIdentifier: "LetterListCell")
-        letterListColV.dataSource = self
+        letterListCollectionView.register(nib, forCellWithReuseIdentifier: "LetterListCell")
+        letterListCollectionView.dataSource = self
     }
 
 }
 
 extension LetterListViewController {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 8
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LetterListCell", for: indexPath) as? LetterListCell else {
             fatalError("Can't dequeue LetterListCell")
         }
@@ -39,6 +38,10 @@ extension LetterListViewController {
         cell.arrivalDate.text = "dd/mm/yyyy"
         
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("cell selected")
     }
 }
 
