@@ -5,6 +5,8 @@
   Created by 이예주 on 2021/04/01.
   
 */
+// 편지 리스트 탭
+"Penpal" = "Penpal";
 
 // 설정 탭
 "User info" = "User info";

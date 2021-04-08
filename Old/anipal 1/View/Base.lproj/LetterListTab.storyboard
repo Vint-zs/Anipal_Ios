@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Letter List View Controller-->
+        <!--펜팔-->
         <scene sceneID="M1a-1S-h6Y">
             <objects>
-                <collectionViewController storyboardIdentifier="LetterListViewController" id="8p3-X2-gmF" customClass="LetterListViewController" customModule="anipal_1" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="LetterListVC" id="8p3-X2-gmF" customClass="LetterListViewController" customModule="anipal_1" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="0Fp-zu-Znx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,7 +41,7 @@
                             <outlet property="delegate" destination="8p3-X2-gmF" id="o02-tC-4AF"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="HQU-dU-sRJ"/>
+                    <navigationItem key="navigationItem" title="펜팔" id="BVL-Dn-0ZV"/>
                     <connections>
                         <outlet property="letterListCollectionView" destination="0Fp-zu-Znx" id="t1t-uh-f07"/>
                     </connections>

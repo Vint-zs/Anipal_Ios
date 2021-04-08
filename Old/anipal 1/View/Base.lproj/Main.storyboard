@@ -272,6 +272,14 @@
             </objects>
             <point key="canvasLocation" x="6215" y="-153"/>
         </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="txI-1n-2SR">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="LetterListVC" id="D2Q-Ox-9Bp" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3TG-pJ-0DQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6124" y="-14"/>
+        </scene>
         <!--UINavigationController-RFZ-cb-kSJ-->
         <scene sceneID="aVQ-zR-2wX">
             <objects>
@@ -289,14 +297,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aEU-iX-9tc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6575" y="-5"/>
-        </scene>
-        <!--LetterListVC-->
-        <scene sceneID="bTp-F9-wLj">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="LetterListVC" storyboardName="LetterListTab" referencedIdentifier="LetterListVC" id="ZUN-ZQ-owa" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yC9-Qp-hR8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6200" y="2"/>
         </scene>
         <!--UINavigationController-EbV-gk-aVL-->
         <scene sceneID="Wnl-bV-dPh">

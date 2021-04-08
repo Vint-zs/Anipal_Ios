@@ -13,7 +13,7 @@ class LetterListViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationItem.title = "Penpal".localized
         initCollectionView()
     }
     
