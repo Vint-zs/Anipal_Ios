@@ -18,8 +18,10 @@ class LetterListViewController: UICollectionViewController {
     }
     
     private func initCollectionView() {
-        let nib = UINib(nibName: "LetterListCell", bundle: nil)
-        letterListCollectionView.register(nib, forCellWithReuseIdentifier: "LetterListCell")
+        let listNib = UINib(nibName: "LetterListCell", bundle: nil)
+        let writeNib = UINib(nibName: "WriteNewLetter", bundle: nil)
+        letterListCollectionView.register(listNib, forCellWithReuseIdentifier: "LetterListCell")
+        letterListCollectionView.register(writeNib, forCellWithReuseIdentifier: "WriteNewLetter")
         letterListCollectionView.dataSource = self
     }
 
@@ -31,15 +33,22 @@ extension LetterListViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LetterListCell", for: indexPath) as? LetterListCell else {
-            fatalError("Can't dequeue LetterListCell")
+        if indexPath.item > 0 {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LetterListCell", for: indexPath) as? LetterListCell else {
+                fatalError("Can't dequeue LetterListCell")
+            }
+            cell.senderName.text = users[indexPath.row].name
+            cell.senderName.sizeToFit()
+            cell.arrivalDate.text = users[indexPath.row].birthday
+            cell.arrivalDate.sizeToFit()
+            
+            return cell
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WriteNewLetter", for: indexPath) as? WriteNewLetter else { fatalError("Can't dequeue WriteNewLetter")}
+            cell.writeBtn.setTitle("write", for: .normal)
+            
+            return cell
         }
-        cell.senderName.text = users[indexPath.row].name
-        cell.senderName.sizeToFit()
-        cell.arrivalDate.text = users[indexPath.row].birthday
-        cell.arrivalDate.sizeToFit()
-        
-        return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
