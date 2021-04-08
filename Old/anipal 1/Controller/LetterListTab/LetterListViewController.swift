@@ -34,14 +34,23 @@ extension LetterListViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LetterListCell", for: indexPath) as? LetterListCell else {
             fatalError("Can't dequeue LetterListCell")
         }
-        cell.senderName.text = "Nickname"
-        cell.arrivalDate.text = "dd/mm/yyyy"
+        cell.senderName.text = users[indexPath.row].name
+        cell.senderName.sizeToFit()
+        cell.arrivalDate.text = users[indexPath.row].birthday
+        cell.arrivalDate.sizeToFit()
         
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("cell selected")
+        guard let writingVC = self.storyboard?.instantiateViewController(identifier: "letterDetail")as? LetterDetailViewController else {
+            return
+        }
+
+        writingVC.nameFromVar = letters[indexPath.row].fromLetter
+        writingVC.contentVar = letters[indexPath.row].contentInit
+
+        self.navigationController?.pushViewController(writingVC, animated: true)
     }
 }
 

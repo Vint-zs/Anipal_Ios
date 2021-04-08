@@ -12,8 +12,6 @@ class LetterListCell: UICollectionViewCell {
     
     @IBOutlet weak var senderName: UILabel!
     @IBOutlet weak var arrivalDate: UILabel!
-    @IBOutlet weak var mailBoxImg: UIImageView!
-    @IBOutlet weak var senderAnimalImg: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
