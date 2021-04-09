@@ -17,17 +17,19 @@
                 <rect key="frame" x="0.0" y="0.0" width="130" height="200"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qR6-ZH-gJC">
-                        <rect key="frame" x="42" y="85" width="46" height="30"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4D-M2-C77">
+                        <rect key="frame" x="44" y="90" width="42" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" title="Button"/>
-                    </button>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
             </collectionViewCellContentView>
             <size key="customSize" width="130" height="200"/>
             <connections>
-                <outlet property="writeBtn" destination="qR6-ZH-gJC" id="b6x-2Z-ynW"/>
+                <outlet property="writeLabel" destination="x4D-M2-C77" id="78w-P8-C9m"/>
             </connections>
             <point key="canvasLocation" x="111.59420289855073" y="182.8125"/>
         </collectionViewCell>

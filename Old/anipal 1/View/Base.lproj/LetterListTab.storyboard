@@ -10,6 +10,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--WritingPage-->
+        <scene sceneID="2KM-FH-BNK">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="WritingPage" storyboardName="Tab1" referencedIdentifier="WritingPage" id="Yk1-cY-KEW" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4xm-Ro-YoG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7230" y="-154"/>
+        </scene>
         <!--펜팔-->
         <scene sceneID="M1a-1S-h6Y">
             <objects>

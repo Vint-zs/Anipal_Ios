@@ -45,21 +45,27 @@ extension LetterListViewController {
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WriteNewLetter", for: indexPath) as? WriteNewLetter else { fatalError("Can't dequeue WriteNewLetter")}
-            cell.writeBtn.setTitle("write", for: .normal)
+            cell.writeLabel.text = "write"
             
             return cell
         }
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let writingVC = self.storyboard?.instantiateViewController(identifier: "letterDetail")as? LetterDetailViewController else {
-            return
+        if indexPath.item == 0 {
+            guard let writingVC = self.storyboard?.instantiateViewController(identifier: "WritingPage") as? WritingPage else { return }
+            
+            self.present(writingVC, animated: true, completion: nil)
+        } else {
+            guard let letterDetailVC = self.storyboard?.instantiateViewController(identifier: "letterDetail") as? LetterDetailViewController else {
+                return
+            }
+
+            letterDetailVC.nameFromVar = letters[indexPath.row - 1].fromLetter
+            letterDetailVC.contentVar = letters[indexPath.row - 1].contentInit
+
+            self.navigationController?.pushViewController(letterDetailVC, animated: true)
         }
-
-        writingVC.nameFromVar = letters[indexPath.row].fromLetter
-        writingVC.contentVar = letters[indexPath.row].contentInit
-
-        self.navigationController?.pushViewController(writingVC, animated: true)
     }
 }
 

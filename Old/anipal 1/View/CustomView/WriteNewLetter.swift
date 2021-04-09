@@ -10,7 +10,7 @@ import UIKit
 @IBDesignable
 class WriteNewLetter: UICollectionViewCell {
     
-    @IBOutlet weak var writeBtn: UIButton!
+    @IBOutlet weak var writeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
