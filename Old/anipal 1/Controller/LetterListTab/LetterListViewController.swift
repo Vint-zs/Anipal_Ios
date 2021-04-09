@@ -10,6 +10,7 @@ import UIKit
 class LetterListViewController: UICollectionViewController {
     
     @IBOutlet var letterListCollectionView: UICollectionView!
+    @IBOutlet weak var menuBtn: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
