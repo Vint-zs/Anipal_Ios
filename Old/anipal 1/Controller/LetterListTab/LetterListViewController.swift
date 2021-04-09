@@ -55,6 +55,9 @@ extension LetterListViewController {
         if indexPath.item == 0 {
             guard let writingVC = self.storyboard?.instantiateViewController(identifier: "WritingPage") as? WritingPage else { return }
             
+            writingVC.modalTransitionStyle = .coverVertical
+            writingVC.modalPresentationStyle = .pageSheet
+            
             self.present(writingVC, animated: true, completion: nil)
         } else {
             guard let letterDetailVC = self.storyboard?.instantiateViewController(identifier: "letterDetail") as? LetterDetailViewController else {
