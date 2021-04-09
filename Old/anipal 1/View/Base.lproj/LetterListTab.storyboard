@@ -10,6 +10,35 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Letter List Menu-->
+        <scene sceneID="29S-Qr-vv0">
+            <objects>
+                <tableViewController storyboardIdentifier="LetterListMenu" id="ZdW-Zh-0Ln" customClass="LetterListMenu" customModule="anipal_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="JvE-PE-ZeF">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="350"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LetterListMenuCell" id="d9q-e1-hYq">
+                                <rect key="frame" x="0.0" y="28" width="300" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d9q-e1-hYq" id="tGb-8d-8q7">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ZdW-Zh-0Ln" id="HE9-G2-F6W"/>
+                            <outlet property="delegate" destination="ZdW-Zh-0Ln" id="lAb-mc-rcY"/>
+                        </connections>
+                    </tableView>
+                    <size key="freeformSize" width="300" height="350"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ohw-AX-eaN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6094" y="-257"/>
+        </scene>
         <!--WritingPage-->
         <scene sceneID="2KM-FH-BNK">
             <objects>
@@ -50,7 +79,11 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="펜팔" id="BVL-Dn-0ZV">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="ellipsis" catalog="system" id="EMQ-Yb-ECk"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="ellipsis" catalog="system" id="EMQ-Yb-ECk">
+                            <connections>
+                                <action selector="sortBtn:" destination="8p3-X2-gmF" id="CUE-bq-dYX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="letterListCollectionView" destination="0Fp-zu-Znx" id="t1t-uh-f07"/>

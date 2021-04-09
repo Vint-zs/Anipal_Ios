@@ -26,6 +26,13 @@ class LetterListViewController: UICollectionViewController {
         letterListCollectionView.dataSource = self
     }
 
+    @IBAction func sortBtn(_ sender: UIBarButtonItem) {
+        guard let vc = self.storyboard?.instantiateViewController(identifier: "LetterListMenu") as? LetterListMenu else { return }
+        vc.modalPresentationStyle = .popover
+        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
+        popover.barButtonItem = sender
+        present(vc, animated: true, completion: nil)
+    }
 }
 
 extension LetterListViewController {
