@@ -12,6 +12,14 @@ import FBSDKCoreKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var name: String?
+    var gender: String?
+    var birthday: String?
+    var email: String?
+    var provider: String?
+    var favorties: [String]?
+    var languages: [Any]?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
