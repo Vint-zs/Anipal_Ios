@@ -8,6 +8,8 @@
 import UIKit
 import GoogleSignIn
 import FBSDKLoginKit
+import Alamofire
+import SwiftyJSON
 
 class Login: UIViewController {
     @IBOutlet var facebookBtn: UIButton!
@@ -35,11 +37,16 @@ class Login: UIViewController {
             switch loginResult {
             case .success(granted:_, declined:_, token:_):
                 print("success facebook login")
-                if let token = AccessToken.current, !token.isExpired {
-                    print(token)
-                // getData(url: "http://9075cd62c831.ngrok.io", token: user.authentication.accessToken) // 서버로 b토큰 전송
-                    moveMainScreen()
-                }
+                
+                // 프로필 가져오기
+//                Profile.loadCurrentProfile(completion: {(profile,error) in
+//                    print(profile?.name)
+//                    print(profile?.userID)
+//                    print(profile?.email)
+//                })
+                
+                self.getData(url: "https://anipal.tk/auth/facebook", token: AccessToken.current!.tokenString) // 서버로 b토큰 전송
+                
             case .cancelled:
                 print("user cancel the login")
             case .failed(let error):
@@ -53,6 +60,51 @@ class Login: UIViewController {
         GIDSignIn.sharedInstance()?.signIn()
     }
     @IBAction func appleLogin(_ sender: UIButton) {
+    }
+    
+    // MARK: - 서버 통신
+    func getData(url: String, token: String) {
+        
+        // let parameters = ["access Token": user.authentication.accessToken, "name": "jack"] as [String : Any]
+            let url = URL(string: url)! // change the url
+            let session = URLSession.shared
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET" // set http method as POST
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+            // request.addValue("application/json", forHTTPHeaderField: "Accept")
+            
+            let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
+                guard error == nil else {
+                    print(error!.localizedDescription)
+                    return
+                }
+                
+                // response 확인
+                if let httpResponse = response as? HTTPURLResponse {
+                    
+                    if httpResponse.statusCode == 200 {
+                        moveMainScreen()
+                    } else if httpResponse.statusCode == 400 {
+                        DispatchQueue.main.async {
+                            GIDSignIn.sharedInstance()?.signOut()
+                            LoginManager.init().logOut()
+                            let alert = UIAlertController.init(title: "중복가입", message: "이미 가입된 이메일입니다 \n다른 소셜계정으로 다시 로그인해주세요!", preferredStyle: .alert)
+                            let okBtn = UIAlertAction.init(title: "확인", style: .default, handler: nil)
+                            alert.addAction(okBtn)
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                    } else if httpResponse.statusCode == 404 {
+                        DispatchQueue.main.async {
+                        guard let signupVC = self.storyboard?.instantiateViewController(identifier: "SignUpVC1") else {
+                            return
+                        }
+                        self.navigationController?.pushViewController(signupVC, animated: true)
+                        }
+                    }
+                }
+            }
+            task.resume()
     }
 }
 // MARK: - 구글 로그인 설정
@@ -68,60 +120,57 @@ extension Login: GIDSignInDelegate {
             }
             return
         }
-        // getData(url: "http://9075cd62c831.ngrok.io", token: user.authentication.accessToken) // 서버로 b토큰 전송
-        moveMainScreen()
+        print("success google login")
+        getData(url: "https://anipal.tk/auth/google", token: user.authentication.accessToken) // 서버로 b토큰 전송
+//        moveMainScreen()
     }
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         print("Disconnect")
     }
 }
 
-// MARK: - 서버 통신
-func getData(url: String, token: String) {
-    
-    // let parameters = ["access Token": user.authentication.accessToken, "name": "jack"] as [String : Any]
-
-        // create the url with URL
-        let url = URL(string: url)! // change the url
-    
-        // create the session object
-        let session = URLSession.shared
-    
-        // now create the URLRequest object using the url object
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET" // set http method as POST
-
-//            do {
-//                request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-//            } catch let error {
-//                print(error.localizedDescription)
-//            }
-
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
-        // request.addValue("application/json", forHTTPHeaderField: "Accept")
-
-        // create dataTask using the session object to send data to the server
-        let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
-            guard error == nil else {
-                return
-            }
-            guard let data = data else {
-                return
-            }
-            
-            do {
-                // create json object from data
-                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                    print(json)
-                    // handle json...
-                }
-            } catch let error {
-                print(error.localizedDescription)
-            }
-        })
-        task.resume()
-}
+// func postData(url: String, token: ) {
+//    // 1. 전송할 값 준비
+//      let userId = (self.userId.text)!
+//      let name = (self.name.text)!
+//      let param = ["userId": userId, "name": name] // JSON 객체로 변환할 딕셔너리 준비
+//      let paramData = try! JSONSerialization.data(withJSONObject: param, options: [])
+//
+//      // 2. URL 객체 정의
+//      let url = URL(string: "http://~~~~");
+//
+//      // 3. URLRequest 객체 정의 및 요청 내용 담기
+//      var request = URLRequest(url: url!)
+//      request.httpMethod = "POST"
+//      request.httpBody = paramData
+//
+//      // 4. HTTP 메시지에 포함될 헤더 설정
+//      request.addValue("applicaion/json", forHTTPHeaderField: "Content-Type")
+//      request.setValue(String(paramData.count), forHTTPHeaderField: "Content-Length")
+//
+//      // 5. URLSession 객체를 통해 전송 및 응답값 처리 로직 작성
+//
+//      let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
+//
+//               guard let data = data, error == nil else {                                                 // check for fundamental networking error
+//                   print("error=\(error)")
+//                   return
+//               }
+//
+//               if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+//                   print("statusCode should be 200, but is \(httpStatus.statusCode)")
+//                   print("response = \(response)")
+//               }
+//
+//               let responseString = String(data: data, encoding: .utf8)
+//               print("responseString = \(responseString)")
+//
+//      }
+//
+//      // 6. POST 전송
+//
+//      task.resume()
+// }
 
 // MARK: - 메인화면전환
 func moveMainScreen() {
