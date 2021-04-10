@@ -7,26 +7,83 @@
 
 import UIKit
 
-class WritingPage: UIViewController {
+class WritingPage: UIViewController ,sendBackDelegate {
 
-    @IBOutlet weak var name: UILabel!
+
+    // 임시 데이터
+    let initAnimals: [Animal] = [
+        Animal(nameInit: "bird", image: #imageLiteral(resourceName: "bird")),
+        Animal(nameInit: "monkey2", image: #imageLiteral(resourceName: "monkey2")),
+        Animal(nameInit: "panda", image: #imageLiteral(resourceName: "panda"))
+    ]
+    
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var animalBtn: UIButton!
     
     var nameVar: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        name.text = nameVar
+        
+//        imgButton.layer.borderWidth = 1
+//        imgButton.layer.masksToBounds = false
+//        imgButton.layer.borderColor = UIColor.gray.cgColor
+//        imgButton.layer.cornerRadius = imgButton.frame.height/2
+//        imgButton.clipsToBounds = true
+        
         placeholderSetting()
+        topView.layer.backgroundColor = UIColor(red: 0.946, green: 0.946, blue: 0.946, alpha: 1).cgColor
+        view.layer.backgroundColor = UIColor(red: 0.95, green: 0.973, blue: 1, alpha: 1).cgColor
+        textView.layer.cornerRadius = 10
+        
+        //animalBtn.backgroundColor = .white
+        animalBtn.layer.cornerRadius = animalBtn.frame.height/2
+        animalBtn.layer.borderWidth = 1
+        animalBtn.layer.borderColor = UIColor.gray.cgColor
+
+//        animalBtn.clipsToBounds = true
+//        animalBtn.layer.masksToBounds = false
+        //animalBtn.layer.zPosition = 100
+        
+        // 네비게이션 바 색상
+        navigationController?.navigationBar.barTintColor = UIColor(red: 0.95, green: 0.973, blue: 1, alpha: 1)
+        // 네비게이션 버튼 색상
+        navigationController?.navigationBar.tintColor = UIColor(red: 0.392, green: 0.392, blue: 0.392, alpha: 1)
+        // 네이베이션바 선 없애기
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+    }
+        
+    func dataReceived(data: Int) {
+        print(data)
+        animalBtn.setImage(initAnimals[data].img, for: .normal)
         
     }
-
+    
+    @IBAction func clickAnimalBtn(_ sender: UIButton) {
+        let sub = UIStoryboard(name: "SignUp", bundle: nil)
+        guard let nextVC = sub.instantiateViewController(identifier: "selectAnimalVC") as? SelectAnimal else {
+            return
+        }
+        nextVC.delegate = self
+        self.present(nextVC, animated: true, completion: nil)
+    }
+    
     @IBAction func send(_ sender: UIButton) {
         guard let nextVC = self.storyboard?.instantiateViewController(identifier: "SelectAnimal") else {
             return
         }
-        
         self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
     }
 }
 
