@@ -34,6 +34,12 @@ class LetterListViewController: UICollectionViewController {
     
     // 정렬 메뉴
     @IBAction func sortBtn(_ sender: UIBarButtonItem) {
+        // 정렬 선택
+        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            print("selected item: \(item)")
+            print("index: \(index)")
+        }
+        
         dropDown.bottomOffset = CGPoint(x: 0, y: (dropDown.anchorView?.plainView.bounds.height)!)
         dropDown.selectionBackgroundColor = UIColor(red: 0.682, green: 0.753, blue: 0.961, alpha: 1)
         dropDown.show()
