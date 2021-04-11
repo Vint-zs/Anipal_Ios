@@ -31,8 +31,11 @@ class LetterListViewController: UICollectionViewController {
         letterListCollectionView.register(writeNib, forCellWithReuseIdentifier: "WriteNewLetter")
         letterListCollectionView.dataSource = self
     }
-
+    
+    // 정렬 메뉴
     @IBAction func sortBtn(_ sender: UIBarButtonItem) {
+        dropDown.bottomOffset = CGPoint(x: 0, y: (dropDown.anchorView?.plainView.bounds.height)!)
+        dropDown.selectionBackgroundColor = UIColor(red: 0.682, green: 0.753, blue: 0.961, alpha: 1)
         dropDown.show()
     }
 }
