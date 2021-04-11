@@ -6,15 +6,21 @@
 //
 
 import UIKit
+import DropDown
 
 class LetterListViewController: UICollectionViewController {
     
     @IBOutlet var letterListCollectionView: UICollectionView!
     @IBOutlet weak var menuBtn: UIBarButtonItem!
     
+    let dropDown = DropDown()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Penpal".localized
+        dropDown.anchorView = menuBtn
+        dropDown.dataSource = ["Newest".localized, "Frequency".localized]
+        
         initCollectionView()
     }
     
@@ -27,11 +33,7 @@ class LetterListViewController: UICollectionViewController {
     }
 
     @IBAction func sortBtn(_ sender: UIBarButtonItem) {
-        guard let vc = self.storyboard?.instantiateViewController(identifier: "LetterListMenu") as? LetterListMenu else { return }
-        vc.modalPresentationStyle = .popover
-        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
-        popover.barButtonItem = sender
-        present(vc, animated: true, completion: nil)
+        dropDown.show()
     }
 }
 
