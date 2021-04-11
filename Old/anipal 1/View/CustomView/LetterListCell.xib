@@ -18,10 +18,15 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bBZ-ek-P8S">
                         <rect key="frame" x="0.0" y="0.0" width="132" height="216"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="bBZ-ek-P8S" secondAttribute="height" multiplier="11:18" id="cf1-ox-hu0"/>
+                        </constraints>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A0w-HD-9dJ">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A0w-HD-9dJ">
                         <rect key="frame" x="0.0" y="0.0" width="132" height="216"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="A0w-HD-9dJ" secondAttribute="height" multiplier="11:18" id="YHN-wT-XFQ"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uke-Qp-xQW">
                         <rect key="frame" x="6" y="158" width="22" height="10"/>
@@ -40,9 +45,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="bBZ-ek-P8S" secondAttribute="trailing" id="6mn-7v-xFD"/>
+                    <constraint firstItem="A0w-HD-9dJ" firstAttribute="top" secondItem="Auf-mL-U5G" secondAttribute="top" id="AaQ-V3-rT1"/>
                     <constraint firstItem="bBZ-ek-P8S" firstAttribute="leading" secondItem="Auf-mL-U5G" secondAttribute="leading" id="EwB-jA-7He"/>
+                    <constraint firstItem="A0w-HD-9dJ" firstAttribute="leading" secondItem="Auf-mL-U5G" secondAttribute="leading" id="KB1-Bq-mRL"/>
                     <constraint firstItem="bBZ-ek-P8S" firstAttribute="top" secondItem="Auf-mL-U5G" secondAttribute="top" id="NR5-Ee-3A9"/>
+                    <constraint firstAttribute="bottom" secondItem="A0w-HD-9dJ" secondAttribute="bottom" id="ZQI-up-suz"/>
                     <constraint firstAttribute="bottom" secondItem="bBZ-ek-P8S" secondAttribute="bottom" id="jgq-vC-G0T"/>
+                    <constraint firstAttribute="trailing" secondItem="A0w-HD-9dJ" secondAttribute="trailing" id="sTz-gL-CsB"/>
                 </constraints>
             </collectionViewCellContentView>
             <connections>

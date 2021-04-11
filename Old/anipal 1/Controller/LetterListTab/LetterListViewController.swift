@@ -26,14 +26,29 @@ class LetterListViewController: UICollectionViewController {
         dropDown.dataSource = ["Newest".localized, "Frequency".localized]
         
         initCollectionView()
+        setupFlowLayout()
     }
     
+    // 콜렉션 뷰 셀 등록
     private func initCollectionView() {
         let listNib = UINib(nibName: "LetterListCell", bundle: nil)
         let writeNib = UINib(nibName: "WriteNewLetter", bundle: nil)
         letterListCollectionView.register(listNib, forCellWithReuseIdentifier: "LetterListCell")
         letterListCollectionView.register(writeNib, forCellWithReuseIdentifier: "WriteNewLetter")
         letterListCollectionView.dataSource = self
+    }
+    
+    // 셀 크기 조정
+    private func setupFlowLayout() {
+        let flowLayout = UICollectionViewFlowLayout()
+        //flowLayout.sectionInset = UIEdgeInsets.zero
+        flowLayout.minimumInteritemSpacing = 10
+        flowLayout.minimumLineSpacing = 10
+        flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
+        
+        let halfWidth = UIScreen.main.bounds.width / 2
+        flowLayout.itemSize = CGSize(width: halfWidth - 40, height: 216)
+        letterListCollectionView.collectionViewLayout = flowLayout
     }
     
     // 정렬 메뉴

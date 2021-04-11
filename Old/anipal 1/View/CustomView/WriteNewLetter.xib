@@ -17,15 +17,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="132" height="216"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4D-M2-C77">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4D-M2-C77">
                         <rect key="frame" x="45" y="98" width="42" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="x4D-M2-C77" secondAttribute="height" multiplier="2:1" id="sQ7-ys-nca"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                <constraints>
+                    <constraint firstItem="x4D-M2-C77" firstAttribute="top" secondItem="OXO-Yt-tPw" secondAttribute="top" constant="98" id="0k1-QJ-93c"/>
+                    <constraint firstItem="x4D-M2-C77" firstAttribute="leading" secondItem="OXO-Yt-tPw" secondAttribute="leading" constant="45" id="7ST-Lk-Vep"/>
+                    <constraint firstAttribute="trailing" secondItem="x4D-M2-C77" secondAttribute="trailing" constant="45" id="BUZ-cP-gsD"/>
+                    <constraint firstAttribute="bottom" secondItem="x4D-M2-C77" secondAttribute="bottom" constant="97" id="e4u-Oz-89V"/>
+                </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="130" height="200"/>
             <connections>
