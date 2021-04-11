@@ -15,7 +15,7 @@ class StartPage: UIViewController {
     @IBOutlet weak var loginBtn: UIButton!
     
     override func viewDidLoad() {
-//        UINavigationBar.appearance().barTintColor = UIColor(red: 174, green: 192, blue: 245, alpha: 1)
+//       UINavigationBar.appearance().barTintColor = UIColor(red: 174, green: 192, blue: 245, alpha: 1)
         super.viewDidLoad()
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.restorePreviousSignIn() // 구글 로그인여부 확인
@@ -31,6 +31,11 @@ class StartPage: UIViewController {
         // 페이스북 로그인여부 확인
         if let token = AccessToken.current, !token.isExpired {
             print(token)
+            Profile.loadCurrentProfile { (profile, error) in
+                print(profile?.email)
+                print(profile?.name)
+                print(profile?.userID)
+            }
             moveMainScreen()
         }
     }
@@ -78,6 +83,9 @@ extension StartPage: GIDSignInDelegate {
             }
             return
         }
+        
+        //
+        
         guard let email = user.profile.email, email != "" else {
             return
         }
