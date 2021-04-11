@@ -7,6 +7,7 @@ target 'anipal 1' do
   pod 'GoogleSignIn'
   pod 'SwiftLint'
   pod 'FBSDKLoginKit'
+  pod 'DropDown'
   # Pods for anipal 1
 
   # iOS Simulator deployment target is 9.0

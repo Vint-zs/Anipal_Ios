@@ -1,5 +1,5 @@
 //
-//  SettingPage.swift
+//  SettingTab.swift
 //  anipal 1
 //
 //  Created by Kim JoonOh on 2021/02/08.
@@ -9,7 +9,7 @@ import UIKit
 import GoogleSignIn
 import FBSDKLoginKit
 
-class SettingPage: UIViewController {
+class SettingTab: UIViewController {
     
     let settings: [String] = ["User info".localized, "Language".localized, "Concept".localized, "Favorite".localized]
     
@@ -40,7 +40,7 @@ class SettingPage: UIViewController {
     }
 }
 
-extension SettingPage: UITableViewDelegate, UITableViewDataSource {
+extension SettingTab: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
@@ -55,7 +55,7 @@ extension SettingPage: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingPageTableViewCell", for: indexPath) as? SettingPageTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingPageTableViewCell", for: indexPath) as? SettingTableView else { return UITableViewCell() }
         cell.settingLabel.text = settings[indexPath.section]
         
         return cell
