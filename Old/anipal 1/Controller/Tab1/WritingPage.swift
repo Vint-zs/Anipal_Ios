@@ -37,14 +37,11 @@ class WritingPage: UIViewController ,sendBackDelegate {
         view.layer.backgroundColor = UIColor(red: 0.95, green: 0.973, blue: 1, alpha: 1).cgColor
         textView.layer.cornerRadius = 10
         
-        //animalBtn.backgroundColor = .white
+        animalBtn.backgroundColor = .white
         animalBtn.layer.cornerRadius = animalBtn.frame.height/2
-        animalBtn.layer.borderWidth = 1
-        animalBtn.layer.borderColor = UIColor.gray.cgColor
-
-//        animalBtn.clipsToBounds = true
-//        animalBtn.layer.masksToBounds = false
-        //animalBtn.layer.zPosition = 100
+        animalBtn.layer.borderWidth = 0.3
+        animalBtn.layer.borderColor = UIColor.lightGray.cgColor
+        animalBtn.clipsToBounds = true
         
         // 네비게이션 바 색상
         navigationController?.navigationBar.barTintColor = UIColor(red: 0.95, green: 0.973, blue: 1, alpha: 1)
@@ -71,10 +68,10 @@ class WritingPage: UIViewController ,sendBackDelegate {
     }
     
     @IBAction func send(_ sender: UIButton) {
-        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "SelectAnimal") else {
-            return
-        }
-        self.navigationController?.pushViewController(nextVC, animated: true)
+//        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "SelectAnimal") else {
+//            return
+//        }
+//        self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
