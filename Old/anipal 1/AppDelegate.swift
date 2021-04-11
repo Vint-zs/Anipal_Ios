@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var email: String?
     var provider: String?
     var favorties: [String]?
-    var languages: [Any]?
+    var languages: [String: Int] = [:]
+    var token: String?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
