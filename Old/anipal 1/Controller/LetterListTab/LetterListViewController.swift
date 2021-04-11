@@ -15,9 +15,13 @@ class LetterListViewController: UICollectionViewController {
     
     let dropDown = DropDown()
     
+    let mailboxImg = UIImage(named: "mailbox")
+    let newMailImg = UIImage(named: "mailbox2")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Penpal".localized
+        
         dropDown.anchorView = menuBtn
         dropDown.dataSource = ["Newest".localized, "Frequency".localized]
         
@@ -48,7 +52,7 @@ class LetterListViewController: UICollectionViewController {
 
 extension LetterListViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return users.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -56,6 +60,7 @@ extension LetterListViewController {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LetterListCell", for: indexPath) as? LetterListCell else {
                 fatalError("Can't dequeue LetterListCell")
             }
+            cell.mailbox.image = mailboxImg
             cell.senderName.text = users[indexPath.row].name
             cell.senderName.sizeToFit()
             cell.arrivalDate.text = users[indexPath.row].birthday
