@@ -17,6 +17,7 @@ class LetterListViewController: UICollectionViewController {
     
     let mailboxImg = UIImage(named: "mailbox")
     let newMailImg = UIImage(named: "mailbox2")
+    let arvlAmlImg = UIImage(named: "penguin")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +76,7 @@ extension LetterListViewController {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LetterListCell", for: indexPath) as? LetterListCell else {
                 fatalError("Can't dequeue LetterListCell")
             }
+            cell.arrivalAnimal.image = arvlAmlImg
             cell.mailbox.image = mailboxImg
             cell.senderName.text = users[indexPath.row].name
             cell.senderName.sizeToFit()
