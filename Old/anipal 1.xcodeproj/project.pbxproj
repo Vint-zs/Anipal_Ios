@@ -21,7 +21,6 @@
 		6C7D9BA52614DC0C003596EB /* LanguageSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7D9BA42614DC0C003596EB /* LanguageSettingVC.swift */; };
 		6C7D9BA82614DCF7003596EB /* ConceptSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7D9BA72614DCF7003596EB /* ConceptSettingVC.swift */; };
 		6C7D9BAB2614DD1A003596EB /* FavoriteSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7D9BAA2614DD1A003596EB /* FavoriteSettingVC.swift */; };
-		6C832DD62620C3EB00EC0FBD /* LetterListMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C832DD52620C3EB00EC0FBD /* LetterListMenu.swift */; };
 		6C9B77432619CBAF00E82303 /* userInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B77422619CBAF00E82303 /* userInfo.swift */; };
 		6C9B77462619E71400E82303 /* favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B77452619E71400E82303 /* favorites.swift */; };
 		6CFB759B2615AD710017F160 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CFB759D2615AD710017F160 /* Localizable.strings */; };
@@ -81,7 +80,6 @@
 		6C7D9BA42614DC0C003596EB /* LanguageSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSettingVC.swift; sourceTree = "<group>"; };
 		6C7D9BA72614DCF7003596EB /* ConceptSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConceptSettingVC.swift; sourceTree = "<group>"; };
 		6C7D9BAA2614DD1A003596EB /* FavoriteSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteSettingVC.swift; sourceTree = "<group>"; };
-		6C832DD52620C3EB00EC0FBD /* LetterListMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterListMenu.swift; sourceTree = "<group>"; };
 		6C9B77422619CBAF00E82303 /* userInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userInfo.swift; sourceTree = "<group>"; };
 		6C9B77452619E71400E82303 /* favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favorites.swift; sourceTree = "<group>"; };
 		6CFB759C2615AD710017F160 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -207,7 +205,6 @@
 				7691936B25D5000A0094B5BF /* LetterListViewController.swift */,
 				7691937325D54DDA0094B5BF /* LetterListTableViewCell.swift */,
 				76AF5B4825D95A4300CA4183 /* LetterDetailViewController.swift */,
-				6C832DD52620C3EB00EC0FBD /* LetterListMenu.swift */,
 			);
 			path = LetterListTab;
 			sourceTree = "<group>";
@@ -511,7 +508,6 @@
 				6C05C15D2618402B00FB744A /* FavoriteCell.swift in Sources */,
 				76686FCB25CE2FFC00536E36 /* WritingPage.swift in Sources */,
 				6C7D9BA82614DCF7003596EB /* ConceptSettingVC.swift in Sources */,
-				6C832DD62620C3EB00EC0FBD /* LetterListMenu.swift in Sources */,
 				76AF5B4925D95A4300CA4183 /* LetterDetailViewController.swift in Sources */,
 				6C9B77432619CBAF00E82303 /* userInfo.swift in Sources */,
 				6C7D9BA22614D730003596EB /* DefaultInfoVC.swift in Sources */,
