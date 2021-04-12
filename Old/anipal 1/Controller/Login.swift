@@ -46,7 +46,7 @@ class Login: UIViewController {
                     fbEmail = profile?.email
                 })
                 
-                self.getData(url: "https://anipal.tk/auth/facebook", token: AccessToken.current!.tokenString, email: fbEmail!) // 서버로 b토큰 전송
+                self.getData(url: "https://anipal.tk/auth/facebook", token: AccessToken.current!.tokenString, email: fbEmail!) // 서버로 토큰 전송
                 
             case .cancelled:
                 print("user cancel the login")
@@ -86,7 +86,13 @@ class Login: UIViewController {
                     
                     if httpResponse.statusCode == 200 {
                         ad?.token = token
+                        // ad?.token = HTTPCookie
                         ad?.email = email
+                        
+                        // JSON 값 저장
+//                        let json = JSON(data)
+//                        let userInfo = json.arrayValue[0]
+//                        ad?.name = userInfo["name"].stringValue
                         moveMainScreen()
                     } else if httpResponse.statusCode == 400 {
                         DispatchQueue.main.async {
