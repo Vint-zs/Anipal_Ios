@@ -47,6 +47,7 @@ class FavoriteViewController: UIViewController {
 //    request.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
 //    //request.setValue(String(paramData.count), forHTTPHeaderField: "Content-Length")
 //
+//
 //    // 5. URLSession 객체를 통해 전송 및 응답값 처리 로직 작성
 //    let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
 //
@@ -55,14 +56,20 @@ class FavoriteViewController: UIViewController {
 //            return
 //            }
 //
-//        if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
-//            print("statusCode should be 200, but is \(httpStatus.statusCode)")
-//            print("response = \(response)")
+//        DispatchQueue.main.async {
+//        if let httpStatus = response as? HTTPURLResponse {
+//            if httpStatus.statusCode == 201 {
+//
+//            } else {
+//
+//            }
 //        }
 //
 //        let responseString = String(data: data, encoding: .utf8)
 //        print("responseString = \(responseString)")
-//}
+//        }
+//    }
+//
 //    // 6. POST 전송
 //    task.resume()
 //}
