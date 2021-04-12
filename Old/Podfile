@@ -10,7 +10,7 @@ target 'anipal 1' do
   pod 'SwiftLint'
   pod 'Alamofire'
   pod 'SwiftyJSON'
- 
+  pod 'DropDown'
 
   # Pods for anipal 1
 
