@@ -7,15 +7,18 @@
 
 import UIKit
 
+let ad = UIApplication.shared.delegate as? AppDelegate // 회원가입 데이터 임시저장
 class SignUpViewController: UIViewController, sendBackDelegate {
     
     @IBOutlet var dateField: UITextField!
     @IBOutlet var genderChoice: UISegmentedControl!
     @IBOutlet var imgButton: UIButton!
+    @IBOutlet weak var nameLabel: UITextField!
+    
     let initAnimals: [Animal] = [
         Animal(nameInit: "bird", image: #imageLiteral(resourceName: "bird")),
         Animal(nameInit: "monkey2", image: #imageLiteral(resourceName: "monkey2")),
-        Animal(nameInit: "panda", image: #imageLiteral(resourceName: "panda"))
+        Animal(nameInit: "panda", image: #imageLiteral(resourceName: "panda")),
     ]
     
     override func viewDidLoad() {
@@ -24,7 +27,7 @@ class SignUpViewController: UIViewController, sendBackDelegate {
         
         // Make imgButton Circle
         imgButton.layer.borderWidth = 1
-        imgButton.layer.masksToBounds = false
+        //imgButton.layer.masksToBounds = false
         imgButton.layer.borderColor = UIColor.gray.cgColor
         imgButton.layer.cornerRadius = imgButton.frame.height/2
         imgButton.clipsToBounds = true
@@ -34,7 +37,9 @@ class SignUpViewController: UIViewController, sendBackDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "selectAnimal" {
-            let secondVC = segue.destination as! SelectAnimal
+            guard let secondVC = segue.destination as? SelectAnimal else {
+                return
+            }
             secondVC.delegate = self
         }
     }
@@ -47,6 +52,24 @@ class SignUpViewController: UIViewController, sendBackDelegate {
         guard let nextVC = self.storyboard?.instantiateViewController(identifier: "signupVC2") else {
             return
         }
+        
+        if let newName = nameLabel.text {
+            ad?.name = newName
+        }
+
+        if let newBirth = dateField.text {
+            ad?.birthday = newBirth
+        }
+
+        if genderChoice.selectedSegmentIndex == 0 {
+            ad?.gender = "femail"
+        } else {
+            ad?.gender = "male"
+        }
+        
+        print(ad?.name)
+        print(ad?.birthday)
+        print(ad?.gender)
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
@@ -54,7 +77,8 @@ class SignUpViewController: UIViewController, sendBackDelegate {
     @objc func tapDone() {
         if let datePicker = self.dateField.inputView as? UIDatePicker {
             let dateformatter = DateFormatter()
-            dateformatter.dateStyle = .medium
+            dateformatter.dateFormat = "yyyy-MM-dd"
+            // dateformatter.dateStyle = .medium
             self.dateField.text = dateformatter.string(from: datePicker.date)
         }
         self.dateField.resignFirstResponder()
@@ -65,7 +89,8 @@ class SignUpViewController: UIViewController, sendBackDelegate {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-    
+
+        //print(ad?.tempUser?.)
     }
     
     @IBAction func cancelBarButton(_ sender: UIBarButtonItem) {
@@ -91,7 +116,7 @@ extension UITextField {
             date.dateFormat = "yyyy-MM-dd"
             
             // 최소, 최대 년도 설정
-            let maxTime = date.date(from: "2017-01-01")
+            let maxTime = date.date(from: "2017-12-31")
             let minTime = date.date(from: "1990-01-01")
             datePicker.maximumDate = maxTime
             datePicker.minimumDate = minTime
