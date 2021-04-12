@@ -7,17 +7,25 @@
 
 import UIKit
 
+protocol languageLevelDelegate {
+    func level(data: Int)
+}
+
 class LanguageLevelSelect: UIViewController {
 
     @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var languageName: UILabel!
     
+    var langName = ""
     let levelList = ["초급", "중급", "고급"]
+   
+    var delegate: languageLevelDelegate?
     @IBOutlet var levelTable: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         levelTable.delegate = self
         levelTable.dataSource = self
-        
+        languageName.text = langName
     }
 
 }
@@ -37,7 +45,7 @@ extension LanguageLevelSelect: UITableViewDelegate, UITableViewDataSource {
         cell.levelLabel.text = levelList[indexPath.row]
         cell.levelLabel.layer.masksToBounds = true
         cell.levelLabel.layer.cornerRadius = 10
-        //cell.selectionStyle = .none
+        // cell.selectionStyle = .none
         return cell
     }
     
@@ -45,6 +53,8 @@ extension LanguageLevelSelect: UITableViewDelegate, UITableViewDataSource {
         return 80
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
+        //delegate?.level(data: indexPath.row)
+        //self.presentingViewController?.dismiss(animated: true, completion: nil)
+        
     }
 }

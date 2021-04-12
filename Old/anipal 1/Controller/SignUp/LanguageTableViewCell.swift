@@ -9,13 +9,13 @@ import UIKit
 
 class LanguageTableViewCell: UITableViewCell {
 
-    @IBOutlet var checkBox: UIButton!
+    @IBOutlet var checkBox: UIImageView!
     @IBOutlet var languageName: UILabel!
     @IBOutlet var languageLevel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        selectionStyle = .none
+        //selectionStyle = .none
         // Initialization code
     }
 

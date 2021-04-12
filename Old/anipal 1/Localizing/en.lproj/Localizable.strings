@@ -49,3 +49,14 @@
 "🏛Architecture" = "🏛Architecture";
 
 "💰Economy" = "💰Economy";
+
+// 언어레벨
+"Beginner" = "Beginner";
+
+"Intermediate" = "Intermediate";
+
+"Advanced" = "Advanced";
+
+"Cancel" = "Cancel";
+
+"Level" = "Level";

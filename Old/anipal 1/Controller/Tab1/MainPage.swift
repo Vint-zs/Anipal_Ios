@@ -9,14 +9,8 @@ import UIKit
 
 class MainPage: UIViewController {
 
-    @IBOutlet weak var textBtn: UIButton!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        textBtn.layer.borderWidth = 2
-        textBtn.layer.cornerRadius = 10
-        textBtn.layer.borderColor = UIColor.gray.cgColor
-        textBtn.setTitle("\(letters.count)건의 편지가 답장을 기다리고있어요!", for: .normal)
         // Do any additional setup after loading the view.
     }
     
@@ -29,10 +23,6 @@ class MainPage: UIViewController {
         navigationController?.isNavigationBarHidden = false
     }
     
-    // MARK: - 편지함 클릭시
-    @IBAction func postBoxClick(_ sender: UIButton) {
-        
-    }
     
     // MARK: - 편지도착 텍스트 클릭시
     @IBAction func textBtnClick(_ sender: UIButton) {

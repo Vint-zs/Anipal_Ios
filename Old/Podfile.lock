@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.4.1)
   - AppAuth (1.4.0):
     - AppAuth/Core (= 1.4.0)
     - AppAuth/ExternalUserAgent (= 1.4.0)
@@ -28,15 +29,19 @@ PODS:
   - GTMSessionFetcher/Full (1.5.0):
     - GTMSessionFetcher/Core (= 1.5.0)
   - SwiftLint (0.43.1)
+  - SwiftyJSON (5.0.1)
 
 DEPENDENCIES:
+  - Alamofire
   - DropDown
   - FBSDKLoginKit
   - GoogleSignIn
   - SwiftLint
+  - SwiftyJSON
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - AppAuth
     - DropDown
     - FBSDKCoreKit
@@ -45,8 +50,10 @@ SPEC REPOS:
     - GTMAppAuth
     - GTMSessionFetcher
     - SwiftLint
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
+  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   FBSDKCoreKit: a00fe2efd780c195a5e09201bf51c56106245b40
@@ -55,7 +62,10 @@ SPEC CHECKSUMS:
   GTMAppAuth: 197a8dabfea5d665224aa00d17f164fc2248dab9
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: b85192c7b858a3f9faed1292eb01e3786d5509ec
+
+PODFILE CHECKSUM: 4a9fd6e8be5da3f224743f838301f068f206c5e7
+
 
 COCOAPODS: 1.10.1
