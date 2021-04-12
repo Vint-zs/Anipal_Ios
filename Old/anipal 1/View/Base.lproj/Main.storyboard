@@ -222,30 +222,6 @@
             </objects>
             <point key="canvasLocation" x="5733" y="-294"/>
         </scene>
-        <!--WritingPage-->
-        <scene sceneID="UgM-QF-cMj">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="WritingPage" storyboardName="Tab1" referencedIdentifier="WritingPage" id="kZ1-Nk-7y5" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jy3-mU-Bfk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6588" y="-301"/>
-        </scene>
-        <!--SelectAnimal-->
-        <scene sceneID="aiu-Dc-WWm">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="SelectAnimal" storyboardName="Tab1" referencedIdentifier="SelectAnimal" id="OcH-rr-oTU" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HUc-jz-rc2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6957" y="-301"/>
-        </scene>
-        <!--MainPage-->
-        <scene sceneID="hGr-De-xtz">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="MainPage" storyboardName="Tab1" referencedIdentifier="MainPage" id="XUj-C4-IKa" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MgU-HK-L6P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6215" y="-295"/>
-        </scene>
         <!--UINavigationController-MlG-8a-KjN-->
         <scene sceneID="Nzc-ZU-Y99">
             <objects>
@@ -255,22 +231,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E4M-u6-qe3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5731" y="-153"/>
-        </scene>
-        <!--newletterVC-->
-        <scene sceneID="tj5-QL-ZBQ">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="newletterVC" storyboardName="Tab2" referencedIdentifier="newletterVC" id="T61-Gc-uEG" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nuO-uF-cgD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6588" y="-160"/>
-        </scene>
-        <!--MainPage2-->
-        <scene sceneID="E3D-nI-VcB">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="MainPage2" storyboardName="Tab2" referencedIdentifier="MainPage2" id="XVm-Rx-LBk" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="J0c-mf-W6p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6215" y="-153"/>
         </scene>
         <!--UINavigationController-RFZ-cb-kSJ-->
         <scene sceneID="aVQ-zR-2wX">
@@ -282,22 +242,6 @@
             </objects>
             <point key="canvasLocation" x="5715" y="2"/>
         </scene>
-        <!--letterDetail-->
-        <scene sceneID="0Oj-J4-eSU">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="letterDetail" storyboardName="Tab3" referencedIdentifier="letterDetail" id="Tdx-Bf-8cU" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aEU-iX-9tc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6575" y="-5"/>
-        </scene>
-        <!--LetterListVC-->
-        <scene sceneID="bTp-F9-wLj">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="LetterListVC" storyboardName="Tab3" referencedIdentifier="LetterListVC" id="ZUN-ZQ-owa" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yC9-Qp-hR8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6200" y="2"/>
-        </scene>
         <!--UINavigationController-EbV-gk-aVL-->
         <scene sceneID="Wnl-bV-dPh">
             <objects>
@@ -308,85 +252,13 @@
             </objects>
             <point key="canvasLocation" x="5715" y="337"/>
         </scene>
-        <!--DefaultInfoVC-->
-        <scene sceneID="67c-sk-euX">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="DefaultInfoVC" storyboardName="Tab4" referencedIdentifier="DefaultInfoVC" id="kKg-nl-4fN" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RZR-Nb-xbr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6161" y="260"/>
-        </scene>
-        <!--LanguageSettingVC-->
-        <scene sceneID="EjP-vy-1D3">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="LanguageSettingVC" storyboardName="Tab4" referencedIdentifier="LanguageSettingVC" id="OVa-K4-ZAU" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ssd-qT-lDF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6167" y="337"/>
-        </scene>
-        <!--FavoriteSettingVC-->
-        <scene sceneID="wTF-kG-EAZ">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="FavoriteSettingVC" storyboardName="Tab4" referencedIdentifier="FavoriteSettingVC" id="wGn-Mp-85A" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Qvy-0I-QXA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6163" y="478"/>
-        </scene>
-        <!--ConceptSettingVC-->
-        <scene sceneID="ZuT-WN-mJT">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="ConceptSettingVC" storyboardName="Tab4" referencedIdentifier="ConceptSettingVC" id="nNu-oL-fLe" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="q3h-W0-IpE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6160" y="416"/>
-        </scene>
-        <!--levelSelectVC-->
-        <scene sceneID="p7s-kU-6BZ">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="levelSelectVC" storyboardName="SignUp" referencedIdentifier="levelSelectVC" id="jNm-fo-bkF" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NyC-gC-fYv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4035" y="-627"/>
-        </scene>
         <!--SignUpVC1-->
         <scene sceneID="BuR-Fj-yo1">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="SignUpVC1" storyboardName="SignUp" referencedIdentifier="SignUpVC1" id="bOv-fR-54x" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FOc-Y7-GOH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardIdentifier="SignUpVC1" storyboardName="SignUp" referencedIdentifier="SignUpVC1" id="bOv-fR-54x" sceneMemberID="viewController"/>
             </objects>
-            <point key="canvasLocation" x="3610" y="-569"/>
-        </scene>
-        <!--conceptSelectVC-->
-        <scene sceneID="V1Z-IV-LIa">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="conceptSelectVC" storyboardName="SignUp" referencedIdentifier="conceptSelectVC" id="gbJ-8c-eKs" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AGM-3e-yR1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4447" y="-569"/>
-        </scene>
-        <!--selectAnimalVC-->
-        <scene sceneID="dla-uq-asS">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="selectAnimalVC" storyboardName="SignUp" referencedIdentifier="selectAnimalVC" id="L4y-sf-kXU" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZDJ-qe-WkH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3606" y="-627"/>
-        </scene>
-        <!--signupVC2-->
-        <scene sceneID="P2m-jm-Bkj">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="signupVC2" storyboardName="SignUp" referencedIdentifier="signupVC2" id="Z0K-9q-0vg" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UQx-Td-H4k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4040" y="-569"/>
-        </scene>
-        <!--FavoriteVC-->
-        <scene sceneID="0mk-OX-45m">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="FavoriteVC" storyboardName="SignUp" referencedIdentifier="FavoriteVC" id="oki-Xd-CPC" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zqV-l9-aH1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4894" y="-569"/>
+            <point key="canvasLocation" x="4607" y="-544"/>
         </scene>
     </scenes>
     <resources>
