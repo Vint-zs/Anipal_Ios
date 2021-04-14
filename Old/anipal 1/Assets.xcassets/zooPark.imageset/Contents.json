@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "penguin.png",
+      "filename" : "zooPark.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "penguin@2x.png",
+      "filename" : "zooPark@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "penguin@3x.png",
+      "filename" : "zooPark@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
