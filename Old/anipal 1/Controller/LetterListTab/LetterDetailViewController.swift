@@ -40,6 +40,7 @@ class LetterDetailViewController: UIViewController {
         // 편지 내용
         textViewContent.layer.cornerRadius = 10
         textViewContent.text = contentVar
+        textViewContent.isEditable = false
     }
     
     @IBAction func writeBtn(_ sender: UIButton) {
