@@ -73,7 +73,7 @@ extension SingUpViewController2: UITableViewDelegate, UITableViewDataSource {
         cell.checkBox.backgroundColor = .white
         
         if myLanguageList.keys.contains(languageList[indexPath.row]) {
-            cell.checkBox.image = #imageLiteral(resourceName: "체크박스-1")
+            cell.checkBox.image = #imageLiteral(resourceName: "checkBox")
             let level = myLanguageList[languageList[indexPath.row]]!
             if level == 1 {
                 cell.languageLevel.text = "Beginner".localized
@@ -84,7 +84,7 @@ extension SingUpViewController2: UITableViewDelegate, UITableViewDataSource {
             }
             
         } else {
-            cell.checkBox.image = #imageLiteral(resourceName: "빈체크박스-1")
+            cell.checkBox.image = #imageLiteral(resourceName: "emptyCheckBox")
             cell.languageLevel.text = ""
         }
         

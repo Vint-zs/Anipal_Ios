@@ -83,17 +83,18 @@ class Login: UIViewController {
                 
                 // response 확인
                 if let httpResponse = response as? HTTPURLResponse {
-                    
+                    print(httpResponse.statusCode)
                     if httpResponse.statusCode == 200 {
-                        ad?.token = token
-                        // ad?.token = HTTPCookie
-                        ad?.email = email
-                        
-                        // JSON 값 저장
-//                        let json = JSON(data)
-//                        let userInfo = json.arrayValue[0]
-//                        ad?.name = userInfo["name"].stringValue
-                        moveMainScreen()
+                        DispatchQueue.main.async {
+                            ad?.token = token
+                            // ad?.token = HTTPCookie
+                            ad?.email = email
+                            // JSON 값 저장
+    //                        let json = JSON(data)
+    //                        let userInfo = json.arrayValue[0]
+    //                        ad?.name = userInfo["name"].stringValue
+                            moveMainScreen()
+                        }
                     } else if httpResponse.statusCode == 400 {
                         DispatchQueue.main.async {
                             GIDSignIn.sharedInstance()?.signOut()
@@ -109,6 +110,13 @@ class Login: UIViewController {
                             return
                         }
                         self.navigationController?.pushViewController(signupVC, animated: true)
+                        }
+                    } else if httpResponse.statusCode == 500 {
+                        DispatchQueue.main.async {
+                        let alert = UIAlertController.init(title: "서버오류", message: "Internal server error", preferredStyle: .alert)
+                        let okBtn = UIAlertAction.init(title: "확인", style: .default, handler: nil)
+                        alert.addAction(okBtn)
+                        self.present(alert, animated: true, completion: nil)
                         }
                     }
                 }
@@ -130,6 +138,7 @@ extension Login: GIDSignInDelegate {
             return
         }
         print("success google login")
+        print(user.authentication.accessToken)
         getData(url: "https://anipal.tk/auth/google", token: user.authentication.accessToken, email: user.profile.email) // 서버로 b토큰 전송
 //        moveMainScreen()
     }
@@ -144,4 +153,3 @@ func moveMainScreen() {
     let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
     (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
 }
-
