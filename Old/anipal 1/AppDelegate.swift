@@ -12,13 +12,16 @@ import FBSDKCoreKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var name: String?
-    var gender: String?
-    var birthday: String?
-    var email: String?
     var provider: String?
+    var id: String?
+    var name: String?
+    var age: Int?
+    var email: String?
+    var country: String? = "Korea"
+    var birthday: String?
+    var gender: String?
     var favorties: [String]?
-    var languages: [String: Int] = [:]
+    var languages: [[String: Any]]? = [["name": "한국어", "level": 1], ["name": "Italiano", "level": 3]] // [[String:Any]]()
     var token: String?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
