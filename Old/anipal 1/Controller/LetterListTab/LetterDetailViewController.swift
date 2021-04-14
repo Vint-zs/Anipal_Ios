@@ -16,6 +16,7 @@ class LetterDetailViewController: UIViewController {
     @IBOutlet weak var senderCountry: UILabel!
     @IBOutlet weak var senderFav: UILabel!
     @IBOutlet weak var senderAnimal: UIImageView!
+    @IBOutlet weak var letterCtrl: UIPageControl!
     
     var nameFromVar: String?
     var contentVar: String?
@@ -41,6 +42,12 @@ class LetterDetailViewController: UIViewController {
         textViewContent.layer.cornerRadius = 10
         textViewContent.text = contentVar
         textViewContent.isEditable = false
+        
+        // 페이지 컨트롤
+        letterCtrl.hidesForSinglePage = true
+        letterCtrl.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
+        letterCtrl.pageIndicatorTintColor = UIColor(red: 0.946, green: 0.946, blue: 0.946, alpha: 1)
+        letterCtrl.currentPageIndicatorTintColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1)
     }
     
     @IBAction func writeBtn(_ sender: UIButton) {
@@ -56,4 +63,8 @@ class LetterDetailViewController: UIViewController {
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 
+    // 편지 넘기기
+    @IBAction func letterSlide(_ sender: UIPageControl) {
+        
+    }
 }
