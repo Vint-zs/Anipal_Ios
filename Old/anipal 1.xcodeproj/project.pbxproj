@@ -93,7 +93,7 @@
 		762A36D32621CCEE00BDC643 /* SelectAnimal1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAnimal1.swift; sourceTree = "<group>"; };
 		7657F0BC25CAE46400403881 /* 구글로고.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "구글로고.jpg"; sourceTree = "<group>"; };
 		76686FC725CE2C5F00536E36 /* MainPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage.swift; sourceTree = "<group>"; };
-		76686FCA25CE2FFC00536E36 /* WritingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingPage.swift; sourceTree = "<group>"; };
+		76686FCA25CE2FFC00536E36 /* WritingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WritingPage.swift; path = ../Tab1/WritingPage.swift; sourceTree = "<group>"; };
 		76686FD125CE9F3E00536E36 /* SelectAnimalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAnimalCollectionViewCell.swift; sourceTree = "<group>"; };
 		76686FD425CE9FE800536E36 /* SelectAnimalPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAnimalPage.swift; sourceTree = "<group>"; };
 		76686FE525CEAB7300536E36 /* animal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animal.swift; sourceTree = "<group>"; };
@@ -185,7 +185,6 @@
 			isa = PBXGroup;
 			children = (
 				76686FC725CE2C5F00536E36 /* MainPage.swift */,
-				76686FCA25CE2FFC00536E36 /* WritingPage.swift */,
 				76686FD425CE9FE800536E36 /* SelectAnimalPage.swift */,
 				76686FD125CE9F3E00536E36 /* SelectAnimalCollectionViewCell.swift */,
 				762A36D32621CCEE00BDC643 /* SelectAnimal1.swift */,
@@ -205,6 +204,7 @@
 		76867233261C4E3C0037A4F3 /* LetterListTab */ = {
 			isa = PBXGroup;
 			children = (
+				76686FCA25CE2FFC00536E36 /* WritingPage.swift */,
 				7691936B25D5000A0094B5BF /* LetterListViewController.swift */,
 				7691937325D54DDA0094B5BF /* LetterListTableViewCell.swift */,
 				76AF5B4825D95A4300CA4183 /* LetterDetailViewController.swift */,
