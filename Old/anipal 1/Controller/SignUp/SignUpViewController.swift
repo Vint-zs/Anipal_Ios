@@ -15,6 +15,7 @@ class SignUpViewController: UIViewController, sendBackDelegate {
     @IBOutlet var imgButton: UIButton!
     @IBOutlet weak var nameLabel: UITextField!
     
+    
     let initAnimals: [Animal] = [
         Animal(nameInit: "bird", image: #imageLiteral(resourceName: "bird")),
         Animal(nameInit: "monkey2", image: #imageLiteral(resourceName: "monkey2")),
@@ -56,9 +57,14 @@ class SignUpViewController: UIViewController, sendBackDelegate {
         if let newName = nameLabel.text {
             ad?.name = newName
         }
-
+        var bE: Int!
         if let newBirth = dateField.text {
             ad?.birthday = newBirth
+            
+            let endIdx: String.Index = newBirth.index(newBirth.startIndex, offsetBy: 3)
+            let birthYear = String(newBirth[...endIdx])
+            bE = Int(birthYear)
+            ad?.age = 2021-bE
         }
 
         if genderChoice.selectedSegmentIndex == 0 {
@@ -66,10 +72,11 @@ class SignUpViewController: UIViewController, sendBackDelegate {
         } else {
             ad?.gender = "male"
         }
+        print(ad!.name)
+        print(ad!.birthday)
+        print(ad!.gender)
+        print(ad!.age)
         
-        print(ad?.name)
-        print(ad?.birthday)
-        print(ad?.gender)
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
@@ -90,7 +97,6 @@ class SignUpViewController: UIViewController, sendBackDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
 
-        //print(ad?.tempUser?.)
     }
     
     @IBAction func cancelBarButton(_ sender: UIBarButtonItem) {
