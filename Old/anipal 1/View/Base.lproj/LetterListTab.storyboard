@@ -42,6 +42,9 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="132" height="216"/>
+                                <connections>
+                                    <segue destination="kue-D7-4ZL" kind="show" id="3Oq-bi-Ywf"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -86,7 +89,7 @@
             </objects>
             <point key="canvasLocation" x="5856.9230769230771" y="328.43601895734594"/>
         </scene>
-        <!--Letter Detail View Controller-->
+        <!--내게 온 편지-->
         <scene sceneID="SzV-i7-Bg5">
             <objects>
                 <viewController storyboardIdentifier="letterDetail" id="kue-D7-4ZL" customClass="LetterDetailViewController" customModule="anipal_1" customModuleProvider="target" sceneMemberID="viewController">
@@ -94,42 +97,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zPV-df-awL">
-                                <rect key="frame" x="0.0" y="103" width="414" height="85"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H5L-Zm-D4R">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5L-Zm-D4R">
                                 <rect key="frame" x="28" y="208" width="358" height="534"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n98-DS-41R">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n98-DS-41R">
                                 <rect key="frame" x="179.5" y="777.5" width="55" height="54"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="zVD-k6-KTT"/>
+                                    <constraint firstAttribute="height" constant="55" id="zsp-Lt-88i"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" backgroundImage="paperplane.circle" catalog="system"/>
+                                <state key="normal" backgroundImage="paperplane.circle" catalog="system">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="writeBtn:" destination="kue-D7-4ZL" eventType="touchUpInside" id="YaA-vJ-Bmr"/>
                                 </connections>
                             </button>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ho1-NM-9ox">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="내게 온 편지" id="HZY-aw-VkI">
-                                        <barButtonItem key="rightBarButtonItem" title="Item" image="ellipsis" catalog="system" id="5YA-ac-Mei"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zPV-df-awL">
+                                <rect key="frame" x="0.0" y="103" width="414" height="85"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="jaw-mn-PMm"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Iq4-cB-8QU"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.94518297910000004" green="0.97571974989999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Iq4-cB-8QU" firstAttribute="bottom" secondItem="n98-DS-41R" secondAttribute="bottom" constant="30" id="5si-C6-DCR"/>
+                            <constraint firstItem="H5L-Zm-D4R" firstAttribute="leading" secondItem="Iq4-cB-8QU" secondAttribute="leading" constant="28" id="Bul-Zd-6Vn"/>
+                            <constraint firstItem="Iq4-cB-8QU" firstAttribute="trailing" secondItem="H5L-Zm-D4R" secondAttribute="trailing" constant="28" id="DeZ-jk-mwH"/>
+                            <constraint firstItem="n98-DS-41R" firstAttribute="centerX" secondItem="0fU-xV-AZF" secondAttribute="centerX" id="PSu-oq-wcX"/>
+                            <constraint firstItem="H5L-Zm-D4R" firstAttribute="top" secondItem="Iq4-cB-8QU" secondAttribute="top" constant="120" id="T8L-y4-jdv"/>
+                            <constraint firstItem="Iq4-cB-8QU" firstAttribute="trailing" secondItem="zPV-df-awL" secondAttribute="trailing" id="crz-yN-axa"/>
+                            <constraint firstItem="zPV-df-awL" firstAttribute="top" secondItem="Iq4-cB-8QU" secondAttribute="top" constant="15" id="lKc-Rs-dZw"/>
+                            <constraint firstItem="Iq4-cB-8QU" firstAttribute="bottom" secondItem="H5L-Zm-D4R" secondAttribute="bottom" constant="120" id="n8q-6c-ugn"/>
+                            <constraint firstItem="zPV-df-awL" firstAttribute="leading" secondItem="Iq4-cB-8QU" secondAttribute="leading" id="oHe-CW-HMO"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="내게 온 편지" id="a4d-UL-0bZ">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="ellipsis" catalog="system" id="rJU-nb-e5O"/>
+                    </navigationItem>
                     <connections>
-                        <outlet property="menuBtn" destination="5YA-ac-Mei" id="Itf-eV-lWa"/>
+                        <outlet property="menuBtn" destination="rJU-nb-e5O" id="ONj-LV-cls"/>
                         <outlet property="textviewContent" destination="H5L-Zm-D4R" id="t2y-ku-GRx"/>
                     </connections>
                 </viewController>
