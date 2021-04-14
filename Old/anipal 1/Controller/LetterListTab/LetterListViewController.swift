@@ -15,8 +15,8 @@ class LetterListViewController: UICollectionViewController {
     
     let dropDown = DropDown()
     
-    let mailboxImg = UIImage(named: "mailbox")
-    let newMailImg = UIImage(named: "mailbox2")
+    let newMailImg = UIImage(named: "letterBox1")
+    let mailboxImg = UIImage(named: "letterBox2")
     let arvlAmlImg = UIImage(named: "penguin")
     
     override func viewDidLoad() {
