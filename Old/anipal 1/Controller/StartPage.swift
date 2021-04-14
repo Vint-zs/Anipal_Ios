@@ -46,14 +46,11 @@ class StartPage: UIViewController {
     
 // MARK: - 회원가입버튼
     @IBAction func clickSignupBtn(_ sender: UIButton) {
-        
-        guard let signupVC = self.storyboard?.instantiateViewController(identifier: "SignUpVC1") else {
+        let storyboard = UIStoryboard(name: "SignUp", bundle: nil)
+        guard let signupVC = storyboard.instantiateViewController(identifier: "SignUpVC1") as? SignUpViewController else {
             return
         }
 
-        // signupVC.modalTransitionStyle = .coverVertical
-        // signupVC.modalPresentationStyle = .fullScreen
-        // self.present(signupVC, animated: true)
         self.navigationController?.pushViewController(signupVC, animated: true)
     }
     
