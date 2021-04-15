@@ -43,11 +43,7 @@ class LetterDetailViewController: UIViewController {
         textViewContent.text = contentVar
         textViewContent.isEditable = false
         
-        // 페이지 컨트롤
-        letterCtrl.hidesForSinglePage = true
-        letterCtrl.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
-        letterCtrl.pageIndicatorTintColor = UIColor(red: 0.946, green: 0.946, blue: 0.946, alpha: 1)
-        letterCtrl.currentPageIndicatorTintColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1)
+        getLetters()
     }
     
     @IBAction func writeBtn(_ sender: UIButton) {
@@ -63,6 +59,19 @@ class LetterDetailViewController: UIViewController {
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 
+    func getLetters() {
+        // 페이지 컨트롤 UI
+        letterCtrl.hidesForSinglePage = true
+        letterCtrl.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
+        letterCtrl.pageIndicatorTintColor = UIColor(red: 0.946, green: 0.946, blue: 0.946, alpha: 1)
+        letterCtrl.currentPageIndicatorTintColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1)
+        letterCtrl.currentPage = users.count
+        
+        // 편지 본문 로딩
+        letterCtrl.numberOfPages = users.count
+        
+    }
+    
     // 편지 넘기기
     @IBAction func letterSlide(_ sender: UIPageControl) {
         
