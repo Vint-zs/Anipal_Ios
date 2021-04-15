@@ -184,7 +184,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="내게 온 편지" id="a4d-UL-0bZ">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="ellipsis" catalog="system" id="rJU-nb-e5O"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="ellipsis" catalog="system" id="rJU-nb-e5O">
+                            <connections>
+                                <action selector="letterMenu:" destination="kue-D7-4ZL" id="VwW-ki-7En"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="letterCtrl" destination="cMa-cw-I8Z" id="WQH-Nz-U9H"/>

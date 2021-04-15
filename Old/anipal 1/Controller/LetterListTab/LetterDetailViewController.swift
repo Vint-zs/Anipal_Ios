@@ -67,4 +67,15 @@ class LetterDetailViewController: UIViewController {
     @IBAction func letterSlide(_ sender: UIPageControl) {
         
     }
+    
+    @IBAction func letterMenu(_ sender: Any) {
+        let alertcontroller = UIAlertController(title: "Menu".localized, message: nil, preferredStyle: .actionSheet)
+        let deleteBtn = UIAlertAction(title: "Delete".localized, style: .default)
+        let blockBtn = UIAlertAction(title: "Block".localized, style: .default)
+        let cancelBtn = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
+        alertcontroller.addAction(deleteBtn)
+        alertcontroller.addAction(blockBtn)
+        alertcontroller.addAction(cancelBtn)
+        present(alertcontroller, animated: true, completion: nil)
+    }
 }
