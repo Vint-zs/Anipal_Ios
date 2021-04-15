@@ -6,8 +6,9 @@
 //
 
 import UIKit
-
-class SingUpViewController2: UIViewController {
+import GoogleSignIn
+import FBSDKLoginKit
+class SignUpViewController2: UIViewController {
 
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var languageTableView: UITableView!
@@ -50,12 +51,14 @@ class SingUpViewController2: UIViewController {
     }
     
     @IBAction func cancelBarButton(_ sender: UIBarButtonItem) {
+        GIDSignIn.sharedInstance()?.signOut()
+        LoginManager.init().logOut()
         self.navigationController?.popToRootViewController(animated: true)
     }
     
 }
     
-extension SingUpViewController2: UITableViewDelegate, UITableViewDataSource {
+extension SignUpViewController2: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
