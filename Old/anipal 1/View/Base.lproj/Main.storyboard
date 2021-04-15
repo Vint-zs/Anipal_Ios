@@ -232,30 +232,6 @@
             </objects>
             <point key="canvasLocation" x="5731" y="-153"/>
         </scene>
-        <!--newletterVC-->
-        <scene sceneID="tj5-QL-ZBQ">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="newletterVC" storyboardName="Tab2" referencedIdentifier="newletterVC" id="T61-Gc-uEG" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nuO-uF-cgD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6588" y="-160"/>
-        </scene>
-        <!--MainPage2-->
-        <scene sceneID="E3D-nI-VcB">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="MainPage2" storyboardName="Tab2" referencedIdentifier="MainPage2" id="XVm-Rx-LBk" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="J0c-mf-W6p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6215" y="-153"/>
-        </scene>
-        <!--Storyboard Reference-->
-        <scene sceneID="txI-1n-2SR">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="LetterListVC" id="D2Q-Ox-9Bp" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3TG-pJ-0DQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6124" y="-14"/>
-        </scene>
         <!--UINavigationController-RFZ-cb-kSJ-->
         <scene sceneID="aVQ-zR-2wX">
             <objects>
@@ -266,14 +242,6 @@
             </objects>
             <point key="canvasLocation" x="5715" y="2"/>
         </scene>
-        <!--letterDetail-->
-        <scene sceneID="0Oj-J4-eSU">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="letterDetail" storyboardName="LetterListTab" referencedIdentifier="letterDetail" id="Tdx-Bf-8cU" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aEU-iX-9tc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6575" y="-5"/>
-        </scene>
         <!--UINavigationController-EbV-gk-aVL-->
         <scene sceneID="Wnl-bV-dPh">
             <objects>
@@ -283,38 +251,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6fG-VM-NsQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5715" y="337"/>
-        </scene>
-        <!--DefaultInfoVC-->
-        <scene sceneID="67c-sk-euX">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="DefaultInfoVC" storyboardName="SettingTab" referencedIdentifier="DefaultInfoVC" id="kKg-nl-4fN" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RZR-Nb-xbr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6161" y="260"/>
-        </scene>
-        <!--LanguageSettingVC-->
-        <scene sceneID="EjP-vy-1D3">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="LanguageSettingVC" storyboardName="SettingTab" referencedIdentifier="LanguageSettingVC" id="OVa-K4-ZAU" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ssd-qT-lDF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6167" y="337"/>
-        </scene>
-        <!--FavoriteSettingVC-->
-        <scene sceneID="wTF-kG-EAZ">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="FavoriteSettingVC" storyboardName="SettingTab" referencedIdentifier="FavoriteSettingVC" id="wGn-Mp-85A" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Qvy-0I-QXA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6163" y="478"/>
-        </scene>
-        <!--ConceptSettingVC-->
-        <scene sceneID="ZuT-WN-mJT">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="ConceptSettingVC" storyboardName="SettingTab" referencedIdentifier="ConceptSettingVC" id="nNu-oL-fLe" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="q3h-W0-IpE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6160" y="416"/>
         </scene>
     </scenes>
     <resources>
