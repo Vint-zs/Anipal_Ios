@@ -6,14 +6,11 @@
 //
 
 import UIKit
-import DropDown
 
 class LetterListViewController: UICollectionViewController {
     
     @IBOutlet var letterListCollectionView: UICollectionView!
     @IBOutlet weak var menuBtn: UIBarButtonItem!
-    
-    let dropDown = DropDown()
     
     let newMailImg = UIImage(named: "letterBox1")
     let mailboxImg = UIImage(named: "letterBox2")
@@ -22,9 +19,6 @@ class LetterListViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Penpal".localized
-        
-        dropDown.anchorView = menuBtn
-        dropDown.dataSource = ["Newest".localized, "Frequency".localized]
         
         initCollectionView()
         setupFlowLayout()
@@ -54,15 +48,14 @@ class LetterListViewController: UICollectionViewController {
     
     // 정렬 메뉴
     @IBAction func sortBtn(_ sender: UIBarButtonItem) {
-        // 정렬 선택
-        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-            print("selected item: \(item)")
-            print("index: \(index)")
-        }
-        
-        dropDown.bottomOffset = CGPoint(x: 0, y: (dropDown.anchorView?.plainView.bounds.height)!)
-        dropDown.selectionBackgroundColor = UIColor(red: 0.682, green: 0.753, blue: 0.961, alpha: 1)
-        dropDown.show()
+        let alertcontroller = UIAlertController(title: "Sorting".localized, message: nil, preferredStyle: .actionSheet)
+        let newestBtn = UIAlertAction(title: "Newest".localized, style: .default)
+        let frequencyBtn = UIAlertAction(title: "Frequency".localized, style: .default)
+        let cancelBtn = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
+        alertcontroller.addAction(newestBtn)
+        alertcontroller.addAction(frequencyBtn)
+        alertcontroller.addAction(cancelBtn)
+        present(alertcontroller, animated: true, completion: nil)
     }
 }
 
