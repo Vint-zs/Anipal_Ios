@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import GoogleSignIn
+import FBSDKLoginKit
 
 let ad = UIApplication.shared.delegate as? AppDelegate // 회원가입 데이터 임시저장
 class SignUpViewController: UIViewController, sendBackDelegate {
@@ -72,10 +74,10 @@ class SignUpViewController: UIViewController, sendBackDelegate {
         } else {
             ad?.gender = "male"
         }
-        print(ad!.name)
-        print(ad!.birthday)
-        print(ad!.gender)
-        print(ad!.age)
+//        print(ad!.name)
+//        print(ad!.birthday)
+//        print(ad!.gender)
+//        print(ad!.age)
         
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
@@ -95,11 +97,9 @@ class SignUpViewController: UIViewController, sendBackDelegate {
         navigationController?.isNavigationBarHidden = false
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-
-    }
-    
     @IBAction func cancelBarButton(_ sender: UIBarButtonItem) {
+        GIDSignIn.sharedInstance()?.signOut()
+        LoginManager.init().logOut()
         self.navigationController?.popToRootViewController(animated: true)
     }
 

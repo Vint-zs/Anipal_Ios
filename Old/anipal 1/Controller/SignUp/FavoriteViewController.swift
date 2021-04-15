@@ -23,28 +23,26 @@ class FavoriteViewController: UIViewController {
     
     @IBAction func nextPageButton(_ sender: UIButton) {
         ad!.favorties = favTable.userFav
-        
-        print(ad!.name!)
-        print(ad!.gender!)
-        print(ad!.age!)
-        print(ad!.birthday!)
-        print(ad!.email!)
-        print(ad!.provider!)
-        print(ad!.favorties!)
-        print(ad!.languages!)
-        
+//        print(ad!.name!)
+//        print(ad!.gender!)
+//        print(ad!.age!)
+//        print(ad!.birthday!)
+//        print(ad!.email!)
+//        print(ad!.provider!)
+//        print(ad!.favorties!)
+//        print(ad!.languages!)
         postData(url: "https://anipal.tk/auth/register", token: ad!.token!)
-        
     }
     
     @IBAction func cancelBarButton(_ sender: UIBarButtonItem) {
+        GIDSignIn.sharedInstance()?.signOut()
+        LoginManager.init().logOut()
         self.navigationController?.popToRootViewController(animated: true)
     }
     
     func postData(url: String, token: String) {
         // 1. 전송할 값 준비
-        let param = ["name": ad!.name!, "gender": ad!.gender!, "age": ad!.age!, "birthday": ad!.birthday!, "country": ad!.country!, "email": ad!.email!, "provider": ad!.provider!, "favorites": ad!.favorties!
-                     ,"languages": ad!.languages!] as [String: Any] // JSON 객체로 변환할 딕셔너리 준비
+        let param = ["name": ad!.name!, "gender": ad!.gender!, "age": ad!.age!, "birthday": ad!.birthday!, "country": ad!.country!, "email": ad!.email!, "provider": ad!.provider!, "favorites": ad!.favorties!, "languages": ad!.languages!] as [String: Any] // JSON 객체로 변환할 딕셔너리 준비
         
         let paramData = try? JSONSerialization.data(withJSONObject: param, options: [])
 
@@ -70,7 +68,6 @@ class FavoriteViewController: UIViewController {
                 return
                 }
 
-            
             if let httpStatus = response as? HTTPURLResponse {
                 if httpStatus.statusCode == 201 {
                     DispatchQueue.main.async {
