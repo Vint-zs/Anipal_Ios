@@ -30,7 +30,7 @@ class StartPage: UIViewController {
         
         // 페이스북 로그인여부 확인
         if let token = AccessToken.current, !token.isExpired {
-            print(token)
+            print("facebook auto login")
             Profile.loadCurrentProfile { (profile, error) in
                 print(profile?.email)
                 print(profile?.name)
@@ -46,14 +46,11 @@ class StartPage: UIViewController {
     
 // MARK: - 회원가입버튼
     @IBAction func clickSignupBtn(_ sender: UIButton) {
-        
-        guard let signupVC = self.storyboard?.instantiateViewController(identifier: "SignUpVC1") else {
+        let storyboard = UIStoryboard(name: "SignUp", bundle: nil)
+        guard let signupVC = storyboard.instantiateViewController(identifier: "SignUpVC1") as? SignUpViewController else {
             return
         }
 
-        // signupVC.modalTransitionStyle = .coverVertical
-        // signupVC.modalPresentationStyle = .fullScreen
-        // self.present(signupVC, animated: true)
         self.navigationController?.pushViewController(signupVC, animated: true)
     }
     

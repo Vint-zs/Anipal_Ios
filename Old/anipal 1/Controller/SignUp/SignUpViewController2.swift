@@ -6,17 +6,16 @@
 //
 
 import UIKit
-
-class SingUpViewController2: UIViewController {
+import GoogleSignIn
+import FBSDKLoginKit
+class SignUpViewController2: UIViewController {
 
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var languageTableView: UITableView!
-    @IBOutlet var searchBar: UISearchBar!
-//    let searchController = UISearchController(searchResultsController: nil)
     
-    let languageList = ["English", "한국어", "日本語", "中文", "Italiano","프랑스어","포르투갈어"]
-    var myLanguageList: [String:Int] = ["한국어":1,"프랑스어":3]
-
+    let languageList = ["English", "한국어", "日本語", "中文", "Italiano", "프랑스어", "포르투갈어"]
+    var myLanguageList: [String: Int]! = [:]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         languageTableView.delegate = self
@@ -24,27 +23,42 @@ class SingUpViewController2: UIViewController {
 //        titleLabel.font = UIFont(name: "NotoSansKR-Bold", size: 18)
         titleLabel.textColor = UIColor(red: 0.392, green: 0.392, blue: 0.392, alpha: 1)
         
-//        searchController.searchResultsUpdater = self
-//        searchController.obscuresBackgroundDuringPresentation = false
-//        searchController.searchBar.placeholder = "search Keyword"
-//        navigationItem.searchController = searchController
-
+        // 저장 데이터 -> 화면 데이터 변환
+        for row in ad?.languages ?? [] {
+            if let name = row["name"] as? String, let level = row["level"] as? Int {
+                myLanguageList[name] = level
+            }
+        }
+            
     }
-    
+
     @IBAction func nextPageButton(_ sender: UIButton) {
-        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "conceptSelectVC") else {
+        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "FavoriteVC") else {
             return
         }
-        ad?.languages = myLanguageList
-        print(ad?.languages)
+        
+        // 화면데이터 -> 저장데이터 변환
+        var templanguages: [[String: Any]]? = [[String: Any]]()
+        for row in myLanguageList ?? [:] {
+            let (lang, level) = row
+            print(lang, level)
+            templanguages?.append(["name": lang, "level": level])
+        }
+        
+        ad?.languages = templanguages
+        print(ad!.languages!)
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
     @IBAction func cancelBarButton(_ sender: UIBarButtonItem) {
+        GIDSignIn.sharedInstance()?.signOut()
+        LoginManager.init().logOut()
         self.navigationController?.popToRootViewController(animated: true)
     }
+    
 }
-extension SingUpViewController2: UITableViewDelegate, UITableViewDataSource {
+    
+extension SignUpViewController2: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -99,21 +113,23 @@ extension SingUpViewController2: UITableViewDelegate, UITableViewDataSource {
 
         if myLanguageList.keys.contains(languageList[indexPath.row]) {
             myLanguageList.removeValue(forKey: languageList[indexPath.row])
-            print(myLanguageList)
             self.languageTableView.reloadData()
         } else {
             
             let alertcontroller = UIAlertController(title: "Level".localized, message: nil, preferredStyle: .actionSheet)
             let basicBtn = UIAlertAction(title: "Beginner".localized, style: .default) { (_) in
                 self.myLanguageList[self.languageList[indexPath.row]] = 1
+               // print(self.myLanguageList)
                 self.languageTableView.reloadData()
             }
             let mediumBtn = UIAlertAction(title: "Intermediate".localized, style: .default) { (_) in
                 self.myLanguageList[self.languageList[indexPath.row]] = 2
+               // print(self.myLanguageList)
                 self.languageTableView.reloadData()
             }
             let intermediateBtn = UIAlertAction(title: "Advanced".localized, style: .default) { (_) in
                 self.myLanguageList[self.languageList[indexPath.row]] = 3
+               // print(self.myLanguageList)
                 self.languageTableView.reloadData()
             }
             
@@ -125,9 +141,4 @@ extension SingUpViewController2: UITableViewDelegate, UITableViewDataSource {
             present(alertcontroller, animated: true, completion: nil)
         }
     }
-}
-
-extension SingUpViewController2: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-      }
 }

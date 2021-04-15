@@ -12,6 +12,11 @@ class MainPage: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        print(ad?.birthday)
+        print(ad?.favorites)
+        print(ad!.languages!)
+        print(ad?.accessories)
+        print(ad?.animals)
     }
     
     // MARK: - 네비게이션바 숨김

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import GoogleSignIn
+import FBSDKLoginKit
 
 let ad = UIApplication.shared.delegate as? AppDelegate // 회원가입 데이터 임시저장
 class SignUpViewController: UIViewController, sendBackDelegate {
@@ -14,6 +16,7 @@ class SignUpViewController: UIViewController, sendBackDelegate {
     @IBOutlet var genderChoice: UISegmentedControl!
     @IBOutlet var imgButton: UIButton!
     @IBOutlet weak var nameLabel: UITextField!
+    
     
     let initAnimals: [Animal] = [
         Animal(nameInit: "bird", image: #imageLiteral(resourceName: "bird")),
@@ -56,9 +59,14 @@ class SignUpViewController: UIViewController, sendBackDelegate {
         if let newName = nameLabel.text {
             ad?.name = newName
         }
-
+        var bE: Int!
         if let newBirth = dateField.text {
             ad?.birthday = newBirth
+            
+            let endIdx: String.Index = newBirth.index(newBirth.startIndex, offsetBy: 3)
+            let birthYear = String(newBirth[...endIdx])
+            bE = Int(birthYear)
+            ad?.age = 2021-bE
         }
 
         if genderChoice.selectedSegmentIndex == 0 {
@@ -66,10 +74,11 @@ class SignUpViewController: UIViewController, sendBackDelegate {
         } else {
             ad?.gender = "male"
         }
+//        print(ad!.name)
+//        print(ad!.birthday)
+//        print(ad!.gender)
+//        print(ad!.age)
         
-        print(ad?.name)
-        print(ad?.birthday)
-        print(ad?.gender)
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
@@ -88,12 +97,9 @@ class SignUpViewController: UIViewController, sendBackDelegate {
         navigationController?.isNavigationBarHidden = false
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-
-        //print(ad?.tempUser?.)
-    }
-    
     @IBAction func cancelBarButton(_ sender: UIBarButtonItem) {
+        GIDSignIn.sharedInstance()?.signOut()
+        LoginManager.init().logOut()
         self.navigationController?.popToRootViewController(animated: true)
     }
 
