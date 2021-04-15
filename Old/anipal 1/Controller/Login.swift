@@ -20,16 +20,34 @@ class Login: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         GIDSignIn.sharedInstance()?.delegate = self
+        GIDSignIn.sharedInstance()?.restorePreviousSignIn() // 구글 로그인여부 확인
         facebookBtn.layer.cornerRadius = 10
         googleBtn.layer.cornerRadius = 10
         googleBtn.layer.borderColor = UIColor.gray.cgColor
         googleBtn.layer.borderWidth = 1
         appleBtn.layer.cornerRadius = 10
         logoImage.layer.cornerRadius = logoImage.frame.height/2
+        
+        // 네이베이션바 선 없애기
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        
+        // 페이스북 자동로그인
+        if let token = AccessToken.current, !token.isExpired {
+            print("facebook auto login")
+            var fbEmail: String?
+            Profile.loadCurrentProfile { (profile, error) in
+                fbEmail = profile?.email
+//                print(profile?.name)
+//                print(profile?.userID)
+            }
+            getData(url: "https://anipal.tk/auth/facebook", token: AccessToken.current!.tokenString, email: fbEmail!, provider: "facebook")
+            // moveMainScreen()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.isNavigationBarHidden = false
+        navigationController?.isNavigationBarHidden = true
     }
 
     @IBAction func facebookLogin(_ sender: UIButton) {
@@ -84,6 +102,7 @@ class Login: UIViewController {
                 // response 확인
                 if let httpResponse = response as? HTTPURLResponse {
                     print(httpResponse.statusCode)
+                    
                     if httpResponse.statusCode == 200 {
                         DispatchQueue.main.async {
                             // ad!.token = token
@@ -91,9 +110,19 @@ class Login: UIViewController {
                             // ad!.email = email
                             
                             // JSON 값 저장
-    //                        let json = JSON(data)
-    //                        let userInfo = json.arrayValue[0]
-    //                        ad?.name = userInfo["name"].stringValue
+                            if let data = data {
+                                if let id = JSON(data)["_id"].string { ad?.id = id }
+                                if let name = JSON(data)["name"].string { ad?.name = name }
+                                if let age = JSON(data)["age"].int { ad?.age = age }
+                                if let email = JSON(data)["email"].string { ad?.email = email }
+                                if let country = JSON(data)["country"].string { ad?.country = country }
+                                if let birthday = JSON(data)["birthday"].string { ad?.birthday = birthday }
+                                if let gender = JSON(data)["gender"].string { ad?.gender = gender }
+                                if let favorites = JSON(data)["favorites"].arrayObject as? [String] { ad?.favorties = favorites }
+                                if let languages = JSON(data)["languages"].arrayObject as? [[String: Any]] { ad?.languages = languages }
+                                if let accessories = JSON(data)["accessories"].dictionaryObject as? [String: [[String: String]]] { ad?.accessories = accessories }
+                                if let animals = JSON(data)["animals"].arrayObject as? [[String: Any]] { ad?.animals = animals }
+                            }
                             moveMainScreen()
                         }
                     } else if httpResponse.statusCode == 400 {
@@ -110,7 +139,10 @@ class Login: UIViewController {
                             ad!.token = token
                             ad!.email = email
                             ad!.provider = provider
-                        guard let signupVC = self.storyboard?.instantiateViewController(identifier: "SignUpVC1") else {
+                        
+                        let storyboard = UIStoryboard(name: "SignUp", bundle: nil)
+                      //  let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
+                            guard let signupVC = storyboard.instantiateViewController(identifier: "SignUpVC1") as? SignUpViewController else {
                             return
                         }
                         self.navigationController?.pushViewController(signupVC, animated: true)
