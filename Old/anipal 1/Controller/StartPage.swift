@@ -30,7 +30,7 @@ class StartPage: UIViewController {
         
         // 페이스북 로그인여부 확인
         if let token = AccessToken.current, !token.isExpired {
-            print(token)
+            print("facebook auto login")
             Profile.loadCurrentProfile { (profile, error) in
                 print(profile?.email)
                 print(profile?.name)
