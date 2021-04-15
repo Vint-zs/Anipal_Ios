@@ -21,8 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var birthday: String?
     var gender: String?
     var favorties: [String]?
-    var languages: [[String: Any]]? = [["name": "한국어", "level": 1], ["name": "Italiano", "level": 3]] // [[String:Any]]()
+    var languages: [[String: Any]]? = [[String: Any]]() // [["name": "한국어", "level": 1], ["name": "Italiano", "level": 3]]
     var token: String?
+    var accessories: [String: [[String: String]]]? 
+    var animals: [[String: Any]]?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
