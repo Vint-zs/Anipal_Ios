@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Sing Up View Controller2-->
+        <!--Sign Up View Controller2-->
         <scene sceneID="6eE-ri-wh7">
             <objects>
-                <viewController storyboardIdentifier="signupVC2" id="kFj-hX-XJl" customClass="SingUpViewController2" customModule="anipal_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signupVC2" id="kFj-hX-XJl" customClass="SignUpViewController2" customModule="anipal_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eIy-9g-Saf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -132,8 +132,7 @@
                     <connections>
                         <outlet property="languageTableView" destination="ccY-KS-yx9" id="x9g-J3-Tjr"/>
                         <outlet property="titleLabel" destination="5Uc-G3-GTH" id="oD9-Ye-d2T"/>
-                        <segue destination="qqL-dU-Jfc" kind="show" id="dXg-nd-HhB"/>
-                        <segue destination="nLf-Eh-dJP" kind="show" id="RoB-5L-L0j"/>
+                        <segue destination="eJW-sb-z4E" kind="show" id="HIs-O4-70f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tno-bo-R3L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -196,7 +195,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R0F-5G-sWG">
-                                <rect key="frame" x="117" y="118" width="180" height="22"/>
+                                <rect key="frame" x="117" y="74" width="180" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="iRN-IK-vU8"/>
                                 </constraints>
@@ -205,7 +204,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sOG-Ga-K72">
-                                <rect key="frame" x="0.0" y="190" width="414" height="592"/>
+                                <rect key="frame" x="0.0" y="146" width="414" height="636"/>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.97254901960784312" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" red="0.1577348113" green="0.4657592773" blue="0.9472531676" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.94901960784313721" green="0.97254901960784312" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -384,7 +383,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원하는 컨셉을 선택하세요" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2I-wt-Awz">
-                                <rect key="frame" x="117" y="118" width="180" height="22"/>
+                                <rect key="frame" x="117" y="74" width="180" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="iFe-Fs-rzY"/>
                                 </constraints>
@@ -393,7 +392,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xIu-Ba-Bn9">
-                                <rect key="frame" x="0.0" y="190" width="414" height="592"/>
+                                <rect key="frame" x="0.0" y="146" width="414" height="636"/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.97254901959999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" red="0.1577348113" green="0.4657592773" blue="0.9472531676" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.94901960780000005" green="0.97254901959999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -468,12 +467,11 @@
                     <connections>
                         <outlet property="conceptTable" destination="xIu-Ba-Bn9" id="xet-v6-JUM"/>
                         <outlet property="titleLabel" destination="X2I-wt-Awz" id="YgK-xm-eQG"/>
-                        <segue destination="eJW-sb-z4E" kind="show" id="5NT-RL-xb8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="doA-4f-IcD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3137" y="-700"/>
+            <point key="canvasLocation" x="4396" y="-1803"/>
         </scene>
         <!--Favorite View Controller-->
         <scene sceneID="5mj-Av-3Ph">
@@ -532,11 +530,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="favLabelTitle" destination="klx-LC-Qhb" id="Yc3-i7-mlV"/>
+                        <outlet property="favTable" destination="hyL-ZB-pNc" id="ube-hb-CG4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lls-RD-APf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4130.434782608696" y="-700.44642857142856"/>
+            <point key="canvasLocation" x="3048" y="-700"/>
         </scene>
     </scenes>
     <resources>

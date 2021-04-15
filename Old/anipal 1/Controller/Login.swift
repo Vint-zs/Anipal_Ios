@@ -20,16 +20,34 @@ class Login: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         GIDSignIn.sharedInstance()?.delegate = self
+        GIDSignIn.sharedInstance()?.restorePreviousSignIn() // 구글 로그인여부 확인
         facebookBtn.layer.cornerRadius = 10
         googleBtn.layer.cornerRadius = 10
         googleBtn.layer.borderColor = UIColor.gray.cgColor
         googleBtn.layer.borderWidth = 1
         appleBtn.layer.cornerRadius = 10
         logoImage.layer.cornerRadius = logoImage.frame.height/2
+        
+        // 네이베이션바 선 없애기
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        
+        // 페이스북 자동로그인
+        if let token = AccessToken.current, !token.isExpired {
+            print("facebook auto login")
+            var fbEmail: String?
+            Profile.loadCurrentProfile { (profile, error) in
+                fbEmail = profile?.email
+//                print(profile?.name)
+//                print(profile?.userID)
+            }
+            getData(url: "https://anipal.tk/auth/facebook", token: AccessToken.current!.tokenString, email: fbEmail!, provider: "facebook")
+            // moveMainScreen()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.isNavigationBarHidden = false
+        navigationController?.isNavigationBarHidden = true
     }
 
     @IBAction func facebookLogin(_ sender: UIButton) {
@@ -45,8 +63,8 @@ class Login: UIViewController {
 //                    print(profile?.userID)
                     fbEmail = profile?.email
                 })
-                
-                self.getData(url: "https://anipal.tk/auth/facebook", token: AccessToken.current!.tokenString, email: fbEmail!) // 서버로 토큰 전송
+                print(fbEmail)
+                self.getData(url: "https://anipal.tk/auth/facebook", token: AccessToken.current!.tokenString, email: fbEmail!, provider: "facebook") // 서버로 토큰 전송
                 
             case .cancelled:
                 print("user cancel the login")
@@ -64,7 +82,7 @@ class Login: UIViewController {
     }
     
     // MARK: - 서버 통신
-    func getData(url: String, token: String, email: String) {
+    func getData(url: String, token: String, email: String, provider: String) {
         
         // let parameters = ["access Token": user.authentication.accessToken, "name": "jack"] as [String : Any]
             let url = URL(string: url)! // change the url
@@ -84,15 +102,27 @@ class Login: UIViewController {
                 // response 확인
                 if let httpResponse = response as? HTTPURLResponse {
                     print(httpResponse.statusCode)
+                    
                     if httpResponse.statusCode == 200 {
                         DispatchQueue.main.async {
-                            ad?.token = token
+                            // ad!.token = token
                             // ad?.token = HTTPCookie
-                            ad?.email = email
+                            // ad!.email = email
+                            
                             // JSON 값 저장
-    //                        let json = JSON(data)
-    //                        let userInfo = json.arrayValue[0]
-    //                        ad?.name = userInfo["name"].stringValue
+                            if let data = data {
+                                if let id = JSON(data)["_id"].string { ad?.id = id }
+                                if let name = JSON(data)["name"].string { ad?.name = name }
+                                if let age = JSON(data)["age"].int { ad?.age = age }
+                                if let email = JSON(data)["email"].string { ad?.email = email }
+                                if let country = JSON(data)["country"].string { ad?.country = country }
+                                if let birthday = JSON(data)["birthday"].string { ad?.birthday = birthday }
+                                if let gender = JSON(data)["gender"].string { ad?.gender = gender }
+                                if let favorites = JSON(data)["favorites"].arrayObject as? [String] { ad?.favorites = favorites }
+                                if let languages = JSON(data)["languages"].arrayObject as? [[String: Any]] { ad?.languages = languages }
+                                if let accessories = JSON(data)["accessories"].dictionaryObject as? [String: [[String: String]]] { ad?.accessories = accessories }
+                                if let animals = JSON(data)["animals"].arrayObject as? [[String: Any]] { ad?.animals = animals }
+                            }
                             moveMainScreen()
                         }
                     } else if httpResponse.statusCode == 400 {
@@ -106,7 +136,13 @@ class Login: UIViewController {
                         }
                     } else if httpResponse.statusCode == 404 {
                         DispatchQueue.main.async {
-                        guard let signupVC = self.storyboard?.instantiateViewController(identifier: "SignUpVC1") else {
+                            ad!.token = token
+                            ad!.email = email
+                            ad!.provider = provider
+                        
+                        let storyboard = UIStoryboard(name: "SignUp", bundle: nil)
+                      //  let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
+                            guard let signupVC = storyboard.instantiateViewController(identifier: "SignUpVC1") as? SignUpViewController else {
                             return
                         }
                         self.navigationController?.pushViewController(signupVC, animated: true)
@@ -139,8 +175,13 @@ extension Login: GIDSignInDelegate {
         }
         print("success google login")
         print(user.authentication.accessToken)
-        getData(url: "https://anipal.tk/auth/google", token: user.authentication.accessToken, email: user.profile.email) // 서버로 b토큰 전송
-//        moveMainScreen()
+        
+        print("access token : \(user.authentication.accessToken)")
+        print("expire date \(user.authentication.accessTokenExpirationDate)")
+
+//        print(user.authentication.refreshToken)
+//        print("expire date \(user.authentication.accessTokenExpirationDate)")
+        getData(url: "https://anipal.tk/auth/google", token: user.authentication.accessToken, email: user.profile.email, provider: "google") // 서버로 b토큰 전송
     }
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         print("Disconnect")
@@ -153,3 +194,4 @@ func moveMainScreen() {
     let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
     (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
 }
+

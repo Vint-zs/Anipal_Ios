@@ -25,7 +25,7 @@
 		6C9B77462619E71400E82303 /* favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B77452619E71400E82303 /* favorites.swift */; };
 		6CFB759B2615AD710017F160 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CFB759D2615AD710017F160 /* Localizable.strings */; };
 		6CFB75A62615F7460017F160 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFB75A52615F7460017F160 /* StringExtension.swift */; };
-		761165F125D8308400577F92 /* SingUpViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761165F025D8308400577F92 /* SingUpViewController2.swift */; };
+		761165F125D8308400577F92 /* SignUpViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761165F025D8308400577F92 /* SignUpViewController2.swift */; };
 		761D515E2618C86A00089040 /* LanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761D515D2618C86A00089040 /* LanguageTableViewCell.swift */; };
 		761D51622618D46800089040 /* LanguageLevelSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761D51612618D46800089040 /* LanguageLevelSelect.swift */; };
 		761D51652618DD4700089040 /* LevelSelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761D51642618DD4700089040 /* LevelSelectTableViewCell.swift */; };
@@ -86,7 +86,7 @@
 		6CFB759C2615AD710017F160 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6CFB759F2615AD8F0017F160 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6CFB75A52615F7460017F160 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		761165F025D8308400577F92 /* SingUpViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpViewController2.swift; sourceTree = "<group>"; };
+		761165F025D8308400577F92 /* SignUpViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController2.swift; sourceTree = "<group>"; };
 		761D515D2618C86A00089040 /* LanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTableViewCell.swift; sourceTree = "<group>"; };
 		761D51612618D46800089040 /* LanguageLevelSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageLevelSelect.swift; sourceTree = "<group>"; };
 		761D51642618DD4700089040 /* LevelSelectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelectTableViewCell.swift; sourceTree = "<group>"; };
@@ -228,9 +228,9 @@
 		76867236261C4E8D0037A4F3 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				76F00003261AE640004D080E /* SelectAnimal.swift */,
 				7691937025D516630094B5BF /* SignUpViewController.swift */,
-				761165F025D8308400577F92 /* SingUpViewController2.swift */,
+				76F00003261AE640004D080E /* SelectAnimal.swift */,
+				761165F025D8308400577F92 /* SignUpViewController2.swift */,
 				761D51612618D46800089040 /* LanguageLevelSelect.swift */,
 				761D51642618DD4700089040 /* LevelSelectTableViewCell.swift */,
 				761D515D2618C86A00089040 /* LanguageTableViewCell.swift */,
@@ -515,7 +515,7 @@
 				6C9B77432619CBAF00E82303 /* userInfo.swift in Sources */,
 				6C7D9BA22614D730003596EB /* DefaultInfoVC.swift in Sources */,
 				6C7D9B9E2614BA4D003596EB /* SettingTableView.swift in Sources */,
-				761165F125D8308400577F92 /* SingUpViewController2.swift in Sources */,
+				761165F125D8308400577F92 /* SignUpViewController2.swift in Sources */,
 				761D51622618D46800089040 /* LanguageLevelSelect.swift in Sources */,
 				76686FC825CE2C5F00536E36 /* MainPage.swift in Sources */,
 				7668701C25D13AB200536E36 /* StartPage.swift in Sources */,

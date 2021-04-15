@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WritingPage: UIViewController ,sendBackDelegate {
+class WritingPage: UIViewController, sendBackDelegate {
 
 
     // 임시 데이터
