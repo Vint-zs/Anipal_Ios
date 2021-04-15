@@ -22,7 +22,7 @@ class FavoriteViewController: UIViewController {
     }
     
     @IBAction func nextPageButton(_ sender: UIButton) {
-        ad!.favorties = favTable.userFav
+        ad!.favorites = favTable.userFav
 //        print(ad!.name!)
 //        print(ad!.gender!)
 //        print(ad!.age!)
@@ -42,7 +42,7 @@ class FavoriteViewController: UIViewController {
     
     func postData(url: String, token: String) {
         // 1. 전송할 값 준비
-        let param = ["name": ad!.name!, "gender": ad!.gender!, "age": ad!.age!, "birthday": ad!.birthday!, "country": ad!.country!, "email": ad!.email!, "provider": ad!.provider!, "favorites": ad!.favorties!, "languages": ad!.languages!] as [String: Any] // JSON 객체로 변환할 딕셔너리 준비
+        let param = ["name": ad!.name!, "gender": ad!.gender!, "age": ad!.age!, "birthday": ad!.birthday!, "country": ad!.country!, "provider": ad!.provider!, "favorites": ad!.favorites!, "languages": ad!.languages!] as [String: Any] // JSON 객체로 변환할 딕셔너리 준비
         
         let paramData = try? JSONSerialization.data(withJSONObject: param, options: [])
 

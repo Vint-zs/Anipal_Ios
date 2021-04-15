@@ -13,7 +13,7 @@ class MainPage: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         print(ad?.birthday)
-        print(ad?.favorties)
+        print(ad?.favorites)
         print(ad!.languages!)
         print(ad?.accessories)
         print(ad?.animals)

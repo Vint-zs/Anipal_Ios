@@ -118,7 +118,7 @@ class Login: UIViewController {
                                 if let country = JSON(data)["country"].string { ad?.country = country }
                                 if let birthday = JSON(data)["birthday"].string { ad?.birthday = birthday }
                                 if let gender = JSON(data)["gender"].string { ad?.gender = gender }
-                                if let favorites = JSON(data)["favorites"].arrayObject as? [String] { ad?.favorties = favorites }
+                                if let favorites = JSON(data)["favorites"].arrayObject as? [String] { ad?.favorites = favorites }
                                 if let languages = JSON(data)["languages"].arrayObject as? [[String: Any]] { ad?.languages = languages }
                                 if let accessories = JSON(data)["accessories"].dictionaryObject as? [String: [[String: String]]] { ad?.accessories = accessories }
                                 if let animals = JSON(data)["animals"].arrayObject as? [[String: Any]] { ad?.animals = animals }

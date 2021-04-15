@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var country: String? = "Korea"
     var birthday: String?
     var gender: String?
-    var favorties: [String]?
+    var favorites: [String]?
     var languages: [[String: Any]]? = [[String: Any]]() // [["name": "한국어", "level": 1], ["name": "Italiano", "level": 3]]
     var token: String?
     var accessories: [String: [[String: String]]]? 
