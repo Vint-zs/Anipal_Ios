@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjl-61-IYf">
-                                <rect key="frame" x="40" y="419" width="295" height="55"/>
+                                <rect key="frame" x="40" y="463" width="295" height="55"/>
                                 <color key="backgroundColor" red="0.15763545039999999" green="0.46614652870000001" blue="0.95071595909999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="3Xb-QB-nhf"/>
@@ -32,7 +32,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LDy-sb-Ujg">
-                                <rect key="frame" x="40" y="494" width="295" height="55"/>
+                                <rect key="frame" x="40" y="538" width="295" height="55"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="Tyx-qF-GrR"/>
@@ -45,7 +45,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEN-wV-AE0">
-                                <rect key="frame" x="40" y="569" width="295" height="55"/>
+                                <rect key="frame" x="40" y="613" width="295" height="55"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="VIs-tg-V7O"/>
@@ -60,7 +60,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bird" translatesAutoresizingMaskIntoConstraints="NO" id="asd-eY-Zmn">
-                                <rect key="frame" x="97.666666666666686" y="174" width="180" height="180"/>
+                                <rect key="frame" x="97.666666666666686" y="218" width="180" height="180"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="AKX-Un-HLg"/>
                                     <constraint firstAttribute="height" constant="180" id="RnE-i2-PzI"/>
@@ -124,10 +124,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="penguin4" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YhX-3H-eW6">
-                                <rect key="frame" x="0.0" y="138" width="375" height="500"/>
+                                <rect key="frame" x="0.0" y="94" width="375" height="544"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ANIPAL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Flc-jc-em3">
-                                <rect key="frame" x="60" y="148" width="255" height="66"/>
+                                <rect key="frame" x="60" y="104" width="255" height="66"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="55"/>
                                 <color key="textColor" red="0.196046412" green="0.23531156780000001" blue="0.30976167319999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -192,7 +192,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8FI-1Y-ZDl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2973.8461538461538" y="87.440758293838854"/>
+            <point key="canvasLocation" x="2966" y="-613"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BPg-Qg-Tzg">
@@ -205,12 +205,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="crc-TK-FQE" kind="relationship" relationship="rootViewController" id="PYF-3p-0SN"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="N4y-77-gcT"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8qI-Ik-7WZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2044.6153846153845" y="87.440758293838854"/>
+            <point key="canvasLocation" x="2359" y="88"/>
         </scene>
         <!--UINavigationController-gec-h4-CnC-->
         <scene sceneID="FJC-5y-NW5">
@@ -315,22 +315,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q3h-W0-IpE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6160" y="416"/>
-        </scene>
-        <!--levelSelectVC-->
-        <scene sceneID="p7s-kU-6BZ">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="levelSelectVC" storyboardName="SignUp" referencedIdentifier="levelSelectVC" id="jNm-fo-bkF" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NyC-gC-fYv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4035" y="-627"/>
-        </scene>
-        <!--SignUpVC1-->
-        <scene sceneID="BuR-Fj-yo1">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FOc-Y7-GOH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewControllerPlaceholder storyboardIdentifier="SignUpVC1" storyboardName="SignUp" referencedIdentifier="SignUpVC1" id="bOv-fR-54x" sceneMemberID="viewController"/>
-            </objects>
-            <point key="canvasLocation" x="4607" y="-544"/>
         </scene>
     </scenes>
     <resources>
