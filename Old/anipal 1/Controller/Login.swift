@@ -100,7 +100,7 @@ class Login: UIViewController {
                 }
                 
                 // response 확인
-                if let httpResponse = response as? HTTPURLResponse {
+                if let httpResponse = response as? HTTPURLResponse, let fields = httpResponse.allHeaderFields as? [String: String] {
                     print(httpResponse.statusCode)
                     
                     if httpResponse.statusCode == 200 {
@@ -108,6 +108,9 @@ class Login: UIViewController {
                             // ad!.token = token
                             // ad?.token = HTTPCookie
                             // ad!.email = email
+                            
+                            // 쿠키 저장
+                            let cookies: [HTTPCookie] = HTTPCookie.cookies(withResponseHeaderFields: fields, for: response!.url!)
                             
                             // JSON 값 저장
                             if let data = data {
