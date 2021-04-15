@@ -18,6 +18,8 @@ class LetterDetailViewController: UIViewController {
     @IBOutlet weak var senderAnimal: UIImageView!
     @IBOutlet weak var letterCtrl: UIPageControl!
     
+    let content = ["a", "b", "c", "d", "e"]
+    
     var nameFromVar: String?
     var contentVar: String?
     override func viewDidLoad() {
@@ -38,12 +40,12 @@ class LetterDetailViewController: UIViewController {
         senderAnimal.layer.borderWidth = 0.3
         senderAnimal.layer.borderColor = UIColor.lightGray.cgColor
         
+        getLetters()
+        
         // 편지 내용
         textViewContent.layer.cornerRadius = 10
-        textViewContent.text = contentVar
+        textViewContent.text = content[letterCtrl.currentPage]
         textViewContent.isEditable = false
-        
-        getLetters()
     }
     
     @IBAction func writeBtn(_ sender: UIButton) {
@@ -65,16 +67,15 @@ class LetterDetailViewController: UIViewController {
         letterCtrl.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
         letterCtrl.pageIndicatorTintColor = UIColor(red: 0.946, green: 0.946, blue: 0.946, alpha: 1)
         letterCtrl.currentPageIndicatorTintColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1)
-        letterCtrl.currentPage = users.count
         
         // 편지 본문 로딩
-        letterCtrl.numberOfPages = users.count
-        
+        letterCtrl.numberOfPages = content.count
+        letterCtrl.currentPage = letterCtrl.numberOfPages - 1
     }
     
     // 편지 넘기기
     @IBAction func letterSlide(_ sender: UIPageControl) {
-        
+        textViewContent.text = content[letterCtrl.currentPage]
     }
     
     @IBAction func letterMenu(_ sender: Any) {
