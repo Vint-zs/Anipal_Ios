@@ -13,11 +13,8 @@ class LetterListViewController: UICollectionViewController {
     @IBOutlet var letterListCollectionView: UICollectionView!
     @IBOutlet weak var menuBtn: UIBarButtonItem!
     
-    var isOpened: Bool?
-    var arrivalDate: String?
-    var mailBoxCount = 1
-    var senderName: String = ""
-    // let dateFormatter = DateFormatter()
+    var mailboxes: [MailBox] = []
+    let dateFormatter = DateFormatter()
     
     // TODO: 임시 데이터
     var unOpenedMail = UIImage(named: "letterBox1.png")
@@ -94,10 +91,23 @@ class LetterListViewController: UICollectionViewController {
                     print(httpStatus.statusCode)
                     print("data: \(JSON(data))")
                     
-                    isOpened = JSON(data)[0]["is_opened"].boolValue
-                    mailBoxCount = JSON(data).count + 1
-                    senderName = JSON(data)[0]["partner"]["name"].stringValue
-                    // arrivalDate = JSON(data)["arrive_date"].string
+                    for idx in 0..<JSON(data).count {
+                        let json = JSON(data)[idx]
+                        let partner: [String: Any] = [
+                            "user_id": json["partner"]["user_id"].stringValue,
+                            "name": json["partner"]["name"].stringValue,
+                            "country": json["partner"]["country"].stringValue,
+                            "favorites": json["partner"]["favorites"].arrayValue]
+                        let thumbnail = [
+                            "animal_url": json["thumbnail_animal"]["animal_url"].stringValue,
+                            "head_url": json["thumbnail_animal"]["head_url"].stringValue,
+                            "top_url": json["thumbnail_animal"]["top_url"].stringValue,
+                            "pants_url": json["thumbnail_animal"]["pants_url"].stringValue,
+                            "shoes_url": json["thumbnail_animal"]["shoes_url"].stringValue,
+                            "gloves_url": json["thumbnail_animal"]["gloves_url"].stringValue]
+                        let mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, thumbnail: thumbnail, arrivalDate: json["arrive_date"].stringValue, letterCount: json["letters_count"].intValue)
+                        mailboxes.append(mailBox)
+                    }
                     
                     // 화면 reload
                     DispatchQueue.main.async {
@@ -116,8 +126,7 @@ class LetterListViewController: UICollectionViewController {
 
 extension LetterListViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("mailBoxCount \(mailBoxCount)")
-        return mailBoxCount
+        return mailboxes.count + 1
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -127,14 +136,14 @@ extension LetterListViewController {
             }
             cell.arrivalAnimal.image = arvlAmlImg
             
-            if isOpened ?? false {
+            if mailboxes[indexPath.row - 1].isOpened {
                 cell.mailbox.image = openedMail
             } else {
                 cell.mailbox.image = unOpenedMail
             }
-            cell.senderName.text = senderName
+            cell.senderName.text = mailboxes[indexPath.row - 1].partner["name"] as? String
             cell.senderName.sizeToFit()
-            cell.arrivalDate.text = users[indexPath.row].birthday
+            cell.arrivalDate.text = mailboxes[indexPath.row - 1].arrivalDate
             cell.arrivalDate.sizeToFit()
             
             return cell
