@@ -17,7 +17,7 @@ class LetterListViewController: UICollectionViewController {
     var arrivalDate: String?
     var mailBoxCount = 1
     var senderName: String = ""
-    //let dateFormatter = DateFormatter()
+    // let dateFormatter = DateFormatter()
     
     // TODO: 임시 데이터
     var unOpenedMail = UIImage(named: "letterBox1.png")
@@ -29,13 +29,15 @@ class LetterListViewController: UICollectionViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Penpal".localized
         
-        getData(url: "https://anipal.tk/mailboxes/my", token: token)
-        
         // TODO: Date
         // dateFormatter.dateFormat = "YYYY-MM-dd"
         
         initCollectionView()
         setupFlowLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getData(url: "https://anipal.tk/mailboxes/my", token: token)
     }
     
     // 콜렉션 뷰 셀 등록
@@ -93,7 +95,7 @@ class LetterListViewController: UICollectionViewController {
                     print("data: \(JSON(data))")
                     
                     isOpened = JSON(data)[0]["is_opened"].boolValue
-                    mailBoxCount += JSON(data).count
+                    mailBoxCount = JSON(data).count + 1
                     senderName = JSON(data)[0]["partner"]["name"].stringValue
                     // arrivalDate = JSON(data)["arrive_date"].string
                     
@@ -124,7 +126,7 @@ extension LetterListViewController {
                 fatalError("Can't dequeue LetterListCell")
             }
             cell.arrivalAnimal.image = arvlAmlImg
-            // TODO: mailbox 처리 결정하기
+            
             if isOpened ?? false {
                 cell.mailbox.image = openedMail
             } else {
