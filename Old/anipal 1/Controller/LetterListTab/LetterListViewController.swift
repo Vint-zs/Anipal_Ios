@@ -89,24 +89,25 @@ class LetterListViewController: UICollectionViewController {
             if let httpStatus = response as? HTTPURLResponse {
                 if httpStatus.statusCode == 200 {
                     print(httpStatus.statusCode)
-                    print("data: \(JSON(data))")
                     
-                    for idx in 0..<JSON(data).count {
-                        let json = JSON(data)[idx]
-                        let partner: [String: Any] = [
-                            "user_id": json["partner"]["user_id"].stringValue,
-                            "name": json["partner"]["name"].stringValue,
-                            "country": json["partner"]["country"].stringValue,
-                            "favorites": json["partner"]["favorites"].arrayValue]
-                        let thumbnail = [
-                            "animal_url": json["thumbnail_animal"]["animal_url"].stringValue,
-                            "head_url": json["thumbnail_animal"]["head_url"].stringValue,
-                            "top_url": json["thumbnail_animal"]["top_url"].stringValue,
-                            "pants_url": json["thumbnail_animal"]["pants_url"].stringValue,
-                            "shoes_url": json["thumbnail_animal"]["shoes_url"].stringValue,
-                            "gloves_url": json["thumbnail_animal"]["gloves_url"].stringValue]
-                        let mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, thumbnail: thumbnail, arrivalDate: json["arrive_date"].stringValue, letterCount: json["letters_count"].intValue)
-                        mailboxes.append(mailBox)
+                    if mailboxes.count != JSON(data).count {
+                        for idx in 0..<JSON(data).count {
+                            let json = JSON(data)[idx]
+                            let partner: [String: Any] = [
+                                "user_id": json["partner"]["user_id"].stringValue,
+                                "name": json["partner"]["name"].stringValue,
+                                "country": json["partner"]["country"].stringValue,
+                                "favorites": json["partner"]["favorites"].arrayValue]
+                            let thumbnail = [
+                                "animal_url": json["thumbnail_animal"]["animal_url"].stringValue,
+                                "head_url": json["thumbnail_animal"]["head_url"].stringValue,
+                                "top_url": json["thumbnail_animal"]["top_url"].stringValue,
+                                "pants_url": json["thumbnail_animal"]["pants_url"].stringValue,
+                                "shoes_url": json["thumbnail_animal"]["shoes_url"].stringValue,
+                                "gloves_url": json["thumbnail_animal"]["gloves_url"].stringValue]
+                            let mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, thumbnail: thumbnail, arrivalDate: json["arrive_date"].stringValue, letterCount: json["letters_count"].intValue)
+                            mailboxes.append(mailBox)
+                        }
                     }
                     
                     // 화면 reload
@@ -168,8 +169,8 @@ extension LetterListViewController {
                 return
             }
 
-            letterDetailVC.nameFromVar = letters[indexPath.row - 1].fromLetter
-            letterDetailVC.contentVar = letters[indexPath.row - 1].contentInit
+            letterDetailVC.nameFromVar = mailboxes[indexPath.row - 1].partner["name"] as? String
+            letterDetailVC.mailBoxID = mailboxes[indexPath.row - 1].mailBoxID
 
             self.navigationController?.pushViewController(letterDetailVC, animated: true)
         }

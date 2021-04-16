@@ -22,6 +22,7 @@ class LetterDetailViewController: UIViewController {
     
     var nameFromVar: String?
     var contentVar: String?
+    var mailBoxID: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,7 +57,7 @@ class LetterDetailViewController: UIViewController {
         }
 
         // name_to nil처리 수정필요 guard let?
-        nextVC.nameVar = "RE: " + nameFromVar!
+        nextVC.nameVar = "RE: \(String(describing: nameFromVar))"
 
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
