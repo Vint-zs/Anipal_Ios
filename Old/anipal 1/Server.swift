@@ -8,18 +8,15 @@
 import Foundation
 import UIKit
 
-
-
-
-func get(url: String, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
-    guard let url = URL(string: url) else { return }
+func get(url: String, token: String, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+    guard let url = URL(string: "https://anipal.tk" + url) else { return }
     
     var request = URLRequest(url: url)
     request.httpMethod = "GET"
+    
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     request.addValue("application/json", forHTTPHeaderField: "Accept")
-    if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
-        request.addValue("Bearer " + session.value, forHTTPHeaderField: "Authorization")
-    }
+    request.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
     
     URLSession.shared.dataTask(with: request as URLRequest, completionHandler: completionHandler).resume()
 }

@@ -33,46 +33,48 @@ class LetterListViewController: UICollectionViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // 데이터 로딩
-        get(url: "https://anipal.tk/mailboxes/my", completionHandler: { [self] data, response, error in
-            guard let data = data, error == nil else {
-                print("error=\(String(describing: error))")
-                return
-            }
-            
-            if let httpStatus = response as? HTTPURLResponse {
-                if httpStatus.statusCode == 200 {
-                    if mailboxes.count != JSON(data).count {
-                        for idx in 0..<JSON(data).count {
-                            let json = JSON(data)[idx]
-                            let partner: [String: Any] = [
-                                "user_id": json["partner"]["user_id"].stringValue,
-                                "name": json["partner"]["name"].stringValue,
-                                "country": json["partner"]["country"].stringValue,
-                                "favorites": json["partner"]["favorites"].arrayValue]
-                            let thumbnail = [
-                                "animal_url": json["thumbnail_animal"]["animal_url"].stringValue,
-                                "head_url": json["thumbnail_animal"]["head_url"].stringValue,
-                                "top_url": json["thumbnail_animal"]["top_url"].stringValue,
-                                "pants_url": json["thumbnail_animal"]["pants_url"].stringValue,
-                                "shoes_url": json["thumbnail_animal"]["shoes_url"].stringValue,
-                                "gloves_url": json["thumbnail_animal"]["gloves_url"].stringValue]
-                            let mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, thumbnail: thumbnail, arrivalDate: json["arrive_date"].stringValue, letterCount: json["letters_count"].intValue)
-                            mailboxes.append(mailBox)
-                        }
-                    }
-                    
-                    // 화면 reload
-                    DispatchQueue.main.async {
-                        self.letterListCollectionView.reloadData()
-                    }
-                } else if httpStatus.statusCode == 400 {
-                    print("error: \(httpStatus.statusCode)")
-                } else {
-                    print("error: \(httpStatus.statusCode)")
+        // Authorization 쿠키 확인 & 데이터 로딩
+        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+            get(url: "/mailboxes/my", token: session.value, completionHandler: { [self] data, response, error in
+                guard let data = data, error == nil else {
+                    print("error=\(String(describing: error))")
+                    return
                 }
-            }
-        })
+                
+                if let httpStatus = response as? HTTPURLResponse {
+                    if httpStatus.statusCode == 200 {
+                        if mailboxes.count != JSON(data).count {
+                            for idx in 0..<JSON(data).count {
+                                let json = JSON(data)[idx]
+                                let partner: [String: Any] = [
+                                    "user_id": json["partner"]["user_id"].stringValue,
+                                    "name": json["partner"]["name"].stringValue,
+                                    "country": json["partner"]["country"].stringValue,
+                                    "favorites": json["partner"]["favorites"].arrayValue]
+                                let thumbnail = [
+                                    "animal_url": json["thumbnail_animal"]["animal_url"].stringValue,
+                                    "head_url": json["thumbnail_animal"]["head_url"].stringValue,
+                                    "top_url": json["thumbnail_animal"]["top_url"].stringValue,
+                                    "pants_url": json["thumbnail_animal"]["pants_url"].stringValue,
+                                    "shoes_url": json["thumbnail_animal"]["shoes_url"].stringValue,
+                                    "gloves_url": json["thumbnail_animal"]["gloves_url"].stringValue]
+                                let mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, thumbnail: thumbnail, arrivalDate: json["arrive_date"].stringValue, letterCount: json["letters_count"].intValue)
+                                mailboxes.append(mailBox)
+                            }
+                        }
+                        
+                        // 화면 reload
+                        DispatchQueue.main.async {
+                            self.letterListCollectionView.reloadData()
+                        }
+                    } else if httpStatus.statusCode == 400 {
+                        print("error: \(httpStatus.statusCode)")
+                    } else {
+                        print("error: \(httpStatus.statusCode)")
+                    }
+                }
+            })
+        }
     }
     
     // 콜렉션 뷰 셀 등록
