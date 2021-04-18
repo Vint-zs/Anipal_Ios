@@ -20,7 +20,7 @@ class LetterListViewController: UICollectionViewController {
     var unOpenedMail = UIImage(named: "letterBox1.png")
     var openedMail = UIImage(named: "letterBox2.png")
     var arvlAmlImg = UIImage(named: "penguin.png")
-    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRtZGtkbWRrZGtka0BnbWFpbC5jb20iLCJpYXQiOjE2MTg1MDUyMTUsImV4cCI6MTYxODU5MTYxNX0.fcq42aKMpEs8NbUbqcCQOVSFjHa_q86w0eDe5vTxXCs"
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRtZGtkbWRrZGtka0BnbWFpbC5jb20iLCJpYXQiOjE2MTg3MzYyMDEsImV4cCI6MTYxODgyMjYwMX0.kK1h0HiPSc_AF-O0UyjLnpFLewcmIUif9pVmrEqp2vY"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +34,46 @@ class LetterListViewController: UICollectionViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        getData(url: "https://anipal.tk/mailboxes/my", token: token)
+        // 데이터 로딩
+        get(url: "https://anipal.tk/mailboxes/my", token: token, completionHandler: { [self] data, response, error in
+            guard let data = data, error == nil else {
+                print("error=\(String(describing: error))")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse {
+                if httpStatus.statusCode == 200 {
+                    if mailboxes.count != JSON(data).count {
+                        for idx in 0..<JSON(data).count {
+                            let json = JSON(data)[idx]
+                            let partner: [String: Any] = [
+                                "user_id": json["partner"]["user_id"].stringValue,
+                                "name": json["partner"]["name"].stringValue,
+                                "country": json["partner"]["country"].stringValue,
+                                "favorites": json["partner"]["favorites"].arrayValue]
+                            let thumbnail = [
+                                "animal_url": json["thumbnail_animal"]["animal_url"].stringValue,
+                                "head_url": json["thumbnail_animal"]["head_url"].stringValue,
+                                "top_url": json["thumbnail_animal"]["top_url"].stringValue,
+                                "pants_url": json["thumbnail_animal"]["pants_url"].stringValue,
+                                "shoes_url": json["thumbnail_animal"]["shoes_url"].stringValue,
+                                "gloves_url": json["thumbnail_animal"]["gloves_url"].stringValue]
+                            let mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, thumbnail: thumbnail, arrivalDate: json["arrive_date"].stringValue, letterCount: json["letters_count"].intValue)
+                            mailboxes.append(mailBox)
+                        }
+                    }
+                    
+                    // 화면 reload
+                    DispatchQueue.main.async {
+                        self.letterListCollectionView.reloadData()
+                    }
+                } else if httpStatus.statusCode == 400 {
+                    print("error: \(httpStatus.statusCode)")
+                } else {
+                    print("error: \(httpStatus.statusCode)")
+                }
+            }
+        })
     }
     
     // 콜렉션 뷰 셀 등록
@@ -68,60 +107,6 @@ class LetterListViewController: UICollectionViewController {
         alertcontroller.addAction(frequencyBtn)
         alertcontroller.addAction(cancelBtn)
         present(alertcontroller, animated: true, completion: nil)
-    }
-    
-    func getData(url: String, token: String) {
-        guard let url = URL(string: url) else { return }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
-        
-        let task = URLSession.shared.dataTask(with: request as URLRequest) { [self] data, response, error in
-            guard let data = data, error == nil else {
-                print("error=\(String(describing: error))")
-                return
-            }
-            
-            if let httpStatus = response as? HTTPURLResponse {
-                if httpStatus.statusCode == 200 {
-                    print(httpStatus.statusCode)
-                    
-                    if mailboxes.count != JSON(data).count {
-                        for idx in 0..<JSON(data).count {
-                            let json = JSON(data)[idx]
-                            let partner: [String: Any] = [
-                                "user_id": json["partner"]["user_id"].stringValue,
-                                "name": json["partner"]["name"].stringValue,
-                                "country": json["partner"]["country"].stringValue,
-                                "favorites": json["partner"]["favorites"].arrayValue]
-                            let thumbnail = [
-                                "animal_url": json["thumbnail_animal"]["animal_url"].stringValue,
-                                "head_url": json["thumbnail_animal"]["head_url"].stringValue,
-                                "top_url": json["thumbnail_animal"]["top_url"].stringValue,
-                                "pants_url": json["thumbnail_animal"]["pants_url"].stringValue,
-                                "shoes_url": json["thumbnail_animal"]["shoes_url"].stringValue,
-                                "gloves_url": json["thumbnail_animal"]["gloves_url"].stringValue]
-                            let mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, thumbnail: thumbnail, arrivalDate: json["arrive_date"].stringValue, letterCount: json["letters_count"].intValue)
-                            mailboxes.append(mailBox)
-                        }
-                    }
-                    
-                    // 화면 reload
-                    DispatchQueue.main.async {
-                        self.letterListCollectionView.reloadData()
-                    }
-                } else if httpStatus.statusCode == 400 {
-                    print("error: \(httpStatus.statusCode)")
-                } else {
-                    print("error: \(httpStatus.statusCode)")
-                }
-            }
-        }
-        task.resume()
     }
 }
 
