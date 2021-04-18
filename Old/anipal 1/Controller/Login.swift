@@ -110,7 +110,8 @@ class Login: UIViewController {
                             // ad!.email = email
                             
                             // 쿠키 저장
-                            let cookies: [HTTPCookie] = HTTPCookie.cookies(withResponseHeaderFields: fields, for: response!.url!)
+                            let responseCookies: [HTTPCookie] = HTTPCookie.cookies(withResponseHeaderFields: fields, for: response!.url!)
+                            HTTPCookieStorage.shared.setCookies(responseCookies, for: response!.url!, mainDocumentURL: nil)
                             
                             // JSON 값 저장
                             if let data = data {

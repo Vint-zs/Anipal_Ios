@@ -20,7 +20,6 @@ class LetterListViewController: UICollectionViewController {
     var unOpenedMail = UIImage(named: "letterBox1.png")
     var openedMail = UIImage(named: "letterBox2.png")
     var arvlAmlImg = UIImage(named: "penguin.png")
-    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRtZGtkbWRrZGtka0BnbWFpbC5jb20iLCJpYXQiOjE2MTg3MzYyMDEsImV4cCI6MTYxODgyMjYwMX0.kK1h0HiPSc_AF-O0UyjLnpFLewcmIUif9pVmrEqp2vY"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +34,7 @@ class LetterListViewController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // 데이터 로딩
-        get(url: "https://anipal.tk/mailboxes/my", token: token, completionHandler: { [self] data, response, error in
+        get(url: "https://anipal.tk/mailboxes/my", completionHandler: { [self] data, response, error in
             guard let data = data, error == nil else {
                 print("error=\(String(describing: error))")
                 return
