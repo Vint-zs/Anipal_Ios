@@ -13,6 +13,8 @@
 		6C2C429726178B08007D2D71 /* FavoriteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C2C429626178B08007D2D71 /* FavoriteView.xib */; };
 		6C53ECF9261F6AF100D62EAD /* WriteNewLetter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C53ECF8261F6AF100D62EAD /* WriteNewLetter.xib */; };
 		6C53ECFC261F6B0E00D62EAD /* WriteNewLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C53ECFB261F6B0E00D62EAD /* WriteNewLetter.swift */; };
+		6C5D653B2629575500A62334 /* MailBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5D653A2629575500A62334 /* MailBox.swift */; };
+		6C5D653E262C30B100A62334 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5D653D262C30B100A62334 /* Server.swift */; };
 		6C616339261AA8CE00998DF9 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C616338261AA8CE00998DF9 /* FavoriteViewController.swift */; };
 		6C6A9A09261E149700EF93F4 /* LetterListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6A9A08261E149700EF93F4 /* LetterListCell.swift */; };
 		6C6A9A0C261E14FF00EF93F4 /* LetterListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C6A9A0B261E14FE00EF93F4 /* LetterListCell.xib */; };
@@ -73,6 +75,8 @@
 		6C2C429626178B08007D2D71 /* FavoriteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteView.xib; sourceTree = "<group>"; };
 		6C53ECF8261F6AF100D62EAD /* WriteNewLetter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WriteNewLetter.xib; sourceTree = "<group>"; };
 		6C53ECFB261F6B0E00D62EAD /* WriteNewLetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteNewLetter.swift; sourceTree = "<group>"; };
+		6C5D653A2629575500A62334 /* MailBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailBox.swift; sourceTree = "<group>"; };
+		6C5D653D262C30B100A62334 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		6C616338261AA8CE00998DF9 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		6C6A9A08261E149700EF93F4 /* LetterListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterListCell.swift; sourceTree = "<group>"; };
 		6C6A9A0B261E14FE00EF93F4 /* LetterListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LetterListCell.xib; sourceTree = "<group>"; };
@@ -93,7 +97,7 @@
 		762A36D32621CCEE00BDC643 /* SelectAnimal1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAnimal1.swift; sourceTree = "<group>"; };
 		7657F0BC25CAE46400403881 /* 구글로고.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "구글로고.jpg"; sourceTree = "<group>"; };
 		76686FC725CE2C5F00536E36 /* MainPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage.swift; sourceTree = "<group>"; };
-		76686FCA25CE2FFC00536E36 /* WritingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingPage.swift; sourceTree = "<group>"; };
+		76686FCA25CE2FFC00536E36 /* WritingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WritingPage.swift; path = ../Tab1/WritingPage.swift; sourceTree = "<group>"; };
 		76686FD125CE9F3E00536E36 /* SelectAnimalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAnimalCollectionViewCell.swift; sourceTree = "<group>"; };
 		76686FD425CE9FE800536E36 /* SelectAnimalPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAnimalPage.swift; sourceTree = "<group>"; };
 		76686FE525CEAB7300536E36 /* animal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animal.swift; sourceTree = "<group>"; };
@@ -185,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				76686FC725CE2C5F00536E36 /* MainPage.swift */,
-				76686FCA25CE2FFC00536E36 /* WritingPage.swift */,
 				76686FD425CE9FE800536E36 /* SelectAnimalPage.swift */,
 				76686FD125CE9F3E00536E36 /* SelectAnimalCollectionViewCell.swift */,
 				762A36D32621CCEE00BDC643 /* SelectAnimal1.swift */,
@@ -205,6 +208,7 @@
 		76867233261C4E3C0037A4F3 /* LetterListTab */ = {
 			isa = PBXGroup;
 			children = (
+				76686FCA25CE2FFC00536E36 /* WritingPage.swift */,
 				7691936B25D5000A0094B5BF /* LetterListViewController.swift */,
 				7691937325D54DDA0094B5BF /* LetterListTableViewCell.swift */,
 				76AF5B4825D95A4300CA4183 /* LetterDetailViewController.swift */,
@@ -248,6 +252,7 @@
 				76AF5B3E25D93D8500CA4183 /* letters.swift */,
 				6C9B77422619CBAF00E82303 /* userInfo.swift */,
 				6C9B77452619E71400E82303 /* favorites.swift */,
+				6C5D653A2629575500A62334 /* MailBox.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -305,6 +310,7 @@
 				7657F0BB25CAE44C00403881 /* Images */,
 				76D1784C25CA922900C5ED37 /* AppDelegate.swift */,
 				76D1784E25CA922900C5ED37 /* SceneDelegate.swift */,
+				6C5D653D262C30B100A62334 /* Server.swift */,
 				76AF5B4325D9400700CA4183 /* Model */,
 				76AF5B4425D9402900CA4183 /* View */,
 				76AF5B4525D9405D00CA4183 /* Controller */,
@@ -499,6 +505,7 @@
 				76686FD225CE9F3E00536E36 /* SelectAnimalCollectionViewCell.swift in Sources */,
 				7691937425D54DDA0094B5BF /* LetterListTableViewCell.swift in Sources */,
 				7691936C25D5000A0094B5BF /* LetterListViewController.swift in Sources */,
+				6C5D653B2629575500A62334 /* MailBox.swift in Sources */,
 				761D51652618DD4700089040 /* LevelSelectTableViewCell.swift in Sources */,
 				76D1784F25CA922900C5ED37 /* SceneDelegate.swift in Sources */,
 				76AF5B3F25D93D8500CA4183 /* letters.swift in Sources */,
@@ -526,6 +533,7 @@
 				6C9B77462619E71400E82303 /* favorites.swift in Sources */,
 				76686FD525CE9FE800536E36 /* SelectAnimalPage.swift in Sources */,
 				76B0B4C025ED5E8300A025A2 /* NewLetterViewController.swift in Sources */,
+				6C5D653E262C30B100A62334 /* Server.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

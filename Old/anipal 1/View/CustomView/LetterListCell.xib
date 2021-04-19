@@ -22,7 +22,7 @@
                             <constraint firstAttribute="width" secondItem="bBZ-ek-P8S" secondAttribute="height" multiplier="11:18" id="cf1-ox-hu0"/>
                         </constraints>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mailbox" translatesAutoresizingMaskIntoConstraints="NO" id="A0w-HD-9dJ">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="letterBox2" translatesAutoresizingMaskIntoConstraints="NO" id="A0w-HD-9dJ">
                         <rect key="frame" x="0.0" y="0.0" width="132" height="216"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="A0w-HD-9dJ" secondAttribute="height" multiplier="11:18" id="YHN-wT-XFQ"/>
@@ -76,7 +76,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="mailbox" width="526" height="864"/>
-        <image name="penguin" width="356" height="430"/>
+        <image name="letterBox2" width="131.5" height="216"/>
+        <image name="penguin" width="89" height="107.5"/>
     </resources>
 </document>

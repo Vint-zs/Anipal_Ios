@@ -6,28 +6,75 @@
 //
 
 import UIKit
-import DropDown
+import SwiftyJSON
 
 class LetterListViewController: UICollectionViewController {
     
     @IBOutlet var letterListCollectionView: UICollectionView!
     @IBOutlet weak var menuBtn: UIBarButtonItem!
     
-    let dropDown = DropDown()
+    var mailboxes: [MailBox] = []
+    let dateFormatter = DateFormatter()
     
-    let mailboxImg = UIImage(named: "mailbox")
-    let newMailImg = UIImage(named: "mailbox2")
-    let arvlAmlImg = UIImage(named: "penguin")
+    // TODO: 임시 데이터
+    var unOpenedMail = UIImage(named: "letterBox1.png")
+    var openedMail = UIImage(named: "letterBox2.png")
+    var arvlAmlImg = UIImage(named: "penguin.png")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Penpal".localized
         
-        dropDown.anchorView = menuBtn
-        dropDown.dataSource = ["Newest".localized, "Frequency".localized]
+        // TODO: Date
+        // dateFormatter.dateFormat = "YYYY-MM-dd"
         
         initCollectionView()
         setupFlowLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // Authorization 쿠키 확인 & 데이터 로딩
+        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+            get(url: "/mailboxes/my", token: session.value, completionHandler: { [self] data, response, error in
+                guard let data = data, error == nil else {
+                    print("error=\(String(describing: error))")
+                    return
+                }
+                
+                if let httpStatus = response as? HTTPURLResponse {
+                    if httpStatus.statusCode == 200 {
+                        if mailboxes.count != JSON(data).count {
+                            for idx in 0..<JSON(data).count {
+                                let json = JSON(data)[idx]
+                                let partner: [String: Any] = [
+                                    "user_id": json["partner"]["user_id"].stringValue,
+                                    "name": json["partner"]["name"].stringValue,
+                                    "country": json["partner"]["country"].stringValue,
+                                    "favorites": json["partner"]["favorites"].arrayValue]
+                                let thumbnail = [
+                                    "animal_url": json["thumbnail_animal"]["animal_url"].stringValue,
+                                    "head_url": json["thumbnail_animal"]["head_url"].stringValue,
+                                    "top_url": json["thumbnail_animal"]["top_url"].stringValue,
+                                    "pants_url": json["thumbnail_animal"]["pants_url"].stringValue,
+                                    "shoes_url": json["thumbnail_animal"]["shoes_url"].stringValue,
+                                    "gloves_url": json["thumbnail_animal"]["gloves_url"].stringValue]
+                                let mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, thumbnail: thumbnail, arrivalDate: json["arrive_date"].stringValue, letterCount: json["letters_count"].intValue)
+                                mailboxes.append(mailBox)
+                            }
+                        }
+                        
+                        // 화면 reload
+                        DispatchQueue.main.async {
+                            self.letterListCollectionView.reloadData()
+                        }
+                    } else if httpStatus.statusCode == 400 {
+                        print("error: \(httpStatus.statusCode)")
+                    } else {
+                        print("error: \(httpStatus.statusCode)")
+                    }
+                }
+            })
+        }
     }
     
     // 콜렉션 뷰 셀 등록
@@ -42,7 +89,6 @@ class LetterListViewController: UICollectionViewController {
     // 셀 크기 조정
     private func setupFlowLayout() {
         let flowLayout = UICollectionViewFlowLayout()
-        //flowLayout.sectionInset = UIEdgeInsets.zero
         flowLayout.minimumInteritemSpacing = 10
         flowLayout.minimumLineSpacing = 10
         flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
@@ -54,21 +100,20 @@ class LetterListViewController: UICollectionViewController {
     
     // 정렬 메뉴
     @IBAction func sortBtn(_ sender: UIBarButtonItem) {
-        // 정렬 선택
-        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-            print("selected item: \(item)")
-            print("index: \(index)")
-        }
-        
-        dropDown.bottomOffset = CGPoint(x: 0, y: (dropDown.anchorView?.plainView.bounds.height)!)
-        dropDown.selectionBackgroundColor = UIColor(red: 0.682, green: 0.753, blue: 0.961, alpha: 1)
-        dropDown.show()
+        let alertcontroller = UIAlertController(title: "Sorting".localized, message: nil, preferredStyle: .actionSheet)
+        let newestBtn = UIAlertAction(title: "Newest".localized, style: .default)
+        let frequencyBtn = UIAlertAction(title: "Frequency".localized, style: .default)
+        let cancelBtn = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
+        alertcontroller.addAction(newestBtn)
+        alertcontroller.addAction(frequencyBtn)
+        alertcontroller.addAction(cancelBtn)
+        present(alertcontroller, animated: true, completion: nil)
     }
 }
 
 extension LetterListViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return users.count
+        return mailboxes.count + 1
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -77,10 +122,15 @@ extension LetterListViewController {
                 fatalError("Can't dequeue LetterListCell")
             }
             cell.arrivalAnimal.image = arvlAmlImg
-            cell.mailbox.image = mailboxImg
-            cell.senderName.text = users[indexPath.row].name
+            
+            if mailboxes[indexPath.row - 1].isOpened {
+                cell.mailbox.image = openedMail
+            } else {
+                cell.mailbox.image = unOpenedMail
+            }
+            cell.senderName.text = mailboxes[indexPath.row - 1].partner["name"] as? String
             cell.senderName.sizeToFit()
-            cell.arrivalDate.text = users[indexPath.row].birthday
+            cell.arrivalDate.text = mailboxes[indexPath.row - 1].arrivalDate
             cell.arrivalDate.sizeToFit()
             
             return cell
@@ -105,8 +155,8 @@ extension LetterListViewController {
                 return
             }
 
-            letterDetailVC.nameFromVar = letters[indexPath.row - 1].fromLetter
-            letterDetailVC.contentVar = letters[indexPath.row - 1].contentInit
+            letterDetailVC.nameFromVar = mailboxes[indexPath.row - 1].partner["name"] as? String
+            letterDetailVC.mailBoxID = mailboxes[indexPath.row - 1].mailBoxID
 
             self.navigationController?.pushViewController(letterDetailVC, animated: true)
         }

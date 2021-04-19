@@ -8,6 +8,20 @@
 // 편지 리스트 탭
 "Penpal" = "펜팔";
 
+"Letter" = "내게 온 편지";
+
+"Sorting" = "정렬";
+
+"Newest" = "최신순";
+
+"Frequency" = "빈도순";
+
+"Menu" = "메뉴";
+
+"Delete" = "삭제";
+
+"Block" = "차단";
+
 // 설정 탭
 "User info" = "내 정보";
 

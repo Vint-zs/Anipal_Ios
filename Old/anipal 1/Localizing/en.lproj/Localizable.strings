@@ -8,6 +8,20 @@
 // 편지 리스트 탭
 "Penpal" = "Penpal";
 
+"Letter" = "Letter";
+
+"Sorting" = "Sorting";
+
+"Newest" = "Newest";
+
+"Frequency" = "Frequency";
+
+"Menu" = "Menu";
+
+"Delete" = "Delete";
+
+"Block" = "Block";
+
 // 설정 탭
 "User info" = "User info";
 
