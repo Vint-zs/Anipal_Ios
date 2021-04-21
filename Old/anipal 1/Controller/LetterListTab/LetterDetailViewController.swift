@@ -50,6 +50,31 @@ class LetterDetailViewController: UIViewController {
         textViewContent.isEditable = false
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+            let url = "/mailboxes/show/" + mailBoxID!
+            print("url: \(url)")
+            print("token: \(session.value)")
+            get(url: url, token: session.value, completionHandler:  {
+                data, response, error in
+                guard let data = data, error == nil else {
+                    print("error=\(String(describing: error))")
+                    return
+                }
+                
+                if let httpStatus = response as? HTTPURLResponse {
+                    if httpStatus.statusCode == 200 {
+                        print("data: \(JSON(data))")
+                    } else if httpStatus.statusCode == 400 {
+                        print("error: \(httpStatus.statusCode)")
+                    } else {
+                        print("error: \(httpStatus.statusCode)")
+                    }
+                }
+            })
+        }
+    }
+    
     @IBAction func writeBtn(_ sender: UIButton) {
         
         let sub = UIStoryboard(name: "Tab1", bundle: nil)
