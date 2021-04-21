@@ -52,7 +52,7 @@
 		7691937125D516630094B5BF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691937025D516630094B5BF /* SignUpViewController.swift */; };
 		7691937425D54DDA0094B5BF /* LetterListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691937325D54DDA0094B5BF /* LetterListTableViewCell.swift */; };
 		76ABF6EF25E7FE5000808652 /* MainPage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ABF6EE25E7FE5000808652 /* MainPage2.swift */; };
-		76AF5B3F25D93D8500CA4183 /* letters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AF5B3E25D93D8500CA4183 /* letters.swift */; };
+		76AF5B3F25D93D8500CA4183 /* letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AF5B3E25D93D8500CA4183 /* letter.swift */; };
 		76AF5B4925D95A4300CA4183 /* LetterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AF5B4825D95A4300CA4183 /* LetterDetailViewController.swift */; };
 		76B0B4C025ED5E8300A025A2 /* NewLetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B0B4BF25ED5E8300A025A2 /* NewLetterViewController.swift */; };
 		76D1784D25CA922900C5ED37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D1784C25CA922900C5ED37 /* AppDelegate.swift */; };
@@ -115,7 +115,7 @@
 		7691937025D516630094B5BF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		7691937325D54DDA0094B5BF /* LetterListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterListTableViewCell.swift; sourceTree = "<group>"; };
 		76ABF6EE25E7FE5000808652 /* MainPage2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage2.swift; sourceTree = "<group>"; };
-		76AF5B3E25D93D8500CA4183 /* letters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = letters.swift; sourceTree = "<group>"; };
+		76AF5B3E25D93D8500CA4183 /* letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = letter.swift; sourceTree = "<group>"; };
 		76AF5B4825D95A4300CA4183 /* LetterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterDetailViewController.swift; sourceTree = "<group>"; };
 		76B0B4BF25ED5E8300A025A2 /* NewLetterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLetterViewController.swift; sourceTree = "<group>"; };
 		76D1784925CA922900C5ED37 /* anipal 1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "anipal 1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -249,7 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				76686FE525CEAB7300536E36 /* animal.swift */,
-				76AF5B3E25D93D8500CA4183 /* letters.swift */,
+				76AF5B3E25D93D8500CA4183 /* letter.swift */,
 				6C9B77422619CBAF00E82303 /* userInfo.swift */,
 				6C9B77452619E71400E82303 /* favorites.swift */,
 				6C5D653A2629575500A62334 /* MailBox.swift */,
@@ -508,7 +508,7 @@
 				6C5D653B2629575500A62334 /* MailBox.swift in Sources */,
 				761D51652618DD4700089040 /* LevelSelectTableViewCell.swift in Sources */,
 				76D1784F25CA922900C5ED37 /* SceneDelegate.swift in Sources */,
-				76AF5B3F25D93D8500CA4183 /* letters.swift in Sources */,
+				76AF5B3F25D93D8500CA4183 /* letter.swift in Sources */,
 				6C616339261AA8CE00998DF9 /* FavoriteViewController.swift in Sources */,
 				76ABF6EF25E7FE5000808652 /* MainPage2.swift in Sources */,
 				6C7D9BA52614DC0C003596EB /* LanguageSettingVC.swift in Sources */,
