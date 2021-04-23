@@ -65,7 +65,7 @@ class LetterListViewController: UICollectionViewController {
                         
                         // 화면 reload
                         DispatchQueue.main.async {
-                            self.letterListCollectionView.reloadData()
+                            letterListCollectionView.reloadData()
                         }
                     } else if httpStatus.statusCode == 400 {
                         print("error: \(httpStatus.statusCode)")
@@ -155,7 +155,6 @@ extension LetterListViewController {
                 return
             }
 
-            letterDetailVC.nameFromVar = mailboxes[indexPath.row - 1].partner["name"] as? String
             letterDetailVC.mailBoxID = mailboxes[indexPath.row - 1].mailBoxID
 
             self.navigationController?.pushViewController(letterDetailVC, animated: true)
