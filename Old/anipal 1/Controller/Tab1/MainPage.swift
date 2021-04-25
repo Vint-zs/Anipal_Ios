@@ -12,11 +12,22 @@ class MainPage: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        print(ad?.birthday)
-        print(ad?.favorites)
-        print(ad!.languages!)
-        print(ad?.accessories)
-        print(ad?.animals)
+        
+        // 버튼 생성
+        let button1 = makeButton(image: #imageLiteral(resourceName: "penguin"))
+        let button2 = makeButton(image: #imageLiteral(resourceName: "penguin"))
+        view.addSubview(button1)
+        view.addSubview(button2)
+        
+        locateButton(button: button1, left: 40, bottom: -200)
+        locateButton(button: button2, left: 160, bottom: -400)
+//        button2.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40).isActive = true
+//        button2.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -200).isActive = true
+        
+       // button1.heightAnchor.constraint(equalToConstant: 40).isActive = true
+
+        button1.addTarget(self, action: #selector(pressed(_ :)), for: .touchUpInside)
+
     }
     
     // MARK: - 네비게이션바 숨김
@@ -27,7 +38,6 @@ class MainPage: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
     }
-    
     
     // MARK: - 편지도착 텍스트 클릭시
     @IBAction func textBtnClick(_ sender: UIButton) {
@@ -46,6 +56,23 @@ class MainPage: UIViewController {
         }
 
         self.navigationController?.pushViewController(writingVC, animated: true)
+    }
+    //MARK: - 버튼 생성
+    func makeButton(image: UIImage? = nil ) -> UIButton {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(image, for: .normal)
+        return button
+    }
+    
+    //MARK: - 버튼 오토레이아웃 설정
+    func locateButton(button: UIButton, left: Int, bottom: Int) {
+        button.leftAnchor.constraint(equalTo: view.leftAnchor, constant: CGFloat(left)).isActive = true
+        button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: CGFloat(bottom)).isActive = true
+    }
+    
+    @objc func pressed(_ sender: UIButton) {
+        print("pressed")
     }
 
 }
