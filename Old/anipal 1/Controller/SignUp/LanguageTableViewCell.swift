@@ -15,7 +15,7 @@ class LanguageTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //selectionStyle = .none
+        // selectionStyle = .none
         // Initialization code
     }
 

@@ -185,7 +185,7 @@ extension Login: GIDSignInDelegate {
 
 //        print(user.authentication.refreshToken)
 //        print("expire date \(user.authentication.accessTokenExpirationDate)")
-        getData(url: "https://anipal.tk/auth/google", token: user.authentication.accessToken, email: user.profile.email, provider: "google") // 서버로 b토큰 전송
+        getData(url: "https://anipal.tk/auth/google", token: user.authentication.accessToken, email: user.profile.email, provider: "google") // 서버로 토큰 전송
     }
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         print("Disconnect")
