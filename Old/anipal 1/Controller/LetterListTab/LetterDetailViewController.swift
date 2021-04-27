@@ -18,6 +18,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var senderFav: UILabel!
     @IBOutlet weak var senderAnimal: UIImageView!
     @IBOutlet weak var letterCtrl: UIPageControl!
+    @IBOutlet weak var replyBtn: UIButton!
     
     var letters: [Letter] = []
     var mailBoxID: String?
@@ -29,6 +30,15 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
         self.navigationItem.title = "Letter".localized
         self.navigationItem.rightBarButtonItem = menuBtn
         
+        // 답장 버튼
+        replyBtn.setTitle("Reply".localized, for: .normal)
+        replyBtn.layer.shadowColor = UIColor.lightGray.cgColor
+        replyBtn.layer.shadowOffset = CGSize(width: 2, height: 2)
+        replyBtn.layer.shadowOpacity = 1.0
+        replyBtn.layer.shadowRadius = 3
+        replyBtn.layer.masksToBounds = false
+        
+        // 편지 로딩
         getLetters()
     }
     
@@ -143,5 +153,6 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
 extension LetterDetailViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         letterCtrl.currentPage = Int(floor(scrollViewContent.contentOffset.x / scrollViewContent.frame.size.width))
+        senderFav.text = letters[letterCtrl.currentPage].favorites.joined(separator: " ")
     }
 }

@@ -97,8 +97,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aDa-x4-5vb">
-                                <rect key="frame" x="28" y="208" width="358" height="534"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aDa-x4-5vb">
+                                <rect key="frame" x="28" y="208" width="358" height="603"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zPV-df-awL">
                                 <rect key="frame" x="0.0" y="103" width="414" height="85"/>
@@ -141,42 +141,46 @@
                                     <constraint firstItem="VU3-yy-fvd" firstAttribute="top" secondItem="zPV-df-awL" secondAttribute="top" constant="57" id="zQt-zb-sl4"/>
                                 </constraints>
                             </view>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="cMa-cw-I8Z">
-                                <rect key="frame" x="145.5" y="750" width="123" height="28"/>
-                                <connections>
-                                    <action selector="letterSlide:" destination="kue-D7-4ZL" eventType="valueChanged" id="6h5-DO-j0p"/>
-                                </connections>
-                            </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n98-DS-41R">
-                                <rect key="frame" x="331" y="713.5" width="55" height="54"/>
+                                <rect key="frame" x="165" y="759" width="84" height="36"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="55" id="zVD-k6-KTT"/>
-                                    <constraint firstAttribute="height" constant="55" id="zsp-Lt-88i"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="84" id="fPI-pH-KGy"/>
+                                    <constraint firstAttribute="height" constant="36" id="s5m-dM-aGS"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" backgroundImage="paperplane.circle" catalog="system">
+                                <state key="normal" title="답장">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" red="0.87261415732027303" green="0.87261415732027303" blue="0.87261415732027303" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="writeBtn:" destination="kue-D7-4ZL" eventType="touchUpInside" id="YaA-vJ-Bmr"/>
                                 </connections>
                             </button>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="cMa-cw-I8Z">
+                                <rect key="frame" x="145.5" y="819" width="123" height="28"/>
+                                <connections>
+                                    <action selector="letterSlide:" destination="kue-D7-4ZL" eventType="valueChanged" id="6h5-DO-j0p"/>
+                                </connections>
+                            </pageControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Iq4-cB-8QU"/>
                         <color key="backgroundColor" red="0.94518297910000004" green="0.97571974989999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Iq4-cB-8QU" firstAttribute="bottom" secondItem="n98-DS-41R" secondAttribute="bottom" constant="94" id="13L-VU-YEE"/>
+                            <constraint firstItem="Iq4-cB-8QU" firstAttribute="bottom" secondItem="n98-DS-41R" secondAttribute="bottom" constant="67" id="13L-VU-YEE"/>
                             <constraint firstItem="cMa-cw-I8Z" firstAttribute="centerX" secondItem="0fU-xV-AZF" secondAttribute="centerX" id="7tl-WO-Z6o"/>
                             <constraint firstItem="GkD-yK-FXB" firstAttribute="leading" secondItem="Iq4-cB-8QU" secondAttribute="leading" constant="28" id="8MV-Ns-8Ms"/>
-                            <constraint firstItem="Iq4-cB-8QU" firstAttribute="bottom" secondItem="cMa-cw-I8Z" secondAttribute="bottom" constant="84" id="BOU-Be-8F5"/>
+                            <constraint firstItem="Iq4-cB-8QU" firstAttribute="bottom" secondItem="cMa-cw-I8Z" secondAttribute="bottom" constant="15" id="BOU-Be-8F5"/>
                             <constraint firstItem="aDa-x4-5vb" firstAttribute="leading" secondItem="Iq4-cB-8QU" secondAttribute="leading" constant="28" id="RUq-Ni-QhP"/>
-                            <constraint firstItem="Iq4-cB-8QU" firstAttribute="bottom" secondItem="aDa-x4-5vb" secondAttribute="bottom" constant="120" id="ZQv-s9-CYs"/>
+                            <constraint firstItem="n98-DS-41R" firstAttribute="centerX" secondItem="0fU-xV-AZF" secondAttribute="centerX" id="WvZ-rE-k1a"/>
+                            <constraint firstItem="Iq4-cB-8QU" firstAttribute="bottom" secondItem="aDa-x4-5vb" secondAttribute="bottom" constant="51" id="ZQv-s9-CYs"/>
                             <constraint firstItem="Iq4-cB-8QU" firstAttribute="trailing" secondItem="CWp-MZ-8rZ" secondAttribute="trailing" constant="26" id="aQ4-os-nT0"/>
-                            <constraint firstItem="Iq4-cB-8QU" firstAttribute="trailing" secondItem="n98-DS-41R" secondAttribute="trailing" constant="28" id="bgz-cx-Eaq"/>
+                            <constraint firstItem="Iq4-cB-8QU" firstAttribute="trailing" secondItem="n98-DS-41R" secondAttribute="trailing" constant="165" id="bgz-cx-Eaq"/>
                             <constraint firstItem="Iq4-cB-8QU" firstAttribute="trailing" secondItem="zPV-df-awL" secondAttribute="trailing" id="crz-yN-axa"/>
                             <constraint firstItem="zPV-df-awL" firstAttribute="top" secondItem="Iq4-cB-8QU" secondAttribute="top" constant="15" id="lKc-Rs-dZw"/>
                             <constraint firstItem="zPV-df-awL" firstAttribute="leading" secondItem="Iq4-cB-8QU" secondAttribute="leading" id="oHe-CW-HMO"/>
+                            <constraint firstItem="n98-DS-41R" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Iq4-cB-8QU" secondAttribute="leading" symbolic="YES" id="u4g-F0-gOd"/>
                             <constraint firstItem="Iq4-cB-8QU" firstAttribute="trailing" secondItem="aDa-x4-5vb" secondAttribute="trailing" constant="28" id="uXR-T4-jPM"/>
                             <constraint firstItem="CYF-xq-HFk" firstAttribute="leading" secondItem="Iq4-cB-8QU" secondAttribute="leading" constant="28" id="vsv-tS-0td"/>
                             <constraint firstItem="VU3-yy-fvd" firstAttribute="leading" secondItem="Iq4-cB-8QU" secondAttribute="leading" constant="28" id="wPc-GQ-D5K"/>
@@ -193,6 +197,7 @@
                     <connections>
                         <outlet property="letterCtrl" destination="cMa-cw-I8Z" id="WQH-Nz-U9H"/>
                         <outlet property="menuBtn" destination="rJU-nb-e5O" id="ONj-LV-cls"/>
+                        <outlet property="replyBtn" destination="n98-DS-41R" id="jgI-Kd-sMT"/>
                         <outlet property="scrollViewContent" destination="aDa-x4-5vb" id="eRQ-tF-jEt"/>
                         <outlet property="senderAnimal" destination="CWp-MZ-8rZ" id="sSL-UE-fNf"/>
                         <outlet property="senderCountry" destination="CYF-xq-HFk" id="Q26-4O-625"/>
@@ -209,7 +214,6 @@
     <resources>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="folder" catalog="system" width="128" height="97"/>
-        <image name="paperplane.circle" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
