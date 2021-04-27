@@ -14,6 +14,8 @@ class MainPage: UIViewController {
     
     var receiveAniaml: [RandomAnimal] = []
     var receiveLetter: [RandomLetter] = []
+    var imageUrls: [[String]] = []
+    var images: [UIImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,9 +52,38 @@ class MainPage: UIViewController {
                 }
             }
         }
+        print(receiveAniaml)
+        
+        // 이미지url 저장배열 생성 및 동물사진url 첫번쨰로 위치
+        if imageUrls.count != receiveAniaml.count {
+            for i in 0..<receiveAniaml.count {
+                let sortedUrl = receiveAniaml[i].animal.sorted(by: <)
+                var temp: [String] = []
+                
+                for row in sortedUrl {
+                    temp.append(row.value)
+                }
+                imageUrls.append(temp)
+                temp = []
+            }
+        }
+        // url -> 이미지로 변환 후 합성 및 저장
+        for i in 0..<imageUrls.count {
+            var ingredImage: [UIImage] = []
+            for url in imageUrls[i] {
+                guard let imageURL = URL(string: url) else { return }
+                guard let imageData = try? Data(contentsOf: imageURL) else { return }
+                if let img = UIImage(data: imageData) {
+                    ingredImage.append(img)
+                }
+            }
+            images.append(compositeImage(images: ingredImage))
+            ingredImage = []
+        }
         
         // 동물 버튼 생성
         DispatchQueue.main.async { [self] in
+            
             let button1 = makeButton(image: #imageLiteral(resourceName: "penguin"))
             let button2 = makeButton(image: #imageLiteral(resourceName: "penguin"))
             view.addSubview(button1)
@@ -63,11 +94,13 @@ class MainPage: UIViewController {
 
             button1.addTarget(self, action: #selector(pressed(_ :)), for: .touchUpInside)
         }
-       
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
+        print(imageUrls)
+        print(images)
     }
     
     // MARK: - 편지도착 텍스트 클릭시
@@ -102,6 +135,22 @@ class MainPage: UIViewController {
         button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: CGFloat(bottom)).isActive = true
         button.widthAnchor.constraint(equalToConstant: 70).isActive = true
         button.heightAnchor.constraint(equalTo: button.widthAnchor, multiplier: 430/356).isActive = true
+    }
+    
+    // MARK: - 이미지 합성
+    func compositeImage(images: [UIImage]) -> UIImage {
+        var compositeImage: UIImage!
+        if images.count > 0 {
+            let size: CGSize = CGSize(width: images[0].size.width, height: images[0].size.height)
+            UIGraphicsBeginImageContext(size)
+            for image in images {
+                let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+                image.draw(in: rect)
+            }
+            compositeImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+        }
+        return compositeImage
     }
     
     @objc func pressed(_ sender: UIButton) {
