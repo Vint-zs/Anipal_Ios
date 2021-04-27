@@ -65,8 +65,8 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
         // 페이지 컨트롤 UI
         letterCtrl.hidesForSinglePage = true
         letterCtrl.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
-        letterCtrl.pageIndicatorTintColor = UIColor(red: 0.946, green: 0.946, blue: 0.946, alpha: 1)
-        letterCtrl.currentPageIndicatorTintColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1)
+        letterCtrl.pageIndicatorTintColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        letterCtrl.currentPageIndicatorTintColor = UIColor(red: 0.682, green: 0.753, blue: 0.961, alpha: 1)
         
         // 편지 내용
         for idx in 0..<letters.count {
