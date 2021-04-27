@@ -10,7 +10,6 @@ import SwiftyJSON
 
 class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
 
-    @IBOutlet weak var topView: UIView!
     @IBOutlet weak var scrollViewContent: UIScrollView!
     @IBOutlet weak var menuBtn: UIBarButtonItem!
     @IBOutlet weak var senderName: UILabel!
@@ -58,8 +57,6 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
         letterCtrl.currentPage = letterCtrl.numberOfPages - 1
         
         // 보낸 사용자 정보
-        topView.layer.backgroundColor = UIColor(red: 0.946, green: 0.946, blue: 0.946, alpha: 1).cgColor
-        
         senderName.text = letters[letterCtrl.currentPage].name
         senderName.sizeToFit()
         senderCountry.text = letters[letterCtrl.currentPage].country
