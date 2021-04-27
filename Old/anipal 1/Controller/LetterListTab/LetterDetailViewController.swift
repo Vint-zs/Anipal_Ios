@@ -8,10 +8,10 @@
 import UIKit
 import SwiftyJSON
 
-class LetterDetailViewController: UIViewController {
+class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var topView: UIView!
-    @IBOutlet weak var textViewContent: UITextView!
+    @IBOutlet weak var scrollViewContent: UIScrollView!
     @IBOutlet weak var menuBtn: UIBarButtonItem!
     @IBOutlet weak var senderName: UILabel!
     @IBOutlet weak var senderCountry: UILabel!
@@ -69,17 +69,29 @@ class LetterDetailViewController: UIViewController {
         letterCtrl.currentPageIndicatorTintColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1)
         
         // 편지 내용
-        textViewContent.layer.cornerRadius = 10
-        textViewContent.text = letters[letterCtrl.currentPage].content
-        textViewContent.isEditable = false
+        for idx in 0..<letters.count {
+            let xPos = scrollViewContent.frame.size.width * CGFloat(idx)
+            let textView = UITextView(frame: CGRect(x: xPos, y: 0, width: scrollViewContent.frame.size.width, height: scrollViewContent.frame.size.height))
+            textView.layer.cornerRadius = 10
+            textView.isEditable = false
+            textView.text = letters[idx].content
+            
+            scrollViewContent.contentSize.width = scrollViewContent.frame.size.width * CGFloat(idx + 1)
+            scrollViewContent.addSubview(textView)
+        }
+        
+        scrollViewContent.delegate = self
+        // 최신 편지
+        scrollViewContent.contentOffset.x = CGFloat((Int(scrollViewContent.contentSize.width) / letters.count) * (letters.count - 1))
+        // 스크롤 바 숨김
+        scrollViewContent.showsVerticalScrollIndicator = false
+        scrollViewContent.showsHorizontalScrollIndicator = false
     }
     
     func getLetters() {
         // Authorization 쿠키 확인 & 데이터 로딩
         if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
             let url = "/mailboxes/show/" + mailBoxID!
-            print("url: \(url)")
-            print("token: \(session.value)")
             get(url: url, token: session.value, completionHandler: { [self] data, response, error in
                 guard let data = data, error == nil else {
                     print("error=\(String(describing: error))")
@@ -93,7 +105,6 @@ class LetterDetailViewController: UIViewController {
                             let favorites = json["sender"]["favorites"].arrayValue.map { $0.stringValue }
                             let animal = [json["post_animal"]["animal_url"].stringValue, json["post_animal"]["head_url"].stringValue, json["post_animal"]["top_url"].stringValue, json["post_animal"]["pants_url"].stringValue, json["post_animal"]["gloves_url"].stringValue, json["post_animal"]["shoes_url"].stringValue]
                             let letter = Letter(senderID: json["sender"]["user_id"].stringValue, name: json["sender"]["name"].stringValue, country: json["sender"]["country"].stringValue, favorites: favorites, animal: animal, receiverID: json["_id"].stringValue, content: json["content"].stringValue, arrivalDate: json["arrive_time"].stringValue, sendDate: json["send_time"].stringValue)
-                            print("letter: \(letter)")
                             letters.append(letter)
                         }
                         
@@ -113,7 +124,7 @@ class LetterDetailViewController: UIViewController {
     
     // 편지 넘기기
     @IBAction func letterSlide(_ sender: UIPageControl) {
-        textViewContent.text = letters[letterCtrl.currentPage].content
+        scrollViewContent.contentOffset.x = CGFloat((Int(scrollViewContent.contentSize.width) / letters.count) * letterCtrl.currentPage)
         senderFav.text = letters[letterCtrl.currentPage].favorites.joined(separator: " ")
     }
     
@@ -126,5 +137,11 @@ class LetterDetailViewController: UIViewController {
         alertcontroller.addAction(blockBtn)
         alertcontroller.addAction(cancelBtn)
         present(alertcontroller, animated: true, completion: nil)
+    }
+}
+
+extension LetterDetailViewController {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        letterCtrl.currentPage = Int(floor(scrollViewContent.contentOffset.x / scrollViewContent.frame.size.width))
     }
 }

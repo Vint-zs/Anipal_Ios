@@ -97,12 +97,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5L-Zm-D4R">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aDa-x4-5vb">
                                 <rect key="frame" x="28" y="208" width="358" height="534"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zPV-df-awL">
                                 <rect key="frame" x="0.0" y="103" width="414" height="85"/>
                                 <subviews>
@@ -134,6 +131,9 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="CWp-MZ-8rZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VU3-yy-fvd" secondAttribute="trailing" constant="8" symbolic="YES" id="23t-1I-fin"/>
+                                    <constraint firstItem="CWp-MZ-8rZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GkD-yK-FXB" secondAttribute="trailing" constant="8" symbolic="YES" id="7za-Fe-DVh"/>
+                                    <constraint firstItem="CWp-MZ-8rZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CYF-xq-HFk" secondAttribute="trailing" constant="8" symbolic="YES" id="HBz-8v-QRo"/>
                                     <constraint firstItem="GkD-yK-FXB" firstAttribute="top" secondItem="zPV-df-awL" secondAttribute="top" constant="13" id="Peb-WC-JLo"/>
                                     <constraint firstAttribute="height" constant="85" id="jaw-mn-PMm"/>
                                     <constraint firstItem="CYF-xq-HFk" firstAttribute="top" secondItem="zPV-df-awL" secondAttribute="top" constant="35" id="kzd-7J-nI5"/>
@@ -170,17 +170,17 @@
                             <constraint firstItem="cMa-cw-I8Z" firstAttribute="centerX" secondItem="0fU-xV-AZF" secondAttribute="centerX" id="7tl-WO-Z6o"/>
                             <constraint firstItem="GkD-yK-FXB" firstAttribute="leading" secondItem="Iq4-cB-8QU" secondAttribute="leading" constant="28" id="8MV-Ns-8Ms"/>
                             <constraint firstItem="Iq4-cB-8QU" firstAttribute="bottom" secondItem="cMa-cw-I8Z" secondAttribute="bottom" constant="84" id="BOU-Be-8F5"/>
-                            <constraint firstItem="H5L-Zm-D4R" firstAttribute="leading" secondItem="Iq4-cB-8QU" secondAttribute="leading" constant="28" id="Bul-Zd-6Vn"/>
-                            <constraint firstItem="Iq4-cB-8QU" firstAttribute="trailing" secondItem="H5L-Zm-D4R" secondAttribute="trailing" constant="28" id="DeZ-jk-mwH"/>
-                            <constraint firstItem="H5L-Zm-D4R" firstAttribute="top" secondItem="Iq4-cB-8QU" secondAttribute="top" constant="120" id="T8L-y4-jdv"/>
+                            <constraint firstItem="aDa-x4-5vb" firstAttribute="leading" secondItem="Iq4-cB-8QU" secondAttribute="leading" constant="28" id="RUq-Ni-QhP"/>
+                            <constraint firstItem="Iq4-cB-8QU" firstAttribute="bottom" secondItem="aDa-x4-5vb" secondAttribute="bottom" constant="120" id="ZQv-s9-CYs"/>
                             <constraint firstItem="Iq4-cB-8QU" firstAttribute="trailing" secondItem="CWp-MZ-8rZ" secondAttribute="trailing" constant="26" id="aQ4-os-nT0"/>
                             <constraint firstItem="Iq4-cB-8QU" firstAttribute="trailing" secondItem="n98-DS-41R" secondAttribute="trailing" constant="28" id="bgz-cx-Eaq"/>
                             <constraint firstItem="Iq4-cB-8QU" firstAttribute="trailing" secondItem="zPV-df-awL" secondAttribute="trailing" id="crz-yN-axa"/>
                             <constraint firstItem="zPV-df-awL" firstAttribute="top" secondItem="Iq4-cB-8QU" secondAttribute="top" constant="15" id="lKc-Rs-dZw"/>
-                            <constraint firstItem="Iq4-cB-8QU" firstAttribute="bottom" secondItem="H5L-Zm-D4R" secondAttribute="bottom" constant="120" id="n8q-6c-ugn"/>
                             <constraint firstItem="zPV-df-awL" firstAttribute="leading" secondItem="Iq4-cB-8QU" secondAttribute="leading" id="oHe-CW-HMO"/>
+                            <constraint firstItem="Iq4-cB-8QU" firstAttribute="trailing" secondItem="aDa-x4-5vb" secondAttribute="trailing" constant="28" id="uXR-T4-jPM"/>
                             <constraint firstItem="CYF-xq-HFk" firstAttribute="leading" secondItem="Iq4-cB-8QU" secondAttribute="leading" constant="28" id="vsv-tS-0td"/>
                             <constraint firstItem="VU3-yy-fvd" firstAttribute="leading" secondItem="Iq4-cB-8QU" secondAttribute="leading" constant="28" id="wPc-GQ-D5K"/>
+                            <constraint firstItem="aDa-x4-5vb" firstAttribute="top" secondItem="Iq4-cB-8QU" secondAttribute="top" constant="120" id="yFy-3u-bac"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="내게 온 편지" id="a4d-UL-0bZ">
@@ -193,17 +193,17 @@
                     <connections>
                         <outlet property="letterCtrl" destination="cMa-cw-I8Z" id="WQH-Nz-U9H"/>
                         <outlet property="menuBtn" destination="rJU-nb-e5O" id="ONj-LV-cls"/>
+                        <outlet property="scrollViewContent" destination="aDa-x4-5vb" id="eRQ-tF-jEt"/>
                         <outlet property="senderAnimal" destination="CWp-MZ-8rZ" id="sSL-UE-fNf"/>
                         <outlet property="senderCountry" destination="CYF-xq-HFk" id="Q26-4O-625"/>
                         <outlet property="senderFav" destination="VU3-yy-fvd" id="mXF-5P-KJW"/>
                         <outlet property="senderName" destination="GkD-yK-FXB" id="63o-bs-udf"/>
-                        <outlet property="textViewContent" destination="H5L-Zm-D4R" id="t2y-ku-GRx"/>
                         <outlet property="topView" destination="zPV-df-awL" id="IuZ-f4-arp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v6O-mB-DDt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7676" y="328.07881773399015"/>
+            <point key="canvasLocation" x="7675.36231884058" y="327.45535714285711"/>
         </scene>
     </scenes>
     <resources>
