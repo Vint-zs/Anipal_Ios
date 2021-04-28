@@ -56,6 +56,7 @@ class MainPage: UIViewController {
         
         // 이미지url 저장배열 생성 및 동물사진url 첫번쨰로 위치
         if imageUrls.count != receiveAniaml.count {
+            imageUrls = []
             for i in 0..<receiveAniaml.count {
                 let sortedUrl = receiveAniaml[i].animal.sorted(by: <)
                 var temp: [String] = []
@@ -84,15 +85,17 @@ class MainPage: UIViewController {
         // 동물 버튼 생성
         DispatchQueue.main.async { [self] in
             
-            let button1 = makeButton(image: #imageLiteral(resourceName: "penguin"))
-            let button2 = makeButton(image: #imageLiteral(resourceName: "penguin"))
+            let button1 = makeButton(image: #imageLiteral(resourceName: "ourPengiun"))
+            let button2 = makeButton(image: #imageLiteral(resourceName: "ourCat"))
+            
             view.addSubview(button1)
             view.addSubview(button2)
-            
+
             locateButton(button: button1, left: 40, bottom: -200)
-            locateButton(button: button2, left: 160, bottom: -400)
+            locateButton(button: button2, left: 160, bottom: -300)
 
             button1.addTarget(self, action: #selector(pressed(_ :)), for: .touchUpInside)
+            button2.addTarget(self, action: #selector(pressed(_ :)), for: .touchUpInside)
         }
         
     }
@@ -113,14 +116,14 @@ class MainPage: UIViewController {
         self.tabBarController?.selectedIndex = 2
     }
     
-    // MARK: - 편지작성 버튼 클릭시
-    @IBAction func writeButton(_ sender: UIButton) {
-        guard let writingVC = self.storyboard?.instantiateViewController(identifier: "WritingPage") else {
-            return
-        }
-
-        self.navigationController?.pushViewController(writingVC, animated: true)
-    }
+//    // MARK: - 편지작성 버튼 클릭시
+//    @IBAction func writeButton(_ sender: UIButton) {
+//        guard let writingVC = self.storyboard?.instantiateViewController(identifier: "WritingPage") else {
+//            return
+//        }
+//        self.navigationController?.pushViewController(writingVC, animated: true)
+//    }
+    
     // MARK: - 동물 버튼 생성
     func makeButton(image: UIImage? = nil ) -> UIButton {
         let button = UIButton()
@@ -133,8 +136,8 @@ class MainPage: UIViewController {
     func locateButton(button: UIButton, left: Int, bottom: Int) {
         button.leftAnchor.constraint(equalTo: view.leftAnchor, constant: CGFloat(left)).isActive = true
         button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: CGFloat(bottom)).isActive = true
-        button.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        button.heightAnchor.constraint(equalTo: button.widthAnchor, multiplier: 430/356).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        button.heightAnchor.constraint(equalTo: button.widthAnchor, multiplier: 465/348).isActive = true
     }
     
     // MARK: - 이미지 합성
@@ -153,8 +156,12 @@ class MainPage: UIViewController {
         return compositeImage
     }
     
+    // MARK: - 동물 버튼 클릭시
     @objc func pressed(_ sender: UIButton) {
-        print("pressed")
+        guard let confirmVC = self.storyboard?.instantiateViewController(identifier: "confirmVC") else {return}
+        confirmVC.modalPresentationStyle = .overCurrentContext
+        self.present(confirmVC, animated: true, completion: nil)
+        
     }
 
 }
