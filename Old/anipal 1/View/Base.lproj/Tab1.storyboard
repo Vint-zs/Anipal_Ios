@@ -40,6 +40,87 @@
             </objects>
             <point key="canvasLocation" x="6766.666666666667" y="-1164.5089285714284"/>
         </scene>
+        <!--Confirm Letter-->
+        <scene sceneID="AxO-De-BTE">
+            <objects>
+                <viewController storyboardIdentifier="confirmVC" id="6OT-FV-dZW" customClass="ConfirmLetter" customModule="anipal_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="36F-zB-AmG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g7z-PD-1Do">
+                                <rect key="frame" x="40" y="144" width="334" height="618"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Mvp-ir-jNq">
+                                        <rect key="frame" x="10" y="10" width="314" height="508"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37a-MQ-Una">
+                                        <rect key="frame" x="-10" y="-9.5" width="25" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="YyM-1d-6st"/>
+                                            <constraint firstAttribute="width" constant="25" id="hIh-je-Ywh"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="xmark.circle" catalog="system"/>
+                                        <connections>
+                                            <action selector="clickCancel:" destination="6OT-FV-dZW" eventType="touchUpInside" id="jfI-gp-unU"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2iU-WN-nCf">
+                                        <rect key="frame" x="70" y="548" width="30" height="30"/>
+                                        <state key="normal" title="삭제"/>
+                                        <connections>
+                                            <action selector="clickDelete:" destination="6OT-FV-dZW" eventType="touchUpInside" id="mcc-Xz-XXb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FY7-bc-kDC">
+                                        <rect key="frame" x="234" y="548" width="30" height="30"/>
+                                        <state key="normal" title="답장"/>
+                                        <connections>
+                                            <action selector="clickReply:" destination="6OT-FV-dZW" eventType="touchUpInside" id="yeD-QJ-7J1"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="FY7-bc-kDC" secondAttribute="trailing" constant="70" id="5cB-U4-04e"/>
+                                    <constraint firstItem="Mvp-ir-jNq" firstAttribute="top" secondItem="g7z-PD-1Do" secondAttribute="top" constant="10" id="AhW-UI-zxZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="2iU-WN-nCf" secondAttribute="bottom" constant="40" id="Xrc-kD-AgN"/>
+                                    <constraint firstAttribute="bottom" secondItem="Mvp-ir-jNq" secondAttribute="bottom" constant="100" id="ehg-I4-oiq"/>
+                                    <constraint firstAttribute="trailing" secondItem="Mvp-ir-jNq" secondAttribute="trailing" constant="10" id="gUX-1b-bTh"/>
+                                    <constraint firstAttribute="bottom" secondItem="FY7-bc-kDC" secondAttribute="bottom" constant="40" id="lsF-rK-bpz"/>
+                                    <constraint firstItem="37a-MQ-Una" firstAttribute="top" secondItem="g7z-PD-1Do" secondAttribute="top" constant="-10" id="mRd-U1-EgE"/>
+                                    <constraint firstItem="Mvp-ir-jNq" firstAttribute="leading" secondItem="g7z-PD-1Do" secondAttribute="leading" constant="10" id="opr-6L-H3h"/>
+                                    <constraint firstItem="37a-MQ-Una" firstAttribute="leading" secondItem="g7z-PD-1Do" secondAttribute="leading" constant="-10" id="zUV-u9-POX"/>
+                                    <constraint firstItem="2iU-WN-nCf" firstAttribute="leading" secondItem="g7z-PD-1Do" secondAttribute="leading" constant="70" id="zoV-xr-w3C"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="uAe-bn-Asy"/>
+                        <color key="backgroundColor" red="0.94901960780000005" green="0.97254901959999995" blue="1" alpha="0.39149404361548013" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="g7z-PD-1Do" firstAttribute="leading" secondItem="uAe-bn-Asy" secondAttribute="leading" constant="40" id="4ht-P0-9Z6"/>
+                            <constraint firstItem="g7z-PD-1Do" firstAttribute="top" secondItem="uAe-bn-Asy" secondAttribute="top" constant="100" id="hpv-sk-pwF"/>
+                            <constraint firstItem="uAe-bn-Asy" firstAttribute="bottom" secondItem="g7z-PD-1Do" secondAttribute="bottom" constant="100" id="lJk-Z7-zyk"/>
+                            <constraint firstItem="uAe-bn-Asy" firstAttribute="trailing" secondItem="g7z-PD-1Do" secondAttribute="trailing" constant="40" id="vrT-98-QEw"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="deleteButton" destination="2iU-WN-nCf" id="rbY-Lj-Hx9"/>
+                        <outlet property="innerView" destination="g7z-PD-1Do" id="lMO-Lt-c6o"/>
+                        <outlet property="replyButton" destination="FY7-bc-kDC" id="3eQ-XP-cgJ"/>
+                        <outlet property="textView" destination="Mvp-ir-jNq" id="iJe-Ta-vnd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5AT-xI-C6f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6766.666666666667" y="-1898.4375"/>
+        </scene>
         <!--Select Animal1-->
         <scene sceneID="iN1-bR-vUk">
             <objects>
@@ -336,6 +417,7 @@
         <image name="mainBackground" width="1172" height="2537.5"/>
         <image name="paperplane.circle" catalog="system" width="128" height="121"/>
         <image name="pencil.circle" catalog="system" width="128" height="121"/>
+        <image name="xmark.circle" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
