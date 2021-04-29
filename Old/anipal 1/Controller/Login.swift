@@ -41,7 +41,7 @@ class Login: UIViewController {
 //                print(profile?.name)
 //                print(profile?.userID)
             }
-            getData(url: "https://anipal.tk/auth/facebook", token: AccessToken.current!.tokenString, email: fbEmail!, provider: "facebook")
+            getData(url: "http://ec2-15-164-231-148.ap-northeast-2.compute.amazonaws.com/auth/facebook", token: AccessToken.current!.tokenString, email: fbEmail!, provider: "facebook")
             // moveMainScreen()
         }
     }
@@ -64,7 +64,7 @@ class Login: UIViewController {
                     fbEmail = profile?.email
                 })
                 print(fbEmail)
-                self.getData(url: "https://anipal.tk/auth/facebook", token: AccessToken.current!.tokenString, email: fbEmail!, provider: "facebook") // 서버로 토큰 전송
+                self.getData(url: "http://ec2-15-164-231-148.ap-northeast-2.compute.amazonaws.com/auth/facebook", token: AccessToken.current!.tokenString, email: fbEmail!, provider: "facebook") // 서버로 토큰 전송
                 
             case .cancelled:
                 print("user cancel the login")
@@ -185,7 +185,7 @@ extension Login: GIDSignInDelegate {
 
 //        print(user.authentication.refreshToken)
 //        print("expire date \(user.authentication.accessTokenExpirationDate)")
-        getData(url: "https://anipal.tk/auth/google", token: user.authentication.accessToken, email: user.profile.email, provider: "google") // 서버로 b토큰 전송
+        getData(url: "http://ec2-15-164-231-148.ap-northeast-2.compute.amazonaws.com/auth/google", token: user.authentication.accessToken, email: user.profile.email, provider: "google") // 서버로 b토큰 전송
     }
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         print("Disconnect")

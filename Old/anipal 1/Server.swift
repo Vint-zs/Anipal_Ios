@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 func get(url: String, token: String, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
-    guard let url = URL(string: "https://anipal.tk" + url) else { return }
+    guard let url = URL(string: "http://ec2-15-164-231-148.ap-northeast-2.compute.amazonaws.com" + url) else { return }
     
     var request = URLRequest(url: url)
     request.httpMethod = "GET"
