@@ -9,8 +9,7 @@ import Foundation
 import UIKit
 
 func get(url: String, token: String, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
-    guard let url = URL(string: "https://anipal.tk" + url) else { return }
-    
+    guard let url = URL(string: "http://ec2-15-164-231-148.ap-northeast-2.compute.amazonaws.com" + url) else { return }
     var request = URLRequest(url: url)
     request.httpMethod = "GET"
     
@@ -20,3 +19,29 @@ func get(url: String, token: String, completionHandler: @escaping (Data?, URLRes
     
     URLSession.shared.dataTask(with: request as URLRequest, completionHandler: completionHandler).resume()
 }
+
+func put(url: String, token: String, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+    guard let url = URL(string: "http://ec2-15-164-231-148.ap-northeast-2.compute.amazonaws.com" + url) else { return }
+    var request = URLRequest(url: url)
+    request.httpMethod = "PUT"
+    
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.addValue("application/json", forHTTPHeaderField: "Accept")
+    request.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+    
+    URLSession.shared.dataTask(with: request as URLRequest, completionHandler: completionHandler).resume()
+}
+
+func post(url: String, token: String, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+    guard let url = URL(string: "http://ec2-15-164-231-148.ap-northeast-2.compute.amazonaws.com" + url) else { return }
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.addValue("application/json", forHTTPHeaderField: "Accept")
+    request.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+    
+    URLSession.shared.dataTask(with: request as URLRequest, completionHandler: completionHandler).resume()
+}
+
+
