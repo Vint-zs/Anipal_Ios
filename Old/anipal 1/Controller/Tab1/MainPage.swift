@@ -8,12 +8,15 @@
 import UIKit
 import SwiftyJSON
 
-class MainPage: UIViewController {
-
+class MainPage: UIViewController, modalDelegate {
+    func pushNavigation() {
+        guard let writingVC = self.storyboard?.instantiateViewController(identifier: "WritingPage") else {return}
+        self.navigationController?.pushViewController(writingVC, animated: true)
+    }
+    
     @IBOutlet var writingButton: UIButton!
     
     var receiveAniaml: [RandomAnimal] = []
-    var receiveLetter: [RandomLetter] = []
     var imageUrls: [[String]] = []
     var images: [UIImage] = []
     
@@ -24,6 +27,7 @@ class MainPage: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("viewwillappear 작동")
         navigationController?.isNavigationBarHidden = true
         
         if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
@@ -32,11 +36,14 @@ class MainPage: UIViewController {
                     print("error=\(String(describing: error))")
                     return
                 }
+                print("랜덤편지 get함수 들어옴")
                 if let httpStatus = response as? HTTPURLResponse {
                     if httpStatus.statusCode == 200 {
+                        print("랜덤편지 수신 성공")
                         if self.receiveAniaml.count != JSON(data).count {
                             for idx in 0..<JSON(data).count {
                                 let json = JSON(data)[idx]
+                                print("json ----")
                                 print(json)
                                 let animal: [String: String] = [
                                     "animal_url": json["post_animal"]["animal_url"].stringValue,
@@ -52,7 +59,7 @@ class MainPage: UIViewController {
                 }
             }
         }
-        print(receiveAniaml)
+       // print(receiveAniaml)
         
         // 이미지url 저장배열 생성 및 동물사진url 첫번쨰로 위치
         if imageUrls.count != receiveAniaml.count {
@@ -87,23 +94,27 @@ class MainPage: UIViewController {
             
             let button1 = makeButton(image: #imageLiteral(resourceName: "ourPengiun"))
             let button2 = makeButton(image: #imageLiteral(resourceName: "ourCat"))
+            let button3 = makeButton(image: #imageLiteral(resourceName: "ourTuttle"))
             
             view.addSubview(button1)
             view.addSubview(button2)
+            view.addSubview(button3)
 
             locateButton(button: button1, left: 40, bottom: -200)
-            locateButton(button: button2, left: 160, bottom: -300)
-
-            button1.addTarget(self, action: #selector(pressed(_ :)), for: .touchUpInside)
-            button2.addTarget(self, action: #selector(pressed(_ :)), for: .touchUpInside)
+            locateButton(button: button2, left: 160, bottom: -350)
+            locateButton(button: button3, left: 240, bottom: -300)
+            
+            button1.addTarget(self, action: #selector(pressed1(_:)), for: .touchUpInside)
+            button2.addTarget(self, action: #selector(pressed1(_:)), for: .touchUpInside)
+            button3.addTarget(self, action: #selector(pressed1(_:)), for: .touchUpInside)
         }
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
-        print(imageUrls)
-        print(images)
+//        print(imageUrls)
+//        print(images)
     }
     
     // MARK: - 편지도착 텍스트 클릭시
@@ -157,9 +168,15 @@ class MainPage: UIViewController {
     }
     
     // MARK: - 동물 버튼 클릭시
-    @objc func pressed(_ sender: UIButton) {
+    @objc func pressed1(_ sender: UIButton) {
         guard let confirmVC = self.storyboard?.instantiateViewController(identifier: "confirmVC") else {return}
+        guard let confirmVC2 = confirmVC as? ConfirmLetter else {
+            return
+        }
         confirmVC.modalPresentationStyle = .overCurrentContext
+        confirmVC2.delegate = self
+       // confirmVC2.randomId = receiveAniaml
+        confirmVC2.randomId = "bbb"
         self.present(confirmVC, animated: true, completion: nil)
         
     }
