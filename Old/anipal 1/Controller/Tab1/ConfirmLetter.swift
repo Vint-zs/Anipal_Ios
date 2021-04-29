@@ -6,9 +6,17 @@
 //
 
 import UIKit
+import SwiftyJSON
+
+protocol modalDelegate {
+    func pushNavigation()
+}
 
 class ConfirmLetter: UIViewController {
 
+    var delegate: modalDelegate?
+    var randomId: String! = ""
+    
     @IBOutlet var textView: UITextView!
     @IBOutlet var innerView: UIView!
     @IBOutlet var replyButton: UIButton!
@@ -19,26 +27,42 @@ class ConfirmLetter: UIViewController {
         innerView.layer.cornerRadius = 20
         replyButton.setTitle("reply".localized, for: .normal)
         deleteButton.setTitle("delete".localized, for: .normal)
+        print("randomID " + randomId!)
+        
     }
     
     @IBAction func clickCancel(_ sender: UIButton) {
         self.presentingViewController?.dismiss(animated: true, completion: {
-            print("I'm back")
         })
     }
     
     @IBAction func clickReply(_ sender: UIButton) {
-        self.presentingViewController?.dismiss(animated: true, completion: {
-            print("Aa")
-        })
-        
+        self.dismiss(animated: true) {
+            self.delegate?.pushNavigation()
+        }
     }
     
     @IBAction func clickDelete(_ sender: UIButton) {
+        
+        if let randomId = randomId {
+            if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+                post(url: "/letters/random/" + randomId, token: session.value) { (data, response, error) in
+                    guard let data = data, error == nil else {
+                        print("error=\(String(describing: error))")
+                        return
+                    }
+                    if let httpStatus = response as? HTTPURLResponse {
+                        if httpStatus.statusCode == 200 {
+                            print("랜덤편지 삭제 성공")
+                        }
+                        else {
+                            print("편지삭제에러: \(httpStatus.statusCode)")
+                        }
+                    }
+            
+                }
+            }
+        }
+        dismiss(animated: true, completion: nil)
     }
-    
 }
-//        guard let writingVC = self.storyboard?.instantiateViewController(identifier: "WritingPage") else {
-//            return
-//        }
-//        self.navigationController?.pushViewController(writingVC, animated: true)
