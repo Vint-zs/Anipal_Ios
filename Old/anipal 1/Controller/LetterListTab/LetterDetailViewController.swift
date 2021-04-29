@@ -8,22 +8,20 @@
 import UIKit
 import SwiftyJSON
 
-class LetterDetailViewController: UIViewController {
+class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
 
-    @IBOutlet weak var topView: UIView!
-    @IBOutlet weak var textViewContent: UITextView!
+    @IBOutlet weak var scrollViewContent: UIScrollView!
     @IBOutlet weak var menuBtn: UIBarButtonItem!
     @IBOutlet weak var senderName: UILabel!
     @IBOutlet weak var senderCountry: UILabel!
     @IBOutlet weak var senderFav: UILabel!
     @IBOutlet weak var senderAnimal: UIImageView!
     @IBOutlet weak var letterCtrl: UIPageControl!
+    @IBOutlet weak var replyBtn: UIButton!
     
-    let content = ["a", "b", "c", "d", "e"]
-    
-    var nameFromVar: String?
-    var contentVar: String?
+    var letters: [Letter] = []
     var mailBoxID: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,53 +29,110 @@ class LetterDetailViewController: UIViewController {
         self.navigationItem.title = "Letter".localized
         self.navigationItem.rightBarButtonItem = menuBtn
         
-        // 보낸 사용자 정보
-        topView.layer.backgroundColor = UIColor(red: 0.946, green: 0.946, blue: 0.946, alpha: 1).cgColor
+        // 답장 버튼
+        replyBtn.setTitle("Reply".localized, for: .normal)
+        replyBtn.layer.shadowColor = UIColor.lightGray.cgColor
+        replyBtn.layer.shadowOffset = CGSize(width: 2, height: 2)
+        replyBtn.layer.shadowOpacity = 1.0
+        replyBtn.layer.shadowRadius = 3
+        replyBtn.layer.masksToBounds = false
         
-        senderName.text = nameFromVar
+        // 편지 로딩
+        getLetters()
+    }
+    
+    @IBAction func writeBtn(_ sender: UIButton) {
+        let sub = UIStoryboard(name: "Tab1", bundle: nil)
+        guard let nextVC = sub.instantiateViewController(identifier: "WritingPage")as? WritingPage else { return }
+
+        // name_to nil처리 수정필요 guard let?
+        nextVC.nameVar = "RE: \(String(describing: letters[0].name))"
+
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+
+    func setLetters() {
+        // 편지 본문 로딩
+        letterCtrl.numberOfPages = letters.count
+        letterCtrl.currentPage = letterCtrl.numberOfPages - 1
+        
+        // 보낸 사용자 정보
+        senderName.text = letters[letterCtrl.currentPage].name
         senderName.sizeToFit()
+        senderCountry.text = letters[letterCtrl.currentPage].country
+        senderCountry.sizeToFit()
+        senderFav.text = letters[letterCtrl.currentPage].favorites.joined(separator: " ")
+        senderFav.sizeToFit()
         
         senderAnimal.backgroundColor = .white
         senderAnimal.layer.cornerRadius = senderAnimal.frame.height/2
         senderAnimal.layer.borderWidth = 0.3
         senderAnimal.layer.borderColor = UIColor.lightGray.cgColor
         
-        getLetters()
-        
-        // 편지 내용
-        textViewContent.layer.cornerRadius = 10
-        textViewContent.text = content[letterCtrl.currentPage]
-        textViewContent.isEditable = false
-    }
-    
-    @IBAction func writeBtn(_ sender: UIButton) {
-        
-        let sub = UIStoryboard(name: "Tab1", bundle: nil)
-        guard let nextVC = sub.instantiateViewController(identifier: "WritingPage")as? WritingPage else {
-            return
-        }
-
-        // name_to nil처리 수정필요 guard let?
-        nextVC.nameVar = "RE: \(String(describing: nameFromVar))"
-
-        self.navigationController?.pushViewController(nextVC, animated: true)
-    }
-
-    func getLetters() {
         // 페이지 컨트롤 UI
         letterCtrl.hidesForSinglePage = true
         letterCtrl.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
-        letterCtrl.pageIndicatorTintColor = UIColor(red: 0.946, green: 0.946, blue: 0.946, alpha: 1)
-        letterCtrl.currentPageIndicatorTintColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1)
+        letterCtrl.pageIndicatorTintColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        letterCtrl.currentPageIndicatorTintColor = UIColor(red: 0.682, green: 0.753, blue: 0.961, alpha: 1)
         
-        // 편지 본문 로딩
-        letterCtrl.numberOfPages = content.count
-        letterCtrl.currentPage = letterCtrl.numberOfPages - 1
+        // 편지 내용
+        for idx in 0..<letters.count {
+            let xPos = scrollViewContent.frame.size.width * CGFloat(idx)
+            let textView = UITextView(frame: CGRect(x: xPos, y: 0, width: scrollViewContent.frame.size.width, height: scrollViewContent.frame.size.height))
+            textView.layer.cornerRadius = 10
+            textView.isEditable = false
+            textView.text = letters[idx].content
+            
+            scrollViewContent.contentSize.width = scrollViewContent.frame.size.width * CGFloat(idx + 1)
+            scrollViewContent.addSubview(textView)
+        }
+        
+        scrollViewContent.delegate = self
+        // 최신 편지
+        scrollViewContent.contentOffset.x = CGFloat((Int(scrollViewContent.contentSize.width) / letters.count) * (letters.count - 1))
+        // 스크롤 바 숨김
+        scrollViewContent.showsVerticalScrollIndicator = false
+        scrollViewContent.showsHorizontalScrollIndicator = false
+    }
+    
+    func getLetters() {
+        // Authorization 쿠키 확인 & 데이터 로딩
+        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+            let url = "/mailboxes/show/" + mailBoxID!
+            get(url: url, token: session.value, completionHandler: { [self] data, response, error in
+                guard let data = data, error == nil else {
+                    print("error=\(String(describing: error))")
+                    return
+                }
+                
+                if let httpStatus = response as? HTTPURLResponse {
+                    if httpStatus.statusCode == 200 {
+                        for idx in 0..<JSON(data).count {
+                            let json = JSON(data)[idx]
+                            let favorites = json["sender"]["favorites"].arrayValue.map { $0.stringValue }
+                            let animal = [json["post_animal"]["animal_url"].stringValue, json["post_animal"]["head_url"].stringValue, json["post_animal"]["top_url"].stringValue, json["post_animal"]["pants_url"].stringValue, json["post_animal"]["gloves_url"].stringValue, json["post_animal"]["shoes_url"].stringValue]
+                            let letter = Letter(senderID: json["sender"]["user_id"].stringValue, name: json["sender"]["name"].stringValue, country: json["sender"]["country"].stringValue, favorites: favorites, animal: animal, receiverID: json["_id"].stringValue, content: json["content"].stringValue, arrivalDate: json["arrive_time"].stringValue, sendDate: json["send_time"].stringValue)
+                            letters.append(letter)
+                        }
+                        
+                        // 화면 reload
+                        DispatchQueue.main.async {
+                            setLetters()
+                        }
+                    } else if httpStatus.statusCode == 400 {
+                        print("error: \(httpStatus.statusCode)")
+                    } else {
+                        print("error: \(httpStatus.statusCode)")
+                    }
+                }
+            })
+        }
     }
     
     // 편지 넘기기
     @IBAction func letterSlide(_ sender: UIPageControl) {
-        textViewContent.text = content[letterCtrl.currentPage]
+        scrollViewContent.contentOffset.x = CGFloat((Int(scrollViewContent.contentSize.width) / letters.count) * letterCtrl.currentPage)
+        senderFav.text = letters[letterCtrl.currentPage].favorites.joined(separator: " ")
     }
     
     @IBAction func letterMenu(_ sender: Any) {
@@ -89,5 +144,12 @@ class LetterDetailViewController: UIViewController {
         alertcontroller.addAction(blockBtn)
         alertcontroller.addAction(cancelBtn)
         present(alertcontroller, animated: true, completion: nil)
+    }
+}
+
+extension LetterDetailViewController {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        letterCtrl.currentPage = Int(floor(scrollViewContent.contentOffset.x / scrollViewContent.frame.size.width))
+        senderFav.text = letters[letterCtrl.currentPage].favorites.joined(separator: " ")
     }
 }

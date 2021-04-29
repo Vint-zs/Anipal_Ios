@@ -8,12 +8,12 @@
 import Foundation
 
 struct MailBox {
-    var mailBoxID: String
-    var isOpened: Bool
-    var partner: [String: Any]
-    var thumbnail: [String: String]
-    var arrivalDate: String
-    var letterCount: Int
+    let mailBoxID: String
+    let isOpened: Bool
+    let partner: [String: Any]
+    let thumbnail: [String: String]
+    let arrivalDate: String
+    let letterCount: Int
     
     init(mailBoxID: String, isOpened: Bool, partner: [String: Any], thumbnail: [String: String], arrivalDate: String, letterCount: Int) {
         self.mailBoxID = mailBoxID
