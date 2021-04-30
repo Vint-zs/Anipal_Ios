@@ -51,20 +51,10 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erZ-Vj-wU7">
-                                                    <rect key="frame" x="384" y="9.5" width="0.0" height="25"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beginner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erZ-Vj-wU7">
+                                                    <rect key="frame" x="315.5" y="9.5" width="68.5" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="l0P-5m-i1i"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMB-X8-EZd">
-                                                    <rect key="frame" x="304" y="9.5" width="50" height="25"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="h6f-Eq-snB"/>
-                                                        <constraint firstAttribute="height" constant="25" id="tNJ-hn-R3m"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -79,8 +69,6 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="xMB-X8-EZd" firstAttribute="centerY" secondItem="bY4-5d-xu0" secondAttribute="centerY" id="24T-GH-s2n"/>
-                                                <constraint firstItem="erZ-Vj-wU7" firstAttribute="leading" secondItem="xMB-X8-EZd" secondAttribute="trailing" constant="30" id="4eA-cD-RIP"/>
                                                 <constraint firstItem="ASZ-uO-lt6" firstAttribute="centerY" secondItem="bY4-5d-xu0" secondAttribute="centerY" id="6HO-Rh-WWL"/>
                                                 <constraint firstItem="AsV-hP-RRn" firstAttribute="leading" secondItem="ASZ-uO-lt6" secondAttribute="trailing" constant="10" id="DyU-td-G9t"/>
                                                 <constraint firstItem="erZ-Vj-wU7" firstAttribute="centerY" secondItem="bY4-5d-xu0" secondAttribute="centerY" id="Eeq-Qv-rVV"/>
