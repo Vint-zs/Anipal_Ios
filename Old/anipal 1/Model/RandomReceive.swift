@@ -11,7 +11,7 @@ struct RandomAnimal {
     var id: String
     var animal: [String: String]
     
-    init(id: String, animal: [String:String]) {
+    init(id: String, animal: [String: String]) {
         self.id = id
         self.animal = animal
     }

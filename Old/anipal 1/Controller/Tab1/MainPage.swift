@@ -169,14 +169,11 @@ class MainPage: UIViewController, modalDelegate {
     
     // MARK: - 동물 버튼 클릭시
     @objc func pressed1(_ sender: UIButton) {
-        guard let confirmVC = self.storyboard?.instantiateViewController(identifier: "confirmVC") else {return}
-        guard let confirmVC2 = confirmVC as? ConfirmLetter else {
-            return
-        }
+        guard let confirmVC = self.storyboard?.instantiateViewController(identifier: "confirmVC") as? ConfirmLetter else {return}
         confirmVC.modalPresentationStyle = .overCurrentContext
-        confirmVC2.delegate = self
+        confirmVC.delegate = self
        // confirmVC2.randomId = receiveAniaml
-        confirmVC2.randomId = "bbb"
+        confirmVC.randomId = "bbb"
         self.present(confirmVC, animated: true, completion: nil)
         
     }

@@ -8,7 +8,7 @@
 import UIKit
 import SwiftyJSON
 
-protocol modalDelegate {
+protocol modalDelegate: class {
     func pushNavigation()
 }
 
@@ -54,8 +54,7 @@ class ConfirmLetter: UIViewController {
                     if let httpStatus = response as? HTTPURLResponse {
                         if httpStatus.statusCode == 200 {
                             print("랜덤편지 삭제 성공")
-                        }
-                        else {
+                        } else {
                             print("편지삭제에러: \(httpStatus.statusCode)")
                         }
                     }
