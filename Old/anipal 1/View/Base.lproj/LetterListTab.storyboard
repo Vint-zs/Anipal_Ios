@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -117,7 +118,7 @@
                                 </connections>
                             </button>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="cMa-cw-I8Z">
-                                <rect key="frame" x="145.5" y="819" width="123" height="28"/>
+                                <rect key="frame" x="146.5" y="819" width="121.5" height="28"/>
                                 <connections>
                                     <action selector="letterSlide:" destination="kue-D7-4ZL" eventType="valueChanged" id="6h5-DO-j0p"/>
                                 </connections>
@@ -198,9 +199,91 @@
             </objects>
             <point key="canvasLocation" x="7675.36231884058" y="327.45535714285711"/>
         </scene>
+        <!--Reply Page-->
+        <scene sceneID="3f5-37-sSz">
+            <objects>
+                <viewController storyboardIdentifier="ReplyPage" id="dvy-OX-gQX" customClass="ReplyPage" customModule="anipal_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3T9-BQ-Zry">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="08G-Eg-ChF">
+                                <rect key="frame" x="28" y="111" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="0E7-Ws-gtE"/>
+                                    <constraint firstAttribute="width" constant="80" id="G3J-1s-99M"/>
+                                    <constraint firstAttribute="width" secondItem="08G-Eg-ChF" secondAttribute="height" multiplier="1:1" id="hHE-ze-oed"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="내 동물 선택">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mD7-qL-4LL">
+                                <rect key="frame" x="28" y="208" width="358" height="603"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgk-Ij-Otn">
+                                <rect key="frame" x="240" y="759" width="84" height="36"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="전송">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLN-hH-ZPf">
+                                <rect key="frame" x="90" y="759" width="84" height="36"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="84" id="wNV-KW-vYo"/>
+                                </constraints>
+                                <state key="normal" title="임시저장">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Tv6-Ty-2bT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="08G-Eg-ChF" firstAttribute="top" secondItem="Tv6-Ty-2bT" secondAttribute="top" constant="67" id="B4a-BF-d3t"/>
+                            <constraint firstItem="Tv6-Ty-2bT" firstAttribute="trailing" secondItem="jgk-Ij-Otn" secondAttribute="trailing" constant="90" id="FrF-IR-fj6"/>
+                            <constraint firstItem="jgk-Ij-Otn" firstAttribute="top" secondItem="Tv6-Ty-2bT" secondAttribute="top" constant="715" id="INC-O7-XIe"/>
+                            <constraint firstItem="Tv6-Ty-2bT" firstAttribute="trailing" secondItem="08G-Eg-ChF" secondAttribute="trailing" constant="306" id="JWx-XW-4lv"/>
+                            <constraint firstItem="Tv6-Ty-2bT" firstAttribute="bottom" secondItem="mD7-qL-4LL" secondAttribute="bottom" constant="51" id="L1a-rA-bcp"/>
+                            <constraint firstItem="mD7-qL-4LL" firstAttribute="top" secondItem="08G-Eg-ChF" secondAttribute="bottom" constant="17" id="M8K-9H-HAp"/>
+                            <constraint firstItem="mD7-qL-4LL" firstAttribute="leading" secondItem="Tv6-Ty-2bT" secondAttribute="leading" constant="28" id="gSD-eZ-yAH"/>
+                            <constraint firstItem="jgk-Ij-Otn" firstAttribute="leading" secondItem="PLN-hH-ZPf" secondAttribute="trailing" constant="66" id="i6j-ev-fJx"/>
+                            <constraint firstItem="PLN-hH-ZPf" firstAttribute="top" secondItem="Tv6-Ty-2bT" secondAttribute="top" constant="715" id="im6-xA-auV"/>
+                            <constraint firstItem="Tv6-Ty-2bT" firstAttribute="bottom" secondItem="PLN-hH-ZPf" secondAttribute="bottom" constant="67" id="mD1-8S-Ded"/>
+                            <constraint firstItem="08G-Eg-ChF" firstAttribute="leading" secondItem="Tv6-Ty-2bT" secondAttribute="leading" constant="28" id="mI6-4l-2Iu"/>
+                            <constraint firstItem="Tv6-Ty-2bT" firstAttribute="bottom" secondItem="jgk-Ij-Otn" secondAttribute="bottom" constant="67" id="sOb-Z9-f3Q"/>
+                            <constraint firstItem="Tv6-Ty-2bT" firstAttribute="trailing" secondItem="mD7-qL-4LL" secondAttribute="trailing" constant="28" id="udh-0q-du5"/>
+                            <constraint firstItem="PLN-hH-ZPf" firstAttribute="leading" secondItem="Tv6-Ty-2bT" secondAttribute="leading" constant="90" id="y2G-bZ-ook"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="qDz-Jx-iNA"/>
+                    <connections>
+                        <outlet property="animalBtn" destination="08G-Eg-ChF" id="MYG-sR-AtY"/>
+                        <outlet property="saveBtn" destination="PLN-hH-ZPf" id="f6w-DX-b31"/>
+                        <outlet property="sendBtn" destination="jgk-Ij-Otn" id="88b-L1-vg4"/>
+                        <outlet property="textView" destination="mD7-qL-4LL" id="mSc-sQ-dQT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yf3-hJ-eCG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8566.6666666666679" y="327.45535714285711"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="folder" catalog="system" width="128" height="97"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

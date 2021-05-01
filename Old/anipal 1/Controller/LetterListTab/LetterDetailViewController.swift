@@ -42,13 +42,19 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func writeBtn(_ sender: UIButton) {
-        let sub = UIStoryboard(name: "Tab1", bundle: nil)
-        guard let nextVC = sub.instantiateViewController(identifier: "WritingPage")as? WritingPage else { return }
-
-        // name_to nil처리 수정필요 guard let?
-        nextVC.nameVar = "RE: \(String(describing: letters[0].name))"
-
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        guard let replyVC = self.storyboard?.instantiateViewController(identifier: "ReplyPage") as? ReplyPage else { return }
+        
+        replyVC.modalTransitionStyle = .coverVertical
+        replyVC.modalPresentationStyle = .pageSheet
+        
+        self.present(replyVC, animated: true, completion: nil)
+//        let sub = UIStoryboard(name: "LetterListTab", bundle: nil)
+//        guard let nextVC = sub.instantiateViewController(identifier: "ReplyPage")as? ReplyPage else { return }
+//
+//        // name_to nil처리 수정필요 guard let?
+//        //nextVC.nameVar = "RE: \(String(describing: letters[0].name))"
+//
+//        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 
     func setLetters() {
