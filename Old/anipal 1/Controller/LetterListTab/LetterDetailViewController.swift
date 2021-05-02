@@ -47,14 +47,9 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
         replyVC.modalTransitionStyle = .coverVertical
         replyVC.modalPresentationStyle = .pageSheet
         
+        replyVC.receiverID = letters[letterCtrl.currentPage].senderID
+        
         self.present(replyVC, animated: true, completion: nil)
-//        let sub = UIStoryboard(name: "LetterListTab", bundle: nil)
-//        guard let nextVC = sub.instantiateViewController(identifier: "ReplyPage")as? ReplyPage else { return }
-//
-//        // name_to nil처리 수정필요 guard let?
-//        //nextVC.nameVar = "RE: \(String(describing: letters[0].name))"
-//
-//        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 
     func setLetters() {
@@ -119,6 +114,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
                             let animal = [json["post_animal"]["animal_url"].stringValue, json["post_animal"]["head_url"].stringValue, json["post_animal"]["top_url"].stringValue, json["post_animal"]["pants_url"].stringValue, json["post_animal"]["gloves_url"].stringValue, json["post_animal"]["shoes_url"].stringValue]
                             let letter = Letter(senderID: json["sender"]["user_id"].stringValue, name: json["sender"]["name"].stringValue, country: json["sender"]["country"].stringValue, favorites: favorites, animal: animal, receiverID: json["_id"].stringValue, content: json["content"].stringValue, arrivalDate: json["arrive_time"].stringValue, sendDate: json["send_time"].stringValue)
                             letters.append(letter)
+                            print("letter: \(letters)")
                         }
                         
                         // 화면 reload

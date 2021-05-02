@@ -15,11 +15,15 @@ class ReplyPage: UIViewController, sendBackDelegate {
         Animal(nameInit: "monkey2", image: #imageLiteral(resourceName: "monkey2")),
         Animal(nameInit: "panda", image: #imageLiteral(resourceName: "panda"))
     ]
+    let postAnimal = ["animal_url": "1", "head_url": "2", "top_url": "3", "pants_url": "4", "shoes_url": "5", "gloves_url": "6"]
+    let comingAnimal = ["animal_url": "1", "color": "2"]
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var animalBtn: UIButton!
     @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var sendBtn: UIButton!
+    
+    var receiverID: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,11 +65,29 @@ class ReplyPage: UIViewController, sendBackDelegate {
         nextVC.delegate = self
         self.present(nextVC, animated: true, completion: nil)
     }
+    
+    @IBAction func sendDataBtn(_ sender: UIButton) {
+        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+            let url = "/letters"
+            let body: NSMutableDictionary = NSMutableDictionary()
+            body.setValue(textView.text, forKey: "content")
+            body.setValue(receiverID, forKey: "receiver")
+            body.setValue(postAnimal, forKey: "post_animal")
+            body.setValue(comingAnimal, forKey: "coming_animal")
+            body.setValue("1h 1m 1s", forKey: "delay_time")
+            
+            try? post(url: url, token: session.value, body: body, completionHandler: { data, response, error in
+                guard let data = data else { return }
+                print(String(data: data, encoding: .utf8)!)
+            })
+        }
+    }
 }
 
-// MARK: - 편지내용 Place Holder 작업
+// MARK: - 편지내용
 extension ReplyPage: UITextViewDelegate {
 
+    // placeholder
     func placeholderSetting() {
         textView.delegate = self
         textView.text = "Enter the content"
@@ -74,6 +96,7 @@ extension ReplyPage: UITextViewDelegate {
         textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
     }
     
+    // 버튼 ui
     func setBtnUI(btn: UIButton) {
         btn.layer.shadowColor = UIColor.lightGray.cgColor
         btn.layer.shadowOffset = CGSize(width: 2, height: 2)
@@ -101,7 +124,7 @@ extension ReplyPage: UITextViewDelegate {
 
         return false
     }
-
+    
     func textViewDidChangeSelection(_ textView: UITextView) {
         if self.view.window != nil {
             if textView.textColor == UIColor.lightGray {
