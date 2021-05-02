@@ -56,7 +56,6 @@ extension LanguageSettingVC: UITableViewDelegate, UITableViewDataSource {
         cell.languageName.textColor = UIColor.init(red: 0.392, green: 0.392, blue: 0.392, alpha: 1)
         cell.languageLevel.textColor = UIColor.init(red: 0.392, green: 0.392, blue: 0.392, alpha: 1)
         // cell.languageLevel.text = String(level)
-        // cell.languageName.font = UIFont(name: "Helvetica-Bold", size: 18)
         
         cell.checkBox.layer.borderWidth = 1
         cell.checkBox.layer.borderColor = UIColor.init(red: 0.392, green: 0.392, blue: 0.392, alpha: 1).cgColor
@@ -97,17 +96,14 @@ extension LanguageSettingVC: UITableViewDelegate, UITableViewDataSource {
             let alertcontroller = UIAlertController(title: "Level".localized, message: nil, preferredStyle: .actionSheet)
             let basicBtn = UIAlertAction(title: "Beginner".localized, style: .default) { (_) in
                 self.myLanguageList[self.languageList[indexPath.row]] = 1
-               // print(self.myLanguageList)
                 self.languageTableView.reloadData()
             }
             let mediumBtn = UIAlertAction(title: "Intermediate".localized, style: .default) { (_) in
                 self.myLanguageList[self.languageList[indexPath.row]] = 2
-               // print(self.myLanguageList)
                 self.languageTableView.reloadData()
             }
             let intermediateBtn = UIAlertAction(title: "Advanced".localized, style: .default) { (_) in
                 self.myLanguageList[self.languageList[indexPath.row]] = 3
-               // print(self.myLanguageList)
                 self.languageTableView.reloadData()
             }
             
