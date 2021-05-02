@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol replyHiddenDelegate {
+    func replyButtonDelegate(data: Bool)
+}
+
 class ReplyPage: UIViewController, sendBackDelegate {
     
     // 임시 데이터
@@ -22,6 +26,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
     @IBOutlet weak var animalBtn: UIButton!
     @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var sendBtn: UIButton!
+    var delegate: replyHiddenDelegate?
     
     var receiverID: String?
     
@@ -77,10 +82,16 @@ class ReplyPage: UIViewController, sendBackDelegate {
             body.setValue("1h 1m 1s", forKey: "delay_time")
             
             try? post(url: url, token: session.value, body: body, completionHandler: { data, response, error in
-                guard let data = data else { return }
+                guard let data = data, error == nil else {
+                    print("error=\(String(describing: error))")
+                    return
+                }
                 print(String(data: data, encoding: .utf8)!)
             })
         }
+        
+        delegate?.replyButtonDelegate(data: false)
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
 

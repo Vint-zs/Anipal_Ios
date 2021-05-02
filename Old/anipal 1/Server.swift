@@ -23,7 +23,7 @@ func get(url: String, token: String, completionHandler: @escaping (Data?, URLRes
     session.dataTask(with: request as URLRequest, completionHandler: completionHandler).resume()
 }
 
-func post(url: String, token: String,body: NSMutableDictionary, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) throws {
+func post(url: String, token: String, body: NSMutableDictionary, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) throws {
     guard let url = URL(string: "http://ec2-15-164-231-148.ap-northeast-2.compute.amazonaws.com" + url) else { return }
     
     var request = URLRequest(url: url)

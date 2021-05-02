@@ -8,7 +8,7 @@
 import UIKit
 import SwiftyJSON
 
-class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
+class LetterDetailViewController: UIViewController, UIScrollViewDelegate, replyHiddenDelegate {
 
     @IBOutlet weak var scrollViewContent: UIScrollView!
     @IBOutlet weak var menuBtn: UIBarButtonItem!
@@ -41,6 +41,10 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
         getLetters()
     }
     
+    func replyButtonDelegate(data: Bool) {
+        replyBtn.isHidden = true
+    }
+    
     @IBAction func writeBtn(_ sender: UIButton) {
         guard let replyVC = self.storyboard?.instantiateViewController(identifier: "ReplyPage") as? ReplyPage else { return }
         
@@ -49,6 +53,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
         
         replyVC.receiverID = letters[letterCtrl.currentPage].senderID
         
+        replyVC.delegate = self
         self.present(replyVC, animated: true, completion: nil)
     }
 
@@ -114,7 +119,6 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
                             let animal = [json["post_animal"]["animal_url"].stringValue, json["post_animal"]["head_url"].stringValue, json["post_animal"]["top_url"].stringValue, json["post_animal"]["pants_url"].stringValue, json["post_animal"]["gloves_url"].stringValue, json["post_animal"]["shoes_url"].stringValue]
                             let letter = Letter(senderID: json["sender"]["user_id"].stringValue, name: json["sender"]["name"].stringValue, country: json["sender"]["country"].stringValue, favorites: favorites, animal: animal, receiverID: json["_id"].stringValue, content: json["content"].stringValue, arrivalDate: json["arrive_time"].stringValue, sendDate: json["send_time"].stringValue)
                             letters.append(letter)
-                            print("letter: \(letters)")
                         }
                         
                         // 화면 reload
