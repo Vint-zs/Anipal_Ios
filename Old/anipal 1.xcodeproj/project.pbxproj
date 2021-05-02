@@ -51,6 +51,8 @@
 		7691936C25D5000A0094B5BF /* LetterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691936B25D5000A0094B5BF /* LetterListViewController.swift */; };
 		7691937125D516630094B5BF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691937025D516630094B5BF /* SignUpViewController.swift */; };
 		7691937425D54DDA0094B5BF /* LetterListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691937325D54DDA0094B5BF /* LetterListTableViewCell.swift */; };
+		76A590B9263BDCC600C70EA4 /* LanguageSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A590B7263BDCC600C70EA4 /* LanguageSelectCell.swift */; };
+		76A590BA263BDCC600C70EA4 /* LanguageSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76A590B8263BDCC600C70EA4 /* LanguageSelectCell.xib */; };
 		76ABF6EF25E7FE5000808652 /* MainPage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ABF6EE25E7FE5000808652 /* MainPage2.swift */; };
 		76AF5B3F25D93D8500CA4183 /* letters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AF5B3E25D93D8500CA4183 /* letters.swift */; };
 		76AF5B4925D95A4300CA4183 /* LetterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AF5B4825D95A4300CA4183 /* LetterDetailViewController.swift */; };
@@ -60,6 +62,8 @@
 		76D1785125CA922900C5ED37 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D1785025CA922900C5ED37 /* Login.swift */; };
 		76D1785425CA922900C5ED37 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76D1785225CA922900C5ED37 /* Main.storyboard */; };
 		76D1785625CA922900C5ED37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76D1785525CA922900C5ED37 /* Assets.xcassets */; };
+		76D39120263729AD00AAC152 /* RandomReceive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D3911F263729AD00AAC152 /* RandomReceive.swift */; };
+		76D3E798263930F7007BD8E8 /* ConfirmLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D3E797263930F7007BD8E8 /* ConfirmLetter.swift */; };
 		76F00000261AE184004D080E /* AnimalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F0FFFE261AE184004D080E /* AnimalCollectionViewCell.swift */; };
 		76F00001261AE184004D080E /* AnimalCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76F0FFFF261AE184004D080E /* AnimalCollectionViewCell.xib */; };
 		76F00004261AE640004D080E /* SelectAnimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F00003261AE640004D080E /* SelectAnimal.swift */; };
@@ -114,6 +118,8 @@
 		7691936B25D5000A0094B5BF /* LetterListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterListViewController.swift; sourceTree = "<group>"; };
 		7691937025D516630094B5BF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		7691937325D54DDA0094B5BF /* LetterListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterListTableViewCell.swift; sourceTree = "<group>"; };
+		76A590B7263BDCC600C70EA4 /* LanguageSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectCell.swift; sourceTree = "<group>"; };
+		76A590B8263BDCC600C70EA4 /* LanguageSelectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguageSelectCell.xib; sourceTree = "<group>"; };
 		76ABF6EE25E7FE5000808652 /* MainPage2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage2.swift; sourceTree = "<group>"; };
 		76AF5B3E25D93D8500CA4183 /* letters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = letters.swift; sourceTree = "<group>"; };
 		76AF5B4825D95A4300CA4183 /* LetterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterDetailViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +131,8 @@
 		76D1785325CA922900C5ED37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		76D1785525CA922900C5ED37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76D1785A25CA922900C5ED37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76D3911F263729AD00AAC152 /* RandomReceive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomReceive.swift; sourceTree = "<group>"; };
+		76D3E797263930F7007BD8E8 /* ConfirmLetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmLetter.swift; sourceTree = "<group>"; };
 		76F00003261AE640004D080E /* SelectAnimal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAnimal.swift; sourceTree = "<group>"; };
 		76F0FFFE261AE184004D080E /* AnimalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalCollectionViewCell.swift; sourceTree = "<group>"; };
 		76F0FFFF261AE184004D080E /* AnimalCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnimalCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -164,6 +172,8 @@
 				6C6A9A0B261E14FE00EF93F4 /* LetterListCell.xib */,
 				6C53ECF8261F6AF100D62EAD /* WriteNewLetter.xib */,
 				6C53ECFB261F6B0E00D62EAD /* WriteNewLetter.swift */,
+				76A590B7263BDCC600C70EA4 /* LanguageSelectCell.swift */,
+				76A590B8263BDCC600C70EA4 /* LanguageSelectCell.xib */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -189,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				76686FC725CE2C5F00536E36 /* MainPage.swift */,
+				76D3E797263930F7007BD8E8 /* ConfirmLetter.swift */,
 				76686FD425CE9FE800536E36 /* SelectAnimalPage.swift */,
 				76686FD125CE9F3E00536E36 /* SelectAnimalCollectionViewCell.swift */,
 				762A36D32621CCEE00BDC643 /* SelectAnimal1.swift */,
@@ -253,6 +264,7 @@
 				6C9B77422619CBAF00E82303 /* userInfo.swift */,
 				6C9B77452619E71400E82303 /* favorites.swift */,
 				6C5D653A2629575500A62334 /* MailBox.swift */,
+				76D3911F263729AD00AAC152 /* RandomReceive.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -403,6 +415,7 @@
 				7657F0BD25CAE46400403881 /* 구글로고.jpg in Resources */,
 				7686724D261C51090037A4F3 /* SignUp.storyboard in Resources */,
 				7668701925D1318400536E36 /* Launch Screen2.storyboard in Resources */,
+				76A590BA263BDCC600C70EA4 /* LanguageSelectCell.xib in Resources */,
 				76F00001261AE184004D080E /* AnimalCollectionViewCell.xib in Resources */,
 				76867248261C501C0037A4F3 /* SettingTab.storyboard in Resources */,
 				6C05C1602618405700FB744A /* FavoriteCell.xib in Resources */,
@@ -510,6 +523,7 @@
 				76D1784F25CA922900C5ED37 /* SceneDelegate.swift in Sources */,
 				76AF5B3F25D93D8500CA4183 /* letters.swift in Sources */,
 				6C616339261AA8CE00998DF9 /* FavoriteViewController.swift in Sources */,
+				76D3E798263930F7007BD8E8 /* ConfirmLetter.swift in Sources */,
 				76ABF6EF25E7FE5000808652 /* MainPage2.swift in Sources */,
 				6C7D9BA52614DC0C003596EB /* LanguageSettingVC.swift in Sources */,
 				76F00000261AE184004D080E /* AnimalCollectionViewCell.swift in Sources */,
@@ -525,11 +539,13 @@
 				761165F125D8308400577F92 /* SignUpViewController2.swift in Sources */,
 				761D51622618D46800089040 /* LanguageLevelSelect.swift in Sources */,
 				76686FC825CE2C5F00536E36 /* MainPage.swift in Sources */,
+				76D39120263729AD00AAC152 /* RandomReceive.swift in Sources */,
 				7668701C25D13AB200536E36 /* StartPage.swift in Sources */,
 				6CFB75A62615F7460017F160 /* StringExtension.swift in Sources */,
 				7691937125D516630094B5BF /* SignUpViewController.swift in Sources */,
 				762A36D42621CCEE00BDC643 /* SelectAnimal1.swift in Sources */,
 				761D515E2618C86A00089040 /* LanguageTableViewCell.swift in Sources */,
+				76A590B9263BDCC600C70EA4 /* LanguageSelectCell.swift in Sources */,
 				6C9B77462619E71400E82303 /* favorites.swift in Sources */,
 				76686FD525CE9FE800536E36 /* SelectAnimalPage.swift in Sources */,
 				76B0B4C025ED5E8300A025A2 /* NewLetterViewController.swift in Sources */,
