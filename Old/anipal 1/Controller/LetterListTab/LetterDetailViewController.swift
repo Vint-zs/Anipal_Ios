@@ -88,6 +88,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, replyH
             textView.layer.cornerRadius = 10
             textView.isEditable = false
             textView.text = letters[idx].content
+            textView.font = UIFont.systemFont(ofSize: 16)
             
             scrollViewContent.contentSize.width = scrollViewContent.frame.size.width * CGFloat(idx + 1)
             scrollViewContent.addSubview(textView)

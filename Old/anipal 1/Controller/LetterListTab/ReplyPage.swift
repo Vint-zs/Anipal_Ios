@@ -42,9 +42,9 @@ class ReplyPage: UIViewController, sendBackDelegate {
         animalBtn.layer.borderColor = UIColor.lightGray.cgColor
         
         // 저장&전송 버튼
-        saveBtn.setTitle("Send".localized, for: .normal)
+        saveBtn.setTitle("Save".localized, for: .normal)
         setBtnUI(btn: saveBtn)
-        sendBtn.setTitle("Reply".localized, for: .normal)
+        sendBtn.setTitle("Send".localized, for: .normal)
         setBtnUI(btn: sendBtn)
     }
     
