@@ -103,7 +103,6 @@ class MainPage: UIViewController {
         confirmVC.randomId = receiveAnimal[3].id
         self.present(confirmVC, animated: true, completion: nil)
     }
-    
     @objc func pressed5(_ sender: UIButton) {
         guard let confirmVC = self.storyboard?.instantiateViewController(identifier: "confirmVC") as? ConfirmLetter else {return}
         confirmVC.modalPresentationStyle = .overCurrentContext
@@ -125,15 +124,15 @@ class MainPage: UIViewController {
         } else if receiveAnimal.count == 1 {
             let button1 = makeButton(image: testImages[0])
             view.addSubview(button1)
-            locateButton(button: button1, left: 40, bottom: -200)
+            locateButton(button: button1, left: 100, bottom: -200)
             button1.addTarget(self, action: #selector(pressed1(_:)), for: .touchUpInside)
         } else if receiveAnimal.count == 2 {
             let button1 = makeButton(image: testImages[0])
             let button2 = makeButton(image: testImages[1])
             view.addSubview(button1)
             view.addSubview(button2)
-            locateButton(button: button1, left: 30, bottom: -150)
-            locateButton(button: button2, left: 160, bottom: -350)
+            locateButton(button: button1, left: 40, bottom: -190)
+            locateButton(button: button2, left: 260, bottom: -320)
             button1.addTarget(self, action: #selector(pressed1(_:)), for: .touchUpInside)
             button2.addTarget(self, action: #selector(pressed2(_:)), for: .touchUpInside)
         } else if receiveAnimal.count == 3 {
@@ -143,9 +142,9 @@ class MainPage: UIViewController {
             view.addSubview(button1)
             view.addSubview(button2)
             view.addSubview(button3)
-            locateButton(button: button1, left: 30, bottom: -150)
-            locateButton(button: button2, left: 160, bottom: -230)
-            locateButton(button: button3, left: 200, bottom: -350)
+            locateButton(button: button1, left: 30, bottom: -350)
+            locateButton(button: button2, left: 260, bottom: -130)
+            locateButton(button: button3, left: 190, bottom: -340)
             button1.addTarget(self, action: #selector(pressed1(_:)), for: .touchUpInside)
             button2.addTarget(self, action: #selector(pressed2(_:)), for: .touchUpInside)
             button3.addTarget(self, action: #selector(pressed3(_:)), for: .touchUpInside)
@@ -158,9 +157,9 @@ class MainPage: UIViewController {
             view.addSubview(button2)
             view.addSubview(button3)
             view.addSubview(button4)
-            locateButton(button: button1, left: 30, bottom: -150)
-            locateButton(button: button2, left: 160, bottom: -230)
-            locateButton(button: button3, left: 200, bottom: -350)
+            locateButton(button: button1, left: 230, bottom: -180)
+            locateButton(button: button2, left: 190, bottom: -250)
+            locateButton(button: button3, left: 20, bottom: -200)
             locateButton(button: button4, left: 100, bottom: -350)
             button1.addTarget(self, action: #selector(pressed1(_:)), for: .touchUpInside)
             button2.addTarget(self, action: #selector(pressed2(_:)), for: .touchUpInside)
@@ -177,7 +176,7 @@ class MainPage: UIViewController {
             view.addSubview(button3)
             view.addSubview(button4)
             view.addSubview(button5)
-            locateButton(button: button1, left: 30, bottom: -150)
+            locateButton(button: button1, left: 30, bottom: -170)
             locateButton(button: button2, left: 160, bottom: -230)
             locateButton(button: button3, left: 200, bottom: -350)
             locateButton(button: button4, left: 300, bottom: -300)
@@ -227,7 +226,8 @@ class MainPage: UIViewController {
                             }
                         }
                         
-                        // 이미지 데이터가 아직 없어서 주석처리.
+                        // 이미지 데이터가 아직 없어서 주석처리. 추후 데이터 작업후 testImages[] -> images[] 변경 및 주석해제 예정
+                        //
                         // url -> 이미지로 변환 후 합성 및 저장
 //                        for i in 0..<imageUrls.count {
 //                            var ingredImage: [UIImage] = []
