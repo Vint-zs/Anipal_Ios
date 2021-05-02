@@ -15,7 +15,7 @@ class MainPage: UIViewController {
     var receiveAnimal: [RandomAnimal] = []
     var imageUrls: [[String]] = []
     var images: [UIImage] = []
-    var testImages: [UIImage] = [#imageLiteral(resourceName: "ourTuttle"),#imageLiteral(resourceName: "ourPengiun"),#imageLiteral(resourceName: "ourDog"),#imageLiteral(resourceName: "ourRabbit"),#imageLiteral(resourceName: "ourCat")]
+    var testImages: [UIImage] = [#imageLiteral(resourceName: "ourPengiun"), #imageLiteral(resourceName: "ourDog"), #imageLiteral(resourceName: "ourCat"), #imageLiteral(resourceName: "ourRabbit"), #imageLiteral(resourceName: "ourTuttle")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,6 +115,11 @@ class MainPage: UIViewController {
     // MARK: - 뷰 생성
     // 데이터 다 넣으면 testImages -> images 변경해야함
     func makeView() {
+        // 뷰 초기화
+        for view in view.subviews where view is UIButton {
+            view.removeFromSuperview()
+        }
+        
         if receiveAnimal.count == 0 {
             return
         } else if receiveAnimal.count == 1 {
@@ -175,8 +180,8 @@ class MainPage: UIViewController {
             locateButton(button: button1, left: 30, bottom: -150)
             locateButton(button: button2, left: 160, bottom: -230)
             locateButton(button: button3, left: 200, bottom: -350)
-            locateButton(button: button4, left: 400, bottom: -250)
-            locateButton(button: button5, left: 100, bottom: -150)
+            locateButton(button: button4, left: 300, bottom: -300)
+            locateButton(button: button5, left: 40, bottom: -320)
             button1.addTarget(self, action: #selector(pressed1(_:)), for: .touchUpInside)
             button2.addTarget(self, action: #selector(pressed2(_:)), for: .touchUpInside)
             button3.addTarget(self, action: #selector(pressed3(_:)), for: .touchUpInside)
@@ -184,7 +189,7 @@ class MainPage: UIViewController {
             button5.addTarget(self, action: #selector(pressed5(_:)), for: .touchUpInside)
         }
     }
-   // 6076f87f8df06a0080fca113
+    // db 테스트용 아이디 6076f87f8df06a0080fca113
     // MARK: - 데이터 수신 및 표출
     func refreshData() {
         if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
@@ -195,54 +200,51 @@ class MainPage: UIViewController {
                 }
                 if let httpStatus = response as? HTTPURLResponse {
                     if httpStatus.statusCode == 200 {
-                        if self.receiveAnimal.count != JSON(data).count {
-                            resetArray()
-                            for idx in 0..<JSON(data).count {
-                                let json = JSON(data)[idx]
-                                let animal: [String: String] = [
-                                    "animal_url": json["post_animal"]["animal_url"].stringValue,
-                                    "head_url": json["post_animal"]["head_url"].stringValue,
-                                    "top_url": json["post_animal"]["top_url"].stringValue,
-                                    "pants_url": json["post_animal"]["pants_url"].stringValue,
-                                    "shoes_url": json["post_animal"]["shoes_url"].stringValue,
-                                    "gloves_url": json["post_animal"]["gloves_url"].stringValue]
-                                self.receiveAnimal.append(RandomAnimal(id: json["_id"].stringValue, animal: animal))
+                        resetArray()
+                        for idx in 0..<JSON(data).count {
+                            let json = JSON(data)[idx]
+                            let animal: [String: String] = [
+                                "animal_url": json["post_animal"]["animal_url"].stringValue,
+                                "head_url": json["post_animal"]["head_url"].stringValue,
+                                "top_url": json["post_animal"]["top_url"].stringValue,
+                                "pants_url": json["post_animal"]["pants_url"].stringValue,
+                                "shoes_url": json["post_animal"]["shoes_url"].stringValue,
+                                "gloves_url": json["post_animal"]["gloves_url"].stringValue]
+                            self.receiveAnimal.append(RandomAnimal(id: json["_id"].stringValue, animal: animal))
+                        }
+                        // 이미지url 저장배열 생성 및 동물사진url 첫번쨰로 위치
+                        if imageUrls.count != receiveAnimal.count {
+                            // imageUrls = []
+                            for i in 0..<receiveAnimal.count {
+                                let sortedUrl = receiveAnimal[i].animal.sorted(by: <)
+                                var temp: [String] = []
+                                
+                                for row in sortedUrl {
+                                    temp.append(row.value)
+                                }
+                                imageUrls.append(temp)
+                                temp = []
                             }
-                                // 이미지url 저장배열 생성 및 동물사진url 첫번쨰로 위치
-                                if imageUrls.count != receiveAnimal.count {
-                                   // imageUrls = []
-                                    for i in 0..<receiveAnimal.count {
-                                        let sortedUrl = receiveAnimal[i].animal.sorted(by: <)
-                                        var temp: [String] = []
-                                        
-                                        for row in sortedUrl {
-                                            temp.append(row.value)
-                                        }
-                                        imageUrls.append(temp)
-                                        temp = []
-                                    }
-                                }
-                                
-                                // 이미지 데이터가 아직 없어서 주석처리.
-                                // url -> 이미지로 변환 후 합성 및 저장
-//                                for i in 0..<imageUrls.count {
-//                                    var ingredImage: [UIImage] = []
-//                                    for url in imageUrls[i] {
-//                                        guard let imageURL = URL(string: url) else { return }
-//                                        guard let imageData = try? Data(contentsOf: imageURL) else { return }
-//                                        if let img = UIImage(data: imageData) {
-//                                            ingredImage.append(img)
-//                                        }
-//                                    }
-//                                    images.append(compositeImage(images: ingredImage))
-//                                    ingredImage = []
+                        }
+                        
+                        // 이미지 데이터가 아직 없어서 주석처리.
+                        // url -> 이미지로 변환 후 합성 및 저장
+//                        for i in 0..<imageUrls.count {
+//                            var ingredImage: [UIImage] = []
+//                            for url in imageUrls[i] {
+//                                guard let imageURL = URL(string: url) else { return }
+//                                guard let imageData = try? Data(contentsOf: imageURL) else { return }
+//                                if let img = UIImage(data: imageData) {
+//                                    ingredImage.append(img)
 //                                }
-                                
-                                // 뷰 생성
-                                DispatchQueue.main.async {
-                                    makeView()
-                                }
-                            
+//                            }
+//                            images.append(compositeImage(images: ingredImage))
+//                            ingredImage = []
+//                        }
+                        
+                        // 뷰 생성
+                        DispatchQueue.main.async {
+                            makeView()
                         }
                     }
                 }
