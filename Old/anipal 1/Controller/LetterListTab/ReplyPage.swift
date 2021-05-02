@@ -7,7 +7,14 @@
 
 import UIKit
 
-class ReplyPage: UIViewController {
+class ReplyPage: UIViewController, sendBackDelegate {
+    
+    // 임시 데이터
+    let initAnimals: [Animal] = [
+        Animal(nameInit: "bird", image: #imageLiteral(resourceName: "bird")),
+        Animal(nameInit: "monkey2", image: #imageLiteral(resourceName: "monkey2")),
+        Animal(nameInit: "panda", image: #imageLiteral(resourceName: "panda"))
+    ]
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var animalBtn: UIButton!
@@ -26,16 +33,10 @@ class ReplyPage: UIViewController {
         animalBtn.layer.borderColor = UIColor.lightGray.cgColor
         
         // 저장&전송 버튼
+        saveBtn.setTitle("Send".localized, for: .normal)
         setBtnUI(btn: saveBtn)
+        sendBtn.setTitle("Reply".localized, for: .normal)
         setBtnUI(btn: sendBtn)
-        
-        // 네비게이션 바 색상
-        navigationController?.navigationBar.barTintColor = UIColor(red: 0.95, green: 0.973, blue: 1, alpha: 1)
-        // 네비게이션 버튼 색상
-        navigationController?.navigationBar.tintColor = UIColor(red: 0.392, green: 0.392, blue: 0.392, alpha: 1)
-        // 네이베이션바 선 없애기
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +46,20 @@ class ReplyPage: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    func dataReceived(data: Int) {
+        print(data)
+        animalBtn.setImage(initAnimals[data].img, for: .normal)
+    }
+    
+    @IBAction func selectAnimalBtn(_ sender: UIButton) {
+        let sub = UIStoryboard(name: "SignUp", bundle: nil)
+        guard let nextVC = sub.instantiateViewController(identifier: "selectAnimalVC") as? SelectAnimal else {
+            return
+        }
+        nextVC.delegate = self
+        self.present(nextVC, animated: true, completion: nil)
     }
 }
 
@@ -60,7 +75,6 @@ extension ReplyPage: UITextViewDelegate {
     }
     
     func setBtnUI(btn: UIButton) {
-        //btn.setTitle("Reply".localized, for: .normal)
         btn.layer.shadowColor = UIColor.lightGray.cgColor
         btn.layer.shadowOffset = CGSize(width: 2, height: 2)
         btn.layer.shadowOpacity = 1.0
