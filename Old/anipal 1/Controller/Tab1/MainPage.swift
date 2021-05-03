@@ -15,7 +15,6 @@ class MainPage: UIViewController {
     var receiveAnimal: [RandomAnimal] = []
     var imageUrls: [[String]] = []
     var images: [UIImage] = []
-    var testImages: [UIImage] = [#imageLiteral(resourceName: "ourPengiun"), #imageLiteral(resourceName: "ourDog"), #imageLiteral(resourceName: "ourCat"), #imageLiteral(resourceName: "ourRabbit"), #imageLiteral(resourceName: "ourTuttle")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,7 +111,6 @@ class MainPage: UIViewController {
     }
     
     // MARK: - 뷰 생성
-    // 데이터 다 넣으면 testImages -> images 변경해야함
     func makeView() {
         // 뷰 초기화
         for view in view.subviews where view is UIButton {
