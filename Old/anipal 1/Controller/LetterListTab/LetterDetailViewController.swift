@@ -8,7 +8,7 @@
 import UIKit
 import SwiftyJSON
 
-class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
+class LetterDetailViewController: UIViewController, UIScrollViewDelegate, replyHiddenDelegate {
 
     @IBOutlet weak var scrollViewContent: UIScrollView!
     @IBOutlet weak var menuBtn: UIBarButtonItem!
@@ -41,14 +41,20 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
         getLetters()
     }
     
+    func replyButtonDelegate(data: Bool) {
+        replyBtn.isHidden = true
+    }
+    
     @IBAction func writeBtn(_ sender: UIButton) {
-        let sub = UIStoryboard(name: "Tab1", bundle: nil)
-        guard let nextVC = sub.instantiateViewController(identifier: "WritingPage")as? WritingPage else { return }
-
-        // name_to nil처리 수정필요 guard let?
-        nextVC.nameVar = "RE: \(String(describing: letters[0].name))"
-
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        guard let replyVC = self.storyboard?.instantiateViewController(identifier: "ReplyPage") as? ReplyPage else { return }
+        
+        replyVC.modalTransitionStyle = .coverVertical
+        replyVC.modalPresentationStyle = .pageSheet
+        
+        replyVC.receiverID = letters[letterCtrl.currentPage].senderID
+        
+        replyVC.delegate = self
+        self.present(replyVC, animated: true, completion: nil)
     }
 
     func setLetters() {
@@ -82,6 +88,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
             textView.layer.cornerRadius = 10
             textView.isEditable = false
             textView.text = letters[idx].content
+            textView.font = UIFont.systemFont(ofSize: 16)
             
             scrollViewContent.contentSize.width = scrollViewContent.frame.size.width * CGFloat(idx + 1)
             scrollViewContent.addSubview(textView)
