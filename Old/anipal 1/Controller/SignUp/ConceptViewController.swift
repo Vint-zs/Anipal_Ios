@@ -18,7 +18,7 @@ class ConceptViewController: UIViewController {
         super.viewDidLoad()
         conceptTable.delegate = self
         conceptTable.dataSource = self
-        //titleLabel.font = UIFont(name: "NotoSansKR-Bold", size: 18)
+        // titleLabel.font = UIFont(name: "NotoSansKR-Bold", size: 18)
         titleLabel.textColor = UIColor(red: 0.392, green: 0.392, blue: 0.392, alpha: 1)
         
     }

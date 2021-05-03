@@ -67,6 +67,8 @@
 "💰Economy" = "💰Economy";
 
 // 언어레벨
+"Choose your language level" = "Choose your language level";
+
 "Beginner" = "Beginner";
 
 "Intermediate" = "Intermediate";
@@ -76,3 +78,7 @@
 "Cancel" = "Cancel";
 
 "Level" = "Level";
+
+// 랜덤편지 확인
+"Reply" = "Reply";
+

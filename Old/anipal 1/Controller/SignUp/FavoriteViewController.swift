@@ -31,7 +31,7 @@ class FavoriteViewController: UIViewController {
 //        print(ad!.provider!)
 //        print(ad!.favorties!)
 //        print(ad!.languages!)
-        postData(url: "https://anipal.tk/auth/register", token: ad!.token!)
+        postData(url: "http://ec2-15-164-231-148.ap-northeast-2.compute.amazonaws.com/auth/register", token: ad!.token!)
     }
     
     @IBAction func cancelBarButton(_ sender: UIBarButtonItem) {
@@ -100,5 +100,3 @@ class FavoriteViewController: UIViewController {
         task.resume()
     }
 }
-
-
