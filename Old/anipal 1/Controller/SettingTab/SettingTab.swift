@@ -11,9 +11,9 @@ import FBSDKLoginKit
 
 class SettingTab: UIViewController {
     
-    let settings: [String] = ["User info".localized, "Language".localized, "Concept".localized, "Favorite".localized]
+    let settings: [String] = ["User info".localized, "Language".localized,  "Favorite".localized]
     
-    let sections: [String] = ["User info".localized, "Language".localized, "Concept".localized, "Favorite".localized]
+    let sections: [String] = ["User info".localized, "Language".localized,  "Favorite".localized]
 
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var settingTableView: UITableView!
@@ -71,13 +71,7 @@ extension SettingTab: UITableViewDelegate, UITableViewDataSource {
             langSetVC.modalPresentationStyle = .formSheet
             
             self.present(langSetVC, animated: true, completion: nil)
-        case 2: guard let langSetVC = self.storyboard?.instantiateViewController(identifier: "ConceptSettingVC") as? ConceptSettingVC else { return }
-            
-            langSetVC.modalTransitionStyle = .coverVertical
-            langSetVC.modalPresentationStyle = .formSheet
-            
-            self.present(langSetVC, animated: true, completion: nil)
-        case 3: guard let langSetVC = self.storyboard?.instantiateViewController(identifier: "FavoriteSettingVC") as? FavoriteSettingVC else { return }
+        case 2: guard let langSetVC = self.storyboard?.instantiateViewController(identifier: "FavoriteSettingVC") as? FavoriteSettingVC else { return }
             
             langSetVC.modalTransitionStyle = .coverVertical
             langSetVC.modalPresentationStyle = .formSheet

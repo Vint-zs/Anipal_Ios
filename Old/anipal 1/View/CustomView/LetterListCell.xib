@@ -41,7 +41,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="penguin" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K5C-HU-6rj">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ourPengiun" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K5C-HU-6rj">
                         <rect key="frame" x="46" y="87" width="86" height="115"/>
                     </imageView>
                 </subviews>
@@ -78,6 +78,6 @@
     </objects>
     <resources>
         <image name="letterBox2" width="131.5" height="216"/>
-        <image name="penguin" width="89" height="107.5"/>
+        <image name="ourPengiun" width="116" height="155"/>
     </resources>
 </document>

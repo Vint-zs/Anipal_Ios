@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "penguin.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "penguin@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "penguin@3x.png",
+      "filename" : "ourPengiun@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

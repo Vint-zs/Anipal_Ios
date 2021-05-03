@@ -19,6 +19,7 @@ class Login: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.restorePreviousSignIn() // 구글 로그인여부 확인
         facebookBtn.layer.cornerRadius = 10
@@ -45,7 +46,7 @@ class Login: UIViewController {
             // moveMainScreen()
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
     }
@@ -105,9 +106,6 @@ class Login: UIViewController {
                     
                     if httpResponse.statusCode == 200 {
                         DispatchQueue.main.async {
-                            // ad!.token = token
-                            // ad?.token = HTTPCookie
-                            // ad!.email = email
                             
                             // 쿠키 저장
                             let responseCookies: [HTTPCookie] = HTTPCookie.cookies(withResponseHeaderFields: fields, for: response!.url!)
@@ -179,13 +177,12 @@ extension Login: GIDSignInDelegate {
         }
         print("success google login")
         print(user.authentication.accessToken)
-        
         print("access token : \(user.authentication.accessToken)")
         print("expire date \(user.authentication.accessTokenExpirationDate)")
 
 //        print(user.authentication.refreshToken)
 //        print("expire date \(user.authentication.accessTokenExpirationDate)")
-        getData(url: "http://ec2-15-164-231-148.ap-northeast-2.compute.amazonaws.com/auth/google", token: user.authentication.accessToken, email: user.profile.email, provider: "google") // 서버로 b토큰 전송
+        getData(url: "http://ec2-15-164-231-148.ap-northeast-2.compute.amazonaws.com/auth/google", token: user.authentication.accessToken, email: user.profile.email, provider: "google") // 서버로 토큰 전송
     }
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         print("Disconnect")

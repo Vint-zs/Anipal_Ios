@@ -1,13 +1,13 @@
 //
-//  languageTableViewCell.swift
+//  LanguageSelectCell.swift
 //  anipal 1
 //
-//  Created by Kim JoonOh on 2021/04/04.
+//  Created by Kim JoonOh on 2021/04/30.
 //
 
 import UIKit
 
-class LanguageTableViewCell: UITableViewCell {
+class LanguageSelectCell: UITableViewCell {
 
     @IBOutlet var checkBox: UIImageView!
     @IBOutlet var languageName: UILabel!
@@ -15,7 +15,6 @@ class LanguageTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // selectionStyle = .none
         // Initialization code
     }
 
@@ -24,5 +23,5 @@ class LanguageTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
 }

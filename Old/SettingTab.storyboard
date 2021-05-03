@@ -116,30 +116,53 @@
                     <view key="view" contentMode="scaleToFill" id="I9e-Gl-0TY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EdL-WY-oat">
+                                <rect key="frame" x="0.0" y="119" width="414" height="743"/>
+                                <color key="backgroundColor" red="0.94901960780000005" green="0.97254901959999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="E3B-Nh-g7b" customClass="LanguageSelectCell" customModule="anipal_1" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E3B-Nh-g7b" id="ROa-CR-1RJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" red="0.94901960780000005" green="0.97254901959999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.94901960780000005" green="0.97254901959999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나의 언어를 선택하세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiT-rA-1Gy">
+                                <rect key="frame" x="125" y="74" width="164" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="b9j-SK-rod"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="aR0-xs-EOk"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.94901960780000005" green="0.97254901959999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="EdL-WY-oat" firstAttribute="leading" secondItem="aR0-xs-EOk" secondAttribute="leading" id="7gG-89-X1Y"/>
+                            <constraint firstItem="AiT-rA-1Gy" firstAttribute="centerX" secondItem="I9e-Gl-0TY" secondAttribute="centerX" id="9z1-dC-jkO"/>
+                            <constraint firstItem="aR0-xs-EOk" firstAttribute="trailing" secondItem="EdL-WY-oat" secondAttribute="trailing" id="EDt-rx-2RJ"/>
+                            <constraint firstItem="aR0-xs-EOk" firstAttribute="bottom" secondItem="EdL-WY-oat" secondAttribute="bottom" id="XnR-B9-QSc"/>
+                            <constraint firstItem="EdL-WY-oat" firstAttribute="top" secondItem="AiT-rA-1Gy" secondAttribute="bottom" constant="20" id="ZfC-3s-Wbg"/>
+                            <constraint firstItem="AiT-rA-1Gy" firstAttribute="top" secondItem="aR0-xs-EOk" secondAttribute="top" constant="30" id="s7B-P1-57V"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LPN-Dy-jGA"/>
+                    <connections>
+                        <outlet property="languageTableView" destination="EdL-WY-oat" id="uG5-T6-uFo"/>
+                        <outlet property="titleLabel" destination="AiT-rA-1Gy" id="eCa-5a-8Dt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FX5-96-fPL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7832" y="917"/>
-        </scene>
-        <!--Concept SettingVC-->
-        <scene sceneID="ibe-xt-gmV">
-            <objects>
-                <viewController storyboardIdentifier="ConceptSettingVC" id="yFK-tt-IQm" customClass="ConceptSettingVC" customModule="anipal_1" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="njE-4a-GmH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="NMf-FB-4Ux"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="vll-vf-waY"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="X7d-2f-fU2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="7832" y="1613"/>
         </scene>
         <!--Favorite SettingVC-->
         <scene sceneID="d6G-IO-Zxe">
@@ -179,7 +202,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AY0-hG-7Rj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7832" y="2303"/>
+            <point key="canvasLocation" x="7831.884057971015" y="1697.5446428571429"/>
         </scene>
         <!--Setting-->
         <scene sceneID="xKp-pb-plx">
