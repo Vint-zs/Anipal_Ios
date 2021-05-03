@@ -29,8 +29,6 @@ class MainPage: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
-        print("이미지URL +++++ \(imageUrls)")
-        print("합성이미지 +++++ \(images)")
     }
     
     // MARK: - 데이터 배열 초기화
@@ -190,12 +188,12 @@ class MainPage: UIViewController {
             button5.addTarget(self, action: #selector(pressed5(_:)), for: .touchUpInside)
         }
     }
-    // db 테스트용 아이디 6076f87f8df06a0080fca113
+    // db 테스트용 아이디 6076f87f8df06a0080fca113, 6071ad3f4f29c9d6f5393307
     // MARK: - 데이터 수신 및 표출
     func refreshData() {
         if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
             get(url: "/letters/random", token: session.value) { [self] (data, response, error) in
-                guard let data = data, error == nil else {
+                guard let data = data, error == nil else {#imageLiteral(resourceName: "simulator_screenshot_BC66391E-DB53-4E29-83FB-10D478794168.png")
                     print("error=\(String(describing: error))")
                     return
                 }
@@ -227,7 +225,6 @@ class MainPage: UIViewController {
                                 temp = []
                             }
                         }
-                        
                         // url -> 이미지로 변환 후 합성 및 저장
                         for i in 0..<imageUrls.count {
                             var ingredImage: [UIImage] = []
@@ -238,7 +235,6 @@ class MainPage: UIViewController {
                                             ingredImage.append(img)
                                         }
                                     }
-                                    
                                 }
                             }
                             images.append(compositeImage(images: ingredImage))
