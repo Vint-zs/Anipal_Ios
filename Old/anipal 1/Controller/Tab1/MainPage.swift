@@ -15,7 +15,6 @@ class MainPage: UIViewController {
     var receiveAnimal: [RandomAnimal] = []
     var imageUrls: [[String]] = []
     var images: [UIImage] = []
-    var testImages: [UIImage] = [#imageLiteral(resourceName: "ourPengiun"), #imageLiteral(resourceName: "ourDog"), #imageLiteral(resourceName: "ourCat"), #imageLiteral(resourceName: "ourRabbit"), #imageLiteral(resourceName: "ourTuttle")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,7 +111,6 @@ class MainPage: UIViewController {
     }
     
     // MARK: - 뷰 생성
-    // 데이터 다 넣으면 testImages -> images 변경해야함
     func makeView() {
         // 뷰 초기화
         for view in view.subviews where view is UIButton {
@@ -122,13 +120,13 @@ class MainPage: UIViewController {
         if receiveAnimal.count == 0 {
             return
         } else if receiveAnimal.count == 1 {
-            let button1 = makeButton(image: testImages[0])
+            let button1 = makeButton(image: images[0])
             view.addSubview(button1)
             locateButton(button: button1, left: 100, bottom: -200)
             button1.addTarget(self, action: #selector(pressed1(_:)), for: .touchUpInside)
         } else if receiveAnimal.count == 2 {
-            let button1 = makeButton(image: testImages[0])
-            let button2 = makeButton(image: testImages[1])
+            let button1 = makeButton(image: images[0])
+            let button2 = makeButton(image: images[1])
             view.addSubview(button1)
             view.addSubview(button2)
             locateButton(button: button1, left: 40, bottom: -190)
@@ -136,9 +134,9 @@ class MainPage: UIViewController {
             button1.addTarget(self, action: #selector(pressed1(_:)), for: .touchUpInside)
             button2.addTarget(self, action: #selector(pressed2(_:)), for: .touchUpInside)
         } else if receiveAnimal.count == 3 {
-            let button1 = makeButton(image: testImages[0])
-            let button2 = makeButton(image: testImages[1])
-            let button3 = makeButton(image: testImages[2])
+            let button1 = makeButton(image: images[0])
+            let button2 = makeButton(image: images[1])
+            let button3 = makeButton(image: images[2])
             view.addSubview(button1)
             view.addSubview(button2)
             view.addSubview(button3)
@@ -149,10 +147,10 @@ class MainPage: UIViewController {
             button2.addTarget(self, action: #selector(pressed2(_:)), for: .touchUpInside)
             button3.addTarget(self, action: #selector(pressed3(_:)), for: .touchUpInside)
         } else if receiveAnimal.count == 4 {
-            let button1 = makeButton(image: testImages[0])
-            let button2 = makeButton(image: testImages[1])
-            let button3 = makeButton(image: testImages[2])
-            let button4 = makeButton(image: testImages[3])
+            let button1 = makeButton(image: images[0])
+            let button2 = makeButton(image: images[1])
+            let button3 = makeButton(image: images[2])
+            let button4 = makeButton(image: images[3])
             view.addSubview(button1)
             view.addSubview(button2)
             view.addSubview(button3)
@@ -166,11 +164,11 @@ class MainPage: UIViewController {
             button3.addTarget(self, action: #selector(pressed3(_:)), for: .touchUpInside)
             button4.addTarget(self, action: #selector(pressed4(_:)), for: .touchUpInside)
         } else {
-            let button1 = makeButton(image: testImages[0])
-            let button2 = makeButton(image: testImages[1])
-            let button3 = makeButton(image: testImages[2])
-            let button4 = makeButton(image: testImages[3])
-            let button5 = makeButton(image: testImages[4])
+            let button1 = makeButton(image: images[0])
+            let button2 = makeButton(image: images[1])
+            let button3 = makeButton(image: images[2])
+            let button4 = makeButton(image: images[3])
+            let button5 = makeButton(image: images[4])
             view.addSubview(button1)
             view.addSubview(button2)
             view.addSubview(button3)
@@ -188,7 +186,7 @@ class MainPage: UIViewController {
             button5.addTarget(self, action: #selector(pressed5(_:)), for: .touchUpInside)
         }
     }
-    // db 테스트용 아이디 6076f87f8df06a0080fca113
+    // db 테스트용 아이디 6076f87f8df06a0080fca113, 6071ad3f4f29c9d6f5393307
     // MARK: - 데이터 수신 및 표출
     func refreshData() {
         if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
@@ -225,22 +223,21 @@ class MainPage: UIViewController {
                                 temp = []
                             }
                         }
-                        
-                        // 이미지 데이터가 아직 없어서 주석처리. 추후 데이터 작업후 testImages[] -> images[] 변경 및 주석해제 예정
-                        //
                         // url -> 이미지로 변환 후 합성 및 저장
-//                        for i in 0..<imageUrls.count {
-//                            var ingredImage: [UIImage] = []
-//                            for url in imageUrls[i] {
-//                                guard let imageURL = URL(string: url) else { return }
-//                                guard let imageData = try? Data(contentsOf: imageURL) else { return }
-//                                if let img = UIImage(data: imageData) {
-//                                    ingredImage.append(img)
-//                                }
-//                            }
-//                            images.append(compositeImage(images: ingredImage))
-//                            ingredImage = []
-//                        }
+                        for i in 0..<imageUrls.count {
+                            var ingredImage: [UIImage] = []
+                            for url in imageUrls[i] {
+                                if let imageURL = URL(string: url) {
+                                    if let imageData = try? Data(contentsOf: imageURL) {
+                                        if let img = UIImage(data: imageData) {
+                                            ingredImage.append(img)
+                                        }
+                                    }
+                                }
+                            }
+                            images.append(compositeImage(images: ingredImage))
+                            ingredImage = []
+                        }
                         
                         // 뷰 생성
                         DispatchQueue.main.async {

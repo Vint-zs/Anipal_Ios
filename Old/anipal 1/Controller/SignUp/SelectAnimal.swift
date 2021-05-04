@@ -17,11 +17,7 @@ class SelectAnimal: UIViewController {
     var delegate: sendBackDelegate?
     @IBOutlet var collectionView: UICollectionView!
     let animalSelectCellId = "AnimalSelectCell"
-    let initAnimals: [Animal] = [
-        Animal(nameInit: "bird", image: #imageLiteral(resourceName: "bird")),
-        Animal(nameInit: "monkey2", image: #imageLiteral(resourceName: "monkey2")),
-        Animal(nameInit: "panda", image: #imageLiteral(resourceName: "panda"))
-    ]
+    var serverAnimals: [Animal] = []
     
     override func viewDidLoad() {
 
@@ -44,7 +40,7 @@ extension SelectAnimal: UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return initAnimals.count
+        return serverAnimals.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -52,8 +48,8 @@ extension SelectAnimal: UICollectionViewDelegate, UICollectionViewDataSource, UI
             return UICollectionViewCell()
         }
         
-        cell.img.image = initAnimals[indexPath.row].img
-        cell.name.text = initAnimals[indexPath.row].name
+        cell.img.image = serverAnimals[indexPath.row].img
+        cell.name.text = serverAnimals[indexPath.row].name.localized
         cell.layer.cornerRadius = 10
         cell.backgroundColor = .white
         return cell
