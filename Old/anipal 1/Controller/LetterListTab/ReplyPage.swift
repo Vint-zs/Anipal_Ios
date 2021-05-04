@@ -13,7 +13,7 @@ protocol replyHiddenDelegate {
 
 class ReplyPage: UIViewController, sendBackDelegate {
     
-    let postAnimal = ["animal_url": "1", "head_url": "2", "top_url": "3", "pants_url": "4", "shoes_url": "5", "gloves_url": "6"]
+//    let postAnimal = ["animal_url": "1", "head_url": "2", "top_url": "3", "pants_url": "4", "shoes_url": "5", "gloves_url": "6"]
     let comingAnimal = ["animal_url": "1", "color": "2"]
     
     @IBOutlet weak var textView: UITextView!
@@ -21,8 +21,9 @@ class ReplyPage: UIViewController, sendBackDelegate {
     // @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var sendBtn: UIButton!
     var delegate: replyHiddenDelegate?
-    
+
     var receiverID: String?
+    var selectedAnimal: Animal?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +53,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
     }
     
     func dataReceived(data: Animal) {
+        selectedAnimal = data
         animalBtn.setImage(data.animalImg, for: .normal)
         animalBtn.imageView?.contentMode = .scaleAspectFit
     }
@@ -70,8 +72,8 @@ class ReplyPage: UIViewController, sendBackDelegate {
             let body: NSMutableDictionary = NSMutableDictionary()
             body.setValue(textView.text, forKey: "content")
             body.setValue(receiverID, forKey: "receiver")
-            body.setValue(postAnimal, forKey: "post_animal")
-            body.setValue(comingAnimal, forKey: "coming_animal")
+            body.setValue(selectedAnimal?.animalURLs, forKey: "post_animal")
+            body.setValue(selectedAnimal?.comingAnimal, forKey: "coming_animal")
             body.setValue("0h 0m 5s", forKey: "delay_time")
             
             try? post(url: "/letters", token: session.value, body: body, completionHandler: { data, response, error in

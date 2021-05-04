@@ -52,12 +52,17 @@ class SelectAnimal: UIViewController {
                             let json = JSON(data)[idx]
                             let animalURLs: [String: String] = [
                                 "animal_url": json["animal_url"].stringValue,
-                                "head_url":  json["head_url"].stringValue,
-                                "top_url":  json["top_url"].stringValue,
-                                "pants_url":  json["pants_url"].stringValue,
-                                "shoes_url":  json["shoes_url"].stringValue,
-                                "gloves_url":  json["gloves_url"].stringValue]
-                            let comingAnimal = ["animal_url": json["coming_animal"]["animal_url"].stringValue, "bar": json["coming_animal"]["bar"].stringValue, "background": json["coming_animal"]["background"].stringValue]
+                                "head_url": json["head_url"].stringValue,
+                                "top_url": json["top_url"].stringValue,
+                                "pants_url": json["pants_url"].stringValue,
+                                "shoes_url": json["shoes_url"].stringValue,
+                                "gloves_url": json["gloves_url"].stringValue
+                            ]
+                            let comingAnimal = [
+                                "animal_url": json["coming_animal"]["animal_url"].stringValue,
+                                "bar": json["coming_animal"]["bar"].stringValue,
+                                "background": json["coming_animal"]["background"].stringValue
+                            ]
                             
                             let animal = Animal(animal: json["animal"]["localized"].stringValue, animalURLs: animalURLs, isUsed: json["is_used"].boolValue, delayTime: json["delay_time"].stringValue, comingAnimal: comingAnimal, animalImg: loadAnimals(urls: animalURLs))
                             animals.append(animal)
