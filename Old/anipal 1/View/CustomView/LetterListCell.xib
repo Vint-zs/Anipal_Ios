@@ -42,7 +42,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ourPengiun" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K5C-HU-6rj">
-                        <rect key="frame" x="46" y="87" width="86" height="115"/>
+                        <rect key="frame" x="46" y="87" width="86" height="129"/>
                     </imageView>
                 </subviews>
                 <constraints>
@@ -62,7 +62,7 @@
                     <constraint firstAttribute="trailing" secondItem="A0w-HD-9dJ" secondAttribute="trailing" id="sTz-gL-CsB"/>
                     <constraint firstAttribute="trailing" secondItem="bBp-Qz-LVK" secondAttribute="trailing" constant="68" id="sp5-6P-m1p"/>
                     <constraint firstItem="Uke-Qp-xQW" firstAttribute="leading" secondItem="Auf-mL-U5G" secondAttribute="leading" constant="15" id="tvy-6P-fMS"/>
-                    <constraint firstAttribute="bottom" secondItem="K5C-HU-6rj" secondAttribute="bottom" constant="14" id="yIS-Rz-vuE"/>
+                    <constraint firstAttribute="bottom" secondItem="K5C-HU-6rj" secondAttribute="bottom" id="yIS-Rz-vuE"/>
                     <constraint firstItem="bBp-Qz-LVK" firstAttribute="top" secondItem="Uke-Qp-xQW" secondAttribute="bottom" constant="3" id="yY4-ek-YpN"/>
                 </constraints>
             </collectionViewCellContentView>

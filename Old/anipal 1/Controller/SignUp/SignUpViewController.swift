@@ -18,10 +18,10 @@ class SignUpViewController: UIViewController, sendBackDelegate {
     @IBOutlet weak var nameLabel: UITextField!
     
     
-    let initAnimals: [Animal] = [
-        Animal(nameInit: "bird", image: #imageLiteral(resourceName: "bird")),
-        Animal(nameInit: "monkey2", image: #imageLiteral(resourceName: "monkey2")),
-        Animal(nameInit: "panda", image: #imageLiteral(resourceName: "panda")),
+    let initAnimals: [AnimalTemp] = [
+        AnimalTemp(nameInit: "bird", image: #imageLiteral(resourceName: "bird")),
+        AnimalTemp(nameInit: "monkey2", image: #imageLiteral(resourceName: "monkey2")),
+        AnimalTemp(nameInit: "panda", image: #imageLiteral(resourceName: "panda")),
     ]
     
     override func viewDidLoad() {
@@ -47,8 +47,8 @@ class SignUpViewController: UIViewController, sendBackDelegate {
         }
     }
     
-    func dataReceived(data: Int) {
-        imgButton.setImage(animals[data].img, for: . normal)
+    func dataReceived(data: Animal) {
+        imgButton.setImage(data.animalImg, for: . normal)
     }
     
     @IBAction func nextPageButton(_ sender: UIButton) {

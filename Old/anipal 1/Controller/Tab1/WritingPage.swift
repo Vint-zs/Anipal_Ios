@@ -10,10 +10,10 @@ import UIKit
 class WritingPage: UIViewController, sendBackDelegate {
     
     // 임시 데이터
-    let initAnimals: [Animal] = [
-        Animal(nameInit: "bird", image: #imageLiteral(resourceName: "bird")),
-        Animal(nameInit: "monkey2", image: #imageLiteral(resourceName: "monkey2")),
-        Animal(nameInit: "panda", image: #imageLiteral(resourceName: "panda"))
+    let initAnimals: [AnimalTemp] = [
+        AnimalTemp(nameInit: "bird", image: #imageLiteral(resourceName: "bird")),
+        AnimalTemp(nameInit: "monkey2", image: #imageLiteral(resourceName: "monkey2")),
+        AnimalTemp(nameInit: "panda", image: #imageLiteral(resourceName: "panda"))
     ]
     
     @IBOutlet weak var textView: UITextView!
@@ -51,10 +51,8 @@ class WritingPage: UIViewController, sendBackDelegate {
         navigationController?.navigationBar.shadowImage = UIImage()
     }
         
-    func dataReceived(data: Int) {
-        print(data)
-        animalBtn.setImage(initAnimals[data].img, for: .normal)
-        
+    func dataReceived(data: Animal) {
+        animalBtn.setImage(data.animalImg, for: .normal)
     }
     
     @IBAction func clickAnimalBtn(_ sender: UIButton) {
