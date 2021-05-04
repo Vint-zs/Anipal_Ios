@@ -5,7 +5,16 @@
   Created by 이예주 on 2021/04/01.
   
 */
+// 로그인
+"Sign In with Facebook" = "페이스북으로 로그인";
+
+"Sign In with Google" = "구글 로그인";
+
+"Sign In with Apple" = "애플 계정으로 로그인";
+
 // 편지 리스트 탭
+"+ New" = "+ 랜덤 편지";
+
 "Penpal" = "펜팔";
 
 "Letter" = "내게 온 편지";

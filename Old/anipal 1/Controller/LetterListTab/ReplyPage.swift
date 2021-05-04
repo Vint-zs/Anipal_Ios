@@ -24,7 +24,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var animalBtn: UIButton!
-    @IBOutlet weak var saveBtn: UIButton!
+    // @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var sendBtn: UIButton!
     var delegate: replyHiddenDelegate?
     
@@ -42,8 +42,8 @@ class ReplyPage: UIViewController, sendBackDelegate {
         animalBtn.layer.borderColor = UIColor.lightGray.cgColor
         
         // 저장&전송 버튼
-        saveBtn.setTitle("Save".localized, for: .normal)
-        setBtnUI(btn: saveBtn)
+//        saveBtn.setTitle("Save".localized, for: .normal)
+//        setBtnUI(btn: saveBtn)
         sendBtn.setTitle("Send".localized, for: .normal)
         setBtnUI(btn: sendBtn)
     }

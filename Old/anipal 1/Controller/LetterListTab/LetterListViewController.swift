@@ -19,7 +19,7 @@ class LetterListViewController: UICollectionViewController {
     // TODO: 임시 데이터
     var unOpenedMail = UIImage(named: "letterBox1.png")
     var openedMail = UIImage(named: "letterBox2.png")
-    var arvlAmlImg = UIImage(named: "penguin.png")
+    var arvlAmlImg = UIImage(named: "ourTuttle.png")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,7 +136,8 @@ extension LetterListViewController {
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WriteNewLetter", for: indexPath) as? WriteNewLetter else { fatalError("Can't dequeue WriteNewLetter")}
-            cell.writeLabel.text = "write"
+            cell.writeLabel.text = "+ New".localized
+            cell.writeLabel.sizeToFit()
             
             return cell
         }

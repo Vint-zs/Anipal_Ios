@@ -5,7 +5,16 @@
   Created by 이예주 on 2021/04/01.
   
 */
+// 로그인
+"Sign In with Facebook" = "Sign In with Facebook";
+
+"Sign In with Google" = "Sign In with Google";
+
+"Sign In with Apple" = "Sign In with Apple";
+
 // 편지 리스트 탭
+"+ New" = "+ New";
+
 "Penpal" = "Penpal";
 
 "Letter" = "Letter";
@@ -42,33 +51,33 @@
 // 관심사
 "Choose your favorites." = "Choose you favorites.";
 
-"🍿Movie" = "🍿Movie";
+"Movie" = "Movie";
 
-"✈️Travel" = "✈️Travel";
+"Travel" = "Travel";
 
-"🎤Sing" = "🎤Sing";
+"Sing" = "Sing";
 
-"💪Fitness" = "💪Fitness";
+"Fitness" = "Fitness";
 
-"🎨Design" = "🎨Design";
+"Design" = "Design";
 
-"🍳Cook" = "🍳Cook";
+"Cook" = "Cook";
 
-"🕺Dance" = "🕺Dance";
+"Dance" = "Dance";
 
-"📚Book" = "📚Book";
+"Book" = "Book";
 
-"💅Beauty" = "💅Beauty";
+"Beauty" = "Beauty";
 
-"🛍Shopping" = "🛍Shopping";
+"Shopping" = "Shopping";
 
-"🎮Game" = "🎮Game";
+"Game" = "Game";
 
-"💻IT" = "💻IT";
+"IT" = "IT";
 
-"🏛Architecture" = "🏛Architecture";
+"Architecture" = "Architecture";
 
-"💰Economy" = "💰Economy";
+"Economy" = "Economy";
 
 // 언어레벨
 "Choose your language level" = "Choose your language level";

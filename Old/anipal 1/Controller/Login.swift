@@ -23,11 +23,14 @@ class Login: UIViewController {
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.restorePreviousSignIn() // 구글 로그인여부 확인
         facebookBtn.layer.cornerRadius = 10
+        facebookBtn.setTitle("Sign In with Facebook".localized, for: .normal)
         googleBtn.layer.cornerRadius = 10
+        googleBtn.setTitle("Sign In with Google".localized, for: .normal)
         googleBtn.layer.borderColor = UIColor.gray.cgColor
         googleBtn.layer.borderWidth = 1
         appleBtn.layer.cornerRadius = 10
         logoImage.layer.cornerRadius = logoImage.frame.height/2
+        appleBtn.setTitle("Sign In with Apple".localized, for: .normal)
         
         // 네이베이션바 선 없애기
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
