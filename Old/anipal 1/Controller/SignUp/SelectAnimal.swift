@@ -49,7 +49,7 @@ extension SelectAnimal: UICollectionViewDelegate, UICollectionViewDataSource, UI
         }
         
         cell.img.image = serverAnimals[indexPath.row].img
-        cell.name.text = serverAnimals[indexPath.row].name
+        cell.name.text = serverAnimals[indexPath.row].name.localized
         cell.layer.cornerRadius = 10
         cell.backgroundColor = .white
         return cell

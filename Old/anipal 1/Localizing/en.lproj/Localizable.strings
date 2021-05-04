@@ -28,6 +28,13 @@
 
 "Internal server error" = "Internal server error";
 
+// 캐릭터 이름
+"penguin" = "penguin";
+"cat" = "cat";
+"dog" = "dog";
+"rabbit" = "rabbit";
+"turtle" = "turtle";
+
 // 언어 목록
 "en-GB" = "English(United Kingdom)";
 "en-AU" = "English(Australia)";
