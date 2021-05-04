@@ -13,12 +13,6 @@ protocol replyHiddenDelegate {
 
 class ReplyPage: UIViewController, sendBackDelegate {
     
-    // 임시 데이터
-//    let initAnimals: [AnimalTemp] = [
-//        AnimalTemp(nameInit: "bird", image: #imageLiteral(resourceName: "bird")),
-//        AnimalTemp(nameInit: "monkey2", image: #imageLiteral(resourceName: "monkey2")),
-//        AnimalTemp(nameInit: "panda", image: #imageLiteral(resourceName: "panda"))
-//    ]
     let postAnimal = ["animal_url": "1", "head_url": "2", "top_url": "3", "pants_url": "4", "shoes_url": "5", "gloves_url": "6"]
     let comingAnimal = ["animal_url": "1", "color": "2"]
     
@@ -73,7 +67,6 @@ class ReplyPage: UIViewController, sendBackDelegate {
     
     @IBAction func sendDataBtn(_ sender: UIButton) {
         if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
-            let url = "/letters"
             let body: NSMutableDictionary = NSMutableDictionary()
             body.setValue(textView.text, forKey: "content")
             body.setValue(receiverID, forKey: "receiver")
@@ -81,7 +74,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
             body.setValue(comingAnimal, forKey: "coming_animal")
             body.setValue("0h 0m 5s", forKey: "delay_time")
             
-            try? post(url: url, token: session.value, body: body, completionHandler: { data, response, error in
+            try? post(url: "/letters", token: session.value, body: body, completionHandler: { data, response, error in
                 guard let data = data, error == nil else {
                     print("error=\(String(describing: error))")
                     return

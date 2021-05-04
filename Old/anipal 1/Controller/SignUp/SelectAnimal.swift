@@ -50,7 +50,13 @@ class SelectAnimal: UIViewController {
                         print("data: \(JSON(data))")
                         for idx in 0..<JSON(data).count {
                             let json = JSON(data)[idx]
-                            let animalURLs: [String] = [json["animal_url"].stringValue, json["head_url"].stringValue, json["top_url"].stringValue, json["pants_url"].stringValue, json["shoes_url"].stringValue, json["gloves_url"].stringValue]
+                            let animalURLs: [String: String] = [
+                                "animal_url": json["animal_url"].stringValue,
+                                "head_url":  json["head_url"].stringValue,
+                                "top_url":  json["top_url"].stringValue,
+                                "pants_url":  json["pants_url"].stringValue,
+                                "shoes_url":  json["shoes_url"].stringValue,
+                                "gloves_url":  json["gloves_url"].stringValue]
                             let comingAnimal = ["animal_url": json["coming_animal"]["animal_url"].stringValue, "bar": json["coming_animal"]["bar"].stringValue, "background": json["coming_animal"]["background"].stringValue]
                             
                             let animal = Animal(animal: json["animal"]["localized"].stringValue, animalURLs: animalURLs, isUsed: json["is_used"].boolValue, delayTime: json["delay_time"].stringValue, comingAnimal: comingAnimal, animalImg: loadAnimals(urls: animalURLs))
@@ -72,10 +78,10 @@ class SelectAnimal: UIViewController {
         }
     }
     
-    func loadAnimals(urls: [String]) -> UIImage {
+    func loadAnimals(urls: [String: String]) -> UIImage {
         // 이미지 합성
         images = []
-        for url in urls {
+        for (_, url) in urls {
             setImage(from: url)
         }
         return compositeImage(images: images)

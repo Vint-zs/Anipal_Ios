@@ -9,13 +9,13 @@ import UIKit
 
 struct Animal {
     let animal: String
-    let animalURLs: [String]
+    let animalURLs: [String: String]
     let isUsed: Bool
     let delayTime: String
     let comingAnimal: [String: String]
     let animalImg: UIImage
     
-    init(animal: String, animalURLs: [String], isUsed: Bool, delayTime: String, comingAnimal: [String: String], animalImg: UIImage) {
+    init(animal: String, animalURLs: [String: String], isUsed: Bool, delayTime: String, comingAnimal: [String: String], animalImg: UIImage) {
         self.animal = animal
         self.animalURLs = animalURLs
         self.isUsed = isUsed
