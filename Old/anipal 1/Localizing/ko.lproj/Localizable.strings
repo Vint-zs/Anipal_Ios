@@ -107,33 +107,33 @@
 // 관심사
 "Choose your favorites." = "관심사를 선택하세요.";
 
-"🍿Movie" = "🍿영화";
+"Movie" = "🍿영화";
 
-"✈️Travel" = "✈️여행";
+"Travel" = "✈️여행";
 
-"🎤Sing" = "🎤노래";
+"Sing" = "🎤노래";
 
-"💪Fitness" = "💪피트니스";
+"Fitness" = "💪피트니스";
 
-"🎨Design" = "🎨디자인";
+"Design" = "🎨디자인";
 
-"🍳Cook" = "🍳요리";
+"Cook" = "🍳요리";
 
-"🕺Dance" = "🕺춤";
+"Dance" = "🕺춤";
 
-"📚Book" = "📚독서";
+"Book" = "📚독서";
 
-"💅Beauty" = "💅미용";
+"Beauty" = "💅미용";
 
-"🛍Shopping" = "🛍쇼핑";
+"Shopping" = "🛍쇼핑";
 
-"🎮Game" = "🎮게임";
+"Game" = "🎮게임";
 
-"💻IT" = "💻IT";
+"IT" = "💻IT";
 
-"🏛Architecture" = "🏛건축";
+"Architecture" = "🏛건축";
 
-"💰Economy" = "💰경제";
+"Economy" = "💰경제";
 
 // 언어레벨
 "Choose your language level" = "언어 수준을 선택하세요.";
