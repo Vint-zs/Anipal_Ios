@@ -47,7 +47,6 @@ class SelectAnimal: UIViewController {
                 
                 if let httpStatus = response as? HTTPURLResponse {
                     if httpStatus.statusCode == 200 {
-                        print("data: \(JSON(data))")
                         for idx in 0..<JSON(data).count {
                             let json = JSON(data)[idx]
                             let animalURLs: [String: String] = [
@@ -66,7 +65,6 @@ class SelectAnimal: UIViewController {
                             
                             let animal = Animal(animal: json["animal"]["localized"].stringValue, animalURLs: animalURLs, isUsed: json["is_used"].boolValue, delayTime: json["delay_time"].stringValue, comingAnimal: comingAnimal, animalImg: loadAnimals(urls: animalURLs))
                             animals.append(animal)
-                            print("animal: \(animal)")
                         }
                         
                         // 화면 reload
@@ -83,8 +81,8 @@ class SelectAnimal: UIViewController {
         }
     }
     
+    // MARK: - 이미지 합성
     func loadAnimals(urls: [String: String]) -> UIImage {
-        // 이미지 합성
         images = []
         for (_, url) in urls {
             setImage(from: url)

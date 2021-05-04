@@ -81,7 +81,6 @@ class ReplyPage: UIViewController, sendBackDelegate {
                     print("error=\(String(describing: error))")
                     return
                 }
-                print(String(data: data, encoding: .utf8)!)
             })
         }
         

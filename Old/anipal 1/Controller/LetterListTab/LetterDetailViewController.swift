@@ -21,6 +21,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, replyH
     
     var letters: [Letter] = []
     var mailBoxID: String?
+    var images: [UIImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +70,8 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, replyH
         senderCountry.sizeToFit()
         senderFav.text = letters[letterCtrl.currentPage].favorites.joined(separator: " ")
         senderFav.sizeToFit()
+        senderAnimal.image = letters[letterCtrl.currentPage].animalImg
+        senderAnimal.contentMode = .scaleAspectFit
         
         senderAnimal.backgroundColor = .white
         senderAnimal.layer.cornerRadius = senderAnimal.frame.height/2
@@ -118,7 +121,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, replyH
                             let json = JSON(data)[idx]
                             let favorites = json["sender"]["favorites"].arrayValue.map { $0.stringValue }
                             let animal = [json["post_animal"]["animal_url"].stringValue, json["post_animal"]["head_url"].stringValue, json["post_animal"]["top_url"].stringValue, json["post_animal"]["pants_url"].stringValue, json["post_animal"]["gloves_url"].stringValue, json["post_animal"]["shoes_url"].stringValue]
-                            let letter = Letter(senderID: json["sender"]["user_id"].stringValue, name: json["sender"]["name"].stringValue, country: json["sender"]["country"].stringValue, favorites: favorites, animal: animal, receiverID: json["_id"].stringValue, content: json["content"].stringValue, arrivalDate: json["arrive_time"].stringValue, sendDate: json["send_time"].stringValue)
+                            let letter = Letter(senderID: json["sender"]["user_id"].stringValue, name: json["sender"]["name"].stringValue, country: json["sender"]["country"].stringValue, favorites: favorites, animal: animal, receiverID: json["_id"].stringValue, content: json["content"].stringValue, arrivalDate: json["arrive_time"].stringValue, sendDate: json["send_time"].stringValue, animalImg: loadAnimals(urls: animal))
                             letters.append(letter)
                         }
                         
@@ -152,11 +155,44 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, replyH
         alertcontroller.addAction(cancelBtn)
         present(alertcontroller, animated: true, completion: nil)
     }
+    
+    // MARK: - 이미지 합성
+    func loadAnimals(urls: [String]) -> UIImage {
+        images = []
+        for url in urls {
+            setImage(from: url)
+        }
+        return compositeImage(images: images)
+    }
+    
+    func compositeImage(images: [UIImage]) -> UIImage {
+        var compositeImage: UIImage!
+        if images.count > 0 {
+            let size: CGSize = CGSize(width: images[0].size.width, height: images[0].size.height)
+            UIGraphicsBeginImageContext(size)
+            for image in images {
+                let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+                image.draw(in: rect)
+            }
+            compositeImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+        }
+        return compositeImage
+    }
+    
+    func setImage(from url: String) {
+        guard let imageURL = URL(string: url) else { return }
+        guard let imageData = try? Data(contentsOf: imageURL) else { return }
+        let image = UIImage(data: imageData)
+        self.images.append(image!)
+    }
 }
 
 extension LetterDetailViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         letterCtrl.currentPage = Int(floor(scrollViewContent.contentOffset.x / scrollViewContent.frame.size.width))
         senderFav.text = letters[letterCtrl.currentPage].favorites.joined(separator: " ")
+        senderAnimal.image = letters[letterCtrl.currentPage].animalImg
+        senderAnimal.contentMode = .scaleAspectFit
     }
 }
