@@ -191,7 +191,7 @@ class MainPage: UIViewController {
     func refreshData() {
         if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
             get(url: "/letters/random", token: session.value) { [self] (data, response, error) in
-                guard let data = data, error == nil else {#imageLiteral(resourceName: "simulator_screenshot_BC66391E-DB53-4E29-83FB-10D478794168.png")
+                guard let data = data, error == nil else {
                     print("error=\(String(describing: error))")
                     return
                 }
