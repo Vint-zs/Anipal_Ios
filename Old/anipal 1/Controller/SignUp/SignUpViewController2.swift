@@ -65,32 +65,31 @@ class SignUpViewController2: UIViewController {
         nextButton.setTitle("Next".localized, for: .normal)
     }
     
+    // 서버 데이터 로드
     func loadLanguage() {
-        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
-            get(url: "/languages", token: session.value, completionHandler: { [self]data, response, error in
-                guard let data = data, error == nil else {
-                    print("error=\(String(describing: error))")
-                    return
-                }
-                if let httpStatus = response as? HTTPURLResponse {
-                    if httpStatus.statusCode == 200 {
-                            for idx in 0..<JSON(data).count {
-                                let json = JSON(data)[idx]
-                                let langname = json["name"].stringValue
-                                serverLanguage.append(langname)
-                            }
-                        // 화면 reload
-                        DispatchQueue.main.async {
-                            self.languageTableView.reloadData()
-                        }
-                    } else if httpStatus.statusCode == 400 {
-                        print("error: \(httpStatus.statusCode)")
-                    } else {
-                        print("error: \(httpStatus.statusCode)")
+        get(url: "/languages", token: "", completionHandler: { [self]data, response, error in
+            guard let data = data, error == nil else {
+                print("error=\(String(describing: error))")
+                return
+            }
+            if let httpStatus = response as? HTTPURLResponse {
+                if httpStatus.statusCode == 200 {
+                    for idx in 0..<JSON(data).count {
+                        let json = JSON(data)[idx]
+                        let langname = json["name"].stringValue
+                        serverLanguage.append(langname)
                     }
+                    // 화면 reload
+                    DispatchQueue.main.async {
+                        self.languageTableView.reloadData()
+                    }
+                } else if httpStatus.statusCode == 400 {
+                    print("error: \(httpStatus.statusCode)")
+                } else {
+                    print("error: \(httpStatus.statusCode)")
                 }
-            })
-        }
+            }
+        })
     }
 }
     

@@ -26,9 +26,10 @@ class SignUpViewController: UIViewController, sendBackDelegate {
         super.viewDidLoad()
         loadAnimal()
         textLocalize()
+        
         // Make imgButton Circle
 //        imgButton.layer.borderWidth = 1
-        //imgButton.layer.masksToBounds = false
+//        imgButton.layer.masksToBounds = false
 //        imgButton.layer.borderColor = UIColor.gray.cgColor
 //        imgButton.layer.cornerRadius = imgButton.frame.height/2
 //        imgButton.clipsToBounds = true
@@ -106,13 +107,11 @@ class SignUpViewController: UIViewController, sendBackDelegate {
     }
     
     func loadAnimal() {
-        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
-            get(url: "/animals/basic", token: session.value, completionHandler: { [self]data, response, error in
+            get(url: "/animals/basic", token: "", completionHandler: { [self]data, response, error in
                 guard let data = data, error == nil else {
                     print("error=\(String(describing: error))")
                     return
                 }
-                
                 if let httpStatus = response as? HTTPURLResponse {
                     if httpStatus.statusCode == 200 {
                             for idx in 0..<JSON(data).count {
@@ -124,7 +123,6 @@ class SignUpViewController: UIViewController, sendBackDelegate {
                                 guard let img = UIImage(data: imageData) else {return}
                                 serverAnimals.append(Animal(nameInit: name, image: img, imageUrl: strURL))
                             }
-                        
                         // 화면 load
                         DispatchQueue.main.async {
                             imgButton.setBackgroundImage(serverAnimals[0].img, for: .normal)
@@ -137,7 +135,6 @@ class SignUpViewController: UIViewController, sendBackDelegate {
                     }
                 }
             })
-        }
     }
 }
 // MARK: - 데이트피커 텍스트필드안에 넣기
