@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Animal {
+struct AnimalPost {
     let animal: String
     let animalURLs: [String: String]
     let isUsed: Bool
@@ -25,7 +25,7 @@ struct Animal {
     }
 }
 
-struct AnimalTemp {
+struct Animal {
     let name: String
     let img: UIImage
     
@@ -35,21 +35,21 @@ struct AnimalTemp {
     }
 }
 
-let animals: [AnimalTemp] = [
-    AnimalTemp(nameInit: "bird", image: #imageLiteral(resourceName: "bird")),
-    AnimalTemp(nameInit: "monkey2", image: #imageLiteral(resourceName: "monkey2")),
-    AnimalTemp(nameInit: "panda", image: #imageLiteral(resourceName: "panda")),
-    AnimalTemp(nameInit: "elephant", image: #imageLiteral(resourceName: "elephant")),
-    AnimalTemp(nameInit: "dog", image: #imageLiteral(resourceName: "dog")),
-    AnimalTemp(nameInit: "horse", image: #imageLiteral(resourceName: "donkey")),
-    AnimalTemp(nameInit: "lion", image: #imageLiteral(resourceName: "lion")),
-    AnimalTemp(nameInit: "chicken", image: #imageLiteral(resourceName: "chicken")),
-    AnimalTemp(nameInit: "fox", image: #imageLiteral(resourceName: "fox")),
-    AnimalTemp(nameInit: "penguin", image: #imageLiteral(resourceName: "penguin")),
-    AnimalTemp(nameInit: "black", image: #imageLiteral(resourceName: "black")),
-    AnimalTemp(nameInit: "monkey", image: #imageLiteral(resourceName: "monkey")),
-    AnimalTemp(nameInit: "zebra", image: #imageLiteral(resourceName: "zebra")),
-    AnimalTemp(nameInit: "pig", image: #imageLiteral(resourceName: "pig")),
-    AnimalTemp(nameInit: "pyobeom", image: #imageLiteral(resourceName: "pyobeom")),
-    AnimalTemp(nameInit: "tiger", image: #imageLiteral(resourceName: "tiger"))
+let animals: [Animal] = [
+    Animal(nameInit: "bird", image: #imageLiteral(resourceName: "bird")),
+    Animal(nameInit: "monkey2", image: #imageLiteral(resourceName: "monkey2")),
+    Animal(nameInit: "panda", image: #imageLiteral(resourceName: "panda")),
+    Animal(nameInit: "elephant", image: #imageLiteral(resourceName: "elephant")),
+    Animal(nameInit: "dog", image: #imageLiteral(resourceName: "dog")),
+    Animal(nameInit: "horse", image: #imageLiteral(resourceName: "donkey")),
+    Animal(nameInit: "lion", image: #imageLiteral(resourceName: "lion")),
+    Animal(nameInit: "chicken", image: #imageLiteral(resourceName: "chicken")),
+    Animal(nameInit: "fox", image: #imageLiteral(resourceName: "fox")),
+    Animal(nameInit: "penguin", image: #imageLiteral(resourceName: "penguin")),
+    Animal(nameInit: "black", image: #imageLiteral(resourceName: "black")),
+    Animal(nameInit: "monkey", image: #imageLiteral(resourceName: "monkey")),
+    Animal(nameInit: "zebra", image: #imageLiteral(resourceName: "zebra")),
+    Animal(nameInit: "pig", image: #imageLiteral(resourceName: "pig")),
+    Animal(nameInit: "pyobeom", image: #imageLiteral(resourceName: "pyobeom")),
+    Animal(nameInit: "tiger", image: #imageLiteral(resourceName: "tiger"))
 ]

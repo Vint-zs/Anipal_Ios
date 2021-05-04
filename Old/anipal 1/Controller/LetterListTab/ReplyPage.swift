@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 protocol replyHiddenDelegate {
     func replyButtonDelegate(data: Bool)
@@ -23,7 +24,11 @@ class ReplyPage: UIViewController, sendBackDelegate {
     var delegate: replyHiddenDelegate?
 
     var receiverID: String?
-    var selectedAnimal: Animal?
+    var selectedAnimal: Int?
+    
+    var animals: [AnimalPost] = []  // 서버 POST용
+    var serverAnimals: [Animal] = [] // next page 데이터 전송용
+    var images: [UIImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +46,9 @@ class ReplyPage: UIViewController, sendBackDelegate {
 //        setBtnUI(btn: saveBtn)
         sendBtn.setTitle("Send".localized, for: .normal)
         setBtnUI(btn: sendBtn)
+        
+        // 동물 목록 get
+        loadAnimal()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,18 +60,104 @@ class ReplyPage: UIViewController, sendBackDelegate {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    func dataReceived(data: Animal) {
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "selectAnimalVC" {
+//            guard let selectAnimalVC = segue.destination as? SelectAnimal else {
+//                return
+//            }
+//
+//        }
+//    }
+    
+    func dataReceived(data: Int) {
         selectedAnimal = data
-        animalBtn.setImage(data.animalImg, for: .normal)
+        animalBtn.setImage(animals[data].animalImg, for: .normal)
         animalBtn.imageView?.contentMode = .scaleAspectFit
     }
     
+    func loadAnimal() {
+        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+            get(url: "/own/animals", token: session.value, completionHandler: { [self] data, response, error in
+                guard let data = data, error == nil else {
+                    print("error=\(String(describing: error))")
+                    return
+                }
+                
+                if let httpStatus = response as? HTTPURLResponse {
+                    if httpStatus.statusCode == 200 {
+                        for idx in 0..<JSON(data).count {
+                            let json = JSON(data)[idx]
+                            let animalURLs: [String: String] = [
+                                "animal_url": json["animal_url"].stringValue,
+                                "head_url": json["head_url"].stringValue,
+                                "top_url": json["top_url"].stringValue,
+                                "pants_url": json["pants_url"].stringValue,
+                                "shoes_url": json["shoes_url"].stringValue,
+                                "gloves_url": json["gloves_url"].stringValue
+                            ]
+                            let comingAnimal = [
+                                "animal_url": json["coming_animal"]["animal_url"].stringValue,
+                                "bar": json["coming_animal"]["bar"].stringValue,
+                                "background": json["coming_animal"]["background"].stringValue
+                            ]
+                            
+                            let animal = AnimalPost(animal: json["animal"]["localized"].stringValue, animalURLs: animalURLs, isUsed: json["is_used"].boolValue, delayTime: json["delay_time"].stringValue, comingAnimal: comingAnimal, animalImg: loadAnimals(urls: animalURLs))
+                            animals.append(animal)
+                            serverAnimals.append(Animal(nameInit: json["animal"]["localized"].stringValue, image: loadAnimals(urls: animalURLs)))
+                        }
+                        
+                        // 화면 reload
+//                        DispatchQueue.main.async {
+//                            collectionView.reloadData()
+//                        }
+                    } else if httpStatus.statusCode == 400 {
+                        print("error: \(httpStatus.statusCode)")
+                    } else {
+                        print("error: \(httpStatus.statusCode)")
+                    }
+                }
+            })
+        }
+    }
+    
+    // MARK: - 이미지 합성
+    func loadAnimals(urls: [String: String]) -> UIImage {
+        images = []
+        for (_, url) in urls {
+            setImage(from: url)
+        }
+        return compositeImage(images: images)
+    }
+    
+    func compositeImage(images: [UIImage]) -> UIImage {
+        var compositeImage: UIImage!
+        if images.count > 0 {
+            let size: CGSize = CGSize(width: images[0].size.width, height: images[0].size.height)
+            UIGraphicsBeginImageContext(size)
+            for image in images {
+                let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+                image.draw(in: rect)
+            }
+            compositeImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+        }
+        return compositeImage
+    }
+    
+    func setImage(from url: String) {
+        guard let imageURL = URL(string: url) else { return }
+        guard let imageData = try? Data(contentsOf: imageURL) else { return }
+        let image = UIImage(data: imageData)
+        self.images.append(image!)
+    }
+
     @IBAction func selectAnimalBtn(_ sender: UIButton) {
         let sub = UIStoryboard(name: "SignUp", bundle: nil)
         guard let nextVC = sub.instantiateViewController(identifier: "selectAnimalVC") as? SelectAnimal else {
             return
         }
         nextVC.delegate = self
+        nextVC.serverAnimals = self.serverAnimals
         self.present(nextVC, animated: true, completion: nil)
     }
     
@@ -72,8 +166,9 @@ class ReplyPage: UIViewController, sendBackDelegate {
             let body: NSMutableDictionary = NSMutableDictionary()
             body.setValue(textView.text, forKey: "content")
             body.setValue(receiverID, forKey: "receiver")
-            body.setValue(selectedAnimal?.animalURLs, forKey: "post_animal")
-            body.setValue(selectedAnimal?.comingAnimal, forKey: "coming_animal")
+            // TODO: 동물 선택 안 했을 시 - 예외 처리하기
+            body.setValue(animals[selectedAnimal!].animalURLs, forKey: "post_animal")
+            body.setValue(animals[selectedAnimal!].comingAnimal, forKey: "coming_animal")
             body.setValue("0h 0m 5s", forKey: "delay_time")
             
             try? post(url: "/letters", token: session.value, body: body, completionHandler: { data, response, error in

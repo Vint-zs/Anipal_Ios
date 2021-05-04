@@ -17,10 +17,10 @@ class SelectAnimal1: UIViewController {
     var delegate: sendBackDelegate1?
     @IBOutlet var collectionView: UICollectionView!
     let animalSelectCellId = "AnimalSelectCell"
-    let initAnimals: [AnimalTemp] = [
-        AnimalTemp(nameInit: "bird", image: #imageLiteral(resourceName: "bird")),
-        AnimalTemp(nameInit: "monkey2", image: #imageLiteral(resourceName: "monkey2")),
-        AnimalTemp(nameInit: "panda", image: #imageLiteral(resourceName: "panda"))
+    let initAnimals: [Animal] = [
+        Animal(nameInit: "bird", image: #imageLiteral(resourceName: "bird")),
+        Animal(nameInit: "monkey2", image: #imageLiteral(resourceName: "monkey2")),
+        Animal(nameInit: "panda", image: #imageLiteral(resourceName: "panda"))
     ]
     
     override func viewDidLoad() {

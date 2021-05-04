@@ -6,10 +6,9 @@
 //
 
 import UIKit
-import SwiftyJSON
 
 protocol sendBackDelegate {
-    func dataReceived(data: Animal)
+    func dataReceived(data: Int)
 }
 
 class SelectAnimal: UIViewController {
@@ -18,10 +17,7 @@ class SelectAnimal: UIViewController {
     var delegate: sendBackDelegate?
     @IBOutlet var collectionView: UICollectionView!
     let animalSelectCellId = "AnimalSelectCell"
-    
-    var animals: [Animal] = []
-    var images: [UIImage] = []
-    var animalImgs: [UIImage] = []
+    var serverAnimals: [Animal] = []
     
     override func viewDidLoad() {
 
@@ -36,81 +32,6 @@ class SelectAnimal: UIViewController {
         collectionView.register(nibCell, forCellWithReuseIdentifier: animalSelectCellId)
         collectionView.reloadData()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
-            get(url: "/own/animals", token: session.value, completionHandler: { [self] data, response, error in
-                guard let data = data, error == nil else {
-                    print("error=\(String(describing: error))")
-                    return
-                }
-                
-                if let httpStatus = response as? HTTPURLResponse {
-                    if httpStatus.statusCode == 200 {
-                        for idx in 0..<JSON(data).count {
-                            let json = JSON(data)[idx]
-                            let animalURLs: [String: String] = [
-                                "animal_url": json["animal_url"].stringValue,
-                                "head_url": json["head_url"].stringValue,
-                                "top_url": json["top_url"].stringValue,
-                                "pants_url": json["pants_url"].stringValue,
-                                "shoes_url": json["shoes_url"].stringValue,
-                                "gloves_url": json["gloves_url"].stringValue
-                            ]
-                            let comingAnimal = [
-                                "animal_url": json["coming_animal"]["animal_url"].stringValue,
-                                "bar": json["coming_animal"]["bar"].stringValue,
-                                "background": json["coming_animal"]["background"].stringValue
-                            ]
-                            
-                            let animal = Animal(animal: json["animal"]["localized"].stringValue, animalURLs: animalURLs, isUsed: json["is_used"].boolValue, delayTime: json["delay_time"].stringValue, comingAnimal: comingAnimal, animalImg: loadAnimals(urls: animalURLs))
-                            animals.append(animal)
-                        }
-                        
-                        // 화면 reload
-                        DispatchQueue.main.async {
-                            collectionView.reloadData()
-                        }
-                    } else if httpStatus.statusCode == 400 {
-                        print("error: \(httpStatus.statusCode)")
-                    } else {
-                        print("error: \(httpStatus.statusCode)")
-                    }
-                }
-            })
-        }
-    }
-    
-    // MARK: - 이미지 합성
-    func loadAnimals(urls: [String: String]) -> UIImage {
-        images = []
-        for (_, url) in urls {
-            setImage(from: url)
-        }
-        return compositeImage(images: images)
-    }
-    
-    func compositeImage(images: [UIImage]) -> UIImage {
-        var compositeImage: UIImage!
-        if images.count > 0 {
-            let size: CGSize = CGSize(width: images[0].size.width, height: images[0].size.height)
-            UIGraphicsBeginImageContext(size)
-            for image in images {
-                let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-                image.draw(in: rect)
-            }
-            compositeImage = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-        }
-        return compositeImage
-    }
-    
-    func setImage(from url: String) {
-        guard let imageURL = URL(string: url) else { return }
-        guard let imageData = try? Data(contentsOf: imageURL) else { return }
-        let image = UIImage(data: imageData)
-        self.images.append(image!)
-    }
 }
 
 extension SelectAnimal: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -119,7 +40,7 @@ extension SelectAnimal: UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return animals.count
+        return serverAnimals.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -127,8 +48,8 @@ extension SelectAnimal: UICollectionViewDelegate, UICollectionViewDataSource, UI
             return UICollectionViewCell()
         }
         
-        cell.img.image = animals[indexPath.row].animalImg
-        cell.name.text = animals[indexPath.row].animal
+        cell.img.image = serverAnimals[indexPath.row].img
+        cell.name.text = serverAnimals[indexPath.row].name.localized
         cell.layer.cornerRadius = 10
         cell.backgroundColor = .white
         return cell
@@ -136,7 +57,7 @@ extension SelectAnimal: UICollectionViewDelegate, UICollectionViewDataSource, UI
     
     // 셀 선택
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.dataReceived(data: animals[indexPath.row])
+        delegate?.dataReceived(data: indexPath.row)
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     // 섹션의 여백
