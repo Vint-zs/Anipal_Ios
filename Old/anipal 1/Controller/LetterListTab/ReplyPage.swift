@@ -24,7 +24,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
     var delegate: replyHiddenDelegate?
 
     var receiverID: String?
-    var selectedAnimal: Int?
+    var selectedAnimal: Int = 0
     
     var animals: [AnimalPost] = []  // 서버 POST용
     var serverAnimals: [Animal] = [] // next page 데이터 전송용
@@ -73,6 +73,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
         selectedAnimal = data
         animalBtn.setImage(animals[data].animalImg, for: .normal)
         animalBtn.imageView?.contentMode = .scaleAspectFit
+        print("selected: \(animals[selectedAnimal])")
     }
     
     func loadAnimal() {
@@ -163,19 +164,24 @@ class ReplyPage: UIViewController, sendBackDelegate {
     
     @IBAction func sendDataBtn(_ sender: UIButton) {
         if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+            print("token ok")
             let body: NSMutableDictionary = NSMutableDictionary()
             body.setValue(textView.text, forKey: "content")
             body.setValue(receiverID, forKey: "receiver")
             // TODO: 동물 선택 안 했을 시 - 예외 처리하기
-            body.setValue(animals[selectedAnimal!].animalURLs, forKey: "post_animal")
-            body.setValue(animals[selectedAnimal!].comingAnimal, forKey: "coming_animal")
+            body.setValue(animals[selectedAnimal].animalURLs, forKey: "post_animal")
+            body.setValue(animals[selectedAnimal].comingAnimal, forKey: "coming_animal")
             body.setValue("0h 0m 5s", forKey: "delay_time")
+            
+            print(animals[selectedAnimal].animalURLs)
+            print(animals[selectedAnimal].comingAnimal)
             
             try? post(url: "/letters", token: session.value, body: body, completionHandler: { data, response, error in
                 guard let data = data, error == nil else {
                     print("error=\(String(describing: error))")
                     return
                 }
+                print("post ok")
             })
         }
         

@@ -8,20 +8,24 @@
 import UIKit
 import GoogleSignIn
 import FBSDKLoginKit
+import SwiftyJSON
 class SignUpViewController2: UIViewController {
 
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var languageTableView: UITableView!
+    @IBOutlet var nextButton: UIButton!
     
-    let languageList = ["English", "한국어", "日本語", "中文", "Italiano", "프랑스어", "포르투갈어"]
+//    let languageList = ["English", "한국어", "日本語", "中文", "Italiano", "프랑스어", "포르투갈어"]
+    var serverLanguage: [String] = []
     var myLanguageList: [String: Int]! = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         languageTableView.delegate = self
         languageTableView.dataSource = self
-//        titleLabel.font = UIFont(name: "NotoSansKR-Bold", size: 18)
         titleLabel.textColor = UIColor(red: 0.392, green: 0.392, blue: 0.392, alpha: 1)
+        loadLanguage()
+        viewSettingLayout()
         
         // 저장 데이터 -> 화면 데이터 변환
         for row in ad?.languages ?? [] {
@@ -31,7 +35,7 @@ class SignUpViewController2: UIViewController {
         }
             
     }
-
+    
     @IBAction func nextPageButton(_ sender: UIButton) {
         guard let nextVC = self.storyboard?.instantiateViewController(identifier: "FavoriteVC") else {
             return
@@ -56,6 +60,37 @@ class SignUpViewController2: UIViewController {
         self.navigationController?.popToRootViewController(animated: true)
     }
     
+    func viewSettingLayout() {
+        titleLabel.text = "Choose your language.".localized
+        nextButton.setTitle("Next".localized, for: .normal)
+    }
+    
+    // 서버 데이터 로드
+    func loadLanguage() {
+        get(url: "/languages", token: "", completionHandler: { [self]data, response, error in
+            guard let data = data, error == nil else {
+                print("error=\(String(describing: error))")
+                return
+            }
+            if let httpStatus = response as? HTTPURLResponse {
+                if httpStatus.statusCode == 200 {
+                    for idx in 0..<JSON(data).count {
+                        let json = JSON(data)[idx]
+                        let langname = json["name"].stringValue
+                        serverLanguage.append(langname)
+                    }
+                    // 화면 reload
+                    DispatchQueue.main.async {
+                        self.languageTableView.reloadData()
+                    }
+                } else if httpStatus.statusCode == 400 {
+                    print("error: \(httpStatus.statusCode)")
+                } else {
+                    print("error: \(httpStatus.statusCode)")
+                }
+            }
+        })
+    }
 }
     
 extension SignUpViewController2: UITableViewDelegate, UITableViewDataSource {
@@ -65,7 +100,7 @@ extension SignUpViewController2: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return languageList.count
+        return serverLanguage.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -74,11 +109,9 @@ extension SignUpViewController2: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.languageName.text = languageList[indexPath.row]
+        cell.languageName.text = serverLanguage[indexPath.row].localized
         cell.languageName.textColor = UIColor.init(red: 0.392, green: 0.392, blue: 0.392, alpha: 1)
         cell.languageLevel.textColor = UIColor.init(red: 0.392, green: 0.392, blue: 0.392, alpha: 1)
-        // cell.languageLevel.text = String(level)
-        // cell.languageName.font = UIFont(name: "Helvetica-Bold", size: 18)
         
         cell.checkBox.layer.borderWidth = 1
         cell.checkBox.layer.borderColor = UIColor.init(red: 0.392, green: 0.392, blue: 0.392, alpha: 1).cgColor
@@ -86,9 +119,9 @@ extension SignUpViewController2: UITableViewDelegate, UITableViewDataSource {
         cell.checkBox.clipsToBounds = true
         cell.checkBox.backgroundColor = .white
         
-        if myLanguageList.keys.contains(languageList[indexPath.row]) {
+        if myLanguageList.keys.contains(serverLanguage[indexPath.row]) {
             cell.checkBox.image = #imageLiteral(resourceName: "checkBox")
-            let level = myLanguageList[languageList[indexPath.row]]!
+            let level = myLanguageList[serverLanguage[indexPath.row]]!
             if level == 1 {
                 cell.languageLevel.text = "Beginner".localized
             } else if level == 2 {
@@ -111,25 +144,22 @@ extension SignUpViewController2: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        if myLanguageList.keys.contains(languageList[indexPath.row]) {
-            myLanguageList.removeValue(forKey: languageList[indexPath.row])
+        if myLanguageList.keys.contains(serverLanguage[indexPath.row]) {
+            myLanguageList.removeValue(forKey: serverLanguage[indexPath.row])
             self.languageTableView.reloadData()
         } else {
             
             let alertcontroller = UIAlertController(title: "Level".localized, message: nil, preferredStyle: .actionSheet)
             let basicBtn = UIAlertAction(title: "Beginner".localized, style: .default) { (_) in
-                self.myLanguageList[self.languageList[indexPath.row]] = 1
-               // print(self.myLanguageList)
+                self.myLanguageList[self.serverLanguage[indexPath.row]] = 1
                 self.languageTableView.reloadData()
             }
             let mediumBtn = UIAlertAction(title: "Intermediate".localized, style: .default) { (_) in
-                self.myLanguageList[self.languageList[indexPath.row]] = 2
-               // print(self.myLanguageList)
+                self.myLanguageList[self.serverLanguage[indexPath.row]] = 2
                 self.languageTableView.reloadData()
             }
             let intermediateBtn = UIAlertAction(title: "Advanced".localized, style: .default) { (_) in
-                self.myLanguageList[self.languageList[indexPath.row]] = 3
-               // print(self.myLanguageList)
+                self.myLanguageList[self.serverLanguage[indexPath.row]] = 3
                 self.languageTableView.reloadData()
             }
             

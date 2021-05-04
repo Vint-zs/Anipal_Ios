@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var id: String?
     var name: String?
     var age: Int?
+    var favAnimal: String? = ""
     var email: String?
     var country: String? = "Korea"
     var birthday: String?

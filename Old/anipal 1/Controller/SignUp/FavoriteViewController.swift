@@ -18,19 +18,10 @@ class FavoriteViewController: UIViewController {
         favLabelTitle.text = "Choose your favorites.".localized
         favLabelTitle.textColor = UIColor(red: 0.392, green: 0.392, blue: 0.392, alpha: 1)
         super.viewDidLoad()
-     
     }
     
     @IBAction func nextPageButton(_ sender: UIButton) {
         ad!.favorites = favTable.userFav
-//        print(ad!.name!)
-//        print(ad!.gender!)
-//        print(ad!.age!)
-//        print(ad!.birthday!)
-//        print(ad!.email!)
-//        print(ad!.provider!)
-//        print(ad!.favorties!)
-//        print(ad!.languages!)
         postData(url: "http://ec2-15-164-231-148.ap-northeast-2.compute.amazonaws.com/auth/register", token: ad!.token!)
     }
     
@@ -40,9 +31,48 @@ class FavoriteViewController: UIViewController {
         self.navigationController?.popToRootViewController(animated: true)
     }
     
+    // 추후 리팩토링 완료예정.
+//    func register() {
+//        guard let ad = ad else {return}
+//        let param = ["name": ad.name!, "gender": ad.gender!, "age": ad.age!, "birthday": ad.birthday!, "country": ad.country!, "provider": ad.provider!, "favorites": ad.favorites!, "languages": ad.languages!, "favorite_animal": ad.favAnimal!] as [String: Any]
+//
+//        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+//            post(url: "/auth/register", token: session.value, body: (param as? NSMutableDictionary)!, completionHandler: { [self] data, response, error in
+//                guard let data = data, error == nil else {
+//                    print("error=\(String(describing: error))")
+//                    return
+//                }
+//
+//                if let httpStatus = response as? HTTPURLResponse {
+//                    if httpStatus.statusCode == 201 {
+//                        DispatchQueue.main.async {
+//                            print("post success")
+//                            moveMainScreen()
+//                        }
+//                    } else if httpStatus.statusCode == 400 {
+//                        DispatchQueue.main.async {
+//                            print("이미 이메일이 존재합니다")
+//                            GIDSignIn.sharedInstance()?.signOut()
+//                            LoginManager.init().logOut()
+//                            let alert = UIAlertController.init(title: "중복가입", message: "이미 가입된 이메일입니다 \n다른 소셜계정으로 다시 로그인해주세요!", preferredStyle: .alert)
+//                            let okBtn = UIAlertAction.init(title: "확인", style: .default) { (_) in
+//                                self.navigationController?.popToRootViewController(animated: true)
+//                            }
+//                            alert.addAction(okBtn)
+//                            self.present(alert, animated: true, completion: nil)
+//                        }
+//                    } else {
+//                        print("error : \(httpStatus.statusCode)")
+//                    }
+//                }
+//            })
+//        }
+//    }
+    
     func postData(url: String, token: String) {
         // 1. 전송할 값 준비
-        let param = ["name": ad!.name!, "gender": ad!.gender!, "age": ad!.age!, "birthday": ad!.birthday!, "country": ad!.country!, "provider": ad!.provider!, "favorites": ad!.favorites!, "languages": ad!.languages!] as [String: Any] // JSON 객체로 변환할 딕셔너리 준비
+        guard let ad = ad else {return}
+        let param = ["name": ad.name!, "gender": ad.gender!, "age": ad.age!, "birthday": ad.birthday!, "country": ad.country!, "provider": ad.provider!, "favorites": ad.favorites!, "languages": ad.languages!, "favorite_animal": ad.favAnimal!] as [String: Any] // JSON 객체로 변환할 딕셔너리 준비
         
         let paramData = try? JSONSerialization.data(withJSONObject: param, options: [])
 
@@ -67,7 +97,7 @@ class FavoriteViewController: UIViewController {
                 print("error=\(error)")
                 return
                 }
-
+            
             if let httpStatus = response as? HTTPURLResponse {
                 if httpStatus.statusCode == 201 {
                     DispatchQueue.main.async {
@@ -90,10 +120,8 @@ class FavoriteViewController: UIViewController {
                     print("error : \(httpStatus.statusCode)")
                 }
             }
-
-            let responseString = String(data: data, encoding: .utf8)
-            print("responseString = \(responseString)")
-            
+//            let responseString = String(data: data, encoding: .utf8)
+//            print("responseString = \(responseString)")
         }
 
         // 6. POST 전송

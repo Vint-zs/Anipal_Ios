@@ -8,33 +8,31 @@
 import UIKit
 import GoogleSignIn
 import FBSDKLoginKit
+import SwiftyJSON
 
 let ad = UIApplication.shared.delegate as? AppDelegate // 회원가입 데이터 임시저장
 class SignUpViewController: UIViewController, sendBackDelegate {
     
+    @IBOutlet var titleLabel: UILabel!
     @IBOutlet var dateField: UITextField!
     @IBOutlet var genderChoice: UISegmentedControl!
     @IBOutlet var imgButton: UIButton!
     @IBOutlet weak var nameLabel: UITextField!
-    
-    
-    let initAnimals: [Animal] = [
-        Animal(nameInit: "bird", image: #imageLiteral(resourceName: "bird")),
-        Animal(nameInit: "monkey2", image: #imageLiteral(resourceName: "monkey2")),
-        Animal(nameInit: "panda", image: #imageLiteral(resourceName: "panda")),
-    ]
+    @IBOutlet var nextButton: UIButton!
+    var selectNum = 0
+    var serverAnimals: [Animal] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // UINavigationBar.appearance().barTintColor = UIColor(red: 174, green: 192, blue: 245, alpha: 1)
+        loadAnimal()
+        textLocalize()
         
         // Make imgButton Circle
-        imgButton.layer.borderWidth = 1
-        //imgButton.layer.masksToBounds = false
-        imgButton.layer.borderColor = UIColor.gray.cgColor
-        imgButton.layer.cornerRadius = imgButton.frame.height/2
-        imgButton.clipsToBounds = true
-        
+//        imgButton.layer.borderWidth = 1
+//        imgButton.layer.masksToBounds = false
+//        imgButton.layer.borderColor = UIColor.gray.cgColor
+//        imgButton.layer.cornerRadius = imgButton.frame.height/2
+//        imgButton.clipsToBounds = true
         self.dateField.setInputViewDatePicker(target: self, selector: #selector(tapDone))
     }
     
@@ -44,11 +42,11 @@ class SignUpViewController: UIViewController, sendBackDelegate {
                 return
             }
             secondVC.delegate = self
+            secondVC.serverAnimals = self.serverAnimals
         }
     }
-    
     func dataReceived(data: Int) {
-        imgButton.setImage(initAnimals[data].img, for: . normal)
+        imgButton.setBackgroundImage(serverAnimals[data].img, for: . normal)
     }
     
     @IBAction func nextPageButton(_ sender: UIButton) {
@@ -74,11 +72,8 @@ class SignUpViewController: UIViewController, sendBackDelegate {
         } else {
             ad?.gender = "male"
         }
-//        print(ad!.name)
-//        print(ad!.birthday)
-//        print(ad!.gender)
-//        print(ad!.age)
         
+        ad?.favAnimal = serverAnimals[selectNum].url
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
@@ -102,9 +97,46 @@ class SignUpViewController: UIViewController, sendBackDelegate {
         LoginManager.init().logOut()
         self.navigationController?.popToRootViewController(animated: true)
     }
-
+    
+    func textLocalize() {
+        titleLabel.text = "Please enter your information.".localized
+        nameLabel.placeholder = "Please enter your name".localized
+        nextButton.setTitle("Next".localized, for: .normal)
+        genderChoice.setTitle("Femail".localized, forSegmentAt: 0)
+        genderChoice.setTitle("Mail".localized, forSegmentAt: 1)
+    }
+    
+    func loadAnimal() {
+            get(url: "/animals/basic", token: "", completionHandler: { [self]data, response, error in
+                guard let data = data, error == nil else {
+                    print("error=\(String(describing: error))")
+                    return
+                }
+                if let httpStatus = response as? HTTPURLResponse {
+                    if httpStatus.statusCode == 200 {
+                            for idx in 0..<JSON(data).count {
+                                let json = JSON(data)[idx]
+                                let name = json["localized"].stringValue
+                                let strURL = json["img_url"].stringValue
+                                guard let imageURL = URL(string: strURL) else {return}
+                                guard let imageData = try? Data(contentsOf: imageURL) else {return}
+                                guard let img = UIImage(data: imageData) else {return}
+                                serverAnimals.append(Animal(nameInit: name, image: img, imageUrl: strURL))
+                            }
+                        // 화면 load
+                        DispatchQueue.main.async {
+                            imgButton.setBackgroundImage(serverAnimals[0].img, for: .normal)
+                            // imgButton.setImage(serverAnimals[0].img, for: .normal)
+                        }
+                    } else if httpStatus.statusCode == 400 {
+                        print("error: \(httpStatus.statusCode)")
+                    } else {
+                        print("error: \(httpStatus.statusCode)")
+                    }
+                }
+            })
+    }
 }
-
 // MARK: - 데이트피커 텍스트필드안에 넣기
 extension UITextField {
     func setInputViewDatePicker(target: Any, selector: Selector) {

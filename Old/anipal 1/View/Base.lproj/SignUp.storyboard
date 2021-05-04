@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -36,7 +36,7 @@
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.97254901959999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="languageCell" id="fdA-ga-m4C" customClass="LanguageTableViewCell" customModule="anipal_1" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fdA-ga-m4C" id="bY4-5d-xu0">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -119,6 +119,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="languageTableView" destination="ccY-KS-yx9" id="x9g-J3-Tjr"/>
+                        <outlet property="nextButton" destination="nWC-eN-SOO" id="QxV-IC-5jR"/>
                         <outlet property="titleLabel" destination="5Uc-G3-GTH" id="oD9-Ye-d2T"/>
                         <segue destination="eJW-sb-z4E" kind="show" id="HIs-O4-70f"/>
                     </connections>
@@ -198,7 +199,7 @@
                                 <color key="sectionIndexBackgroundColor" red="0.94901960784313721" green="0.97254901960784312" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="levelSelectCell" rowHeight="80" id="ako-I9-SrJ" customClass="LevelSelectTableViewCell" customModule="anipal_1" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="80"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ako-I9-SrJ" id="NPz-b9-tPn">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
@@ -259,17 +260,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나의 정보를 입력해주세요." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnO-ti-esQ">
-                                <rect key="frame" x="109.5" y="118" width="195" height="25"/>
+                                <rect key="frame" x="114.5" y="118" width="185.5" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="8hg-xx-mkX"/>
-                                    <constraint firstAttribute="width" constant="195" id="tYp-58-JyZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" dd/mm/yyyy" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PdH-5B-bZw">
-                                <rect key="frame" x="50" y="433" width="314" height="50"/>
+                                <rect key="frame" x="50" y="453.5" width="314" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Vcv-4x-Wa4"/>
                                 </constraints>
@@ -277,7 +277,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" 이름을 입력하세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Pj-OV-fCq">
-                                <rect key="frame" x="50" y="363" width="314" height="50"/>
+                                <rect key="frame" x="50" y="383.5" width="314" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="6wv-gv-iBc"/>
                                 </constraints>
@@ -285,7 +285,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fV9-xN-EKr">
-                                <rect key="frame" x="50" y="503" width="314" height="51"/>
+                                <rect key="frame" x="50" y="523.5" width="314" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="jTq-c2-rk7"/>
                                 </constraints>
@@ -309,12 +309,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s6B-Lp-Eaz">
-                                <rect key="frame" x="117" y="163" width="180" height="180"/>
+                                <rect key="frame" x="132" y="163" width="150" height="200.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="180" id="7hF-8y-w0R"/>
-                                    <constraint firstAttribute="height" constant="180" id="bMz-rW-aCV"/>
+                                    <constraint firstAttribute="width" constant="150" id="jhe-M6-AY1"/>
+                                    <constraint firstAttribute="width" secondItem="s6B-Lp-Eaz" secondAttribute="height" multiplier="348:465" id="umG-rf-yoO"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="panda"/>
+                                <state key="normal" backgroundImage="ourPengiun"/>
                                 <connections>
                                     <segue destination="Qxx-py-yka" kind="presentation" identifier="selectAnimal" id="9xY-v6-Gu2"/>
                                 </connections>
@@ -355,12 +355,14 @@
                         <outlet property="genderChoice" destination="fV9-xN-EKr" id="GSP-q1-oeI"/>
                         <outlet property="imgButton" destination="s6B-Lp-Eaz" id="1IA-sb-n0x"/>
                         <outlet property="nameLabel" destination="9Pj-OV-fCq" id="Fdb-te-gHb"/>
+                        <outlet property="nextButton" destination="rFG-CX-gTF" id="mMP-kI-WYH"/>
+                        <outlet property="titleLabel" destination="cnO-ti-esQ" id="GEO-XA-CGP"/>
                         <segue destination="kFj-hX-XJl" kind="show" id="cBf-OE-kZ9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DDg-mh-l7U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1277" y="-700"/>
+            <point key="canvasLocation" x="1276.8115942028987" y="-700.44642857142856"/>
         </scene>
         <!--Concept View Controller-->
         <scene sceneID="MCE-sY-A37">
@@ -386,7 +388,7 @@
                                 <color key="sectionIndexBackgroundColor" red="0.94901960780000005" green="0.97254901959999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="conceptSelectCell" rowHeight="80" id="nnB-KM-fxu" customClass="ConceptTableViewCell" customModule="anipal_1" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="80"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nnB-KM-fxu" id="J18-xk-RsJ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
@@ -527,7 +529,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="panda" width="300" height="300"/>
+        <image name="ourPengiun" width="116" height="155"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
