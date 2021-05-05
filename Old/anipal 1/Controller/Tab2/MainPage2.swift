@@ -31,8 +31,8 @@ class MainPage2: UIViewController {
             return
         }
         
-        nextVC.contentVar = newLetters[0].content
-        nextVC.nameFromVar = newLetters[0].name
+//        nextVC.contentVar = newLetters[0].content
+//        nextVC.nameFromVar = newLetters[0].name
         
         // nextVC.modalTransitionStyle = .coverVertical
         // nextVC.modalPresentationStyle = .formSheet
@@ -48,8 +48,8 @@ class MainPage2: UIViewController {
             return
         }
         
-        nextVC.contentVar = newLetters[1].content
-        nextVC.nameFromVar = newLetters[1].name
+//        nextVC.contentVar = newLetters[1].content
+//        nextVC.nameFromVar = newLetters[1].name
         
         nextVC.modalTransitionStyle = .coverVertical
         nextVC.modalPresentationStyle = .formSheet
@@ -63,8 +63,8 @@ class MainPage2: UIViewController {
             return
         }
         
-        nextVC.contentVar = newLetters[2].content
-        nextVC.nameFromVar = newLetters[2].name
+//        nextVC.contentVar = newLetters[2].content
+//        nextVC.nameFromVar = newLetters[2].name
         nextVC.modalTransitionStyle = .coverVertical
         nextVC.modalPresentationStyle = .formSheet
         self.present(nextVC, animated: true)

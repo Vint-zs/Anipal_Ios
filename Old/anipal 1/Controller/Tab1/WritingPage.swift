@@ -52,9 +52,7 @@ class WritingPage: UIViewController, sendBackDelegate {
     }
         
     func dataReceived(data: Int) {
-        print(data)
         animalBtn.setImage(initAnimals[data].img, for: .normal)
-        
     }
     
     @IBAction func clickAnimalBtn(_ sender: UIButton) {

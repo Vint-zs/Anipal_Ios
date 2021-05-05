@@ -19,7 +19,7 @@ class LetterListViewController: UICollectionViewController {
     // TODO: 임시 데이터
     var unOpenedMail = UIImage(named: "letterBox1.png")
     var openedMail = UIImage(named: "letterBox2.png")
-    var arvlAmlImg = UIImage(named: "penguin.png")
+    var arvlAmlImg = UIImage(named: "ourTuttle.png")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +58,9 @@ class LetterListViewController: UICollectionViewController {
                                     "pants_url": json["thumbnail_animal"]["pants_url"].stringValue,
                                     "shoes_url": json["thumbnail_animal"]["shoes_url"].stringValue,
                                     "gloves_url": json["thumbnail_animal"]["gloves_url"].stringValue]
-                                let mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, thumbnail: thumbnail, arrivalDate: json["arrive_date"].stringValue, letterCount: json["letters_count"].intValue)
+                                var date = json["arrive_date"].stringValue
+                                date = dateConvert(date: date)
+                                let mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, thumbnail: thumbnail, arrivalDate: date, letterCount: json["letters_count"].intValue)
                                 mailboxes.append(mailBox)
                             }
                         }
@@ -109,6 +111,20 @@ class LetterListViewController: UICollectionViewController {
         alertcontroller.addAction(cancelBtn)
         present(alertcontroller, animated: true, completion: nil)
     }
+    
+    // MARK: - 날짜 형식 변환
+    func dateConvert(date: String) -> String {
+        let stringFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let formatter = DateFormatter()
+        formatter.dateFormat = stringFormat
+        // formatter.locale = Locale(identifier: "ko") 추후 국가별 문구 설정시 사용하기위해 주석처리
+        guard let tempDate = formatter.date(from: date) else {
+            return ""
+        }
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: tempDate)
+
+    }
 }
 
 extension LetterListViewController {
@@ -136,7 +152,8 @@ extension LetterListViewController {
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WriteNewLetter", for: indexPath) as? WriteNewLetter else { fatalError("Can't dequeue WriteNewLetter")}
-            cell.writeLabel.text = "write"
+            cell.writeLabel.text = "+ New".localized
+            cell.writeLabel.sizeToFit()
             
             return cell
         }

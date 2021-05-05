@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "bird.jpeg",
+      "filename" : "까꿍.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "까꿍@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "까꿍@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

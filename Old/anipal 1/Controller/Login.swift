@@ -21,6 +21,7 @@ class Login: UIViewController {
         super.viewDidLoad()
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.restorePreviousSignIn() // 구글 로그인여부 확인
+
         facebookAutoLogin()
         settingViewLayout()
     }

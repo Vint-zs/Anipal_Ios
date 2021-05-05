@@ -5,6 +5,14 @@
   Created by 이예주 on 2021/04/01.
   
 */
+
+// 로그인
+"Sign In with Facebook" = "Sign In with Facebook";
+
+"Sign In with Google" = "Sign In with Google";
+
+"Sign In with Apple" = "Sign In with Apple";
+
 // 회원가입 탭
 "Already Registered" = "Already Registered";
 
@@ -77,11 +85,9 @@
 "ko" = "Korean";
 "en" = "English";
 
-
-
-
-
 // 편지 리스트 탭
+"+ New" = "+ New";
+
 "Penpal" = "Penpal";
 
 "Letter" = "Letter";
@@ -145,7 +151,6 @@
 "Architecture" = "🏛Architecture";
 
 "Economy" = "💰Economy";
-
 
 // 언어레벨
 "Choose your language level" = "Choose your language level";
