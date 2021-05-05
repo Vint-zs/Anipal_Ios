@@ -8,8 +8,7 @@
 import UIKit
 import SwiftyJSON
 
-class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
-
+class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reloadDelegate {
     @IBOutlet weak var scrollViewContent: UIScrollView!
     @IBOutlet weak var menuBtn: UIBarButtonItem!
     @IBOutlet weak var senderName: UILabel!
@@ -40,13 +39,14 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("viewwillappear")
         // 편지 로딩
         getLetters()
     }
     
-//    func replyButtonDelegate(data: Bool) {
-//        replyBtn.isHidden = true
-//    }
+    func reloadDelegate() {
+        getLetters()
+    }
     
     @IBAction func writeBtn(_ sender: UIButton) {
         guard let replyVC = self.storyboard?.instantiateViewController(identifier: "ReplyPage") as? ReplyPage else { return }
@@ -54,6 +54,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
         replyVC.modalTransitionStyle = .coverVertical
         replyVC.modalPresentationStyle = .pageSheet
         
+        replyVC.delegate = self
         replyVC.receiverID = letters[letterCtrl.currentPage].senderID
         replyVC.postURL = "/letters"
         
