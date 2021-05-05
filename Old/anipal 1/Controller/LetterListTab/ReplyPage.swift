@@ -8,20 +8,20 @@
 import UIKit
 import SwiftyJSON
 
-protocol replyHiddenDelegate {
-    func replyButtonDelegate(data: Bool)
-}
+//protocol replyHiddenDelegate {
+//    func replyButtonDelegate(data: Bool)
+//}
 
 class ReplyPage: UIViewController, sendBackDelegate {
     
-//    let postAnimal = ["animal_url": "1", "head_url": "2", "top_url": "3", "pants_url": "4", "shoes_url": "5", "gloves_url": "6"]
-    let comingAnimal = ["animal_url": "1", "color": "2"]
+////    let postAnimal = ["animal_url": "1", "head_url": "2", "top_url": "3", "pants_url": "4", "shoes_url": "5", "gloves_url": "6"]
+//    let comingAnimal = ["animal_url": "1", "color": "2"]
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var animalBtn: UIButton!
     // @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var sendBtn: UIButton!
-    var delegate: replyHiddenDelegate?
+    @IBOutlet weak var closeBtn: UIButton!
 
     var receiverID: String?
     var postURL: String?
@@ -47,6 +47,13 @@ class ReplyPage: UIViewController, sendBackDelegate {
 //        setBtnUI(btn: saveBtn)
         sendBtn.setTitle("Send".localized, for: .normal)
         setBtnUI(btn: sendBtn)
+        
+        // 닫기 버튼
+        if self.modalPresentationStyle == .fullScreen {
+            closeBtn.isHidden = false
+        } else {
+            closeBtn.isHidden = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,14 +66,9 @@ class ReplyPage: UIViewController, sendBackDelegate {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "selectAnimalVC" {
-//            guard let selectAnimalVC = segue.destination as? SelectAnimal else {
-//                return
-//            }
-//
-//        }
-//    }
+    @IBAction func closeModal(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     func dataReceived(data: Int) {
         selectedAnimal = data
@@ -164,14 +166,17 @@ class ReplyPage: UIViewController, sendBackDelegate {
     
     @IBAction func sendDataBtn(_ sender: UIButton) {
         if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
-            print("token: \(session.value)")
             let body: NSMutableDictionary = NSMutableDictionary()
             body.setValue(textView.text, forKey: "content")
-            body.setValue(receiverID, forKey: "receiver")
             body.setValue(animals[selectedAnimal].animalID, forKey: "own_animal_id")
 //            body.setValue(animals[selectedAnimal].animalURLs, forKey: "post_animal")
 //            body.setValue(animals[selectedAnimal].comingAnimal, forKey: "coming_animal")
 //            body.setValue("0h 0m 15s", forKey: "delay_time")
+            
+            if (postURL == "/letters") {
+                body.setValue(receiverID, forKey: "receiver")
+            }
+            print("postURL: \(postURL)")
             
             try? post(url: postURL!, token: session.value, body: body, completionHandler: { data, response, error in
                 guard let data = data, error == nil else {
@@ -182,7 +187,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
             })
         }
         
-        delegate?.replyButtonDelegate(data: false)
+//        delegate?.replyButtonDelegate(data: false)
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

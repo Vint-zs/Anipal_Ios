@@ -8,7 +8,7 @@
 import UIKit
 import SwiftyJSON
 
-class LetterDetailViewController: UIViewController, UIScrollViewDelegate, replyHiddenDelegate {
+class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var scrollViewContent: UIScrollView!
     @IBOutlet weak var menuBtn: UIBarButtonItem!
@@ -42,9 +42,9 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, replyH
         getLetters()
     }
     
-    func replyButtonDelegate(data: Bool) {
-        replyBtn.isHidden = true
-    }
+//    func replyButtonDelegate(data: Bool) {
+//        replyBtn.isHidden = true
+//    }
     
     @IBAction func writeBtn(_ sender: UIButton) {
         guard let replyVC = self.storyboard?.instantiateViewController(identifier: "ReplyPage") as? ReplyPage else { return }
@@ -55,7 +55,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, replyH
         replyVC.receiverID = letters[letterCtrl.currentPage].senderID
         replyVC.postURL = "/letters"
         
-        replyVC.delegate = self
+        //replyVC.delegate = self
         self.present(replyVC, animated: true, completion: nil)
     }
 

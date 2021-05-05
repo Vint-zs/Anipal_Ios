@@ -167,10 +167,10 @@ extension LetterListViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.item == 0 {
-            guard let writingVC = self.storyboard?.instantiateViewController(identifier: "WritingPage") as? WritingPage else { return }
+            guard let writingVC = self.storyboard?.instantiateViewController(identifier: "ReplyPage") as? ReplyPage else { return }
             
             writingVC.modalTransitionStyle = .coverVertical
-            writingVC.modalPresentationStyle = .pageSheet
+            writingVC.modalPresentationStyle = .fullScreen
             
             self.present(writingVC, animated: true, completion: nil)
         } else {

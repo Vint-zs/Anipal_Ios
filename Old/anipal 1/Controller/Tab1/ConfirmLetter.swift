@@ -14,7 +14,6 @@ protocol modalDelegate: class {
 }
 
 class ConfirmLetter: UIViewController {
-
     var delegate: modalDelegate?
     var randomId: String! = ""
     
@@ -40,6 +39,10 @@ class ConfirmLetter: UIViewController {
 
     }
     
+//    func replyButtonDelegate(data: Bool) {
+//        <#code#>
+//    }
+    
     // MARK: - 닫기버튼 클릭시
     @IBAction func clickCancel(_ sender: UIButton) {
         self.presentingViewController?.dismiss(animated: true, completion: {
@@ -47,9 +50,18 @@ class ConfirmLetter: UIViewController {
     }
     // MARK: - 답장버튼 클릭시
     @IBAction func clickReply(_ sender: UIButton) {
-        self.dismiss(animated: true) {
-            self.delegate?.pushNavigation()
-        }
+        //self.dismiss(animated: true)
+        
+        let sub = UIStoryboard(name: "LetterListTab", bundle: nil)
+        guard let replyVC = sub.instantiateViewController(identifier: "ReplyPage") as? ReplyPage else { return }
+        
+        //replyVC.modalTransitionStyle = .coverVertical
+        replyVC.modalPresentationStyle = .fullScreen
+        
+        replyVC.receiverID = self.randomId
+        replyVC.postURL = "/letters/random/" + self.randomId
+        
+        self.present(replyVC, animated: true, completion: nil)
     }
     // MARK: - 삭제버튼 클릭시
     @IBAction func clickDelete(_ sender: UIButton) {
