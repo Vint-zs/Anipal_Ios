@@ -105,6 +105,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
                             let animal = AnimalPost(animal: json["animal"]["localized"].stringValue, animalURLs: animalURLs, isUsed: json["is_used"].boolValue, delayTime: json["delay_time"].stringValue, comingAnimal: comingAnimal, animalImg: loadAnimals(urls: animalURLs))
                             animals.append(animal)
                             serverAnimals.append(Animal(nameInit: json["animal"]["localized"].stringValue, image: loadAnimals(urls: animalURLs)))
+                            print("animal: \(animal)")
                         }
                         
                         // 화면 reload
@@ -164,11 +165,10 @@ class ReplyPage: UIViewController, sendBackDelegate {
     
     @IBAction func sendDataBtn(_ sender: UIButton) {
         if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
-            print("token ok")
+            print("token: \(session.value)")
             let body: NSMutableDictionary = NSMutableDictionary()
             body.setValue(textView.text, forKey: "content")
             body.setValue(receiverID, forKey: "receiver")
-            // TODO: 동물 선택 안 했을 시 - 예외 처리하기
             body.setValue(animals[selectedAnimal].animalURLs, forKey: "post_animal")
             body.setValue(animals[selectedAnimal].comingAnimal, forKey: "coming_animal")
             body.setValue("0h 0m 5s", forKey: "delay_time")
@@ -181,7 +181,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
                     print("error=\(String(describing: error))")
                     return
                 }
-                print("post ok")
+                print(String(data: data, encoding: .utf8)!)
             })
         }
         
