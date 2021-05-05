@@ -62,7 +62,7 @@ class LetterListViewController: UICollectionViewController {
                                     "gloves_url": json["thumbnail_animal"]["gloves_url"].stringValue]
                                 var date = json["arrive_date"].stringValue
                                 date = dateConvert(date: date)
-                                let mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, thumbnail: loadAnimals(urls: thumbnail), arrivalDate: date, letterCount: json["letters_count"].intValue)
+                                let mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, thumbnail: thumbnail, arrivalDate: date, letterCount: json["letters_count"].intValue)
                                 mailboxes.append(mailBox)
                             }
                         }
@@ -86,7 +86,13 @@ class LetterListViewController: UICollectionViewController {
         let order = urls.sorted(by: <)
         images = []
         for (_, url) in order {
-            setImage(from: url)
+            if let imageURL = URL(string: url) {
+                if let imageData = try? Data(contentsOf: imageURL) {
+                    if let image = UIImage(data: imageData) {
+                        self.images.append(image)
+                    }
+                }
+            }
         }
         return compositeImage(images: images)
     }
@@ -104,13 +110,6 @@ class LetterListViewController: UICollectionViewController {
             UIGraphicsEndImageContext()
         }
         return compositeImage
-    }
-    
-    func setImage(from url: String) {
-        guard let imageURL = URL(string: url) else { return }
-        guard let imageData = try? Data(contentsOf: imageURL) else { return }
-        let image = UIImage(data: imageData)
-        self.images.append(image!)
     }
     
     // MARK: - 콜렉션 뷰 셀 등록
@@ -171,7 +170,11 @@ extension LetterListViewController {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LetterListCell", for: indexPath) as? LetterListCell else {
                 fatalError("Can't dequeue LetterListCell")
             }
-            cell.arrivalAnimal.image = mailboxes[indexPath.row - 1].thumbnail
+            
+            // 썸네일 값이 비어있지 않은 경우 썸네일 합성 후 표시
+            if mailboxes[indexPath.row - 1].thumbnail["animal_url"] != "" {
+                cell.arrivalAnimal.image = loadAnimals(urls: mailboxes[indexPath.row - 1].thumbnail)
+            }
             
             if mailboxes[indexPath.row - 1].isOpened {
                 cell.mailbox.image = openedMail

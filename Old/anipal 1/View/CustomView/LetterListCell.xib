@@ -22,7 +22,7 @@
                             <constraint firstAttribute="width" secondItem="bBZ-ek-P8S" secondAttribute="height" multiplier="11:18" id="cf1-ox-hu0"/>
                         </constraints>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="letterBox2" translatesAutoresizingMaskIntoConstraints="NO" id="A0w-HD-9dJ">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A0w-HD-9dJ">
                         <rect key="frame" x="0.0" y="0.0" width="132" height="216"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -41,7 +41,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ourPengiun" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K5C-HU-6rj">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K5C-HU-6rj">
                         <rect key="frame" x="46" y="87" width="86" height="129"/>
                     </imageView>
                 </subviews>
@@ -76,8 +76,4 @@
             <point key="canvasLocation" x="111.59420289855073" y="-7.3660714285714279"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="letterBox2" width="131.5" height="216"/>
-        <image name="ourPengiun" width="116" height="155"/>
-    </resources>
 </document>
