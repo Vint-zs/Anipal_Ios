@@ -122,6 +122,12 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
                         for idx in 0..<JSON(data).count {
                             let json = JSON(data)[idx]
                             let senderID = json["sender"]["user_id"].stringValue
+                            
+                            // 보낸 편지 제외
+                            if senderID == ad?.id {
+                                continue
+                            }
+                            
                             let favorites = json["sender"]["favorites"].arrayValue.map { $0.stringValue }
                             let animal = [json["post_animal"]["animal_url"].stringValue, json["post_animal"]["head_url"].stringValue, json["post_animal"]["top_url"].stringValue, json["post_animal"]["pants_url"].stringValue, json["post_animal"]["gloves_url"].stringValue, json["post_animal"]["shoes_url"].stringValue]
                             let letter = Letter(
