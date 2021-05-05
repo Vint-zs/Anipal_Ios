@@ -26,13 +26,11 @@ class LetterListViewController: UICollectionViewController {
         
         initCollectionView()
         setupFlowLayout()
-        
-        getMailBoxes()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        getMailBoxes()
+    }
     
     private func getMailBoxes() {
         // Authorization 쿠키 확인 & 데이터 로딩
