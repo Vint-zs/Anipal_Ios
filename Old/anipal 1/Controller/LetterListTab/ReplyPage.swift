@@ -74,7 +74,6 @@ class ReplyPage: UIViewController, sendBackDelegate {
         selectedAnimal = data
         animalBtn.setImage(animals[data].animalImg, for: .normal)
         animalBtn.imageView?.contentMode = .scaleAspectFit
-        print("selected: \(animals[selectedAnimal])")
     }
     
     func loadAnimal() {
@@ -102,8 +101,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
                                 "bar": json["coming_animal"]["bar"].stringValue,
                                 "background": json["coming_animal"]["background"].stringValue
                             ]
-                            
-                            let animal = AnimalPost(animalID: json["_id"].stringValue, animal: json["animal"]["localized"].stringValue, animalURLs: animalURLs, isUsed: json["is_used"].boolValue, delayTime: json["delay_time"].stringValue, comingAnimal: comingAnimal, animalImg: loadAnimals(urls: animalURLs))
+                            let animal = AnimalPost(animal: json["animal"]["localized"].stringValue, animalURLs: animalURLs, isUsed: json["is_used"].boolValue, delayTime: json["delay_time"].stringValue, comingAnimal: comingAnimal, animalImg: loadAnimals(urls: animalURLs), ownAnimalId: json["_id"].stringValue)
                             animals.append(animal)
                             serverAnimals.append(Animal(nameInit: json["animal"]["localized"].stringValue, image: loadAnimals(urls: animalURLs)))
                         }
@@ -168,15 +166,11 @@ class ReplyPage: UIViewController, sendBackDelegate {
         if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
             let body: NSMutableDictionary = NSMutableDictionary()
             body.setValue(textView.text, forKey: "content")
-            body.setValue(animals[selectedAnimal].animalID, forKey: "own_animal_id")
-//            body.setValue(animals[selectedAnimal].animalURLs, forKey: "post_animal")
-//            body.setValue(animals[selectedAnimal].comingAnimal, forKey: "coming_animal")
-//            body.setValue("0h 0m 15s", forKey: "delay_time")
+            body.setValue(animals[selectedAnimal].ownAnimalId, forKey: "own_animal_id")
             
             if (postURL == "/letters") {
                 body.setValue(receiverID, forKey: "receiver")
             }
-            print("postURL: \(postURL)")
             
             try? post(url: postURL!, token: session.value, body: body, completionHandler: { data, response, error in
                 guard let data = data, error == nil else {
@@ -241,4 +235,3 @@ extension ReplyPage: UITextViewDelegate {
         }
     }
 }
-
