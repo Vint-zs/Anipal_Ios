@@ -8,6 +8,7 @@
 import UIKit
 
 struct AnimalPost {
+    let animalID: String
     let animal: String
     let animalURLs: [String: String]
     let isUsed: Bool
@@ -15,7 +16,8 @@ struct AnimalPost {
     let comingAnimal: [String: String]
     let animalImg: UIImage
     
-    init(animal: String, animalURLs: [String: String], isUsed: Bool, delayTime: String, comingAnimal: [String: String], animalImg: UIImage) {
+    init(animalID: String,animal: String, animalURLs: [String: String], isUsed: Bool, delayTime: String, comingAnimal: [String: String], animalImg: UIImage) {
+        self.animalID = animalID
         self.animal = animal
         self.animalURLs = animalURLs
         self.isUsed = isUsed

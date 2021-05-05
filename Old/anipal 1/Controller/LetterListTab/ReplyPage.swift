@@ -24,6 +24,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
     var delegate: replyHiddenDelegate?
 
     var receiverID: String?
+    var postURL: String?
     var selectedAnimal: Int = 0
     
     var animals: [AnimalPost] = []  // 서버 POST용
@@ -46,14 +47,12 @@ class ReplyPage: UIViewController, sendBackDelegate {
 //        setBtnUI(btn: saveBtn)
         sendBtn.setTitle("Send".localized, for: .normal)
         setBtnUI(btn: sendBtn)
-        
-        // 동물 목록 get
-        loadAnimal()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
-
+        // 
+        loadAnimal()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -102,7 +101,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
                                 "background": json["coming_animal"]["background"].stringValue
                             ]
                             
-                            let animal = AnimalPost(animal: json["animal"]["localized"].stringValue, animalURLs: animalURLs, isUsed: json["is_used"].boolValue, delayTime: json["delay_time"].stringValue, comingAnimal: comingAnimal, animalImg: loadAnimals(urls: animalURLs))
+                            let animal = AnimalPost(animalID: json["_id"].stringValue, animal: json["animal"]["localized"].stringValue, animalURLs: animalURLs, isUsed: json["is_used"].boolValue, delayTime: json["delay_time"].stringValue, comingAnimal: comingAnimal, animalImg: loadAnimals(urls: animalURLs))
                             animals.append(animal)
                             serverAnimals.append(Animal(nameInit: json["animal"]["localized"].stringValue, image: loadAnimals(urls: animalURLs)))
                             print("animal: \(animal)")
@@ -169,14 +168,12 @@ class ReplyPage: UIViewController, sendBackDelegate {
             let body: NSMutableDictionary = NSMutableDictionary()
             body.setValue(textView.text, forKey: "content")
             body.setValue(receiverID, forKey: "receiver")
-            body.setValue(animals[selectedAnimal].animalURLs, forKey: "post_animal")
-            body.setValue(animals[selectedAnimal].comingAnimal, forKey: "coming_animal")
-            body.setValue("0h 0m 5s", forKey: "delay_time")
+            body.setValue(animals[selectedAnimal].animalID, forKey: "own_animal_id")
+//            body.setValue(animals[selectedAnimal].animalURLs, forKey: "post_animal")
+//            body.setValue(animals[selectedAnimal].comingAnimal, forKey: "coming_animal")
+//            body.setValue("0h 0m 15s", forKey: "delay_time")
             
-            print(animals[selectedAnimal].animalURLs)
-            print(animals[selectedAnimal].comingAnimal)
-            
-            try? post(url: "/letters", token: session.value, body: body, completionHandler: { data, response, error in
+            try? post(url: postURL!, token: session.value, body: body, completionHandler: { data, response, error in
                 guard let data = data, error == nil else {
                     print("error=\(String(describing: error))")
                     return

@@ -53,6 +53,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, replyH
         replyVC.modalPresentationStyle = .pageSheet
         
         replyVC.receiverID = letters[letterCtrl.currentPage].senderID
+        replyVC.postURL = "/letters"
         
         replyVC.delegate = self
         self.present(replyVC, animated: true, completion: nil)
@@ -109,6 +110,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, replyH
         // Authorization 쿠키 확인 & 데이터 로딩
         if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
             let url = "/mailboxes/show/" + mailBoxID!
+            print("mailBoxID: \(mailBoxID)")
             get(url: url, token: session.value, completionHandler: { [self] data, response, error in
                 guard let data = data, error == nil else {
                     print("error=\(String(describing: error))")
