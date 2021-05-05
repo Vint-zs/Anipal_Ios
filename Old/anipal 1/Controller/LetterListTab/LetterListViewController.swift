@@ -15,18 +15,14 @@ class LetterListViewController: UICollectionViewController {
     
     var mailboxes: [MailBox] = []
     let dateFormatter = DateFormatter()
+    var images: [UIImage] = []
     
-    // TODO: 임시 데이터
     var unOpenedMail = UIImage(named: "letterBox1.png")
     var openedMail = UIImage(named: "letterBox2.png")
-    var arvlAmlImg = UIImage(named: "ourTuttle.png")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Penpal".localized
-        
-        // TODO: Date
-        // dateFormatter.dateFormat = "YYYY-MM-dd"
         
         initCollectionView()
         setupFlowLayout()
@@ -66,7 +62,7 @@ class LetterListViewController: UICollectionViewController {
                                     "gloves_url": json["thumbnail_animal"]["gloves_url"].stringValue]
                                 var date = json["arrive_date"].stringValue
                                 date = dateConvert(date: date)
-                                let mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, thumbnail: thumbnail, arrivalDate: date, letterCount: json["letters_count"].intValue)
+                                let mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, thumbnail: loadAnimals(urls: thumbnail), arrivalDate: date, letterCount: json["letters_count"].intValue)
                                 mailboxes.append(mailBox)
                             }
                         }
@@ -85,7 +81,39 @@ class LetterListViewController: UICollectionViewController {
         }
     }
     
-    // 콜렉션 뷰 셀 등록
+    // MARK: - 이미지 합성
+    func loadAnimals(urls: [String: String]) -> UIImage {
+        let order = urls.sorted(by: <)
+        images = []
+        for (_, url) in order {
+            setImage(from: url)
+        }
+        return compositeImage(images: images)
+    }
+    
+    func compositeImage(images: [UIImage]) -> UIImage {
+        var compositeImage: UIImage!
+        if images.count > 0 {
+            let size: CGSize = CGSize(width: images[0].size.width, height: images[0].size.height)
+            UIGraphicsBeginImageContext(size)
+            for image in images {
+                let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+                image.draw(in: rect)
+            }
+            compositeImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+        }
+        return compositeImage
+    }
+    
+    func setImage(from url: String) {
+        guard let imageURL = URL(string: url) else { return }
+        guard let imageData = try? Data(contentsOf: imageURL) else { return }
+        let image = UIImage(data: imageData)
+        self.images.append(image!)
+    }
+    
+    // MARK: - 콜렉션 뷰 셀 등록
     private func initCollectionView() {
         let listNib = UINib(nibName: "LetterListCell", bundle: nil)
         let writeNib = UINib(nibName: "WriteNewLetter", bundle: nil)
@@ -143,7 +171,7 @@ extension LetterListViewController {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LetterListCell", for: indexPath) as? LetterListCell else {
                 fatalError("Can't dequeue LetterListCell")
             }
-            cell.arrivalAnimal.image = arvlAmlImg
+            cell.arrivalAnimal.image = mailboxes[indexPath.row - 1].thumbnail
             
             if mailboxes[indexPath.row - 1].isOpened {
                 cell.mailbox.image = openedMail
