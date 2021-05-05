@@ -50,12 +50,11 @@ class ConfirmLetter: UIViewController {
     }
     // MARK: - 답장버튼 클릭시
     @IBAction func clickReply(_ sender: UIButton) {
-        //self.dismiss(animated: true)
+        // self.dismiss(animated: true)
         
         let sub = UIStoryboard(name: "LetterListTab", bundle: nil)
         guard let replyVC = sub.instantiateViewController(identifier: "ReplyPage") as? ReplyPage else { return }
         
-        //replyVC.modalTransitionStyle = .coverVertical
         replyVC.modalPresentationStyle = .fullScreen
         
         replyVC.receiverID = self.randomId

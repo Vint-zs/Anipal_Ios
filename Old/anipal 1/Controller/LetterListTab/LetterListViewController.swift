@@ -196,9 +196,11 @@ extension LetterListViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.item == 0 {
             guard let writingVC = self.storyboard?.instantiateViewController(identifier: "ReplyPage") as? ReplyPage else { return }
-            
-            writingVC.modalTransitionStyle = .coverVertical
+
             writingVC.modalPresentationStyle = .fullScreen
+            
+            writingVC.receiverID = ad?.id
+            writingVC.postURL = "/letters/random"
             
             self.present(writingVC, animated: true, completion: nil)
         } else {
