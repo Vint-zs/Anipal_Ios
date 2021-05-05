@@ -37,7 +37,9 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
         replyBtn.layer.shadowOpacity = 1.0
         replyBtn.layer.shadowRadius = 3
         replyBtn.layer.masksToBounds = false
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         // 편지 로딩
         getLetters()
     }

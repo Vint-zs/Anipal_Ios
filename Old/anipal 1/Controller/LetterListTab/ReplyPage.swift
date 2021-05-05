@@ -13,10 +13,6 @@ import SwiftyJSON
 //}
 
 class ReplyPage: UIViewController, sendBackDelegate {
-    
-////    let postAnimal = ["animal_url": "1", "head_url": "2", "top_url": "3", "pants_url": "4", "shoes_url": "5", "gloves_url": "6"]
-//    let comingAnimal = ["animal_url": "1", "color": "2"]
-    
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var animalBtn: UIButton!
     // @IBOutlet weak var saveBtn: UIButton!
