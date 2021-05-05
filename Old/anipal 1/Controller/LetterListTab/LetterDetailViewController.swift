@@ -121,9 +121,18 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
                     if httpStatus.statusCode == 200 {
                         for idx in 0..<JSON(data).count {
                             let json = JSON(data)[idx]
+                            let senderID = json["sender"]["user_id"].stringValue
                             let favorites = json["sender"]["favorites"].arrayValue.map { $0.stringValue }
                             let animal = [json["post_animal"]["animal_url"].stringValue, json["post_animal"]["head_url"].stringValue, json["post_animal"]["top_url"].stringValue, json["post_animal"]["pants_url"].stringValue, json["post_animal"]["gloves_url"].stringValue, json["post_animal"]["shoes_url"].stringValue]
-                            let letter = Letter(senderID: json["sender"]["user_id"].stringValue, name: json["sender"]["name"].stringValue, country: json["sender"]["country"].stringValue, favorites: favorites, animal: animal, receiverID: json["_id"].stringValue, content: json["content"].stringValue, arrivalDate: json["arrive_time"].stringValue, sendDate: json["send_time"].stringValue, animalImg: loadAnimals(urls: animal))
+                            let letter = Letter(
+                                senderID: senderID,
+                                name: json["sender"]["name"].stringValue,
+                                country: json["sender"]["country"].stringValue,
+                                favorites: favorites, animal: animal, receiverID: json["_id"].stringValue,
+                                content: json["content"].stringValue,
+                                arrivalDate: json["arrive_time"].stringValue,
+                                sendDate: json["send_time"].stringValue,
+                                animalImg: loadAnimals(urls: animal))
                             letters.append(letter)
                         }
                         

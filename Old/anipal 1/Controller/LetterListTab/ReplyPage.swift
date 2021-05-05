@@ -106,7 +106,6 @@ class ReplyPage: UIViewController, sendBackDelegate {
                             let animal = AnimalPost(animalID: json["_id"].stringValue, animal: json["animal"]["localized"].stringValue, animalURLs: animalURLs, isUsed: json["is_used"].boolValue, delayTime: json["delay_time"].stringValue, comingAnimal: comingAnimal, animalImg: loadAnimals(urls: animalURLs))
                             animals.append(animal)
                             serverAnimals.append(Animal(nameInit: json["animal"]["localized"].stringValue, image: loadAnimals(urls: animalURLs)))
-                            print("animal: \(animal)")
                         }
                         
                         // 화면 reload
@@ -125,8 +124,9 @@ class ReplyPage: UIViewController, sendBackDelegate {
     
     // MARK: - 이미지 합성
     func loadAnimals(urls: [String: String]) -> UIImage {
+        let order = urls.sorted(by: <)
         images = []
-        for (_, url) in urls {
+        for (_, url) in order {
             setImage(from: url)
         }
         return compositeImage(images: images)
