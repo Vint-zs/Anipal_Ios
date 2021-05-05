@@ -47,6 +47,7 @@ class SignUpViewController: UIViewController, sendBackDelegate {
     }
     func dataReceived(data: Int) {
         imgButton.setBackgroundImage(serverAnimals[data].img, for: . normal)
+        selectNum = data
     }
     
     @IBAction func nextPageButton(_ sender: UIButton) {
@@ -73,7 +74,7 @@ class SignUpViewController: UIViewController, sendBackDelegate {
             ad?.gender = "male"
         }
         
-        ad?.favAnimal = serverAnimals[selectNum].url
+        ad?.favAnimal = serverAnimals[selectNum].id
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
@@ -117,11 +118,12 @@ class SignUpViewController: UIViewController, sendBackDelegate {
                             for idx in 0..<JSON(data).count {
                                 let json = JSON(data)[idx]
                                 let name = json["localized"].stringValue
+                                let id = json["_id"].stringValue
                                 let strURL = json["img_url"].stringValue
                                 guard let imageURL = URL(string: strURL) else {return}
                                 guard let imageData = try? Data(contentsOf: imageURL) else {return}
                                 guard let img = UIImage(data: imageData) else {return}
-                                serverAnimals.append(Animal(nameInit: name, image: img, imageUrl: strURL))
+                                serverAnimals.append(Animal(nameInit: name, image: img, animalId: id))
                             }
                         // 화면 load
                         DispatchQueue.main.async {

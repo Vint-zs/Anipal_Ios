@@ -102,7 +102,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
                                 "background": json["coming_animal"]["background"].stringValue
                             ]
                             
-                            let animal = AnimalPost(animal: json["animal"]["localized"].stringValue, animalURLs: animalURLs, isUsed: json["is_used"].boolValue, delayTime: json["delay_time"].stringValue, comingAnimal: comingAnimal, animalImg: loadAnimals(urls: animalURLs))
+                            let animal = AnimalPost(animal: json["animal"]["localized"].stringValue, animalURLs: animalURLs, isUsed: json["is_used"].boolValue, delayTime: json["delay_time"].stringValue, comingAnimal: comingAnimal, animalImg: loadAnimals(urls: animalURLs), ownAnimalId: json["_id"].stringValue)
                             animals.append(animal)
                             serverAnimals.append(Animal(nameInit: json["animal"]["localized"].stringValue, image: loadAnimals(urls: animalURLs)))
                             print("animal: \(animal)")
@@ -169,9 +169,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
             let body: NSMutableDictionary = NSMutableDictionary()
             body.setValue(textView.text, forKey: "content")
             body.setValue(receiverID, forKey: "receiver")
-            body.setValue(animals[selectedAnimal].animalURLs, forKey: "post_animal")
-            body.setValue(animals[selectedAnimal].comingAnimal, forKey: "coming_animal")
-            body.setValue("0h 0m 5s", forKey: "delay_time")
+            body.setValue(animals[selectedAnimal].ownAnimalId, forKey: "own_animal_id")
             
             print(animals[selectedAnimal].animalURLs)
             print(animals[selectedAnimal].comingAnimal)
@@ -239,4 +237,3 @@ extension ReplyPage: UITextViewDelegate {
         }
     }
 }
-
