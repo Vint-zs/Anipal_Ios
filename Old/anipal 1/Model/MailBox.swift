@@ -11,11 +11,11 @@ struct MailBox {
     let mailBoxID: String
     let isOpened: Bool
     let partner: [String: Any]
-    let thumbnail: UIImage
+    let thumbnail: [String: String]
     let arrivalDate: String
     let letterCount: Int
     
-    init(mailBoxID: String, isOpened: Bool, partner: [String: Any], thumbnail: UIImage, arrivalDate: String, letterCount: Int) {
+    init(mailBoxID: String, isOpened: Bool, partner: [String: Any], thumbnail: [String: String], arrivalDate: String, letterCount: Int) {
         self.mailBoxID = mailBoxID
         self.isOpened = isOpened
         self.partner = partner

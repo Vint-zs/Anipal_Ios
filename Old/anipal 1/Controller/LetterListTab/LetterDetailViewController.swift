@@ -8,8 +8,7 @@
 import UIKit
 import SwiftyJSON
 
-class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
-
+class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reloadDelegate {
     @IBOutlet weak var scrollViewContent: UIScrollView!
     @IBOutlet weak var menuBtn: UIBarButtonItem!
     @IBOutlet weak var senderName: UILabel!
@@ -37,14 +36,17 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
         replyBtn.layer.shadowOpacity = 1.0
         replyBtn.layer.shadowRadius = 3
         replyBtn.layer.masksToBounds = false
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("viewwillappear")
         // 편지 로딩
         getLetters()
     }
     
-//    func replyButtonDelegate(data: Bool) {
-//        replyBtn.isHidden = true
-//    }
+    func reloadDelegate() {
+        getLetters()
+    }
     
     @IBAction func writeBtn(_ sender: UIButton) {
         guard let replyVC = self.storyboard?.instantiateViewController(identifier: "ReplyPage") as? ReplyPage else { return }
@@ -52,6 +54,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
         replyVC.modalTransitionStyle = .coverVertical
         replyVC.modalPresentationStyle = .pageSheet
         
+        replyVC.delegate = self
         replyVC.receiverID = letters[letterCtrl.currentPage].senderID
         replyVC.postURL = "/letters"
         
@@ -63,20 +66,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
         letterCtrl.numberOfPages = letters.count
         letterCtrl.currentPage = letterCtrl.numberOfPages - 1
         
-        // 보낸 사용자 정보
-        senderName.text = letters[letterCtrl.currentPage].name
-        senderName.sizeToFit()
-        senderCountry.text = letters[letterCtrl.currentPage].country
-        senderCountry.sizeToFit()
-        senderFav.text = letters[letterCtrl.currentPage].favorites.joined(separator: " ")
-        senderFav.sizeToFit()
-        senderAnimal.image = letters[letterCtrl.currentPage].animalImg
-        senderAnimal.contentMode = .scaleAspectFit
-        
-        senderAnimal.backgroundColor = .white
-        senderAnimal.layer.cornerRadius = senderAnimal.frame.height/2
-        senderAnimal.layer.borderWidth = 0.3
-        senderAnimal.layer.borderColor = UIColor.lightGray.cgColor
+        senderInfo()
         
         // 페이지 컨트롤 UI
         letterCtrl.hidesForSinglePage = true
@@ -105,6 +95,26 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
         scrollViewContent.showsHorizontalScrollIndicator = false
     }
     
+    // 보낸 사용자 정보
+    func senderInfo() {
+        senderName.text = letters[letterCtrl.currentPage].name
+        senderName.sizeToFit()
+        senderCountry.text = letters[letterCtrl.currentPage].country
+        senderCountry.sizeToFit()
+        for (idx, fav) in letters[letterCtrl.currentPage].favorites.enumerated() {
+            letters[letterCtrl.currentPage].favorites[idx] = fav.localized
+        }
+        senderFav.text = letters[letterCtrl.currentPage].favorites.joined(separator: " ")
+        senderFav.sizeToFit()
+        senderAnimal.image = letters[letterCtrl.currentPage].animalImg
+        senderAnimal.contentMode = .scaleAspectFit
+        
+        senderAnimal.backgroundColor = .white
+        senderAnimal.layer.cornerRadius = senderAnimal.frame.height/2
+        senderAnimal.layer.borderWidth = 0.3
+        senderAnimal.layer.borderColor = UIColor.lightGray.cgColor
+    }
+    
     func getLetters() {
         // Authorization 쿠키 확인 & 데이터 로딩
         if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
@@ -120,11 +130,6 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
                         for idx in 0..<JSON(data).count {
                             let json = JSON(data)[idx]
                             let senderID = json["sender"]["user_id"].stringValue
-                            
-                            // 보낸 편지 제외
-                            if senderID == ad?.id {
-                                continue
-                            }
                             
                             let favorites = json["sender"]["favorites"].arrayValue.map { $0.stringValue }
                             let animal = [json["post_animal"]["animal_url"].stringValue, json["post_animal"]["head_url"].stringValue, json["post_animal"]["top_url"].stringValue, json["post_animal"]["pants_url"].stringValue, json["post_animal"]["gloves_url"].stringValue, json["post_animal"]["shoes_url"].stringValue]
@@ -206,8 +211,6 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
 extension LetterDetailViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         letterCtrl.currentPage = Int(floor(scrollViewContent.contentOffset.x / scrollViewContent.frame.size.width))
-        senderFav.text = letters[letterCtrl.currentPage].favorites.joined(separator: " ")
-        senderAnimal.image = letters[letterCtrl.currentPage].animalImg
-        senderAnimal.contentMode = .scaleAspectFit
+        senderInfo()
     }
 }

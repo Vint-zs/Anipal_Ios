@@ -8,15 +8,11 @@
 import UIKit
 import SwiftyJSON
 
-//protocol replyHiddenDelegate {
-//    func replyButtonDelegate(data: Bool)
-//}
+protocol reloadDelegate {
+    func reloadDelegate()
+}
 
 class ReplyPage: UIViewController, sendBackDelegate {
-    
-////    let postAnimal = ["animal_url": "1", "head_url": "2", "top_url": "3", "pants_url": "4", "shoes_url": "5", "gloves_url": "6"]
-//    let comingAnimal = ["animal_url": "1", "color": "2"]
-    
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var animalBtn: UIButton!
     // @IBOutlet weak var saveBtn: UIButton!
@@ -26,6 +22,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
     var receiverID: String?
     var postURL: String?
     var selectedAnimal: Int = 0
+    var delegate: reloadDelegate?
     
     var animals: [AnimalPost] = []  // 서버 POST용
     var serverAnimals: [Animal] = [] // next page 데이터 전송용
@@ -105,11 +102,6 @@ class ReplyPage: UIViewController, sendBackDelegate {
                             animals.append(animal)
                             serverAnimals.append(Animal(nameInit: json["animal"]["localized"].stringValue, image: loadAnimals(urls: animalURLs)))
                         }
-                        
-                        // 화면 reload
-//                        DispatchQueue.main.async {
-//                            collectionView.reloadData()
-//                        }
                     } else if httpStatus.statusCode == 400 {
                         print("error: \(httpStatus.statusCode)")
                     } else {
@@ -180,8 +172,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
                 print(String(data: data, encoding: .utf8)!)
             })
         }
-        
-//        delegate?.replyButtonDelegate(data: false)
+        delegate?.reloadDelegate()
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

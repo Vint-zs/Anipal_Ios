@@ -26,13 +26,11 @@ class LetterListViewController: UICollectionViewController {
         
         initCollectionView()
         setupFlowLayout()
-        
-        getMailBoxes()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        getMailBoxes()
+    }
     
     private func getMailBoxes() {
         // Authorization 쿠키 확인 & 데이터 로딩
@@ -45,27 +43,28 @@ class LetterListViewController: UICollectionViewController {
                 
                 if let httpStatus = response as? HTTPURLResponse {
                     if httpStatus.statusCode == 200 {
-                        if mailboxes.count != JSON(data).count {
-                            for idx in 0..<JSON(data).count {
-                                let json = JSON(data)[idx]
-                                let partner: [String: Any] = [
-                                    "user_id": json["partner"]["user_id"].stringValue,
-                                    "name": json["partner"]["name"].stringValue,
-                                    "country": json["partner"]["country"].stringValue,
-                                    "favorites": json["partner"]["favorites"].arrayValue]
-                                let thumbnail = [
-                                    "animal_url": json["thumbnail_animal"]["animal_url"].stringValue,
-                                    "head_url": json["thumbnail_animal"]["head_url"].stringValue,
-                                    "top_url": json["thumbnail_animal"]["top_url"].stringValue,
-                                    "pants_url": json["thumbnail_animal"]["pants_url"].stringValue,
-                                    "shoes_url": json["thumbnail_animal"]["shoes_url"].stringValue,
-                                    "gloves_url": json["thumbnail_animal"]["gloves_url"].stringValue]
-                                var date = json["arrive_date"].stringValue
-                                date = dateConvert(date: date)
-                                let mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, thumbnail: loadAnimals(urls: thumbnail), arrivalDate: date, letterCount: json["letters_count"].intValue)
-                                mailboxes.append(mailBox)
-                            }
+                        mailboxes = []
+                        for idx in 0..<JSON(data).count {
+                            let json = JSON(data)[idx]
+                            let partner: [String: Any] = [
+                                "user_id": json["partner"]["user_id"].stringValue,
+                                "name": json["partner"]["name"].stringValue,
+                                "country": json["partner"]["country"].stringValue,
+                                "favorites": json["partner"]["favorites"].arrayValue]
+                            let thumbnail = [
+                                "animal_url": json["thumbnail_animal"]["animal_url"].stringValue,
+                                "head_url": json["thumbnail_animal"]["head_url"].stringValue,
+                                "top_url": json["thumbnail_animal"]["top_url"].stringValue,
+                                "pants_url": json["thumbnail_animal"]["pants_url"].stringValue,
+                                "shoes_url": json["thumbnail_animal"]["shoes_url"].stringValue,
+                                "gloves_url": json["thumbnail_animal"]["gloves_url"].stringValue]
+                            var date = json["arrive_date"].stringValue
+                            date = dateConvert(date: date)
+                            let mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, thumbnail: thumbnail, arrivalDate: date, letterCount: json["letters_count"].intValue)
+                            mailboxes.append(mailBox)
                         }
+                        
+                        print("mailboxes: \(mailboxes)")
                         
                         // 화면 reload
                         DispatchQueue.main.async {
@@ -86,7 +85,13 @@ class LetterListViewController: UICollectionViewController {
         let order = urls.sorted(by: <)
         images = []
         for (_, url) in order {
-            setImage(from: url)
+            if let imageURL = URL(string: url) {
+                if let imageData = try? Data(contentsOf: imageURL) {
+                    if let image = UIImage(data: imageData) {
+                        self.images.append(image)
+                    }
+                }
+            }
         }
         return compositeImage(images: images)
     }
@@ -104,13 +109,6 @@ class LetterListViewController: UICollectionViewController {
             UIGraphicsEndImageContext()
         }
         return compositeImage
-    }
-    
-    func setImage(from url: String) {
-        guard let imageURL = URL(string: url) else { return }
-        guard let imageData = try? Data(contentsOf: imageURL) else { return }
-        let image = UIImage(data: imageData)
-        self.images.append(image!)
     }
     
     // MARK: - 콜렉션 뷰 셀 등록
@@ -171,7 +169,15 @@ extension LetterListViewController {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LetterListCell", for: indexPath) as? LetterListCell else {
                 fatalError("Can't dequeue LetterListCell")
             }
-            cell.arrivalAnimal.image = mailboxes[indexPath.row - 1].thumbnail
+            
+            cell.arrivalAnimal.image = nil
+            
+            // 썸네일 값이 비어있지 않은 경우 썸네일 합성 후 표시
+            if mailboxes[indexPath.row - 1].thumbnail["animal_url"] != "" {
+                cell.arrivalAnimal.image = loadAnimals(urls: mailboxes[indexPath.row - 1].thumbnail)
+            }
+            
+            print("thumbnail: \(mailboxes[indexPath.row - 1].thumbnail["animal_url"])")
             
             if mailboxes[indexPath.row - 1].isOpened {
                 cell.mailbox.image = openedMail
