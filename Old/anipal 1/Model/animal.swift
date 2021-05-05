@@ -14,33 +14,35 @@ struct AnimalPost {
     let delayTime: String
     let comingAnimal: [String: String]
     let animalImg: UIImage
+    let ownAnimalId: String
     
-    init(animal: String, animalURLs: [String: String], isUsed: Bool, delayTime: String, comingAnimal: [String: String], animalImg: UIImage) {
+    init(animal: String, animalURLs: [String: String], isUsed: Bool, delayTime: String, comingAnimal: [String: String], animalImg: UIImage, ownAnimalId: String) {
         self.animal = animal
         self.animalURLs = animalURLs
         self.isUsed = isUsed
         self.delayTime = delayTime
         self.comingAnimal = comingAnimal
         self.animalImg = animalImg
+        self.ownAnimalId = ownAnimalId
     }
 }
 
 struct Animal {
     let name: String
     let img: UIImage
-    let url: String
+    let id: String
     
-    init(nameInit: String, image: UIImage, imageUrl: String) {
+    init(nameInit: String, image: UIImage, animalId: String) {
         name = nameInit
         img = image
-        url = imageUrl
+        id = animalId
     }
     
     // 테스트이미지용 임시 생성자. 모든코드 서버이미지로 전환작업 완료후 아래쪽 테스트데이터 삭제시 삭제예정
     init(nameInit: String, image: UIImage) {
         name = nameInit
         img = image
-        url = ""
+        id = ""
     }
 }
 
