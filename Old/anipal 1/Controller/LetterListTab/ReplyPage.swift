@@ -8,22 +8,23 @@
 import UIKit
 import SwiftyJSON
 
-protocol replyHiddenDelegate {
-    func replyButtonDelegate(data: Bool)
-}
+//protocol replyHiddenDelegate {
+//    func replyButtonDelegate(data: Bool)
+//}
 
 class ReplyPage: UIViewController, sendBackDelegate {
     
-//    let postAnimal = ["animal_url": "1", "head_url": "2", "top_url": "3", "pants_url": "4", "shoes_url": "5", "gloves_url": "6"]
-    let comingAnimal = ["animal_url": "1", "color": "2"]
+////    let postAnimal = ["animal_url": "1", "head_url": "2", "top_url": "3", "pants_url": "4", "shoes_url": "5", "gloves_url": "6"]
+//    let comingAnimal = ["animal_url": "1", "color": "2"]
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var animalBtn: UIButton!
     // @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var sendBtn: UIButton!
-    var delegate: replyHiddenDelegate?
+    @IBOutlet weak var closeBtn: UIButton!
 
     var receiverID: String?
+    var postURL: String?
     var selectedAnimal: Int = 0
     
     var animals: [AnimalPost] = []  // 서버 POST용
@@ -47,33 +48,32 @@ class ReplyPage: UIViewController, sendBackDelegate {
         sendBtn.setTitle("Send".localized, for: .normal)
         setBtnUI(btn: sendBtn)
         
-        // 동물 목록 get
-        loadAnimal()
+        // 닫기 버튼
+        if self.modalPresentationStyle == .fullScreen {
+            closeBtn.isHidden = false
+        } else {
+            closeBtn.isHidden = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
-
+        // 
+        loadAnimal()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "selectAnimalVC" {
-//            guard let selectAnimalVC = segue.destination as? SelectAnimal else {
-//                return
-//            }
-//
-//        }
-//    }
+    @IBAction func closeModal(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     func dataReceived(data: Int) {
         selectedAnimal = data
         animalBtn.setImage(animals[data].animalImg, for: .normal)
         animalBtn.imageView?.contentMode = .scaleAspectFit
-        print("selected: \(animals[selectedAnimal])")
     }
     
     func loadAnimal() {
@@ -101,11 +101,9 @@ class ReplyPage: UIViewController, sendBackDelegate {
                                 "bar": json["coming_animal"]["bar"].stringValue,
                                 "background": json["coming_animal"]["background"].stringValue
                             ]
-                            
                             let animal = AnimalPost(animal: json["animal"]["localized"].stringValue, animalURLs: animalURLs, isUsed: json["is_used"].boolValue, delayTime: json["delay_time"].stringValue, comingAnimal: comingAnimal, animalImg: loadAnimals(urls: animalURLs), ownAnimalId: json["_id"].stringValue)
                             animals.append(animal)
                             serverAnimals.append(Animal(nameInit: json["animal"]["localized"].stringValue, image: loadAnimals(urls: animalURLs)))
-                            print("animal: \(animal)")
                         }
                         
                         // 화면 reload
@@ -124,8 +122,9 @@ class ReplyPage: UIViewController, sendBackDelegate {
     
     // MARK: - 이미지 합성
     func loadAnimals(urls: [String: String]) -> UIImage {
+        let order = urls.sorted(by: <)
         images = []
-        for (_, url) in urls {
+        for (_, url) in order {
             setImage(from: url)
         }
         return compositeImage(images: images)
@@ -165,16 +164,15 @@ class ReplyPage: UIViewController, sendBackDelegate {
     
     @IBAction func sendDataBtn(_ sender: UIButton) {
         if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
-            print("token: \(session.value)")
             let body: NSMutableDictionary = NSMutableDictionary()
             body.setValue(textView.text, forKey: "content")
-            body.setValue(receiverID, forKey: "receiver")
             body.setValue(animals[selectedAnimal].ownAnimalId, forKey: "own_animal_id")
             
-            print(animals[selectedAnimal].animalURLs)
-            print(animals[selectedAnimal].comingAnimal)
+            if (postURL == "/letters") {
+                body.setValue(receiverID, forKey: "receiver")
+            }
             
-            try? post(url: "/letters", token: session.value, body: body, completionHandler: { data, response, error in
+            try? post(url: postURL!, token: session.value, body: body, completionHandler: { data, response, error in
                 guard let data = data, error == nil else {
                     print("error=\(String(describing: error))")
                     return
@@ -183,7 +181,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
             })
         }
         
-        delegate?.replyButtonDelegate(data: false)
+//        delegate?.replyButtonDelegate(data: false)
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

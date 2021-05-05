@@ -245,14 +245,29 @@
                                     <action selector="sendDataBtn:" destination="dvy-OX-gQX" eventType="touchUpInside" id="cas-ag-cDS"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pmn-Rv-69W">
+                                <rect key="frame" x="361" y="76" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="4Io-Kf-3nB"/>
+                                    <constraint firstAttribute="height" constant="25" id="YLk-MW-NE6"/>
+                                    <constraint firstAttribute="width" secondItem="pmn-Rv-69W" secondAttribute="height" multiplier="1:1" id="b7J-8s-VGv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" image="multiply" catalog="system"/>
+                                <connections>
+                                    <action selector="closeModal:" destination="dvy-OX-gQX" eventType="touchUpInside" id="Ihd-8r-i8e"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Tv6-Ty-2bT"/>
                         <color key="backgroundColor" red="0.95205134150000004" green="0.9792017341" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="jgk-Ij-Otn" firstAttribute="centerX" secondItem="3T9-BQ-Zry" secondAttribute="centerX" id="7hT-fo-JL3"/>
                             <constraint firstItem="08G-Eg-ChF" firstAttribute="centerX" secondItem="Tv6-Ty-2bT" secondAttribute="centerX" constant="-139" id="9Px-iW-ezP"/>
+                            <constraint firstItem="Tv6-Ty-2bT" firstAttribute="trailing" secondItem="pmn-Rv-69W" secondAttribute="trailing" constant="28" id="EqY-gF-GBf"/>
                             <constraint firstItem="Tv6-Ty-2bT" firstAttribute="bottom" secondItem="mD7-qL-4LL" secondAttribute="bottom" constant="111" id="L1a-rA-bcp"/>
                             <constraint firstItem="08G-Eg-ChF" firstAttribute="centerY" secondItem="3T9-BQ-Zry" secondAttribute="centerY" constant="-297" id="c7f-4j-M17"/>
+                            <constraint firstItem="pmn-Rv-69W" firstAttribute="top" secondItem="Tv6-Ty-2bT" secondAttribute="top" constant="32" id="d9J-s3-4Sr"/>
                             <constraint firstItem="mD7-qL-4LL" firstAttribute="leading" secondItem="Tv6-Ty-2bT" secondAttribute="leading" constant="28" id="gSD-eZ-yAH"/>
                             <constraint firstItem="mD7-qL-4LL" firstAttribute="top" secondItem="Tv6-Ty-2bT" secondAttribute="top" constant="164" id="nEy-gd-zsi"/>
                             <constraint firstItem="Tv6-Ty-2bT" firstAttribute="bottom" secondItem="jgk-Ij-Otn" secondAttribute="bottom" constant="67" id="sOb-Z9-f3Q"/>
@@ -261,6 +276,7 @@
                     </view>
                     <connections>
                         <outlet property="animalBtn" destination="08G-Eg-ChF" id="MYG-sR-AtY"/>
+                        <outlet property="closeBtn" destination="pmn-Rv-69W" id="IO7-yS-d6J"/>
                         <outlet property="sendBtn" destination="jgk-Ij-Otn" id="88b-L1-vg4"/>
                         <outlet property="textView" destination="mD7-qL-4LL" id="mSc-sQ-dQT"/>
                     </connections>
@@ -273,6 +289,7 @@
     <resources>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="folder" catalog="system" width="128" height="97"/>
+        <image name="multiply" catalog="system" width="128" height="111"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

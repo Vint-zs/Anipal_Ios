@@ -38,7 +38,6 @@ func post(url: String, token: String, body: NSMutableDictionary, completionHandl
     request.httpBody = try JSONSerialization.data(withJSONObject: body, options: JSONSerialization.WritingOptions.prettyPrinted)
     session.dataTask(with: request, completionHandler: completionHandler).resume()
     
-    
 }
 
 func put(url: String, token: String, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
