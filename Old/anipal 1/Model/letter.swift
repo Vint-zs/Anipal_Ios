@@ -11,7 +11,7 @@ struct Letter {
     let senderID: String
     let name: String
     let country: String
-    let favorites: [String]
+    var favorites: [String]
     let animal: [String]
     let receiverID: String
     let content: String

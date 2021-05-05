@@ -100,6 +100,9 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate {
         senderName.sizeToFit()
         senderCountry.text = letters[letterCtrl.currentPage].country
         senderCountry.sizeToFit()
+        for (idx, fav) in letters[letterCtrl.currentPage].favorites.enumerated() {
+            letters[letterCtrl.currentPage].favorites[idx] = fav.localized
+        }
         senderFav.text = letters[letterCtrl.currentPage].favorites.joined(separator: " ")
         senderFav.sizeToFit()
         senderAnimal.image = letters[letterCtrl.currentPage].animalImg
