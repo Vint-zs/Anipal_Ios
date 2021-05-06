@@ -36,13 +36,13 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
         replyBtn.layer.shadowOpacity = 1.0
         replyBtn.layer.shadowRadius = 3
         replyBtn.layer.masksToBounds = false
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        print("viewwillappear")
+        
         // 편지 로딩
         getLetters()
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//    }
     
     func reloadDelegate() {
         getLetters()
@@ -113,6 +113,13 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
         senderAnimal.layer.cornerRadius = senderAnimal.frame.height/2
         senderAnimal.layer.borderWidth = 0.3
         senderAnimal.layer.borderColor = UIColor.lightGray.cgColor
+        
+        // 보낸 편지 답장 버튼 숨기기
+        if letters[letterCtrl.currentPage].senderID == ad?.id {
+            replyBtn.isHidden = true
+        } else {
+            replyBtn.isHidden = false
+        }
     }
     
     func getLetters() {
@@ -127,12 +134,14 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
                 
                 if let httpStatus = response as? HTTPURLResponse {
                     if httpStatus.statusCode == 200 {
+                        letters = []
                         for idx in 0..<JSON(data).count {
                             let json = JSON(data)[idx]
                             let senderID = json["sender"]["user_id"].stringValue
                             
                             let favorites = json["sender"]["favorites"].arrayValue.map { $0.stringValue }
                             let animal = [json["post_animal"]["animal_url"].stringValue, json["post_animal"]["head_url"].stringValue, json["post_animal"]["top_url"].stringValue, json["post_animal"]["pants_url"].stringValue, json["post_animal"]["gloves_url"].stringValue, json["post_animal"]["shoes_url"].stringValue]
+                            let animalImg = loadAnimals(urls: animal)
                             let letter = Letter(
                                 senderID: senderID,
                                 name: json["sender"]["name"].stringValue,
@@ -141,7 +150,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
                                 content: json["content"].stringValue,
                                 arrivalDate: json["arrive_time"].stringValue,
                                 sendDate: json["send_time"].stringValue,
-                                animalImg: loadAnimals(urls: animal))
+                                animalImg: animalImg)
                             letters.append(letter)
                         }
                         
