@@ -10,6 +10,7 @@ import GoogleSignIn
 import FBSDKLoginKit
 
 class SettingTab: UIViewController {
+    @IBOutlet var favImage: UIImageView!
     
     let settings: [String] = ["User info".localized, "Language".localized,  "Favorite".localized]
     
@@ -29,6 +30,7 @@ class SettingTab: UIViewController {
         
         // Do any additional setup after loading the view.
     }
+    
     
     @IBAction func clickLogoutBtn(_ sender: UIButton) {
         GIDSignIn.sharedInstance()?.signOut()

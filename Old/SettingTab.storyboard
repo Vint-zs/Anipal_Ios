@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="panda" translatesAutoresizingMaskIntoConstraints="NO" id="cTi-9s-jFB">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ourCat" translatesAutoresizingMaskIntoConstraints="NO" id="cTi-9s-jFB">
                                 <rect key="frame" x="131" y="138" width="152" height="141"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cTi-9s-jFB" secondAttribute="height" multiplier="15:8" constant="-112" id="hAf-aK-8ZE"/>
@@ -83,6 +83,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Pnj-vh-P7i"/>
                     <connections>
+                        <outlet property="favImage" destination="cTi-9s-jFB" id="tYN-CZ-PwH"/>
                         <outlet property="logoutBtn" destination="xl8-4o-YW5" id="Hji-XL-8in"/>
                         <outlet property="profileImage" destination="cTi-9s-jFB" id="DIn-Sd-gqj"/>
                         <outlet property="settingTableView" destination="05q-Mr-rss" id="mAC-6I-bM6"/>
@@ -197,6 +198,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ZNy-fZ-Z2z"/>
                     <connections>
+                        <outlet property="favCollectionView" destination="Rec-pz-5KX" id="hV5-L7-I2L"/>
                         <outlet property="favLabelTitle" destination="CFb-zK-HCG" id="rsY-19-axY"/>
                     </connections>
                 </viewController>
@@ -228,7 +230,7 @@
     </scenes>
     <resources>
         <image name="gearshape" catalog="system" width="128" height="121"/>
-        <image name="panda" width="300" height="300"/>
+        <image name="ourCat" width="116" height="155"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
