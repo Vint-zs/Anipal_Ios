@@ -93,14 +93,15 @@ class ReplyPage: UIViewController, sendBackDelegate {
                                 "shoes_url": json["shoes_url"].stringValue,
                                 "gloves_url": json["gloves_url"].stringValue
                             ]
+                            let animalImg = loadAnimals(urls: animalURLs)
                             let comingAnimal = [
                                 "animal_url": json["coming_animal"]["animal_url"].stringValue,
                                 "bar": json["coming_animal"]["bar"].stringValue,
                                 "background": json["coming_animal"]["background"].stringValue
                             ]
-                            let animal = AnimalPost(animal: json["animal"]["localized"].stringValue, animalURLs: animalURLs, isUsed: json["is_used"].boolValue, delayTime: json["delay_time"].stringValue, comingAnimal: comingAnimal, animalImg: loadAnimals(urls: animalURLs), ownAnimalId: json["_id"].stringValue)
+                            let animal = AnimalPost(animal: json["animal"]["localized"].stringValue, animalURLs: animalURLs, isUsed: json["is_used"].boolValue, delayTime: json["delay_time"].stringValue, comingAnimal: comingAnimal, animalImg: animalImg, ownAnimalId: json["_id"].stringValue)
                             animals.append(animal)
-                            serverAnimals.append(Animal(nameInit: json["animal"]["localized"].stringValue, image: loadAnimals(urls: animalURLs)))
+                            serverAnimals.append(Animal(nameInit: json["animal"]["localized"].stringValue, image: animalImg))
                         }
                     } else if httpStatus.statusCode == 400 {
                         print("error: \(httpStatus.statusCode)")
