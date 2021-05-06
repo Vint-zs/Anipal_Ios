@@ -58,6 +58,9 @@ class SignUpViewController2: UIViewController {
         GIDSignIn.sharedInstance()?.signOut()
         LoginManager.init().logOut()
         self.navigationController?.popToRootViewController(animated: true)
+        ad?.favorites = []
+        ad?.languages = []
+        ad?.favAnimal = ""
     }
     
     func viewSettingLayout() {

@@ -31,6 +31,9 @@ class FavoriteViewController: UIViewController {
         GIDSignIn.sharedInstance()?.signOut()
         LoginManager.init().logOut()
         self.navigationController?.popToRootViewController(animated: true)
+        ad?.favorites = []
+        ad?.languages = []
+        ad?.favAnimal = ""
     }
     
     // 추후 리팩토링 완료예정.

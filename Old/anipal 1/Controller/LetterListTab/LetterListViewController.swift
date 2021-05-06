@@ -45,6 +45,7 @@ class LetterListViewController: UICollectionViewController {
                     if httpStatus.statusCode == 200 {
                         mailboxes = []
                         for idx in 0..<JSON(data).count {
+                            print("제이슨 카운터수!!!\(JSON(data).count)")
                             let json = JSON(data)[idx]
                             let partner: [String: Any] = [
                                 "user_id": json["partner"]["user_id"].stringValue,
@@ -58,6 +59,7 @@ class LetterListViewController: UICollectionViewController {
                                 "pants_url": json["thumbnail_animal"]["pants_url"].stringValue,
                                 "shoes_url": json["thumbnail_animal"]["shoes_url"].stringValue,
                                 "gloves_url": json["thumbnail_animal"]["gloves_url"].stringValue]
+                            
                             
                             var date = json["arrive_date"].stringValue
                             date = dateConvert(date: date)

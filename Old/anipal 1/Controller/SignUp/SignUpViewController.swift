@@ -97,6 +97,9 @@ class SignUpViewController: UIViewController, sendBackDelegate {
         GIDSignIn.sharedInstance()?.signOut()
         LoginManager.init().logOut()
         self.navigationController?.popToRootViewController(animated: true)
+        ad?.favorites = []
+        ad?.languages = []
+        ad?.favAnimal = ""
     }
     
     func textLocalize() {

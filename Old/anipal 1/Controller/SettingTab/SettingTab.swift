@@ -31,13 +31,15 @@ class SettingTab: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    
     @IBAction func clickLogoutBtn(_ sender: UIButton) {
         GIDSignIn.sharedInstance()?.signOut()
         LoginManager.init().logOut()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginNavController = storyboard.instantiateViewController(identifier: "LoginNavigationController")
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
+        ad?.favorites = []
+        ad?.languages = []
+        ad?.favAnimal = ""
         
     }
 }
