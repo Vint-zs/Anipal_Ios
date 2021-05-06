@@ -46,6 +46,7 @@ class LetterListViewController: UICollectionViewController {
                         mailboxes = []
                         for idx in 0..<JSON(data).count {
                             let json = JSON(data)[idx]
+                            print("data: \(json)")
                             let partner: [String: Any] = [
                                 "user_id": json["partner"]["user_id"].stringValue,
                                 "name": json["partner"]["name"].stringValue,
@@ -62,11 +63,11 @@ class LetterListViewController: UICollectionViewController {
                             var date = json["arrive_date"].stringValue
                             date = dateConvert(date: date)
                             
-                            var mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, arrivalDate: date, letterCount: json["letters_count"].intValue)
+                            let mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, thumbnail: thumbnail, arrivalDate: date, letterCount: json["letters_count"].intValue)
                             
-                            if thumbnail["animal_url"] != "" {
-                                mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, thumbnail: loadAnimals(urls: thumbnail), arrivalDate: date, letterCount: json["letters_count"].intValue)
-                            }
+//                            if thumbnail["animal_url"] != "" {
+//                                mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, thumbnail: loadAnimals(urls: thumbnail), arrivalDate: date, letterCount: json["letters_count"].intValue)
+//                            }
                             mailboxes.append(mailBox)
                         }
                         
@@ -179,9 +180,14 @@ extension LetterListViewController {
                 fatalError("Can't dequeue LetterListCell")
             }
             
-            cell.arrivalAnimal.image = mailboxes[indexPath.row - 1].thumbnail
+            cell.arrivalAnimal.image = nil
             
-            print("thumbnail: \(String(describing: mailboxes[indexPath.row - 1].thumbnail))")
+            if mailboxes[indexPath.row - 1].thumbnail["animal_url"] != "" {
+                print("thumbnail: \(String(describing: mailboxes[indexPath.row - 1].thumbnail["animal_url"]))")
+                cell.arrivalAnimal.image = loadAnimals(urls: (mailboxes[indexPath.row - 1].thumbnail))
+            }
+            
+            
             
             if mailboxes[indexPath.row - 1].isOpened {
                 cell.mailbox.image = openedMail
