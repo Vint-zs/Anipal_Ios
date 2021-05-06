@@ -9,7 +9,7 @@ import UIKit
 import SwiftyJSON
 
 class MainPage: UIViewController {
-
+    
     @IBOutlet var writingButton: UIButton!
     
     var receiveAnimal: [RandomAnimal] = []
@@ -22,6 +22,7 @@ class MainPage: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("메인화면 view appear 호출")
         navigationController?.isNavigationBarHidden = true
         refreshData()
     }
@@ -72,9 +73,15 @@ class MainPage: UIViewController {
     // MARK: - 동물 버튼 클릭 이벤트
     @objc func pressed1(_ sender: UIButton) {
         guard let confirmVC = self.storyboard?.instantiateViewController(identifier: "confirmVC") as? ConfirmLetter else {return}
+        //confirmVC.modalPresentationStyle = .overFullScreen
         confirmVC.modalPresentationStyle = .overCurrentContext
         confirmVC.delegate = self
         confirmVC.randomId = receiveAnimal[0].id
+//        let sub = UIStoryboard(name: "LetterListTab", bundle: nil)
+//        guard let nextVC = sub.instantiateViewController(identifier: "ReplyPage") as? ReplyPage else {
+//            return
+//        }
+//        nextVC.delegate = self
         self.present(confirmVC, animated: true, completion: nil)
 
     }
@@ -254,6 +261,7 @@ class MainPage: UIViewController {
 extension MainPage: modalDelegate {
     func pushNavigation() {
         guard let writingVC = self.storyboard?.instantiateViewController(identifier: "WritingPage") else {return}
+        //self.present(writingVC, animated: true, completion: nil)
         self.navigationController?.pushViewController(writingVC, animated: true)
     }
     
