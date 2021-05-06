@@ -521,6 +521,7 @@
                     <connections>
                         <outlet property="favLabelTitle" destination="klx-LC-Qhb" id="Yc3-i7-mlV"/>
                         <outlet property="favTable" destination="hyL-ZB-pNc" id="ube-hb-CG4"/>
+                        <outlet property="finishButton" destination="HPa-8f-OY2" id="KBf-u1-F8W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lls-RD-APf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
