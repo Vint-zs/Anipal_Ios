@@ -16,7 +16,7 @@ protocol FavoriteViewDelegate {
 class FavoriteView: UIView, UICollectionViewDataSource {
     public var delegate: FavoriteViewDelegate?
     
-    var userFav: [String] = []
+    var userFav: [String] = ad?.favorites ?? []
     var serverFavorites: [String] = []
     
     @IBOutlet var favView: UIView!

@@ -10,6 +10,7 @@ import UIKit
 class FavoriteSettingVC: UIViewController {
     
     @IBOutlet weak var favLabelTitle: UILabel!
+    @IBOutlet var favCollectionView: FavoriteView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +19,6 @@ class FavoriteSettingVC: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        
+        ad?.favorites = favCollectionView.userFav
     }
 }
