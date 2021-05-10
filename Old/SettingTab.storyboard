@@ -17,12 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ourCat" translatesAutoresizingMaskIntoConstraints="NO" id="cTi-9s-jFB">
-                                <rect key="frame" x="131" y="138" width="152" height="141"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="cTi-9s-jFB" secondAttribute="height" multiplier="15:8" constant="-112" id="hAf-aK-8ZE"/>
-                                </constraints>
-                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="05q-Mr-rss">
                                 <rect key="frame" x="0.0" y="300" width="414" height="416"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -63,29 +57,40 @@
                                     <action selector="clickLogoutBtn:" destination="Xgh-F7-Hle" eventType="touchUpInside" id="F83-lM-psn"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoh-R8-oBD">
+                                <rect key="frame" x="131" y="118" width="152" height="152"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="152" id="5DW-IW-NIb"/>
+                                    <constraint firstAttribute="width" constant="152" id="dhR-jZ-AcI"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="editAnimal:" destination="Xgh-F7-Hle" eventType="touchUpInside" id="baQ-5b-6dI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4Av-u3-hdV"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.95349925759999998" green="0.97222012280000003" blue="0.99608319999999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="xl8-4o-YW5" firstAttribute="leading" secondItem="4Av-u3-hdV" secondAttribute="leading" constant="40" id="2n3-Ad-esR"/>
-                            <constraint firstItem="cTi-9s-jFB" firstAttribute="leading" secondItem="4Av-u3-hdV" secondAttribute="leading" constant="131" id="3nx-vi-EUf"/>
+                            <constraint firstItem="05q-Mr-rss" firstAttribute="top" secondItem="4Av-u3-hdV" secondAttribute="top" constant="212" id="Bcd-FO-cuA"/>
+                            <constraint firstItem="eoh-R8-oBD" firstAttribute="centerX" secondItem="lrL-Os-Bdn" secondAttribute="centerX" id="J5J-Eo-yY2"/>
                             <constraint firstItem="05q-Mr-rss" firstAttribute="trailing" secondItem="4Av-u3-hdV" secondAttribute="trailing" id="KTP-X4-isI"/>
                             <constraint firstItem="xl8-4o-YW5" firstAttribute="top" secondItem="05q-Mr-rss" secondAttribute="bottom" constant="39" id="RfE-27-d1D"/>
-                            <constraint firstItem="cTi-9s-jFB" firstAttribute="top" secondItem="4Av-u3-hdV" secondAttribute="top" constant="50" id="aUZ-BW-IPf"/>
                             <constraint firstItem="05q-Mr-rss" firstAttribute="leading" secondItem="4Av-u3-hdV" secondAttribute="leading" id="cmj-MT-Ifp"/>
                             <constraint firstItem="4Av-u3-hdV" firstAttribute="bottom" secondItem="xl8-4o-YW5" secondAttribute="bottom" constant="68" id="dFT-hw-pf4"/>
                             <constraint firstItem="xl8-4o-YW5" firstAttribute="top" secondItem="05q-Mr-rss" secondAttribute="bottom" constant="39" id="fXO-6b-YGz"/>
+                            <constraint firstItem="eoh-R8-oBD" firstAttribute="top" secondItem="4Av-u3-hdV" secondAttribute="top" constant="30" id="ggi-mT-nFO"/>
                             <constraint firstItem="4Av-u3-hdV" firstAttribute="trailing" secondItem="xl8-4o-YW5" secondAttribute="trailing" constant="40" id="mdr-Si-Lfl"/>
-                            <constraint firstItem="05q-Mr-rss" firstAttribute="top" secondItem="cTi-9s-jFB" secondAttribute="bottom" constant="21" id="o5Q-PD-8dJ"/>
-                            <constraint firstItem="4Av-u3-hdV" firstAttribute="trailing" secondItem="cTi-9s-jFB" secondAttribute="trailing" constant="131" id="pA2-0F-TLf"/>
-                            <constraint firstItem="cTi-9s-jFB" firstAttribute="top" secondItem="4Av-u3-hdV" secondAttribute="top" constant="50" id="qmo-3s-Hop"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Pnj-vh-P7i"/>
                     <connections>
-                        <outlet property="favImage" destination="cTi-9s-jFB" id="tYN-CZ-PwH"/>
+                        <outlet property="favBtn" destination="eoh-R8-oBD" id="6nS-3E-vxO"/>
                         <outlet property="logoutBtn" destination="xl8-4o-YW5" id="Hji-XL-8in"/>
-                        <outlet property="profileImage" destination="cTi-9s-jFB" id="DIn-Sd-gqj"/>
                         <outlet property="settingTableView" destination="05q-Mr-rss" id="mAC-6I-bM6"/>
                     </connections>
                 </viewController>
@@ -229,7 +234,9 @@
     </scenes>
     <resources>
         <image name="gearshape" catalog="system" width="128" height="121"/>
-        <image name="ourCat" width="116" height="155"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
