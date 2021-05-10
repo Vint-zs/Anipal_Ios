@@ -14,7 +14,7 @@ class SettingTab: UIViewController {
     
     let settings: [String] = ["User info".localized, "Language".localized,  "Favorite".localized]
     
-    let sections: [String] = ["User info".localized, "Language".localized,  "Favorite".localized]
+    let sections: [String] = ["Language".localized,  "Favorite".localized]
 
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var settingTableView: UITableView!
@@ -68,14 +68,13 @@ extension SettingTab: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.section {
-        case 0: self.performSegue(withIdentifier: "DefaultInfoVC", sender: nil)
-        case 1: guard let langSetVC = self.storyboard?.instantiateViewController(identifier: "LanguageSettingVC") as? LanguageSettingVC else { return }
+        case 0: guard let langSetVC = self.storyboard?.instantiateViewController(identifier: "LanguageSettingVC") as? LanguageSettingVC else { return }
             
             langSetVC.modalTransitionStyle = .coverVertical
             langSetVC.modalPresentationStyle = .formSheet
             
             self.present(langSetVC, animated: true, completion: nil)
-        case 2: guard let langSetVC = self.storyboard?.instantiateViewController(identifier: "FavoriteSettingVC") as? FavoriteSettingVC else { return }
+        case 1: guard let langSetVC = self.storyboard?.instantiateViewController(identifier: "FavoriteSettingVC") as? FavoriteSettingVC else { return }
             
             langSetVC.modalTransitionStyle = .coverVertical
             langSetVC.modalPresentationStyle = .formSheet
