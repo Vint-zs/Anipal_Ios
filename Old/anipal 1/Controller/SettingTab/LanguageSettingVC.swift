@@ -38,23 +38,42 @@ class LanguageSettingVC: UIViewController {
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        var templanguages: [[String: Any]]? = [[String: Any]]()
-        for row in myLanguageList ?? [:] {
-            let (lang, level) = row
-            print(lang, level)
-            templanguages?.append(["name": lang, "level": level])
-        }
-        
-        ad?.languages = templanguages
-        print(ad!.languages!)
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//    }
     
     @IBAction func cancelBtn(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func finishLang(_ sender: UIButton) {
+        // 화면데이터 -> 저장데이터 변환
+        var templanguages: [[String: Any]]? = [[String: Any]]()
+        for row in myLanguageList ?? [:] {
+            let (lang, level) = row
+            templanguages?.append(["name": lang, "level": level])
+        }
+        ad?.languages = templanguages
+        
+        // 데이터 전송
+        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+            let body: NSMutableDictionary = NSMutableDictionary()
+            body.setValue(ad?.languages, forKey: "languages")
+            
+            let putURL = "/users/" + (ad?.id)!
+            
+            put(url: putURL, token: session.value, body: body, completionHandler: { data, response, error in
+                guard let data = data, error == nil else {
+                    print("error=\(String(describing: error))")
+                    return
+                }
+                if let httpStatus = response as? HTTPURLResponse {
+                    if httpStatus.statusCode == 200 {
+                        
+                    }
+                }
+                
+            })
+        }
         self.dismiss(animated: true, completion: nil)
     }
     

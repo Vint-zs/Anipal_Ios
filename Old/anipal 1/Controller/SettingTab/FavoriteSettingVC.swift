@@ -20,15 +20,35 @@ class FavoriteSettingVC: UIViewController {
         finishBtn.setTitle("Complete".localized, for: .normal)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        ad?.favorites = favCollectionView.userFav
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        ad?.favorites = favCollectionView.userFav
+//    }
     
     @IBAction func cancelFav(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func finishFav(_ sender: UIButton) {
+        ad?.favorites = favCollectionView.userFav
+        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+            let body: NSMutableDictionary = NSMutableDictionary()
+            body.setValue(ad?.favorites, forKey: "favorites")
+            
+            let putURL = "/users/" + (ad?.id)!
+            
+            put(url: putURL, token: session.value, body: body, completionHandler: { data, response, error in
+                guard let data = data, error == nil else {
+                    print("error=\(String(describing: error))")
+                    return
+                }
+                if let httpStatus = response as? HTTPURLResponse {
+                    if httpStatus.statusCode == 200 {
+                        
+                    }
+                }
+                
+            })
+        }
         self.dismiss(animated: true, completion: nil)
     }
 }
