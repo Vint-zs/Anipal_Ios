@@ -13,7 +13,6 @@ class LanguageSettingVC: UIViewController {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var languageTableView: UITableView!
     
-   // let languageList = ["English", "한국어", "日本語", "中文", "Italiano", "프랑스어", "포르투갈어"]
     var serverLanguage: [String] = []
     var myLanguageList: [String: Int]! = [:]
     
@@ -48,6 +47,9 @@ class LanguageSettingVC: UIViewController {
         ad?.languages = templanguages
         print(ad!.languages!)
     }
+    @IBAction func cancelBtn(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     // 서버 데이터 로드
     func loadLanguage() {
@@ -77,8 +79,6 @@ class LanguageSettingVC: UIViewController {
     }
 }
 
-
-    
 extension LanguageSettingVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {

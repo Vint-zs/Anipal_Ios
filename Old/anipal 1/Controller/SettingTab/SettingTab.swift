@@ -173,15 +173,15 @@ extension SettingTab: UITableViewDelegate, UITableViewDataSource {
         case 0: guard let langSetVC = self.storyboard?.instantiateViewController(identifier: "LanguageSettingVC") as? LanguageSettingVC else { return }
             
             langSetVC.modalTransitionStyle = .coverVertical
-            langSetVC.modalPresentationStyle = .formSheet
+            langSetVC.modalPresentationStyle = .fullScreen
             
             self.present(langSetVC, animated: true, completion: nil)
-        case 1: guard let langSetVC = self.storyboard?.instantiateViewController(identifier: "FavoriteSettingVC") as? FavoriteSettingVC else { return }
+        case 1: guard let favSetVC = self.storyboard?.instantiateViewController(identifier: "FavoriteSettingVC") as? FavoriteSettingVC else { return }
             
-            langSetVC.modalTransitionStyle = .coverVertical
-            langSetVC.modalPresentationStyle = .formSheet
+            favSetVC.modalTransitionStyle = .coverVertical
+            favSetVC.modalPresentationStyle = .fullScreen
             
-            self.present(langSetVC, animated: true, completion: nil)
+            self.present(favSetVC, animated: true, completion: nil)
         default:
             return
         }
