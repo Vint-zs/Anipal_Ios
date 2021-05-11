@@ -11,6 +11,7 @@ import SwiftyJSON
 class LanguageSettingVC: UIViewController {
     
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet weak var finishBtn: UIButton!
     @IBOutlet var languageTableView: UITableView!
     
     var serverLanguage: [String] = []
@@ -22,6 +23,7 @@ class LanguageSettingVC: UIViewController {
         languageTableView.dataSource = self
         titleLabel.textColor = UIColor(red: 0.392, green: 0.392, blue: 0.392, alpha: 1)
         titleLabel.text = "Choose your language level".localized
+        finishBtn.setTitle("Complete".localized, for: .normal)
         loadLanguage()
         
         // cell Xib 파일 등록
@@ -47,7 +49,12 @@ class LanguageSettingVC: UIViewController {
         ad?.languages = templanguages
         print(ad!.languages!)
     }
+    
     @IBAction func cancelBtn(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func finishLang(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
