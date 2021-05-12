@@ -37,6 +37,8 @@ class SettingTab: UIViewController, sendBackDelegate {
         favBtn.layer.borderColor = UIColor.lightGray.cgColor
         
         self.settingTableView.tableFooterView = UIView(frame: .zero)
+        
+        print("favAnimal: \(ad?.favAnimal)")
     }
     
     override func viewWillAppear(_ animated: Bool) {

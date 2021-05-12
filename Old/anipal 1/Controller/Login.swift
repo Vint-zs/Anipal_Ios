@@ -41,7 +41,7 @@ class Login: UIViewController {
                 Profile.loadCurrentProfile(completion: {(profile, error) in
                     fbEmail = profile?.email
                 })
-                self.getData(url: "http://ec2-15-164-231-148.ap-northeast-2.compute.amazonaws.com/auth/facebook", token: AccessToken.current!.tokenString, email: fbEmail!, provider: "facebook") // 서버로 토큰 전송
+                self.getData(url: "https://anipal.co.kr/auth/facebook", token: AccessToken.current!.tokenString, email: fbEmail!, provider: "facebook") // 서버로 토큰 전송
             
             case .cancelled:
                 print("user cancel the login")
@@ -79,7 +79,7 @@ class Login: UIViewController {
             Profile.loadCurrentProfile { (profile, error) in
                 fbEmail = profile?.email
             }
-            getData(url: "http://ec2-15-164-231-148.ap-northeast-2.compute.amazonaws.com/auth/facebook", token: AccessToken.current!.tokenString, email: fbEmail!, provider: "facebook")
+            getData(url: "https://anipal.co.kr/auth/facebook", token: AccessToken.current!.tokenString, email: fbEmail!, provider: "facebook")
         }
     }
     // MARK: - 서버 통신
@@ -123,6 +123,8 @@ class Login: UIViewController {
                             if let accessories = JSON(data)["accessories"].dictionaryObject as? [String: [[String: String]]] { ad?.accessories = accessories }
                             if let animals = JSON(data)["animals"].arrayObject as? [[String: Any]] { ad?.animals = animals }
                         }
+                        
+                        print("data: \(JSON(data))")
                         
                         // 메인화면 이동
                         moveMainScreen()
@@ -178,7 +180,7 @@ extension Login: GIDSignInDelegate {
         print("success google login")
         print("access token : \(user.authentication.accessToken ?? "")")
 
-        getData(url: "http://ec2-15-164-231-148.ap-northeast-2.compute.amazonaws.com/auth/google", token: user.authentication.accessToken, email: user.profile.email, provider: "google") // 서버로 토큰 전송
+        getData(url: "https://anipal.co.kr/auth/google", token: user.authentication.accessToken, email: user.profile.email, provider: "google") // 서버로 토큰 전송
     }
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         print("Disconnect")
