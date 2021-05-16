@@ -12,11 +12,22 @@ class MissionView: UIViewController {
     @IBOutlet var okBtn: UIButton!
     @IBOutlet var innerView: UIView!
     @IBOutlet var accessoryImage: UIImageView!
+    @IBOutlet var textView: UITextView!
+    @IBOutlet var missionTitle: UITextView!
+    @IBOutlet var itemName: UILabel!
+    
+    var accessoryInfo: AccessoryDetail?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         okBtn.layer.cornerRadius = 5
         innerView.layer.cornerRadius = 20
         accessoryImage.layer.borderWidth = 1
+        accessoryImage.image = accessoryInfo?.img
+        itemName.text = accessoryInfo?.name.localized
+        missionTitle.text = accessoryInfo?.mission["title"]?.localized
+        textView.text = accessoryInfo?.mission["content"]?.localized
+        
         // Do any additional setup after loading the view.
     }
     
@@ -24,6 +35,4 @@ class MissionView: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-
-
 }
