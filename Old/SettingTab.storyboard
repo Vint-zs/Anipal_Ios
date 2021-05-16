@@ -64,7 +64,7 @@
                                     <constraint firstAttribute="height" constant="152" id="5DW-IW-NIb"/>
                                     <constraint firstAttribute="width" constant="152" id="dhR-jZ-AcI"/>
                                 </constraints>
-                                <state key="normal" image="ourCat">
+                                <state key="normal">
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                                 <connections>
@@ -290,7 +290,6 @@
     <resources>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="multiply" catalog="system" width="128" height="111"/>
-        <image name="ourCat" width="116" height="155"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

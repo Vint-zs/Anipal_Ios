@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var name: String?
     var age: Int?
     var favAnimal: String? = ""
+    var thumbnail: UIImage?
     var email: String?
     var country: String? = "Korea"
     var birthday: String?

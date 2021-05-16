@@ -35,20 +35,20 @@ class SettingTab: UIViewController, sendBackDelegate {
         favBtn.layer.cornerRadius = favBtn.frame.height/2
         favBtn.layer.borderWidth = 0.3
         favBtn.layer.borderColor = UIColor.lightGray.cgColor
+        favBtn.imageView?.contentMode = .scaleAspectFit
         
         self.settingTableView.tableFooterView = UIView(frame: .zero)
-        
-        print("favAnimal: \(ad?.favAnimal)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        favBtn.setImage(ad?.thumbnail, for: .normal)
         loadAnimal()
     }
     
     func dataReceived(data: Int) {
         selectedAnimal = data
-        favBtn.setImage(animals[data].animalImg, for: .normal)
-        favBtn.imageView?.contentMode = .scaleAspectFit
+        ad?.thumbnail = animals[data].animalImg
+        favBtn.setImage(ad?.thumbnail, for: .normal)
     }
     
     // 대표 동물 변경
