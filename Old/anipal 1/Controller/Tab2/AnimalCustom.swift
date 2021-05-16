@@ -8,14 +8,12 @@
 import UIKit
 import SwiftyJSON
 
-class AnimalCustom: UIViewController {
+protocol reloadData {
+    func reloadData()
+}
 
-    var testHead: [UIImage] = [#imageLiteral(resourceName: "head1"),  #imageLiteral(resourceName: "head2"), #imageLiteral(resourceName: "head4"), #imageLiteral(resourceName: "head3")]
-    var testTop: [UIImage] = [#imageLiteral(resourceName: "top3"), #imageLiteral(resourceName: "top1"), #imageLiteral(resourceName: "top2")]
-    var testBottom: [UIImage] = [#imageLiteral(resourceName: "bottoms4"), #imageLiteral(resourceName: "bottoms2"), #imageLiteral(resourceName: "bottoms1"),#imageLiteral(resourceName: "bottoms3")]
-    var testLeft: [UIImage] = []
-    var testShoes: [UIImage] = []
-    
+class AnimalCustom: UIViewController {
+    var delegate: reloadData?
     var serverHead: [Accessory] = []
     var serverData: [[Accessory]] = []
     var myCharacterUrls: [String]!
@@ -55,10 +53,12 @@ class AnimalCustom: UIViewController {
         
     }
     
+    // 저장버튼 클릭시
     @IBAction func clickSaveBtn(_ sender: UIButton) {
-        guard let missionVC = self.storyboard?.instantiateViewController(identifier: "mission") as? MissionView else {return}
-        missionVC.modalPresentationStyle = .overCurrentContext
-        self.present(missionVC, animated: true, completion: nil)
+        delegate?.reloadData() // put 함수안에 맨 마지막순서에
+//        guard let missionVC = self.storyboard?.instantiateViewController(identifier: "mission") as? MissionView else {return}
+//        missionVC.modalPresentationStyle = .overCurrentContext
+//        self.present(missionVC, animated: true, completion: nil)
     }
     
     @IBAction func switchSegment(_ sender: UISegmentedControl) {
