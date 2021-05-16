@@ -67,6 +67,7 @@ class MainPage: UIViewController {
         
         comingAnimals.handleArea.addGestureRecognizer(tapGestureRecognizer)
         comingAnimals.handleArea.addGestureRecognizer(panGestureRecognizer)
+        comingAnimals.handleArea.layer.cornerRadius = 12
     }
     
     @objc
