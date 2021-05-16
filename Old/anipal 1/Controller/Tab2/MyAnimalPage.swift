@@ -17,6 +17,13 @@ class MyAnimalPage: UIViewController {
     var myAnimalList: [MyAnimal] = []
     var imageUrls: [[String]] = []
     var images: [UIImage] = []
+    var tempName: [String] = ["펭도리","냥냥이","도넛","털키","거북왕"]
+    var tempTime: [String] = ["10h","4h","5h","2h","3h"]
+    var order: [String: Int] = ["head": 1, "top": 2, "pants": 3, "gloves": 4, "shoes": 5 ]
+    
+    var serverHead: [Accessory] = []
+    var serverData: [Int: [Accessory]] = [:]
+    var num = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,20 +32,25 @@ class MyAnimalPage: UIViewController {
     
         // 셀 등록
         let nibCell = UINib(nibName: "MyAnimalPageCollectionViewCell", bundle: nil)
-       // let nibCell = UINib(nibName: "AnimalCollectionViewCell", bundle: nil)
         animalCollectionView.register(nibCell, forCellWithReuseIdentifier: cellId )
         animalCollectionView.reloadData()
         
         refreshData()
-        
+        loadAccessories()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         // 네이베이션바 선 없애기
 //        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
 //        navigationController?.navigationBar.shadowImage = UIImage()
+        animalCollectionView.reloadData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        // animalCollectionView.reloadData()
+    }
+
     // MARK: - 이미지 합성
     func compositeImage(images: [UIImage]) -> UIImage {
         var compositeImage: UIImage?
@@ -73,7 +85,7 @@ class MyAnimalPage: UIViewController {
                                 "pants_url": json["pants_url"].stringValue,
                                 "shoes_url": json["shoes_url"].stringValue,
                                 "gloves_url": json["gloves_url"].stringValue]
-                            self.myAnimalList.append(MyAnimal(id:json["_id"].stringValue,time: json["delay_time"].stringValue ,name: json["animal"].stringValue, animal: animal))
+                            self.myAnimalList.append(MyAnimal(id: json["_id"].stringValue, time: json["delay_time"].stringValue, name: json["animal"].stringValue, animal: animal))
                         }
                         
                         // 이미지url 저장배열 생성 및 동물사진url 첫번쨰로 위치
@@ -106,8 +118,6 @@ class MyAnimalPage: UIViewController {
                             ingredImage = []
                         }
                         
-                        print(myAnimalList)
-                        
                         // 뷰 생성
                         DispatchQueue.main.async {
                             animalCollectionView.reloadData()
@@ -117,9 +127,48 @@ class MyAnimalPage: UIViewController {
             }
         }
     }
-
+    
+    // 모든 악세서리 로드
+    func loadAccessories() {
+        loadAccessory(category: "head")
+        loadAccessory(category: "top")
+        loadAccessory(category: "pants")
+        loadAccessory(category: "gloves")
+        loadAccessory(category: "shoes")
+    }
+    
+    // 악세서리 로드 함수
+    func loadAccessory(category: String) {
+        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+            get(url: "/accessories/all/\(category)", token: session.value) { [self] (data, response, error) in
+                guard let data = data, error == nil else {
+                    print("error=\(String(describing: error))")
+                    return
+                }
+                
+                if let httpStatus = response as? HTTPURLResponse {
+                    if httpStatus.statusCode == 200 {
+                        var temp: [Accessory] = []
+                        for idx in 0..<JSON(data).count {
+                            let json = JSON(data)[idx]
+                            if let imageURL = URL(string: json["img_url"].stringValue) {
+                                if let imageData = try? Data(contentsOf: imageURL) {
+                                    if let img = UIImage(data: imageData) {
+                                        temp.append(Accessory(accessoryId: json["accessory_id"].stringValue, imgUrl: json["img_url"].stringValue, isOwn: json["is_own"].boolValue, img: img))
+                                    }
+                                }
+                            }
+                        }
+                        // 부위별 순서 기록
+                        guard let num = order[category] else {return}
+                        serverData[num] = temp
+                        temp = []
+                    }
+                }
+            }
+        }
+    }
 }
-
 extension MyAnimalPage: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -133,9 +182,18 @@ extension MyAnimalPage: UICollectionViewDelegate, UICollectionViewDataSource, UI
         
         cell.layer.cornerRadius = 10
         cell.backgroundColor = .white
-        cell.animalName.text = myAnimalList[indexPath.row].name.localized
+       // cell.animalName.text = myAnimalList[indexPath.row].name.localized
+        cell.animalName.text = tempName[indexPath.row]
+        cell.delayTime.text = tempTime[indexPath.row]
         cell.animalImage.image = images[indexPath.row]
         return cell
+    }
+    
+    // 셀 클릭시
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let customVC = self.storyboard?.instantiateViewController(identifier: "customVC") as? AnimalCustom else {return}
+        customVC.serverData = [serverData[1]!, serverData[2]!, serverData[3]!, serverData[4]!, serverData[5]!]
+        self.navigationController?.pushViewController(customVC, animated: true)
     }
     
     // 섹션의 여백
