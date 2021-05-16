@@ -364,7 +364,10 @@
                     <connections>
                         <outlet property="accessoryImage" destination="Kpb-ys-jF9" id="ApB-c3-pS8"/>
                         <outlet property="innerView" destination="0iq-Y4-jQ0" id="gXl-pd-4AM"/>
+                        <outlet property="itemName" destination="ChH-nn-SoE" id="1gY-qb-7Kl"/>
+                        <outlet property="missionTitle" destination="Tuc-Ib-MUu" id="hAH-EE-Kqw"/>
                         <outlet property="okBtn" destination="Z1W-tJ-uvE" id="2kF-3W-45S"/>
+                        <outlet property="textView" destination="p1r-qz-SnF" id="2cK-jY-5EC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FRz-rr-3C0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
