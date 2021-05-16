@@ -34,10 +34,8 @@ class MyAnimalPage: UIViewController {
         let nibCell = UINib(nibName: "MyAnimalPageCollectionViewCell", bundle: nil)
         animalCollectionView.register(nibCell, forCellWithReuseIdentifier: cellId )
         animalCollectionView.reloadData()
-        
         refreshData()
         loadAccessories()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -122,6 +120,7 @@ class MyAnimalPage: UIViewController {
                         DispatchQueue.main.async {
                             animalCollectionView.reloadData()
                         }
+                        print(imageUrls)
                     }
                 }
             }
@@ -193,6 +192,8 @@ extension MyAnimalPage: UICollectionViewDelegate, UICollectionViewDataSource, UI
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let customVC = self.storyboard?.instantiateViewController(identifier: "customVC") as? AnimalCustom else {return}
         customVC.serverData = [serverData[1]!, serverData[2]!, serverData[3]!, serverData[4]!, serverData[5]!]
+        customVC.myCharacterUrls = [imageUrls[indexPath.row][0], imageUrls[indexPath.row][2], imageUrls[indexPath.row][5], imageUrls[indexPath.row][3], imageUrls[indexPath.row][1], imageUrls[indexPath.row][4]]
+        print(customVC.myCharacterUrls)
         self.navigationController?.pushViewController(customVC, animated: true)
     }
     
