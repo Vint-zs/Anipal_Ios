@@ -8,7 +8,10 @@
 import UIKit
 import SwiftyJSON
 
-class MyAnimalPage: UIViewController {
+class MyAnimalPage: UIViewController, reloadData {
+    func reloadData() {
+        refreshData()
+    }
 
     @IBOutlet var animalCollectionView: UICollectionView!
     let cellId = "MyAnimalPageCollectionViewCell"
@@ -17,9 +20,8 @@ class MyAnimalPage: UIViewController {
     var myAnimalList: [MyAnimal] = []
     var imageUrls: [[String]] = []
     var images: [UIImage] = []
-    var tempName: [String] = ["펭도리","냥냥이","도넛","털키","거북왕"]
-    var tempTime: [String] = ["10h","4h","5h","2h","3h"]
     var order: [String: Int] = ["head": 1, "top": 2, "pants": 3, "gloves": 4, "shoes": 5 ]
+    var needReload: Bool = false
     
     var serverHead: [Accessory] = []
     var serverData: [Int: [Accessory]] = [:]
@@ -43,6 +45,9 @@ class MyAnimalPage: UIViewController {
 //        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
 //        navigationController?.navigationBar.shadowImage = UIImage()
         animalCollectionView.reloadData()
+        if needReload == true {
+            refreshData()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -65,7 +70,15 @@ class MyAnimalPage: UIViewController {
         return compositeImage ?? #imageLiteral(resourceName: "emptyCheckBox")
     }
     
+    // 초기화
+    func reset() {
+        myAnimalList = []
+        imageUrls = []
+        images = []
+    }
+    
     func refreshData() {
+        reset()
         if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
             get(url: "/own/animals", token: session.value) { [self] (data, response, error) in
                 guard let data = data, error == nil else {
@@ -83,7 +96,7 @@ class MyAnimalPage: UIViewController {
                                 "pants_url": json["pants_url"].stringValue,
                                 "shoes_url": json["shoes_url"].stringValue,
                                 "gloves_url": json["gloves_url"].stringValue]
-                            self.myAnimalList.append(MyAnimal(id: json["_id"].stringValue, time: json["delay_time"].stringValue, name: json["animal"].stringValue, animal: animal))
+                            self.myAnimalList.append(MyAnimal(id: json["_id"].stringValue, time: json["animal"]["delay_time"].stringValue, name: json["animal"]["localized"].stringValue, animal: animal))
                         }
                         
                         // 이미지url 저장배열 생성 및 동물사진url 첫번쨰로 위치
@@ -120,7 +133,6 @@ class MyAnimalPage: UIViewController {
                         DispatchQueue.main.async {
                             animalCollectionView.reloadData()
                         }
-                        print(imageUrls)
                     }
                 }
             }
@@ -178,12 +190,12 @@ extension MyAnimalPage: UICollectionViewDelegate, UICollectionViewDataSource, UI
         guard let cell = animalCollectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? MyAnimalPageCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
+
         cell.layer.cornerRadius = 10
         cell.backgroundColor = .white
        // cell.animalName.text = myAnimalList[indexPath.row].name.localized
-        cell.animalName.text = tempName[indexPath.row]
-        cell.delayTime.text = tempTime[indexPath.row]
+        cell.animalName.text = myAnimalList[indexPath.row].name.localized
+        cell.delayTime.text = myAnimalList[indexPath.row].time
         cell.animalImage.image = images[indexPath.row]
         return cell
     }
@@ -193,7 +205,7 @@ extension MyAnimalPage: UICollectionViewDelegate, UICollectionViewDataSource, UI
         guard let customVC = self.storyboard?.instantiateViewController(identifier: "customVC") as? AnimalCustom else {return}
         customVC.serverData = [serverData[1]!, serverData[2]!, serverData[3]!, serverData[4]!, serverData[5]!]
         customVC.myCharacterUrls = [imageUrls[indexPath.row][0], imageUrls[indexPath.row][2], imageUrls[indexPath.row][5], imageUrls[indexPath.row][3], imageUrls[indexPath.row][1], imageUrls[indexPath.row][4]]
-        print(customVC.myCharacterUrls)
+        customVC.delegate = self
         self.navigationController?.pushViewController(customVC, animated: true)
     }
     
