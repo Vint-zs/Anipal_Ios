@@ -22,7 +22,6 @@ class MainPage: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("메인화면 view appear 호출")
         navigationController?.isNavigationBarHidden = true
         refreshData()
     }
