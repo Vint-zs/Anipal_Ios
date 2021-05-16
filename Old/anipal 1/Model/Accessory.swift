@@ -14,3 +14,21 @@ struct Accessory {
     var isOwn: Bool
     var img: UIImage
 }
+
+struct AccessoryDetail {
+    var name: String
+    var price: Int
+    var imgUrl: String
+    var img: UIImage
+    var mission: [String: String]
+    var category: String
+    
+    init(name: String, price: Int, imgUrl: String, img: UIImage, mission: [String: String], category: String) {
+        self.name = name
+        self.price = price
+        self.imgUrl = imgUrl
+        self.img = img
+        self.mission = mission
+        self.category = category
+    }
+}
