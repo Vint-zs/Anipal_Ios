@@ -18,6 +18,9 @@ class AnimalCustom: UIViewController {
     
     var serverHead: [Accessory] = []
     var serverData: [[Accessory]] = []
+    var myCharacterUrls: [String]!
+    var myCharacterImage: UIImage?
+    var accessoryDetail: AccessoryDetail?
     
     var data: [[UIImage]] = []
     let cellId = "accessory"
@@ -34,9 +37,9 @@ class AnimalCustom: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         layout()
-        // loadAccessory()
         acceCollectionView.delegate = self
         acceCollectionView.dataSource = self
+        makeImage()
         
         // 셀 등록
         let nibCell = UINib(nibName: "AccessoryCollectionViewCell", bundle: nil)
@@ -44,7 +47,7 @@ class AnimalCustom: UIViewController {
         acceCollectionView.register(nibCell, forCellWithReuseIdentifier: cellId )
         acceCollectionView.reloadData()
         p=0
-
+        
     }
     @IBAction func clickDetailBtn(_ sender: UIButton) {
         guard let detailVC = self.storyboard?.instantiateViewController(identifier: "AnimalDetail") as? AnimalDetail else {return}
@@ -75,53 +78,47 @@ class AnimalCustom: UIViewController {
         animalImage.layer.cornerRadius = 5
         detailButton.layer.cornerRadius = 5
         saveBtn.layer.cornerRadius = 5
-  
     }
     
-//    func loadAccessory() {
-//        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
-//            get(url: "/accessories/all/head", token: session.value) { [self] (data, response, error) in
-//                guard let data = data, error == nil else {
-//                    print("error=\(String(describing: error))")
-//                    return
-//                }
-//                if let httpStatus = response as? HTTPURLResponse {
-//                    if httpStatus.statusCode == 200 {
-//                        for idx in 0..<JSON(data).count {
-//                            let json = JSON(data)[idx]
-//                            if let imageURL = URL(string: json["img_url"].stringValue) {
-//                                if let imageData = try? Data(contentsOf: imageURL) {
-//                                    if let img = UIImage(data: imageData) {
-//                                        self.serverHead.append(Accessory(accessoryId: json["accessory_id"].stringValue, imgUrl: json["img_url"].stringValue, isOwn: json["is_own"].boolValue, img: img))
-//                                    }
-//                                }
-//                            }
-//                        }
-//                        serverData.append(serverHead)
-//                        // 뷰 생성
-//                        DispatchQueue.main.async {
-//                            acceCollectionView.reloadData()
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-    
-    func getData() {
-        data = [testHead, testTop, testBottom, testLeft, testShoes]
-        acceCollectionView.reloadData()
+    // 이미지 생성
+    func makeImage() {
+        // url -> 이미지로 변환 후 합성 및 저장
+        for i in 0..<myCharacterUrls.count {
+            var ingredImage: [UIImage] = []
+            for url in myCharacterUrls {
+                if let imageURL = URL(string: url) {
+                    if let imageData = try? Data(contentsOf: imageURL) {
+                        if let img = UIImage(data: imageData) {
+                            ingredImage.append(img)
+                        }
+                    }
+                }
+            }
+            myCharacterImage = compositeImage(images: ingredImage)
+            ingredImage = []
+            animalImage.image = myCharacterImage
+        }
     }
     
-    func getAccessory() {
-        
+    // 이미지 합성
+    func compositeImage(images: [UIImage]) -> UIImage {
+        var compositeImage: UIImage?
+        if images.count > 0 {
+            let size: CGSize = CGSize(width: images[0].size.width, height: images[0].size.height)
+            UIGraphicsBeginImageContext(size)
+            for image in images {
+                let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+                image.draw(in: rect)
+            }
+            compositeImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+        }
+        return compositeImage ?? #imageLiteral(resourceName: "emptyCheckBox")
     }
-    
 }
 
 extension AnimalCustom: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       // return data[p].count
         return serverData[p].count
     }
     
@@ -131,11 +128,52 @@ extension AnimalCustom: UICollectionViewDelegate, UICollectionViewDataSource, UI
             return UICollectionViewCell()
         }
         
-//        cell.accessoryImage.image = data[p][indexPath.row]
         cell.accessoryImage.image = serverData[p][indexPath.row].img
-
         cell.layer.cornerRadius = 10
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        myCharacterUrls[p+1] = serverData[p][indexPath.row].imgUrl
+        makeImage()
+        
+    // 추후 디비 데이터 정리되면 이걸로 변경
+//        // 액세서리 보유시
+//        if serverData[p][indexPath.row].isOwn == true {
+//            myCharacterUrls[p+1] = serverData[p][indexPath.row].imgUrl
+//            makeImage()
+//        }
+//        // 액세서리 미보유시
+//        else {
+//            print("else")
+//
+//            var detail: AccessoryDetail?
+//            if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+//                get(url: "/accessories/\(serverData[p][indexPath.row].accessoryId)", token: session.value) { [self] (data, response, error) in
+//                    print("get")
+//                    guard let data = data, error == nil else {
+//                        print("error=\(String(describing: error))")
+//                        return
+//                    }
+//                    if let httpStatus = response as? HTTPURLResponse {
+//                        print("response")
+//                        if httpStatus.statusCode == 200 {
+//                            print("200")
+//                            let json = JSON(data)
+//                            detail = AccessoryDetail(name: json["name"].stringValue, price: json["price"].intValue, imgUrl: json["img_url"].stringValue, img: serverData[p][indexPath.row].img, mission: json["mission"].dictionaryObject as? [String: String] ?? ["": ""], category: json["category"].stringValue)
+//                        }
+//                        // 뷰 생성
+//                        DispatchQueue.main.async {
+//                            guard let missionVC = self.storyboard?.instantiateViewController(identifier: "mission") as? MissionView else {return}
+//                            missionVC.accessoryInfo = detail
+//                            missionVC.modalPresentationStyle = .overCurrentContext
+//                            self.present(missionVC, animated: true, completion: nil)
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
     
     // 섹션의 여백
