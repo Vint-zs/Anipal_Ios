@@ -30,9 +30,15 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ll-UD-Z8c">
-                        <rect key="frame" x="54" y="175.5" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <rect key="frame" x="53" y="165.5" width="44" height="21"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqZ-rz-cgU">
+                        <rect key="frame" x="56.5" y="191.5" width="37.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -43,7 +49,9 @@
                 <constraint firstItem="6nW-it-DrL" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="DmC-7v-BB3"/>
                 <constraint firstItem="CNp-cP-IfM" firstAttribute="top" secondItem="6nW-it-DrL" secondAttribute="bottom" constant="-10" id="Ip1-gl-LTE"/>
                 <constraint firstItem="CNp-cP-IfM" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="SaB-JY-WZL"/>
-                <constraint firstItem="8Ll-UD-Z8c" firstAttribute="top" secondItem="CNp-cP-IfM" secondAttribute="bottom" id="dsT-6V-EeG"/>
+                <constraint firstItem="8Ll-UD-Z8c" firstAttribute="top" secondItem="CNp-cP-IfM" secondAttribute="bottom" constant="-10" id="dsT-6V-EeG"/>
+                <constraint firstItem="eqZ-rz-cgU" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="esh-Z0-8OG"/>
+                <constraint firstItem="eqZ-rz-cgU" firstAttribute="top" secondItem="8Ll-UD-Z8c" secondAttribute="bottom" constant="5" id="hh9-2z-MeM"/>
                 <constraint firstItem="8Ll-UD-Z8c" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="iuk-Et-9hN"/>
                 <constraint firstAttribute="trailing" secondItem="6nW-it-DrL" secondAttribute="trailing" constant="10" id="p8X-Ct-qWU"/>
             </constraints>
@@ -51,6 +59,7 @@
             <connections>
                 <outlet property="animalImage" destination="CNp-cP-IfM" id="Ex3-Cq-T1V"/>
                 <outlet property="animalName" destination="8Ll-UD-Z8c" id="snx-Bj-dd6"/>
+                <outlet property="delayTime" destination="eqZ-rz-cgU" id="eGd-kg-toO"/>
                 <outlet property="starImage" destination="6nW-it-DrL" id="3mx-Rw-WIt"/>
             </connections>
             <point key="canvasLocation" x="204.34782608695653" y="47.544642857142854"/>

@@ -12,6 +12,7 @@ class MyAnimalPageCollectionViewCell: UICollectionViewCell {
     @IBOutlet var animalImage: UIImageView!
     @IBOutlet var starImage: UIImageView!
     @IBOutlet var animalName: UILabel!
+    @IBOutlet var delayTime: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
