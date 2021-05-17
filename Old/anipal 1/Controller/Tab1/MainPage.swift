@@ -58,7 +58,6 @@ class MainPage: UIViewController {
         comingAnimals = ComingAnimals(nibName: "ComingAnimals", bundle: nil)
         self.addChild(comingAnimals)
         self.view.addSubview(comingAnimals.view)
-        
         comingAnimals.view.frame = CGRect(x: 0, y: self.view.frame.height - cardHandleAreaHeight, width: self.view.bounds.width, height: cardHeight)
         comingAnimals.view.clipsToBounds = true
         
@@ -116,17 +115,17 @@ class MainPage: UIViewController {
             frameAnimator.startAnimation()
             runningAnimations.append(frameAnimator)
             
-            let cornerRadiusAnimator = UIViewPropertyAnimator(duration: duration, curve: .linear) {
-                switch state {
-                case .expanded:
-                    self.comingAnimals.view.layer.cornerRadius = 12
-                case .collapsed:
-                    self.comingAnimals.view.layer.cornerRadius = 12
-                }
-            }
-            
-            cornerRadiusAnimator.startAnimation()
-            runningAnimations.append(cornerRadiusAnimator)
+//            let cornerRadiusAnimator = UIViewPropertyAnimator(duration: duration, curve: .linear) {
+//                switch state {
+//                case .expanded:
+//                    self.comingAnimals.view.layer.cornerRadius = 12
+//                case .collapsed:
+//                    self.comingAnimals.view.layer.cornerRadius = 12
+//                }
+//            }
+//
+//            cornerRadiusAnimator.startAnimation()
+//            runningAnimations.append(cornerRadiusAnimator)
         }
     }
     

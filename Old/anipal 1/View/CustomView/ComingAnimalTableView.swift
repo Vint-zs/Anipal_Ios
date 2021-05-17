@@ -56,7 +56,7 @@ class ComingAnimalTableView: UIView, UITableViewDataSource {
                 }
                 if let httpStatus = response as? HTTPURLResponse {
                     if httpStatus.statusCode == 200 {
-                        // print("data: \(JSON(data))")
+                        comingAnimals = []
                         for idx in 0..<JSON(data).count {
                             let json = JSON(data)[idx]["coming_animal"]
                             let animalURL = json["animal_url"].stringValue

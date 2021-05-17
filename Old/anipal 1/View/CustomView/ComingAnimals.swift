@@ -10,9 +10,9 @@ import UIKit
 class ComingAnimals: UIViewController {
     
     @IBOutlet weak var handleArea: UIView!
+    @IBOutlet weak var tableView: ComingAnimalTableView!
     
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//    }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.loadComingAnimals()
+    }
 }
