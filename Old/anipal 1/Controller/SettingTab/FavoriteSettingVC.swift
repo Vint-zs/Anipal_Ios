@@ -41,12 +41,6 @@ class FavoriteSettingVC: UIViewController {
                     print("error=\(String(describing: error))")
                     return
                 }
-                if let httpStatus = response as? HTTPURLResponse {
-                    if httpStatus.statusCode == 200 {
-                        
-                    }
-                }
-                
             })
         }
         self.dismiss(animated: true, completion: nil)

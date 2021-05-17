@@ -49,6 +49,30 @@ class SettingTab: UIViewController, sendBackDelegate {
         selectedAnimal = data
         ad?.thumbnail = animals[data].animalImg
         favBtn.setImage(ad?.thumbnail, for: .normal)
+        
+        // 변경된 대표 동물 이미지 서버 전송
+        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+            let body: NSMutableDictionary = NSMutableDictionary()
+            body.setValue(animals[data].animalURLs, forKey: "favorite_animal")
+
+            let putURL = "/users/" + (ad?.id)!
+            print("token: \(session.value)")
+            print("ad.id: \(ad?.id)")
+
+            put(url: putURL, token: session.value, body: body, completionHandler: { data, response, error in
+                guard let data = data, error == nil else {
+                    print("error=\(String(describing: error))")
+                    return
+                }
+                if let httpStatus = response as? HTTPURLResponse {
+                    if httpStatus.statusCode == 200 {
+
+                    } else {
+                        print("error: \(httpStatus.statusCode)")
+                    }
+                }
+            })
+        }
     }
     
     // 대표 동물 변경
