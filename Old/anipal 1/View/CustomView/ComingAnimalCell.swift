@@ -9,7 +9,7 @@ import UIKit
 
 class ComingAnimalCell: UITableViewCell {
 
-    @IBOutlet weak var tempLabel: UILabel!
+    @IBOutlet weak var animalImg: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

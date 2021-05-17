@@ -13,6 +13,8 @@
 		6C1BECFD265174350039E454 /* ComingAnimals.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C1BECFC265174350039E454 /* ComingAnimals.xib */; };
 		6C1BED04265198940039E454 /* ComingAnimalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1BED02265198940039E454 /* ComingAnimalCell.swift */; };
 		6C1BED05265198940039E454 /* ComingAnimalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C1BED03265198940039E454 /* ComingAnimalCell.xib */; };
+		6C1BED0B265250230039E454 /* ComingAnimalTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1BED0A265250230039E454 /* ComingAnimalTableView.swift */; };
+		6C1BED0D2652502E0039E454 /* ComingAnimalTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C1BED0C2652502E0039E454 /* ComingAnimalTableView.xib */; };
 		6C2C429426178AFF007D2D71 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C429326178AFF007D2D71 /* FavoriteView.swift */; };
 		6C2C429726178B08007D2D71 /* FavoriteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C2C429626178B08007D2D71 /* FavoriteView.xib */; };
 		6C53ECF9261F6AF100D62EAD /* WriteNewLetter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C53ECF8261F6AF100D62EAD /* WriteNewLetter.xib */; };
@@ -84,6 +86,8 @@
 		6C1BECFC265174350039E454 /* ComingAnimals.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComingAnimals.xib; sourceTree = "<group>"; };
 		6C1BED02265198940039E454 /* ComingAnimalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingAnimalCell.swift; sourceTree = "<group>"; };
 		6C1BED03265198940039E454 /* ComingAnimalCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComingAnimalCell.xib; sourceTree = "<group>"; };
+		6C1BED0A265250230039E454 /* ComingAnimalTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingAnimalTableView.swift; sourceTree = "<group>"; };
+		6C1BED0C2652502E0039E454 /* ComingAnimalTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComingAnimalTableView.xib; sourceTree = "<group>"; };
 		6C2C429326178AFF007D2D71 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		6C2C429626178B08007D2D71 /* FavoriteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteView.xib; sourceTree = "<group>"; };
 		6C53ECF8261F6AF100D62EAD /* WriteNewLetter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WriteNewLetter.xib; sourceTree = "<group>"; };
@@ -186,6 +190,8 @@
 				76A590B8263BDCC600C70EA4 /* LanguageSelectCell.xib */,
 				6C1BECFA2651740A0039E454 /* ComingAnimals.swift */,
 				6C1BECFC265174350039E454 /* ComingAnimals.xib */,
+				6C1BED0A265250230039E454 /* ComingAnimalTableView.swift */,
+				6C1BED0C2652502E0039E454 /* ComingAnimalTableView.xib */,
 				6C1BED02265198940039E454 /* ComingAnimalCell.swift */,
 				6C1BED03265198940039E454 /* ComingAnimalCell.xib */,
 			);
@@ -422,6 +428,7 @@
 				7686723E261C4FB90037A4F3 /* Tab1.storyboard in Resources */,
 				6C6A9A0C261E14FF00EF93F4 /* LetterListCell.xib in Resources */,
 				6C1BED05265198940039E454 /* ComingAnimalCell.xib in Resources */,
+				6C1BED0D2652502E0039E454 /* ComingAnimalTableView.xib in Resources */,
 				6C53ECF9261F6AF100D62EAD /* WriteNewLetter.xib in Resources */,
 				6CFB759B2615AD710017F160 /* Localizable.strings in Resources */,
 				76D1785625CA922900C5ED37 /* Assets.xcassets in Resources */,
@@ -547,6 +554,7 @@
 				6C7D9BA52614DC0C003596EB /* LanguageSettingVC.swift in Sources */,
 				76F00000261AE184004D080E /* AnimalCollectionViewCell.swift in Sources */,
 				76686FE625CEAB7300536E36 /* animal.swift in Sources */,
+				6C1BED0B265250230039E454 /* ComingAnimalTableView.swift in Sources */,
 				767BD80C2619687C0051DDEC /* ConceptViewController.swift in Sources */,
 				6C05C15D2618402B00FB744A /* FavoriteCell.swift in Sources */,
 				76686FCB25CE2FFC00536E36 /* WritingPage.swift in Sources */,

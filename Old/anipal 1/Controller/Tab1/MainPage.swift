@@ -18,7 +18,7 @@ class MainPage: UIViewController {
     var comingAnimals: ComingAnimals!
     var visualEffectView: UIVisualEffectView!
     
-    let cardHeight: CGFloat = 300
+    let cardHeight: CGFloat = 220
     let cardHandleAreaHeight: CGFloat = 120
     
     var cardVisible = false
@@ -49,7 +49,7 @@ class MainPage: UIViewController {
         navigationController?.isNavigationBarHidden = false
     }
     
-    // MARK: - 배송 중 동물 UI
+    // MARK: - 배송 중 동물
     func setupCard() {
         visualEffectView = UIVisualEffectView()
         visualEffectView.frame = self.view.frame
