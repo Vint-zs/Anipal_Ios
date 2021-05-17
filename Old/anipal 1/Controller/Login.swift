@@ -130,8 +130,6 @@ class Login: UIViewController {
                             }
                         }
                         
-                        print("data: \(JSON(data))")
-                        
                         // 메인화면 이동
                         moveMainScreen()
                     }

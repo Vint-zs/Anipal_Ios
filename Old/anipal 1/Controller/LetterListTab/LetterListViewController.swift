@@ -59,15 +59,11 @@ class LetterListViewController: UICollectionViewController {
                                 "shoes_url": json["thumbnail_animal"]["shoes_url"].stringValue,
                                 "gloves_url": json["thumbnail_animal"]["gloves_url"].stringValue]
                             
-                            
                             var date = json["arrive_date"].stringValue
                             date = dateConvert(date: date)
                             
                             let mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, thumbnail: thumbnail, arrivalDate: date, letterCount: json["letters_count"].intValue)
                             
-//                            if thumbnail["animal_url"] != "" {
-//                                mailBox = MailBox(mailBoxID: json["_id"].stringValue, isOpened: json["is_opened"].boolValue, partner: partner, thumbnail: loadAnimals(urls: thumbnail), arrivalDate: date, letterCount: json["letters_count"].intValue)
-//                            }
                             mailboxes.append(mailBox)
                         }
                         

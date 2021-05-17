@@ -58,14 +58,17 @@ class ComingAnimalTableView: UIView, UITableViewDataSource {
                     if httpStatus.statusCode == 200 {
                         comingAnimals = []
                         for idx in 0..<JSON(data).count {
-                            let json = JSON(data)[idx]["coming_animal"]
-                            let animalURL = json["animal_url"].stringValue
-                            let bar = json["bar"].stringValue
-                            let background = json["background"].stringValue
+                            let json = JSON(data)[idx]
+                            let animalURL = json["coming_animal"]["animal_url"].stringValue
+                            let bar = json["coming_animal"]["bar"].stringValue
+                            let background = json["coming_animal"]["background"].stringValue
+                            var date = json["arrive_time"].stringValue
+                            date = dateConvert(date: date)
                             
-                            let comingAnimal = ComingAnimal(animalURL: animalURL, bar: bar, background: background)
+                            let comingAnimal = ComingAnimal(animalURL: animalURL, bar: bar, background: background, arriveTime: date)
                             comingAnimals.append(comingAnimal)
                         }
+                        print("data: \(JSON(data))")
                         print("comingAnimal: \(comingAnimals)")
                         
                         // 화면 reload
@@ -78,6 +81,43 @@ class ComingAnimalTableView: UIView, UITableViewDataSource {
                 }
             })
         }
+    }
+    
+    // HEX Color convert
+    func hexStringToUIColor(hex: String) -> UIColor {
+        var cString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+        
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+        
+        var rgbValue: UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgbValue)
+        
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+    
+    // MARK: - 날짜 형식 변환
+    func dateConvert(date: String) -> String {
+        let stringFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let formatter = DateFormatter()
+        formatter.dateFormat = stringFormat
+        // formatter.locale = Locale(identifier: "ko") 추후 국가별 문구 설정시 사용하기위해 주석처리
+        guard let tempDate = formatter.date(from: date) else {
+            return ""
+        }
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: tempDate)
+
     }
 }
 
@@ -100,8 +140,10 @@ extension ComingAnimalTableView {
         }
         let cellURL = URL(string: comingAnimals[indexPath.row].animalURL)
         let data = try? Data(contentsOf: cellURL!)
-        cell.animalImg.image = UIImage(data: data!)
-        cell.animalImg.contentMode = .scaleAspectFill
+        let thumbImg = UIImage(data: data!)?.scalePreservingAspectRatio(targetSize: CGSize(width: 48, height: 48))
+        cell.animalSlider.setThumbImage(thumbImg, for: .normal)
+        cell.animalSlider.minimumTrackTintColor = hexStringToUIColor(hex: comingAnimals[indexPath.row].bar)
+        cell.animalSlider.maximumTrackTintColor = hexStringToUIColor(hex: comingAnimals[indexPath.row].background)
         
         return cell
     }

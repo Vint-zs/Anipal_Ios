@@ -50,11 +50,13 @@ struct ComingAnimal {
     let animalURL: String
     let bar: String
     let background: String
+    let arriveTime: String
     
-    init(animalURL: String, bar: String, background: String) {
+    init(animalURL: String, bar: String, background: String, arriveTime: String) {
         self.animalURL = animalURL
         self.bar = bar
         self.background = background
+        self.arriveTime = arriveTime
     }
 }
 

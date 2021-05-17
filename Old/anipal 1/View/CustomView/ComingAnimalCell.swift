@@ -8,12 +8,12 @@
 import UIKit
 
 class ComingAnimalCell: UITableViewCell {
-
-    @IBOutlet weak var animalImg: UIImageView!
+    
+    @IBOutlet weak var animalSlider: CustomSlider!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
