@@ -14,6 +14,10 @@ class ComingAnimals: UIViewController {
     
     let data = ["Cat", "Dog", "Rabbit", "Turtle", "Penguin"]
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
 }
 
 extension ComingAnimals: UITableViewDelegate, UITableViewDataSource {

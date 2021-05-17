@@ -18,7 +18,7 @@ class MainPage: UIViewController {
     var comingAnimals: ComingAnimals!
     var visualEffectView: UIVisualEffectView!
     
-    let cardHeight: CGFloat = 500
+    let cardHeight: CGFloat = 300
     let cardHandleAreaHeight: CGFloat = 120
     
     var cardVisible = false
