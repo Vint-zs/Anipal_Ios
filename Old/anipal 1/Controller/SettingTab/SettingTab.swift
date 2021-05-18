@@ -11,7 +11,7 @@ import FBSDKLoginKit
 import SwiftyJSON
 
 class SettingTab: UIViewController, sendBackDelegate {
-    
+
     let settings: [String] = ["Language".localized, "Favorite".localized]
     let sections: [String] = ["Language".localized, "Favorite".localized]
     
@@ -100,6 +100,9 @@ class SettingTab: UIViewController, sendBackDelegate {
     }
     
     func loadAnimal() {
+        animals = []  // 서버 POST용
+        serverAnimals = [] // next page 데이터 전송용
+        images = []
         if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
             get(url: "/own/animals", token: session.value, completionHandler: { [self] data, response, error in
                 guard let data = data, error == nil else {
