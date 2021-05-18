@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		6C05C15D2618402B00FB744A /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C05C15C2618402B00FB744A /* FavoriteCell.swift */; };
 		6C05C1602618405700FB744A /* FavoriteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C05C15F2618405700FB744A /* FavoriteCell.xib */; };
+		6C1BECFB2651740A0039E454 /* ComingAnimals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1BECFA2651740A0039E454 /* ComingAnimals.swift */; };
+		6C1BECFD265174350039E454 /* ComingAnimals.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C1BECFC265174350039E454 /* ComingAnimals.xib */; };
+		6C1BED04265198940039E454 /* ComingAnimalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1BED02265198940039E454 /* ComingAnimalCell.swift */; };
+		6C1BED05265198940039E454 /* ComingAnimalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C1BED03265198940039E454 /* ComingAnimalCell.xib */; };
+		6C1BED0B265250230039E454 /* ComingAnimalTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1BED0A265250230039E454 /* ComingAnimalTableView.swift */; };
+		6C1BED0D2652502E0039E454 /* ComingAnimalTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C1BED0C2652502E0039E454 /* ComingAnimalTableView.xib */; };
+		6C1BED0F2652A4B30039E454 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1BED0E2652A4B30039E454 /* UIImageExtension.swift */; };
+		6C1BED152652ABED0039E454 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1BED142652ABED0039E454 /* CustomSlider.swift */; };
 		6C2C429426178AFF007D2D71 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C429326178AFF007D2D71 /* FavoriteView.swift */; };
 		6C2C429726178B08007D2D71 /* FavoriteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C2C429626178B08007D2D71 /* FavoriteView.xib */; };
 		6C53ECF9261F6AF100D62EAD /* WriteNewLetter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C53ECF8261F6AF100D62EAD /* WriteNewLetter.xib */; };
@@ -81,6 +89,14 @@
 		6946DCF5EE6E85DB8CEE165B /* Pods_anipal_1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_anipal_1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C05C15C2618402B00FB744A /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		6C05C15F2618405700FB744A /* FavoriteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteCell.xib; sourceTree = "<group>"; };
+		6C1BECFA2651740A0039E454 /* ComingAnimals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingAnimals.swift; sourceTree = "<group>"; };
+		6C1BECFC265174350039E454 /* ComingAnimals.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComingAnimals.xib; sourceTree = "<group>"; };
+		6C1BED02265198940039E454 /* ComingAnimalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingAnimalCell.swift; sourceTree = "<group>"; };
+		6C1BED03265198940039E454 /* ComingAnimalCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComingAnimalCell.xib; sourceTree = "<group>"; };
+		6C1BED0A265250230039E454 /* ComingAnimalTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingAnimalTableView.swift; sourceTree = "<group>"; };
+		6C1BED0C2652502E0039E454 /* ComingAnimalTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComingAnimalTableView.xib; sourceTree = "<group>"; };
+		6C1BED0E2652A4B30039E454 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		6C1BED142652ABED0039E454 /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		6C2C429326178AFF007D2D71 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		6C2C429626178B08007D2D71 /* FavoriteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteView.xib; sourceTree = "<group>"; };
 		6C53ECF8261F6AF100D62EAD /* WriteNewLetter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WriteNewLetter.xib; sourceTree = "<group>"; };
@@ -186,6 +202,12 @@
 				6C53ECFB261F6B0E00D62EAD /* WriteNewLetter.swift */,
 				76A590B7263BDCC600C70EA4 /* LanguageSelectCell.swift */,
 				76A590B8263BDCC600C70EA4 /* LanguageSelectCell.xib */,
+				6C1BECFA2651740A0039E454 /* ComingAnimals.swift */,
+				6C1BECFC265174350039E454 /* ComingAnimals.xib */,
+				6C1BED0A265250230039E454 /* ComingAnimalTableView.swift */,
+				6C1BED0C2652502E0039E454 /* ComingAnimalTableView.xib */,
+				6C1BED02265198940039E454 /* ComingAnimalCell.swift */,
+				6C1BED03265198940039E454 /* ComingAnimalCell.xib */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -339,6 +361,8 @@
 				6CFB75972615AD2D0017F160 /* Localizing */,
 				7657F0BB25CAE44C00403881 /* Images */,
 				76D1784C25CA922900C5ED37 /* AppDelegate.swift */,
+				6C1BED142652ABED0039E454 /* CustomSlider.swift */,
+				6C1BED0E2652A4B30039E454 /* UIImageExtension.swift */,
 				76D1784E25CA922900C5ED37 /* SceneDelegate.swift */,
 				6C5D653D262C30B100A62334 /* Server.swift */,
 				76AF5B4325D9400700CA4183 /* Model */,
@@ -424,6 +448,8 @@
 			files = (
 				7686723E261C4FB90037A4F3 /* Tab1.storyboard in Resources */,
 				6C6A9A0C261E14FF00EF93F4 /* LetterListCell.xib in Resources */,
+				6C1BED05265198940039E454 /* ComingAnimalCell.xib in Resources */,
+				6C1BED0D2652502E0039E454 /* ComingAnimalTableView.xib in Resources */,
 				6C53ECF9261F6AF100D62EAD /* WriteNewLetter.xib in Resources */,
 				6CFB759B2615AD710017F160 /* Localizable.strings in Resources */,
 				76D1785625CA922900C5ED37 /* Assets.xcassets in Resources */,
@@ -432,6 +458,7 @@
 				76867241261C4FCF0037A4F3 /* Tab2.storyboard in Resources */,
 				7657F0BD25CAE46400403881 /* 구글로고.jpg in Resources */,
 				7686724D261C51090037A4F3 /* SignUp.storyboard in Resources */,
+				6C1BECFD265174350039E454 /* ComingAnimals.xib in Resources */,
 				7668701925D1318400536E36 /* Launch Screen2.storyboard in Resources */,
 				76A590BA263BDCC600C70EA4 /* LanguageSelectCell.xib in Resources */,
 				7673B8512647D799007D062C /* MyAnimalPageCollectionViewCell.xib in Resources */,
@@ -540,6 +567,7 @@
 				6C53ECFC261F6B0E00D62EAD /* WriteNewLetter.swift in Sources */,
 				76686FD225CE9F3E00536E36 /* SelectAnimalCollectionViewCell.swift in Sources */,
 				7691937425D54DDA0094B5BF /* LetterListTableViewCell.swift in Sources */,
+				6C1BED04265198940039E454 /* ComingAnimalCell.swift in Sources */,
 				6C7E056E263D1D8200FC06A3 /* ReplyPage.swift in Sources */,
 				7691936C25D5000A0094B5BF /* LetterListViewController.swift in Sources */,
 				6C5D653B2629575500A62334 /* MailBox.swift in Sources */,
@@ -550,9 +578,12 @@
 				7673B84D2647D3C0007D062C /* MyAnimalPage.swift in Sources */,
 				76C30AE9264B0B9500035891 /* AnimalDetail.swift in Sources */,
 				76D3E798263930F7007BD8E8 /* ConfirmLetter.swift in Sources */,
+				6C1BED152652ABED0039E454 /* CustomSlider.swift in Sources */,
+				76ABF6EF25E7FE5000808652 /* MainPage2.swift in Sources */,
 				6C7D9BA52614DC0C003596EB /* LanguageSettingVC.swift in Sources */,
 				76F00000261AE184004D080E /* AnimalCollectionViewCell.swift in Sources */,
 				76686FE625CEAB7300536E36 /* animal.swift in Sources */,
+				6C1BED0B265250230039E454 /* ComingAnimalTableView.swift in Sources */,
 				767BD80C2619687C0051DDEC /* ConceptViewController.swift in Sources */,
 				6C05C15D2618402B00FB744A /* FavoriteCell.swift in Sources */,
 				76686FCB25CE2FFC00536E36 /* WritingPage.swift in Sources */,
@@ -561,6 +592,7 @@
 				6C9B77432619CBAF00E82303 /* userInfo.swift in Sources */,
 				7673B8502647D799007D062C /* MyAnimalPageCollectionViewCell.swift in Sources */,
 				6C7D9BA22614D730003596EB /* DefaultInfoVC.swift in Sources */,
+				6C1BECFB2651740A0039E454 /* ComingAnimals.swift in Sources */,
 				6C7D9B9E2614BA4D003596EB /* SettingTableView.swift in Sources */,
 				761165F125D8308400577F92 /* SignUpViewController2.swift in Sources */,
 				76686FC825CE2C5F00536E36 /* MainPage.swift in Sources */,
@@ -571,6 +603,7 @@
 				762A36D42621CCEE00BDC643 /* SelectAnimal1.swift in Sources */,
 				761D515E2618C86A00089040 /* LanguageTableViewCell.swift in Sources */,
 				76A590B9263BDCC600C70EA4 /* LanguageSelectCell.swift in Sources */,
+				6C1BED0F2652A4B30039E454 /* UIImageExtension.swift in Sources */,
 				6C9B77462619E71400E82303 /* favorites.swift in Sources */,
 				76686FD525CE9FE800536E36 /* SelectAnimalPage.swift in Sources */,
 				6C5D653E262C30B100A62334 /* Server.swift in Sources */,
