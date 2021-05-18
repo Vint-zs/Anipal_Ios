@@ -44,12 +44,29 @@ func put(url: String, token: String, completionHandler: @escaping (Data?, URLRes
     guard let url = URL(string: "https://anipal.co.kr" + url) else { return }
     var request = URLRequest(url: url)
     request.httpMethod = "PUT"
-    
+
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     request.addValue("application/json", forHTTPHeaderField: "Accept")
     request.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
-    
+
     URLSession.shared.dataTask(with: request as URLRequest, completionHandler: completionHandler).resume()
+}
+
+func put2(url: String, token: String, body: NSMutableDictionary, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) throws {
+    guard let url = URL(string: "https://anipal.co.kr" + url) else {
+        print("url error")
+        return }
+
+    var request = URLRequest(url: url)
+    request.httpMethod = "PUT"
+
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.addValue("application/json", forHTTPHeaderField: "Accept")
+    request.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+
+    request.httpBody = try JSONSerialization.data(withJSONObject: body, options: JSONSerialization.WritingOptions.prettyPrinted)
+    session.dataTask(with: request, completionHandler: completionHandler).resume()
+
 }
 
 //func post(url: String, token: String, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
