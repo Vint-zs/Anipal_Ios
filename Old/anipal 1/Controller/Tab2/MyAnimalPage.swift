@@ -20,7 +20,7 @@ class MyAnimalPage: UIViewController, reloadData {
     var myAnimalList: [MyAnimal] = []
     var imageUrls: [[String]] = []
     var images: [UIImage] = []
-    var order: [String: Int] = ["head": 1, "top": 2, "pants": 3, "gloves": 4, "shoes": 5 ]
+    var order: [String: Int] = ["head": 1, "top": 2, "pants": 3, "shoes": 4, "gloves": 5 ]
     var needReload: Bool = false
     
     var serverHead: [Accessory] = []
@@ -31,7 +31,6 @@ class MyAnimalPage: UIViewController, reloadData {
         super.viewDidLoad()
         animalCollectionView.delegate = self
         animalCollectionView.dataSource = self
-    
         // 셀 등록
         let nibCell = UINib(nibName: "MyAnimalPageCollectionViewCell", bundle: nil)
         animalCollectionView.register(nibCell, forCellWithReuseIdentifier: cellId )
@@ -44,14 +43,10 @@ class MyAnimalPage: UIViewController, reloadData {
         // 네이베이션바 선 없애기
 //        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
 //        navigationController?.navigationBar.shadowImage = UIImage()
-        animalCollectionView.reloadData()
-        if needReload == true {
-            refreshData()
-        }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        // animalCollectionView.reloadData()
+    override func viewDidDisappear(_ animated: Bool) {
+        animalCollectionView.reloadData()
     }
 
     // MARK: - 이미지 합성
@@ -144,8 +139,8 @@ class MyAnimalPage: UIViewController, reloadData {
         loadAccessory(category: "head")
         loadAccessory(category: "top")
         loadAccessory(category: "pants")
-        loadAccessory(category: "gloves")
         loadAccessory(category: "shoes")
+        loadAccessory(category: "gloves")
     }
     
     // 악세서리 로드 함수
@@ -193,7 +188,6 @@ extension MyAnimalPage: UICollectionViewDelegate, UICollectionViewDataSource, UI
 
         cell.layer.cornerRadius = 10
         cell.backgroundColor = .white
-       // cell.animalName.text = myAnimalList[indexPath.row].name.localized
         cell.animalName.text = myAnimalList[indexPath.row].name.localized
         cell.delayTime.text = myAnimalList[indexPath.row].time
         cell.animalImage.image = images[indexPath.row]
@@ -204,7 +198,8 @@ extension MyAnimalPage: UICollectionViewDelegate, UICollectionViewDataSource, UI
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let customVC = self.storyboard?.instantiateViewController(identifier: "customVC") as? AnimalCustom else {return}
         customVC.serverData = [serverData[1]!, serverData[2]!, serverData[3]!, serverData[4]!, serverData[5]!]
-        customVC.myCharacterUrls = [imageUrls[indexPath.row][0], imageUrls[indexPath.row][2], imageUrls[indexPath.row][5], imageUrls[indexPath.row][3], imageUrls[indexPath.row][1], imageUrls[indexPath.row][4]]
+        customVC.myCharacterUrls = [imageUrls[indexPath.row][0], imageUrls[indexPath.row][2], imageUrls[indexPath.row][5], imageUrls[indexPath.row][3], imageUrls[indexPath.row][4], imageUrls[indexPath.row][1]]
+        customVC.animalId = myAnimalList[indexPath.row].id
         customVC.delegate = self
         self.navigationController?.pushViewController(customVC, animated: true)
     }

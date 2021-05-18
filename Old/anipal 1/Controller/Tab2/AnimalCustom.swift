@@ -16,9 +16,10 @@ class AnimalCustom: UIViewController {
     var delegate: reloadData?
     var serverHead: [Accessory] = []
     var serverData: [[Accessory]] = []
-    var myCharacterUrls: [String]!
+    var myCharacterUrls: [String]! = []
     var myCharacterImage: UIImage?
     var accessoryDetail: AccessoryDetail?
+    var animalId: String?
     
     var data: [[UIImage]] = []
     let cellId = "accessory"
@@ -56,9 +57,33 @@ class AnimalCustom: UIViewController {
     // 저장버튼 클릭시
     @IBAction func clickSaveBtn(_ sender: UIButton) {
         delegate?.reloadData() // put 함수안에 맨 마지막순서에
-//        guard let missionVC = self.storyboard?.instantiateViewController(identifier: "mission") as? MissionView else {return}
-//        missionVC.modalPresentationStyle = .overCurrentContext
-//        self.present(missionVC, animated: true, completion: nil)
+        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+            let body: NSMutableDictionary = NSMutableDictionary()
+            body.setValue(myCharacterUrls[1], forKey: "head_url")
+            body.setValue(myCharacterUrls[2], forKey: "top_url")
+            body.setValue(myCharacterUrls[3], forKey: "pants_url")
+            body.setValue(myCharacterUrls[4], forKey: "shoes_url")
+            body.setValue(myCharacterUrls[5], forKey: "gloves_url")
+            
+            guard let id = animalId else {return}
+            try? put2(url: "/own/animals/\(id)", token: session.value, body: body, completionHandler: { [self] data, response, error in
+                guard let data = data, error == nil else {
+                    print("error=\(String(describing: error))")
+                    return
+                }
+
+                if let httpStatus = response as? HTTPURLResponse {
+                    if httpStatus.statusCode == 200 {
+                        DispatchQueue.main.async {
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    }
+                }
+                print(String(data: data, encoding: .utf8)!)
+        
+            })
+        }
+
     }
     
     @IBAction func switchSegment(_ sender: UISegmentedControl) {
@@ -135,45 +160,37 @@ extension AnimalCustom: UICollectionViewDelegate, UICollectionViewDataSource, UI
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        myCharacterUrls[p+1] = serverData[p][indexPath.row].imgUrl
-        makeImage()
-        
-    // 추후 디비 데이터 정리되면 이걸로 변경
-//        // 액세서리 보유시
-//        if serverData[p][indexPath.row].isOwn == true {
-//            myCharacterUrls[p+1] = serverData[p][indexPath.row].imgUrl
-//            makeImage()
-//        }
-//        // 액세서리 미보유시
-//        else {
-//            print("else")
-//
-//            var detail: AccessoryDetail?
-//            if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
-//                get(url: "/accessories/\(serverData[p][indexPath.row].accessoryId)", token: session.value) { [self] (data, response, error) in
-//                    print("get")
-//                    guard let data = data, error == nil else {
-//                        print("error=\(String(describing: error))")
-//                        return
-//                    }
-//                    if let httpStatus = response as? HTTPURLResponse {
-//                        print("response")
-//                        if httpStatus.statusCode == 200 {
-//                            print("200")
-//                            let json = JSON(data)
-//                            detail = AccessoryDetail(name: json["name"].stringValue, price: json["price"].intValue, imgUrl: json["img_url"].stringValue, img: serverData[p][indexPath.row].img, mission: json["mission"].dictionaryObject as? [String: String] ?? ["": ""], category: json["category"].stringValue)
-//                        }
-//                        // 뷰 생성
-//                        DispatchQueue.main.async {
-//                            guard let missionVC = self.storyboard?.instantiateViewController(identifier: "mission") as? MissionView else {return}
-//                            missionVC.accessoryInfo = detail
-//                            missionVC.modalPresentationStyle = .overCurrentContext
-//                            self.present(missionVC, animated: true, completion: nil)
-//                        }
-//                    }
-//                }
-//            }
-//        }
+        // 액세서리 보유시
+        if serverData[p][indexPath.row].isOwn == true {
+            myCharacterUrls[p+1] = serverData[p][indexPath.row].imgUrl
+            makeImage()
+        }
+        // 액세서리 미보유시
+        else {
+            var detail: AccessoryDetail?
+            if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+                get(url: "/accessories/\(serverData[p][indexPath.row].accessoryId)", token: session.value) { [self] (data, response, error) in
+                    guard let data = data, error == nil else {
+                        print("error=\(String(describing: error))")
+                        return
+                    }
+                    if let httpStatus = response as? HTTPURLResponse {
+                        if httpStatus.statusCode == 200 {
+                            let json = JSON(data)
+                            print(json)
+                            detail = AccessoryDetail(name: json["name"].stringValue, price: json["price"].intValue, imgUrl: json["img_url"].stringValue, img: serverData[p][indexPath.row].img, missionTitle: json["mission"]["title"].stringValue, missionContent: json["mission"]["content"].stringValue, category: json["category"].stringValue)
+                        }
+                        // 뷰 생성
+                        DispatchQueue.main.async {
+                            guard let missionVC = self.storyboard?.instantiateViewController(identifier: "mission") as? MissionView else {return}
+                            missionVC.accessoryInfo = detail
+                            missionVC.modalPresentationStyle = .overCurrentContext
+                            self.present(missionVC, animated: true, completion: nil)
+                        }
+                    }
+                }
+            }
+        }
     }
     
     // 섹션의 여백
