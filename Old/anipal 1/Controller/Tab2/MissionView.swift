@@ -25,8 +25,8 @@ class MissionView: UIViewController {
         accessoryImage.layer.borderWidth = 1
         accessoryImage.image = accessoryInfo?.img
         itemName.text = accessoryInfo?.name.localized
-        missionTitle.text = accessoryInfo?.mission["title"]?.localized
-        textView.text = accessoryInfo?.mission["content"]?.localized
+        missionTitle.text = accessoryInfo?.missionTitle.localized
+        textView.text = accessoryInfo?.missionContent.localized
         
         // Do any additional setup after loading the view.
     }
