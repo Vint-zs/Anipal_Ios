@@ -46,6 +46,20 @@ struct Animal {
     }
 }
 
+struct ComingAnimal {
+    let animalURL: String
+    let bar: String
+    let background: String
+    let arriveTime: String
+    
+    init(animalURL: String, bar: String, background: String, arriveTime: String) {
+        self.animalURL = animalURL
+        self.bar = bar
+        self.background = background
+        self.arriveTime = arriveTime
+    }
+}
+
 let animals: [Animal] = [
     Animal(nameInit: "bird", image: #imageLiteral(resourceName: "bird")),
     Animal(nameInit: "monkey2", image: #imageLiteral(resourceName: "monkey2")),

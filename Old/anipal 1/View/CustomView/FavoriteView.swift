@@ -68,7 +68,6 @@ class FavoriteView: UIView, UICollectionViewDataSource {
                     }
                     // 화면 reload
                     DispatchQueue.main.async {
-                        print(serverFavorites)
                         self.favCollectionVeiw.reloadData()
                     }
                 } else if httpStatus.statusCode == 400 {
