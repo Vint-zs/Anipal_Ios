@@ -127,8 +127,8 @@
                                     <segment title="머리"/>
                                     <segment title="상의"/>
                                     <segment title="하의"/>
-                                    <segment title="손"/>
                                     <segment title="신발"/>
+                                    <segment title="손"/>
                                 </segments>
                                 <connections>
                                     <action selector="switchSegment:" destination="D0J-ph-vER" eventType="valueChanged" id="Ay8-mq-aI3"/>
