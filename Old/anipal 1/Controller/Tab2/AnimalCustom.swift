@@ -74,8 +74,15 @@ class AnimalCustom: UIViewController {
 
                 if let httpStatus = response as? HTTPURLResponse {
                     if httpStatus.statusCode == 200 {
+                        let json = JSON(data)
+                        
                         DispatchQueue.main.async {
                             self.navigationController?.popViewController(animated: true)
+                            if json["is_favorite"].boolValue == true {
+                                if let favImg = myCharacterImage {
+                                    ad?.thumbnail = favImg
+                                }
+                            }
                         }
                     }
                 }
