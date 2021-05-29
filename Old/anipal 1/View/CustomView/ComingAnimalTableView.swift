@@ -138,6 +138,8 @@ extension ComingAnimalTableView {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ComingAnimalCell", for: indexPath) as? ComingAnimalCell else {
             fatalError("Can't dequeue CommingAnimalCell")
         }
+        
+        print("index: \(indexPath.row)")
         let cellURL = URL(string: comingAnimals[indexPath.row].animalURL)
         let data = try? Data(contentsOf: cellURL!)
         let thumbImg = UIImage(data: data!)?.scalePreservingAspectRatio(targetSize: CGSize(width: 48, height: 48))
