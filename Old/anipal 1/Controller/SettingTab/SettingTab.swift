@@ -36,6 +36,7 @@ class SettingTab: UIViewController, sendBackDelegate {
         favBtn.layer.borderWidth = 0.3
         favBtn.layer.borderColor = UIColor.lightGray.cgColor
         favBtn.imageView?.contentMode = .scaleAspectFit
+        favBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0)
         
         self.settingTableView.tableFooterView = UIView(frame: .zero)
     }
@@ -56,8 +57,6 @@ class SettingTab: UIViewController, sendBackDelegate {
             body.setValue(animals[data].animalURLs, forKey: "favorite_animal")
 
             let putURL = "/users/" + (ad?.id)!
-            print("token: \(session.value)")
-            print("ad.id: \(ad?.id)")
 
             put(url: putURL, token: session.value, body: body, completionHandler: { data, response, error in
                 guard let data = data, error == nil else {
