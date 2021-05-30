@@ -12,8 +12,8 @@ import SwiftyJSON
 
 class SettingTab: UIViewController, sendBackDelegate {
 
-    let settings: [String] = ["Language".localized, "Favorite".localized]
-    let sections: [String] = ["Language".localized, "Favorite".localized]
+    let settings: [String] = ["Language".localized, "Favorite".localized, "Block List".localized]
+    //let sections: [String] = ["Language".localized, "Favorite".localized]
     
     @IBOutlet weak var favBtn: UIButton!
     @IBOutlet weak var settingTableView: UITableView!
@@ -33,16 +33,24 @@ class SettingTab: UIViewController, sendBackDelegate {
         // 동물 선택 버튼
         favBtn.backgroundColor = .white
         favBtn.layer.cornerRadius = favBtn.frame.height/2
-        favBtn.layer.borderWidth = 0.3
-        favBtn.layer.borderColor = UIColor.lightGray.cgColor
+//        favBtn.layer.borderWidth = 0.3
+//        favBtn.layer.borderColor = UIColor.lightGray.cgColor
         favBtn.imageView?.contentMode = .scaleAspectFit
+        favBtn.imageEdgeInsets = UIEdgeInsets(top: -10, left: 0, bottom: 30, right: 0)
+        
+        // 로그아웃 버튼
+        logoutBtn.layer.shadowColor = UIColor.lightGray.cgColor
+        logoutBtn.layer.shadowOffset = CGSize(width: 2, height: 2)
+        logoutBtn.layer.shadowOpacity = 1.0
+        logoutBtn.layer.shadowRadius = 3
+        logoutBtn.layer.masksToBounds = false
         
         self.settingTableView.tableFooterView = UIView(frame: .zero)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        favBtn.setImage(ad?.thumbnail, for: .normal)
         loadAnimal()
+        favBtn.setImage(ad?.thumbnail, for: .normal)
     }
     
     func dataReceived(data: Int) {
@@ -56,8 +64,6 @@ class SettingTab: UIViewController, sendBackDelegate {
             body.setValue(animals[data].animalURLs, forKey: "favorite_animal")
 
             let putURL = "/users/" + (ad?.id)!
-            print("token: \(session.value)")
-            print("ad.id: \(ad?.id)")
 
             put(url: putURL, token: session.value, body: body, completionHandler: { data, response, error in
                 guard let data = data, error == nil else {
@@ -178,11 +184,18 @@ class SettingTab: UIViewController, sendBackDelegate {
 extension SettingTab: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+        return settings.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 20
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 20))
+        headerView.backgroundColor = UIColor(red: 0.95, green: 0.973, blue: 1, alpha: 1)
+        
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -211,6 +224,12 @@ extension SettingTab: UITableViewDelegate, UITableViewDataSource {
             favSetVC.modalPresentationStyle = .fullScreen
             
             self.present(favSetVC, animated: true, completion: nil)
+        case 2: guard let blockSetVC = self.storyboard?.instantiateViewController(identifier: "BlockSettingVC") as? BlockSettingVC else { return }
+            
+            blockSetVC.modalTransitionStyle = .coverVertical
+            blockSetVC.modalPresentationStyle = .fullScreen
+            
+            self.present(blockSetVC, animated: true, completion: nil)
         default:
             return
         }

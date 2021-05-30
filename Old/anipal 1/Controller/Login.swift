@@ -128,6 +128,9 @@ class Login: UIViewController {
                                 let compFav = loadAnimals(urls: favAnimal)
                                 ad?.thumbnail = compFav
                             }
+                            if let blockUsers = JSON(data)["banned_users_id"].arrayObject as? [String] { ad?.blockUsers = blockUsers }
+                            
+                            print("user data: \(JSON(data))")
                         }
                         
                         // 메인화면 이동

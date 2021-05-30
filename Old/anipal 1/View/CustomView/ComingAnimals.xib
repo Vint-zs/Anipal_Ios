@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComingAnimals" customModule="anipal_1" customModuleProvider="target">
             <connections>
                 <outlet property="handleArea" destination="ZSn-K9-nqv" id="7dH-Ih-cXz"/>
+                <outlet property="handleImg" destination="hae-OV-oPV" id="E1X-ce-IV9"/>
                 <outlet property="tableView" destination="Xoa-GV-Aq7" id="TnM-pI-BCT"/>
                 <outlet property="view" destination="iN0-l3-epB" id="aAs-sI-qHi"/>
             </connections>
@@ -50,8 +51,10 @@
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ZSn-K9-nqv" secondAttribute="trailing" constant="142" id="8CT-Do-uHm"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Xoa-GV-Aq7" secondAttribute="trailing" id="R1I-HQ-k93"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="ZSn-K9-nqv" secondAttribute="top" constant="44" id="Rry-eF-UeU"/>
                 <constraint firstItem="ZSn-K9-nqv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Sl1-Bl-3B7"/>
                 <constraint firstItem="Xoa-GV-Aq7" firstAttribute="top" secondItem="ZSn-K9-nqv" secondAttribute="bottom" constant="-14" id="Tg5-Vq-ElM"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ZSn-K9-nqv" secondAttribute="trailing" constant="142" id="Vav-So-akg"/>
                 <constraint firstItem="ZSn-K9-nqv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="142" id="YXB-ED-XWO"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Xoa-GV-Aq7" secondAttribute="bottom" id="fHF-7y-jJ5"/>
                 <constraint firstItem="Xoa-GV-Aq7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="rtm-Sg-nAs"/>

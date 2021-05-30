@@ -48,6 +48,7 @@ class SignUpViewController: UIViewController, sendBackDelegate {
     func dataReceived(data: Int) {
         imgButton.setBackgroundImage(serverAnimals[data].img, for: . normal)
         selectNum = data
+        ad?.thumbnail = serverAnimals[data].img
     }
     
     @IBAction func nextPageButton(_ sender: UIButton) {

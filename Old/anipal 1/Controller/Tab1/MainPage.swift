@@ -18,8 +18,8 @@ class MainPage: UIViewController {
     var comingAnimals: ComingAnimals!
     var visualEffectView: UIVisualEffectView!
     
-    let cardHeight: CGFloat = 220
     let cardHandleAreaHeight: CGFloat = 120
+    var cardHeight: CGFloat = 234
     
     var cardVisible = false
     var nextState: CardState {
@@ -53,11 +53,13 @@ class MainPage: UIViewController {
     func setupCard() {
         visualEffectView = UIVisualEffectView()
         visualEffectView.frame = self.view.frame
+        visualEffectView.layer.zPosition = 1
         self.view.addSubview(visualEffectView)
         
         comingAnimals = ComingAnimals(nibName: "ComingAnimals", bundle: nil)
         self.addChild(comingAnimals)
         self.view.addSubview(comingAnimals.view)
+        
         comingAnimals.view.frame = CGRect(x: 0, y: self.view.frame.height - cardHandleAreaHeight, width: self.view.bounds.width, height: cardHeight)
         comingAnimals.view.clipsToBounds = true
         
@@ -73,6 +75,9 @@ class MainPage: UIViewController {
     func handleCardTap(recognizer: UITapGestureRecognizer) {
         switch recognizer.state {
         case .ended:
+            comingAnimals.tableView.loadComingAnimals()
+            let row = comingAnimals.tableView.comingAnimals.count
+            cardHeight = cardHandleAreaHeight + CGFloat((114 * row))
             animateTransitionIfNeeded(state: nextState, duration: 0.9)
         default:
             break
@@ -97,12 +102,15 @@ class MainPage: UIViewController {
     }
     
     func animateTransitionIfNeeded(state: CardState, duration: TimeInterval) {
+        let handle = comingAnimals.handleImg
         if runningAnimations.isEmpty {
             let frameAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
                 switch state {
                 case .expanded:
+                    handle?.transform = CGAffineTransform(rotationAngle: .pi)
                     self.comingAnimals.view.frame.origin.y = self.view.frame.height - self.cardHeight
                 case .collapsed:
+                    handle?.transform = CGAffineTransform(rotationAngle: .pi*2)
                     self.comingAnimals.view.frame.origin.y = self.view.frame.height - self.cardHandleAreaHeight
                 }
             }
@@ -114,18 +122,6 @@ class MainPage: UIViewController {
             
             frameAnimator.startAnimation()
             runningAnimations.append(frameAnimator)
-            
-//            let cornerRadiusAnimator = UIViewPropertyAnimator(duration: duration, curve: .linear) {
-//                switch state {
-//                case .expanded:
-//                    self.comingAnimals.view.layer.cornerRadius = 12
-//                case .collapsed:
-//                    self.comingAnimals.view.layer.cornerRadius = 12
-//                }
-//            }
-//
-//            cornerRadiusAnimator.startAnimation()
-//            runningAnimations.append(cornerRadiusAnimator)
         }
     }
     

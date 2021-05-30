@@ -115,7 +115,7 @@ class AnimalCustom: UIViewController {
     // 이미지 생성
     func makeImage() {
         // url -> 이미지로 변환 후 합성 및 저장
-        for i in 0..<myCharacterUrls.count {
+        for _ in 0..<myCharacterUrls.count {
             var ingredImage: [UIImage] = []
             for url in myCharacterUrls {
                 if let imageURL = URL(string: url) {

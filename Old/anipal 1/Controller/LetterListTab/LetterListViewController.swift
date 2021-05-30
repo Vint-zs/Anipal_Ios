@@ -67,15 +67,12 @@ class LetterListViewController: UICollectionViewController {
                             mailboxes.append(mailBox)
                         }
                         
-                        print("mailboxes: \(mailboxes)")
-                        
                         // 화면 reload
                         DispatchQueue.main.async {
                             self.collectionView.performBatchUpdates({
                                 self.collectionView.reloadSections(NSIndexSet(index: 0) as IndexSet)
                             })
                         }
-
                     } else if httpStatus.statusCode == 400 {
                         print("error: \(httpStatus.statusCode)")
                     } else {
@@ -177,19 +174,15 @@ extension LetterListViewController {
             }
             
             cell.arrivalAnimal.image = nil
+            cell.mailbox.image = nil
             
             if mailboxes[indexPath.row - 1].thumbnail["animal_url"] != "" {
-                print("thumbnail: \(String(describing: mailboxes[indexPath.row - 1].thumbnail["animal_url"]))")
                 cell.arrivalAnimal.image = loadAnimals(urls: (mailboxes[indexPath.row - 1].thumbnail))
-            }
-            
-            
-            
-            if mailboxes[indexPath.row - 1].isOpened {
-                cell.mailbox.image = openedMail
-            } else {
                 cell.mailbox.image = unOpenedMail
+            } else {
+                cell.mailbox.image = openedMail
             }
+            
             cell.senderName.text = mailboxes[indexPath.row - 1].partner["name"] as? String
             cell.senderName.sizeToFit()
             cell.arrivalDate.text = mailboxes[indexPath.row - 1].arrivalDate

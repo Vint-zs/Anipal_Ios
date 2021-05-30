@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="400" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <slider opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="xPS-gi-K7L" customClass="CustomSlider" customModule="anipal_1" customModuleProvider="target">
+                    <slider opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xPS-gi-K7L" customClass="CustomSlider" customModule="anipal_1" customModuleProvider="target">
                         <rect key="frame" x="10" y="36" width="372" height="34"/>
                     </slider>
                 </subviews>
