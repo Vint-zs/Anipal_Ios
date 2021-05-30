@@ -17,8 +17,9 @@ class ConfirmLetter: UIViewController {
     var delegate: modalDelegate?
     var randomId: String! = ""
     
+    @IBOutlet var languageLbl: UILabel!
+    @IBOutlet var favLbl: UILabel!
     @IBOutlet var senderLbl: UILabel!
-    @IBOutlet var countryLbl: UILabel!
     @IBOutlet var dateLbl: UILabel!
     @IBOutlet var textView: UITextView!
     @IBOutlet var innerView: UIView!
@@ -38,10 +39,6 @@ class ConfirmLetter: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
 
     }
-    
-//    func replyButtonDelegate(data: Bool) {
-//        <#code#>
-//    }
     
     // MARK: - 닫기버튼 클릭시
     @IBAction func clickCancel(_ sender: UIButton) {
@@ -108,14 +105,36 @@ class ConfirmLetter: UIViewController {
                         var date = json["send_time"].stringValue
                         date = dateConvert(date: date)
                         let sender = json["sender"]["name"].stringValue
-                        let country = json["sender"]["country"].stringValue
+                        let favorite = json["sender"]["favorites"].arrayValue.map {$0.stringValue}
+                        let languages = json["sender"]["languages"].arrayObject as? [[String: Any]]
                         
+                        var fav: [String] = []
+                        for favor in favorite {
+                            fav.append(favor.localized)
+                        }
+                        
+                        var lang: [String] = []
+                        for row in languages ?? [] {
+                            if let name = row["name"] as? String, let level = row["level"] as? Int {
+                                var lev = ""
+                                if level == 1 {
+                                    lev = "Beginner"
+                                } else if level == 2 {
+                                    lev = "Intermediate"
+                                } else {
+                                    lev = "Advanced"
+                                }
+                                lang.append("\(name.localized):\(lev.localized)")
+                            }
+                        }
+
                         // 뷰생성
                         DispatchQueue.main.async {
                             textView.text = content
                             senderLbl.text = sender
                             dateLbl.text = date
-                            countryLbl.text = country
+                            favLbl.text = fav.joined(separator: " ")
+                            languageLbl.text = lang.joined(separator: ", ")
                         }
                 } else if httpStatus.statusCode == 400 {
                     print("error: \(httpStatus.statusCode)")
