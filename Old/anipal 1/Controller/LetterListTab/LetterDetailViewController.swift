@@ -141,6 +141,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
                     if httpStatus.statusCode == 200 {
                         letters = []
                         for idx in 0..<JSON(data).count {
+                            languageList = []
                             let json = JSON(data)[idx]
                             let senderID = json["sender"]["user_id"].stringValue
                             
@@ -149,7 +150,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
                             let animalImg = loadAnimals(urls: animal)
                             let languages = json["sender"]["languages"].arrayObject as? [[String: Any]]
                             for row in languages ?? [] {
-                                if let name = row["name"] as? String, let level = row["level"] as? Int {
+                                if let name = row["name"] as? String {
                                     languageList.append(name)
                                 }
                             }
@@ -182,6 +183,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
     // 편지 넘기기
     @IBAction func letterSlide(_ sender: UIPageControl) {
         scrollViewContent.contentOffset.x = CGFloat((Int(scrollViewContent.contentSize.width) / letters.count) * letterCtrl.currentPage)
+        senderLang.text = letters[letterCtrl.currentPage].language.joined(separator: " ")
         senderFav.text = letters[letterCtrl.currentPage].favorites.joined(separator: " ")
     }
     

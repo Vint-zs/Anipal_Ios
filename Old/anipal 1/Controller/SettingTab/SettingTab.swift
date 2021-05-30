@@ -90,6 +90,7 @@ class SettingTab: UIViewController, sendBackDelegate {
         
         nextVC.delegate = self
         nextVC.serverAnimals = self.serverAnimals
+        nextVC.isThumbnail = true
         
         self.present(nextVC, animated: true, completion: nil)
     }

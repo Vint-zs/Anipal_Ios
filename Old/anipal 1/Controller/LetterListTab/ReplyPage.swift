@@ -103,6 +103,9 @@ class ReplyPage: UIViewController, sendBackDelegate {
                             animals.append(animal)
                             serverAnimals.append(Animal(nameInit: json["animal"]["localized"].stringValue, image: animalImg))
                         }
+                        
+                        print("animal data: \(JSON(data))")
+                        print("animals: \(animals)")
                     } else if httpStatus.statusCode == 400 {
                         print("error: \(httpStatus.statusCode)")
                     } else {
@@ -152,6 +155,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
         }
         nextVC.delegate = self
         nextVC.serverAnimals = self.serverAnimals
+        nextVC.animals = self.animals
         self.present(nextVC, animated: true, completion: nil)
     }
     
