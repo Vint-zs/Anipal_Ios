@@ -108,6 +108,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
         senderFav.sizeToFit()
         senderAnimal.image = letters[letterCtrl.currentPage].animalImg
         senderAnimal.contentMode = .scaleAspectFit
+        // senderAnimal.image = senderAnimal.image?.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         
         senderAnimal.backgroundColor = .white
         senderAnimal.layer.cornerRadius = senderAnimal.frame.height/2
