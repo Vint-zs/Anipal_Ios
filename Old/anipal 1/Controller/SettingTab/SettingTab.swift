@@ -36,7 +36,7 @@ class SettingTab: UIViewController, sendBackDelegate {
 //        favBtn.layer.borderWidth = 0.3
 //        favBtn.layer.borderColor = UIColor.lightGray.cgColor
         favBtn.imageView?.contentMode = .scaleAspectFit
-        favBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0)
+        favBtn.imageEdgeInsets = UIEdgeInsets(top: -10, left: 0, bottom: 30, right: 0)
         
         // 로그아웃 버튼
         logoutBtn.layer.shadowColor = UIColor.lightGray.cgColor

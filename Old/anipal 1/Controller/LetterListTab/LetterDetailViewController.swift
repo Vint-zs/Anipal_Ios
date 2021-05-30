@@ -12,8 +12,8 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
     @IBOutlet weak var scrollViewContent: UIScrollView!
     @IBOutlet weak var menuBtn: UIBarButtonItem!
     @IBOutlet weak var senderName: UILabel!
-    @IBOutlet weak var senderCountry: UILabel!
     @IBOutlet weak var senderFav: UILabel!
+    @IBOutlet weak var senderLang: UILabel!
     @IBOutlet weak var senderAnimal: UIImageView!
     @IBOutlet weak var letterCtrl: UIPageControl!
     @IBOutlet weak var replyBtn: UIButton!
@@ -21,6 +21,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
     var letters: [Letter] = []
     var mailBoxID: String?
     var images: [UIImage] = []
+    var languageList: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,8 +100,11 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
     func senderInfo() {
         senderName.text = letters[letterCtrl.currentPage].name
         senderName.sizeToFit()
-        senderCountry.text = letters[letterCtrl.currentPage].country
-        senderCountry.sizeToFit()
+        for (idx, lang) in letters[letterCtrl.currentPage].language.enumerated() {
+            letters[letterCtrl.currentPage].language[idx] = lang.localized
+        }
+        senderLang.text = letters[letterCtrl.currentPage].language.joined(separator: " ")
+        senderLang.sizeToFit()
         for (idx, fav) in letters[letterCtrl.currentPage].favorites.enumerated() {
             letters[letterCtrl.currentPage].favorites[idx] = fav.localized
         }
@@ -143,18 +147,26 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
                             let favorites = json["sender"]["favorites"].arrayValue.map { $0.stringValue }
                             let animal = [json["post_animal"]["animal_url"].stringValue, json["post_animal"]["head_url"].stringValue, json["post_animal"]["top_url"].stringValue, json["post_animal"]["pants_url"].stringValue, json["post_animal"]["gloves_url"].stringValue, json["post_animal"]["shoes_url"].stringValue]
                             let animalImg = loadAnimals(urls: animal)
+                            let languages = json["sender"]["languages"].arrayObject as? [[String: Any]]
+                            for row in languages ?? [] {
+                                if let name = row["name"] as? String, let level = row["level"] as? Int {
+                                    languageList.append(name)
+                                }
+                            }
                             let letter = Letter(
                                 senderID: senderID,
                                 name: json["sender"]["name"].stringValue,
-                                country: json["sender"]["country"].stringValue,
+                                language: languageList,
                                 favorites: favorites, animal: animal, receiverID: json["_id"].stringValue,
                                 content: json["content"].stringValue,
                                 arrivalDate: json["arrive_time"].stringValue,
                                 sendDate: json["send_time"].stringValue,
                                 animalImg: animalImg)
                             letters.append(letter)
+                            
                         }
-                        
+                        print("letterDetail data: \(JSON(data))")
+                        print("letters: \(letters)")
                         // 화면 reload
                         DispatchQueue.main.async {
                             setLetters()
