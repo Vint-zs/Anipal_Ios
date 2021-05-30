@@ -22,7 +22,8 @@ class MissionView: UIViewController {
         super.viewDidLoad()
         okBtn.layer.cornerRadius = 5
         innerView.layer.cornerRadius = 20
-        accessoryImage.layer.borderWidth = 1
+        accessoryImage.layer.borderWidth = 2
+        accessoryImage.layer.borderColor = UIColor.lightGray.cgColor
         accessoryImage.image = accessoryInfo?.img
         itemName.text = accessoryInfo?.name.localized
         missionTitle.text = accessoryInfo?.missionTitle.localized
