@@ -68,8 +68,6 @@ class ComingAnimalTableView: UIView, UITableViewDataSource {
                             let comingAnimal = ComingAnimal(animalURL: animalURL, bar: bar, background: background, arriveTime: arvTime, sendTime: sendTime)
                             comingAnimals.append(comingAnimal)
                         }
-                        print("data: \(JSON(data))")
-                        print("comingAnimal: \(comingAnimals)")
                         
                         // 화면 reload
                         DispatchQueue.main.async {
@@ -121,9 +119,6 @@ class ComingAnimalTableView: UIView, UITableViewDataSource {
             return 0
         }
         
-        print("startTime: \(startTime)")
-        print("endTime: \(endTime)")
-        
         let useTime = Float(endTime.timeIntervalSince(startTime))
         
         return useTime
@@ -139,6 +134,10 @@ extension ComingAnimalTableView {
         return 0
     }
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return comingAnimals.count
     }
@@ -148,17 +147,11 @@ extension ComingAnimalTableView {
             fatalError("Can't dequeue CommingAnimalCell")
         }
         
-        print("cell height: \(cell.bounds.height)")
-        
         // 남은 시간 계산
         let wholeTime = dateCalculate(start: comingAnimals[indexPath.row].sendTime, end: comingAnimals[indexPath.row].arriveTime)
         let comingTime = dateCalculate(end: comingAnimals[indexPath.row].arriveTime)
         let remainTime = Float((comingTime / wholeTime) * 100)
         cell.animalSlider.setValue(100 - remainTime, animated: true)
-        
-        print("wholeTime: \(wholeTime)")
-        print("comingTime: \(comingTime)")
-        print("remainTime: \(remainTime)")
         
         // slider thumb 이미지
         let cellURL = URL(string: comingAnimals[indexPath.row].animalURL)
