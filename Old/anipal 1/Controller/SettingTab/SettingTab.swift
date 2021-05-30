@@ -12,8 +12,8 @@ import SwiftyJSON
 
 class SettingTab: UIViewController, sendBackDelegate {
 
-    let settings: [String] = ["Language".localized, "Favorite".localized]
-    let sections: [String] = ["Language".localized, "Favorite".localized]
+    let settings: [String] = ["Language".localized, "Favorite".localized, "Block List".localized]
+    //let sections: [String] = ["Language".localized, "Favorite".localized]
     
     @IBOutlet weak var favBtn: UIButton!
     @IBOutlet weak var settingTableView: UITableView!
@@ -184,7 +184,7 @@ class SettingTab: UIViewController, sendBackDelegate {
 extension SettingTab: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+        return settings.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -224,6 +224,12 @@ extension SettingTab: UITableViewDelegate, UITableViewDataSource {
             favSetVC.modalPresentationStyle = .fullScreen
             
             self.present(favSetVC, animated: true, completion: nil)
+        case 2: guard let blockSetVC = self.storyboard?.instantiateViewController(identifier: "BlockSettingVC") as? BlockSettingVC else { return }
+            
+            blockSetVC.modalTransitionStyle = .coverVertical
+            blockSetVC.modalPresentationStyle = .fullScreen
+            
+            self.present(blockSetVC, animated: true, completion: nil)
         default:
             return
         }

@@ -128,6 +128,8 @@ class Login: UIViewController {
                                 let compFav = loadAnimals(urls: favAnimal)
                                 ad?.thumbnail = compFav
                             }
+                            
+                            print("user data: \(JSON(data))")
                         }
                         
                         // 메인화면 이동
