@@ -62,10 +62,10 @@ class ComingAnimalTableView: UIView, UITableViewDataSource {
                             let animalURL = json["coming_animal"]["animal_url"].stringValue
                             let bar = json["coming_animal"]["bar"].stringValue
                             let background = json["coming_animal"]["background"].stringValue
-                            var date = json["arrive_time"].stringValue
-                            date = dateConvert(date: date)
+                            var arvTime = json["arrive_time"].stringValue
+                            var sendTime = json["send_time"].stringValue
                             
-                            let comingAnimal = ComingAnimal(animalURL: animalURL, bar: bar, background: background, arriveTime: date)
+                            let comingAnimal = ComingAnimal(animalURL: animalURL, bar: bar, background: background, arriveTime: arvTime, sendTime: sendTime)
                             comingAnimals.append(comingAnimal)
                         }
                         print("data: \(JSON(data))")
@@ -106,18 +106,24 @@ class ComingAnimalTableView: UIView, UITableViewDataSource {
         )
     }
     
-    // MARK: - 날짜 형식 변환
-    func dateConvert(date: String) -> String {
-        let stringFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+    func dateCalculate(start: String = "", end: String) -> Float {
         let formatter = DateFormatter()
-        formatter.dateFormat = stringFormat
-        // formatter.locale = Locale(identifier: "ko") 추후 국가별 문구 설정시 사용하기위해 주석처리
-        guard let tempDate = formatter.date(from: date) else {
-            return ""
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
+        
+        let startTime: Date
+        if start == "" {
+            startTime = Date()
+        } else {
+            startTime = formatter.date(from: start)!
         }
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.string(from: tempDate)
-
+        guard let endTime = formatter.date(from: end) else {
+            return 0
+        }
+        
+        let useTime = Float(endTime.timeIntervalSince(startTime))
+        
+        return useTime
     }
 }
 
@@ -139,7 +145,13 @@ extension ComingAnimalTableView {
             fatalError("Can't dequeue CommingAnimalCell")
         }
         
-        print("index: \(indexPath.row)")
+        // 남은 시간 계산
+        let wholeTime = dateCalculate(start: comingAnimals[indexPath.row].sendTime, end: comingAnimals[indexPath.row].arriveTime)
+        let comingTime = dateCalculate(end: comingAnimals[indexPath.row].arriveTime)
+        let remainTime = Float((comingTime / wholeTime) * 100)
+        cell.animalSlider.setValue(remainTime, animated: true)
+        
+        // slider thumb 이미지
         let cellURL = URL(string: comingAnimals[indexPath.row].animalURL)
         let data = try? Data(contentsOf: cellURL!)
         let thumbImg = UIImage(data: data!)?.scalePreservingAspectRatio(targetSize: CGSize(width: 48, height: 48))
