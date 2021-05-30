@@ -53,6 +53,7 @@ class MainPage: UIViewController {
     func setupCard() {
         visualEffectView = UIVisualEffectView()
         visualEffectView.frame = self.view.frame
+        visualEffectView.layer.zPosition = 1
         self.view.addSubview(visualEffectView)
         
         comingAnimals = ComingAnimals(nibName: "ComingAnimals", bundle: nil)

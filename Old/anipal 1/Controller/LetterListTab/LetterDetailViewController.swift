@@ -165,8 +165,6 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
                             letters.append(letter)
                             
                         }
-                        print("letterDetail data: \(JSON(data))")
-                        print("letters: \(letters)")
                         // 화면 reload
                         DispatchQueue.main.async {
                             setLetters()
