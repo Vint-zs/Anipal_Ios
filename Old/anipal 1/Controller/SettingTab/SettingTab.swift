@@ -49,8 +49,8 @@ class SettingTab: UIViewController, sendBackDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        favBtn.setImage(ad?.thumbnail, for: .normal)
         loadAnimal()
+        favBtn.setImage(ad?.thumbnail, for: .normal)
     }
     
     func dataReceived(data: Int) {

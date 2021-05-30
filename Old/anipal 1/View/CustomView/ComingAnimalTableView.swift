@@ -62,8 +62,8 @@ class ComingAnimalTableView: UIView, UITableViewDataSource {
                             let animalURL = json["coming_animal"]["animal_url"].stringValue
                             let bar = json["coming_animal"]["bar"].stringValue
                             let background = json["coming_animal"]["background"].stringValue
-                            var arvTime = json["arrive_time"].stringValue
-                            var sendTime = json["send_time"].stringValue
+                            let arvTime = json["arrive_time"].stringValue
+                            let sendTime = json["send_time"].stringValue
                             
                             let comingAnimal = ComingAnimal(animalURL: animalURL, bar: bar, background: background, arriveTime: arvTime, sendTime: sendTime)
                             comingAnimals.append(comingAnimal)
@@ -134,9 +134,9 @@ extension ComingAnimalTableView {
         return 0
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
-    }
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 0
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return comingAnimals.count

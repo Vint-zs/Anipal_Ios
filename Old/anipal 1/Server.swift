@@ -40,7 +40,6 @@ func post(url: String, token: String, body: NSMutableDictionary, completionHandl
     
 }
 
-
 func put(url: String, token: String, body: NSMutableDictionary? = nil, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
     guard let url = URL(string: "https://anipal.co.kr" + url) else { return }
     var request = URLRequest(url: url)
