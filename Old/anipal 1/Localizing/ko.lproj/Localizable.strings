@@ -157,11 +157,11 @@
 // 언어레벨
 "Choose your language level" = "언어 수준을 선택하세요.";
 
-"Beginner" = "초급자";
+"Beginner" = "초급";
 
-"Intermediate" = "중급자";
+"Intermediate" = "중급";
 
-"Advanced" = "고급자";
+"Advanced" = "고급";
 
 "Cancel" = "취소";
 
