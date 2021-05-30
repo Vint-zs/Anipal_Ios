@@ -121,6 +121,9 @@ class ComingAnimalTableView: UIView, UITableViewDataSource {
             return 0
         }
         
+        print("startTime: \(startTime)")
+        print("endTime: \(endTime)")
+        
         let useTime = Float(endTime.timeIntervalSince(startTime))
         
         return useTime
@@ -145,11 +148,17 @@ extension ComingAnimalTableView {
             fatalError("Can't dequeue CommingAnimalCell")
         }
         
+        print("cell height: \(cell.bounds.height)")
+        
         // 남은 시간 계산
         let wholeTime = dateCalculate(start: comingAnimals[indexPath.row].sendTime, end: comingAnimals[indexPath.row].arriveTime)
         let comingTime = dateCalculate(end: comingAnimals[indexPath.row].arriveTime)
         let remainTime = Float((comingTime / wholeTime) * 100)
-        cell.animalSlider.setValue(remainTime, animated: true)
+        cell.animalSlider.setValue(100 - remainTime, animated: true)
+        
+        print("wholeTime: \(wholeTime)")
+        print("comingTime: \(comingTime)")
+        print("remainTime: \(remainTime)")
         
         // slider thumb 이미지
         let cellURL = URL(string: comingAnimals[indexPath.row].animalURL)
