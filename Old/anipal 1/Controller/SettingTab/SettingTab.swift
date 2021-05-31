@@ -55,6 +55,7 @@ class SettingTab: UIViewController, sendBackDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        //settingTableView.frame = CGRect(x: settingTableView.frame.origin.x, y: settingTableView.frame.origin.y, width: settingTableView.bounds.width, height: settingTableView.rowHeight)
         loadAnimal()
         loadBlockUsers()
         favBtn.setImage(ad?.thumbnail, for: .normal)

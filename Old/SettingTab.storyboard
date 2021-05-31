@@ -18,8 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="05q-Mr-rss">
-                                <rect key="frame" x="40" y="350" width="334" height="295"/>
+                                <rect key="frame" x="40" y="350" width="334" height="191"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="191" id="xmL-rA-6H4"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingPageTableViewCell" textLabel="j4H-p7-Tdo" style="IBUITableViewCellStyleDefault" id="WcI-ws-xV1" customClass="SettingTableView" customModule="anipal_1" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.5" width="334" height="43.5"/>
@@ -94,7 +97,6 @@
                             <constraint firstItem="4Av-u3-hdV" firstAttribute="bottom" secondItem="xl8-4o-YW5" secondAttribute="bottom" constant="68" id="dFT-hw-pf4"/>
                             <constraint firstItem="eoh-R8-oBD" firstAttribute="top" secondItem="4Av-u3-hdV" secondAttribute="top" constant="30" id="ggi-mT-nFO"/>
                             <constraint firstItem="4Av-u3-hdV" firstAttribute="trailing" secondItem="xl8-4o-YW5" secondAttribute="trailing" constant="131" id="mdr-Si-Lfl"/>
-                            <constraint firstItem="xl8-4o-YW5" firstAttribute="top" secondItem="05q-Mr-rss" secondAttribute="bottom" constant="116" id="paY-dQ-xPm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Pnj-vh-P7i"/>
@@ -372,7 +374,7 @@
             <objects>
                 <navigationController storyboardIdentifier="UINavigationController-EbV-gk-aVL" automaticallyAdjustsScrollViewInsets="NO" id="EbV-gk-aVL" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Setting" selectedImage="gearshape" catalog="system" id="rZD-Fi-Xxw">
-                        <imageReference key="image" image="gearshape" catalog="system" symbolScale="default"/>
+                        <imageReference key="image" image="gearshape" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="I7Q-9e-7xg">

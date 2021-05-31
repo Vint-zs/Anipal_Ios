@@ -68,12 +68,12 @@
             </objects>
             <point key="canvasLocation" x="6777" y="328"/>
         </scene>
-        <!--Item 2-->
+        <!--Mailbox-->
         <scene sceneID="LVU-Ay-iWQ">
             <objects>
                 <navigationController storyboardIdentifier="UINavigationController-RFZ-cb-kSJ" automaticallyAdjustsScrollViewInsets="NO" id="RFZ-cb-kSJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 2" selectedImage="folder" catalog="system" id="X2T-Sa-Wmg">
-                        <imageReference key="image" image="folder" catalog="system" symbolScale="default"/>
+                    <tabBarItem key="tabBarItem" title="Mailbox" selectedImage="folder" catalog="system" id="X2T-Sa-Wmg">
+                        <imageReference key="image" image="tray.full" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vWC-zk-1fz">
@@ -290,6 +290,7 @@
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="folder" catalog="system" width="128" height="97"/>
         <image name="multiply" catalog="system" width="128" height="111"/>
+        <image name="tray.full" catalog="system" width="128" height="88"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

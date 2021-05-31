@@ -9,11 +9,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Custom-->
         <scene sceneID="eF9-z6-WhQ">
             <objects>
                 <navigationController storyboardIdentifier="UINavigationController-MlG-8a-KjN" automaticallyAdjustsScrollViewInsets="NO" id="MlG-8a-KjN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="K4f-AJ-zlA"/>
+                    <tabBarItem key="tabBarItem" title="Custom" image="square.grid.3x3.topleft.fill" catalog="system" id="K4f-AJ-zlA"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hPG-oB-aHH">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -377,6 +377,7 @@
         <image name="head2" width="116" height="155"/>
         <image name="ourCat" width="116" height="155"/>
         <image name="ourPengiun" width="116" height="155"/>
+        <image name="square.grid.3x3.topleft.fill" catalog="system" width="128" height="112"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
