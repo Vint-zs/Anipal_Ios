@@ -10,19 +10,19 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComingAnimals" customModule="anipal_1" customModuleProvider="target">
             <connections>
+                <outlet property="comingTableView" destination="Xoa-GV-Aq7" id="sbW-y7-92a"/>
                 <outlet property="handleArea" destination="ZSn-K9-nqv" id="7dH-Ih-cXz"/>
                 <outlet property="handleImg" destination="hae-OV-oPV" id="E1X-ce-IV9"/>
-                <outlet property="tableView" destination="Xoa-GV-Aq7" id="TnM-pI-BCT"/>
                 <outlet property="view" destination="iN0-l3-epB" id="aAs-sI-qHi"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="484"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="856"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xoa-GV-Aq7" customClass="ComingAnimalTableView" customModule="anipal_1" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="45" width="375" height="439"/>
+                    <rect key="frame" x="0.0" y="45" width="375" height="811"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZSn-K9-nqv">
@@ -60,7 +60,7 @@
                 <constraint firstItem="Xoa-GV-Aq7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="rtm-Sg-nAs"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="38.405797101449281" y="93.75"/>
+            <point key="canvasLocation" x="38.405797101449281" y="218.30357142857142"/>
         </view>
     </objects>
     <resources>

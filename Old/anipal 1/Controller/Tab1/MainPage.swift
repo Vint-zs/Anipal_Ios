@@ -76,9 +76,11 @@ class MainPage: UIViewController {
     func handleCardTap(recognizer: UITapGestureRecognizer) {
         switch recognizer.state {
         case .ended:
-            comingAnimals.tableView.loadComingAnimals()
-            let row = comingAnimals.tableView.comingAnimals.count
-            cardHeight = cardHandleAreaHeight + CGFloat((114 * row))
+            comingAnimals.comingTableView.loadComingAnimals()
+            
+            let row = comingAnimals.comingTableView.comingAnimals.count
+            cardHeight = cardHandleAreaHeight + CGFloat((90 * row))
+            comingAnimals.view.frame = CGRect(x: comingAnimals.view.frame.origin.x, y: comingAnimals.view.frame.origin.y, width: comingAnimals.view.frame.size.width, height: cardHeight)
             animateTransitionIfNeeded(state: nextState, duration: 0.9)
         default:
             break

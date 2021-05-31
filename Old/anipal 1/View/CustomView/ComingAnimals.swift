@@ -11,11 +11,13 @@ class ComingAnimals: UIViewController {
     
     @IBOutlet weak var handleArea: UIView!
     @IBOutlet weak var handleImg: UIImageView!
-    @IBOutlet weak var tableView: ComingAnimalTableView!
+    @IBOutlet weak var comingTableView: ComingAnimalTableView!
     
-    var row = 0
+    override func viewDidLoad() {
+        self.view.frame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: view.frame.size.width, height: comingTableView.tableView.contentSize.height)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
-        tableView.loadComingAnimals()
+        comingTableView.loadComingAnimals()
     }
 }

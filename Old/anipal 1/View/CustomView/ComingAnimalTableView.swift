@@ -16,13 +16,13 @@ class ComingAnimalTableView: UIView, UITableViewDataSource {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         self.comminInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-
+        
         self.comminInit()
         loadComingAnimals()
     }
@@ -43,6 +43,8 @@ class ComingAnimalTableView: UIView, UITableViewDataSource {
     private func initTableView() {
         let nib = UINib(nibName: "ComingAnimalCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "ComingAnimalCell")
+        tableView.rowHeight = 90.0
+        tableView.frame = CGRect(x: tableView.frame.origin.x, y: tableView.frame.origin.y, width: tableView.frame.size.width, height: tableView.contentSize.height)
         tableView.dataSource = self
     }
     
@@ -134,9 +136,9 @@ extension ComingAnimalTableView {
         return 0
     }
     
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return 0
-//    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return comingAnimals.count
