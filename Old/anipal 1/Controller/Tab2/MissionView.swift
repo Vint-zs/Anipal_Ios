@@ -13,20 +13,20 @@ class MissionView: UIViewController {
     @IBOutlet var innerView: UIView!
     @IBOutlet var accessoryImage: UIImageView!
     @IBOutlet var textView: UITextView!
-    @IBOutlet var missionTitle: UITextView!
     @IBOutlet var itemName: UILabel!
+    @IBOutlet var how: UILabel!
     
     var accessoryInfo: AccessoryDetail?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        how.text = "Acquisition conditions".localized
         okBtn.layer.cornerRadius = 5
         innerView.layer.cornerRadius = 20
         accessoryImage.layer.borderWidth = 2
         accessoryImage.layer.borderColor = UIColor.lightGray.cgColor
         accessoryImage.image = accessoryInfo?.img
         itemName.text = accessoryInfo?.name.localized
-        missionTitle.text = accessoryInfo?.missionTitle.localized
         textView.text = accessoryInfo?.missionContent.localized
         
         // Do any additional setup after loading the view.
