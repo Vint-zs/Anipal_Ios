@@ -211,7 +211,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
         let alertcontroller = UIAlertController(title: "Delete".localized, message: "편지함을 삭제하시겠습니까?", preferredStyle: .alert)
         let okBtn = UIAlertAction(title: "Ok".localized, style: .default) { [self] (action) in
             if let session = HTTPCookieStorage.shared.cookies?.filter({ $0.name == "Authorization"}).first {
-                var getURL = "/mailboxes/leave/" + mailBoxID!
+                let getURL = "/mailboxes/leave/" + mailBoxID!
                 get(url: getURL, token: session.value, completionHandler: { data, response, error in
                     guard let data = data, error == nil else {
                         print("error=\(String(describing: error))")
@@ -226,7 +226,9 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
                     }
                 })
             }
-            self.navigationController?.popToRootViewController(animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
         }
         let cancelBtn = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
         alertcontroller.addAction(okBtn)

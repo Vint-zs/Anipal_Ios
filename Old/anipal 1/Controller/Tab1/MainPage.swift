@@ -53,11 +53,12 @@ class MainPage: UIViewController {
     func setupCard() {
         visualEffectView = UIVisualEffectView()
         visualEffectView.frame = self.view.frame
-        visualEffectView.layer.zPosition = 1
+        visualEffectView.layer.zPosition = 999
         self.view.addSubview(visualEffectView)
         
         comingAnimals = ComingAnimals(nibName: "ComingAnimals", bundle: nil)
         self.addChild(comingAnimals)
+        comingAnimals.view.layer.zPosition = 999
         self.view.addSubview(comingAnimals.view)
         
         comingAnimals.view.frame = CGRect(x: 0, y: self.view.frame.height - cardHandleAreaHeight, width: self.view.bounds.width, height: cardHeight)
