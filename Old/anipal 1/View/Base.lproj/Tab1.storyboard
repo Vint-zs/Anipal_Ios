@@ -85,9 +85,9 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="14w-sf-oKV">
-                                        <rect key="frame" x="127" y="15" width="80" height="25"/>
+                                        <rect key="frame" x="92" y="15" width="150" height="25"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="H3a-Vx-kDN"/>
+                                            <constraint firstAttribute="width" constant="150" id="0uu-oj-dDw"/>
                                             <constraint firstAttribute="height" constant="25" id="f11-ya-g3S"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
@@ -465,7 +465,7 @@
     </scenes>
     <resources>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
-        <image name="homekit" catalog="system" width="128" height="106"/>
+        <image name="homekit" catalog="system" width="32" height="32"/>
         <image name="mainBackground" width="1172" height="2537.5"/>
         <image name="paperplane.circle" catalog="system" width="128" height="121"/>
         <image name="pencil.circle" catalog="system" width="128" height="121"/>
