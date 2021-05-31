@@ -26,6 +26,7 @@ class MyAnimalPage: UIViewController, reloadData {
     var serverHead: [Accessory] = []
     var serverData: [Int: [Accessory]] = [:]
     var num = 0
+    var baseAnimalImage: [UIImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,9 +109,20 @@ class MyAnimalPage: UIViewController, reloadData {
                                 temp = []
                             }
                         }
+    
+                        
                         // url -> 이미지로 변환 후 합성 및 저장
                         for i in 0..<imageUrls.count {
                             var ingredImage: [UIImage] = []
+                            // 기본동물
+                            if let imageURL = URL(string: imageUrls[i][0]) {
+                                if let imageData = try? Data(contentsOf: imageURL) {
+                                    if let img = UIImage(data: imageData) {
+                                        baseAnimalImage.append(img)
+                                    }
+                                }
+                            }
+                            // 꾸며진 동물
                             for url in imageUrls[i] {
                                 if let imageURL = URL(string: url) {
                                     if let imageData = try? Data(contentsOf: imageURL) {
@@ -201,6 +213,9 @@ extension MyAnimalPage: UICollectionViewDelegate, UICollectionViewDataSource, UI
         customVC.myCharacterUrls = [imageUrls[indexPath.row][0], imageUrls[indexPath.row][2], imageUrls[indexPath.row][5], imageUrls[indexPath.row][3], imageUrls[indexPath.row][4], imageUrls[indexPath.row][1]]
         customVC.animalId = myAnimalList[indexPath.row].id
         customVC.delegate = self
+        customVC.baseImage = baseAnimalImage[indexPath.row]
+        customVC.delayTime = myAnimalList[indexPath.row].time
+        customVC.animalName = myAnimalList[indexPath.row].name
         self.navigationController?.pushViewController(customVC, animated: true)
     }
     
