@@ -191,10 +191,53 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
         let alertcontroller = UIAlertController(title: "Menu".localized, message: nil, preferredStyle: .actionSheet)
         
         // 편지 삭제
-        let deleteBtn = UIAlertAction(title: "Delete".localized, style: .default)
+        let deleteBtn = UIAlertAction(title: "Delete".localized, style: .default) { [self] (action) in
+            delMailBox()
+        }
         
         // 유저 차단
         let blockBtn = UIAlertAction(title: "Block".localized, style: .default) { [self] (action) in
+            blockNotify()
+        }
+        let cancelBtn = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
+        alertcontroller.addAction(deleteBtn)
+        alertcontroller.addAction(blockBtn)
+        alertcontroller.addAction(cancelBtn)
+        present(alertcontroller, animated: true, completion: nil)
+    }
+    
+    // MARK: - 편지함 삭제
+    func delMailBox() {
+        let alertcontroller = UIAlertController(title: "Delete".localized, message: "편지함을 삭제하시겠습니까?", preferredStyle: .alert)
+        let okBtn = UIAlertAction(title: "Ok".localized, style: .default) { [self] (action) in
+            if let session = HTTPCookieStorage.shared.cookies?.filter({ $0.name == "Authorization"}).first {
+                var getURL = "/mailboxes/leave/" + mailBoxID!
+                get(url: getURL, token: session.value, completionHandler: { data, response, error in
+                    guard let data = data, error == nil else {
+                        print("error=\(String(describing: error))")
+                        return
+                    }
+                    if let httpStatus = response as? HTTPURLResponse {
+                        if httpStatus.statusCode == 200 {
+                            print("delete: \(JSON(data))")
+                        } else {
+                            print("error: \(httpStatus.statusCode)")
+                        }
+                    }
+                })
+            }
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        let cancelBtn = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
+        alertcontroller.addAction(okBtn)
+        alertcontroller.addAction(cancelBtn)
+        present(alertcontroller, animated: true, completion: nil)
+    }
+    
+    // MARK: - 유저 차단
+    func blockNotify() {
+        let alertcontroller = UIAlertController(title: "Block".localized, message: "유저를 차단하시겠습니까?", preferredStyle: .alert)
+        let okBtn = UIAlertAction(title: "Ok".localized, style: .default) { [self] (action) in
             if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
                 var putURL = "/users/ban/"
                 for idx in 0..<letters.count {
@@ -219,11 +262,10 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
                     }
                 })
             }
-            
+            delMailBox()
         }
         let cancelBtn = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
-        alertcontroller.addAction(deleteBtn)
-        alertcontroller.addAction(blockBtn)
+        alertcontroller.addAction(okBtn)
         alertcontroller.addAction(cancelBtn)
         present(alertcontroller, animated: true, completion: nil)
     }
