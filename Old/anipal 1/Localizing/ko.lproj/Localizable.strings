@@ -38,6 +38,7 @@
 
 "Internal server error" = "내부 서버 오류";
 
+
 // 캐릭터 이름
 "penguin" = "펭귄";
 "cat" = "고양이";
@@ -199,6 +200,8 @@
 "collectAccessory20" = "액세서리 20개 수집하기";
 "postFirstRandomLetter" = "첫 랜덤편지 보내기";
 "changeFavoriteAnimal" = "첫 대표동물 수정하기";
+
+"Get" = "획득";
 
 // 액세서리 이름
 // 머리
