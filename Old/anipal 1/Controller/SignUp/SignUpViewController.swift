@@ -43,6 +43,7 @@ class SignUpViewController: UIViewController, sendBackDelegate {
             }
             secondVC.delegate = self
             secondVC.serverAnimals = self.serverAnimals
+            secondVC.isThumbnail = true
         }
     }
     func dataReceived(data: Int) {

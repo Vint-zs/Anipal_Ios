@@ -38,7 +38,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
         animalBtn.layer.cornerRadius = animalBtn.frame.height/2
         animalBtn.layer.borderWidth = 0.3
         animalBtn.layer.borderColor = UIColor.lightGray.cgColor
-        animalBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
+//        animalBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         
         // 저장&전송 버튼
 //        saveBtn.setTitle("Save".localized, for: .normal)
@@ -103,6 +103,9 @@ class ReplyPage: UIViewController, sendBackDelegate {
                             animals.append(animal)
                             serverAnimals.append(Animal(nameInit: json["animal"]["localized"].stringValue, image: animalImg))
                         }
+                        
+                        print("animal data: \(JSON(data))")
+                        print("animals: \(animals)")
                     } else if httpStatus.statusCode == 400 {
                         print("error: \(httpStatus.statusCode)")
                     } else {
@@ -152,6 +155,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
         }
         nextVC.delegate = self
         nextVC.serverAnimals = self.serverAnimals
+        nextVC.animals = self.animals
         self.present(nextVC, animated: true, completion: nil)
     }
     

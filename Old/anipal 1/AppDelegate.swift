@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var token: String?
     var accessories: [String: [[String: String]]]? 
     var animals: [[String: Any]]?
-    var blockUsers: [String]?
+    var blockUsers: [String] = []
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
