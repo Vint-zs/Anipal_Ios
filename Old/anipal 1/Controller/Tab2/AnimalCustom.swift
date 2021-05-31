@@ -229,6 +229,7 @@ extension AnimalCustom: UICollectionViewDelegate, UICollectionViewDataSource, UI
                             DispatchQueue.main.async {
                                 guard let missionVC = self.storyboard?.instantiateViewController(identifier: "mission") as? MissionView else {return}
                                 missionVC.accessoryInfo = detail
+                                missionVC.okBtnTitle = "Ok"
                                 missionVC.modalPresentationStyle = .overCurrentContext
                                 self.present(missionVC, animated: true, completion: nil)
                             }
