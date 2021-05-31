@@ -32,8 +32,8 @@ class ConfirmLetter: UIViewController {
         if let randomId = randomId {
             reloadData(id: randomId)
         }
-        replyButton.setTitle("reply".localized, for: .normal)
-        deleteButton.setTitle("delete".localized, for: .normal)
+        replyButton.setTitle("Reply".localized, for: .normal)
+        deleteButton.setTitle("Delete".localized, for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {
