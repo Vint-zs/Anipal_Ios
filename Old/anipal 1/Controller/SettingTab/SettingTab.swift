@@ -13,11 +13,11 @@ import SwiftyJSON
 class SettingTab: UIViewController, sendBackDelegate {
 
     let settings: [String] = ["Language".localized, "Favorite".localized, "Block List".localized]
-    //let sections: [String] = ["Language".localized, "Favorite".localized]
     
     @IBOutlet weak var favBtn: UIButton!
     @IBOutlet weak var settingTableView: UITableView!
     @IBOutlet weak var logoutBtn: UIButton!
+    @IBOutlet weak var nameLabel: UILabel!
     
     var selectedAnimal: Int = 0
     
@@ -40,6 +40,9 @@ class SettingTab: UIViewController, sendBackDelegate {
 //        favBtn.layer.borderColor = UIColor.lightGray.cgColor
         favBtn.imageView?.contentMode = .scaleAspectFit
 //        favBtn.imageEdgeInsets = UIEdgeInsets(top: -10, left: 0, bottom: 30, right: 0)
+        
+        // 유저 이름
+        nameLabel.text = ad?.name
         
         // 로그아웃 버튼
         logoutBtn.layer.shadowColor = UIColor.lightGray.cgColor
