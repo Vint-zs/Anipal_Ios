@@ -13,7 +13,7 @@ class BlockSettingVC: UIViewController {
     @IBOutlet weak var finishBtn: UIButton!
     @IBOutlet weak var blockTableView: UITableView!
     
-    var blockedUsers: [String] = ["dog", "cat"]
+    var blockedUsers: [User] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +22,8 @@ class BlockSettingVC: UIViewController {
         titleLabel.textColor = UIColor(red: 0.392, green: 0.392, blue: 0.392, alpha: 1)
         titleLabel.text = "Block List".localized
         finishBtn.setTitle("Complete".localized, for: .normal)
+        
+        print("blockedUsers: \(blockedUsers)")
     }
     
     @IBAction func cancelBtn(_ sender: UIButton) {
@@ -46,8 +48,12 @@ extension BlockSettingVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BlockSettingViewCell", for: indexPath) as! BlockSettingViewCell
         
-        // cell.thumbImg.image =
-        cell.userName.text = blockedUsers[indexPath.row]
+        // 대표동물 이미지
+        cell.thumbImg.backgroundColor = .white
+        cell.thumbImg.layer.cornerRadius = cell.thumbImg.frame.height/2
+        cell.thumbImg.image = blockedUsers[indexPath.row].thumbnail
+        
+        cell.userName.text = blockedUsers[indexPath.row].name
         
         return cell
     }

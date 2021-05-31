@@ -237,7 +237,7 @@
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oW7-XF-HYa">
                                 <rect key="frame" x="0.0" y="100" width="414" height="682"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.94518297910000004" green="0.97571974989999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="BlockSettingViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BlockSettingViewCell" rowHeight="89" id="eoy-cN-QbC" customClass="BlockSettingViewCell" customModule="anipal_1" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="89"/>
@@ -248,6 +248,7 @@
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="W84-B6-0bO">
                                                     <rect key="frame" x="9" y="4" width="80" height="80"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="W84-B6-0bO" secondAttribute="height" multiplier="1:1" id="80Y-Zy-vFx"/>
                                                         <constraint firstAttribute="width" constant="80" id="lJf-Sd-cqU"/>
@@ -271,6 +272,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="K6z-fP-0yq" secondAttribute="bottom" constant="34.5" id="xrU-sk-1pu"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.94518297910000004" green="0.97571974989999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="thumbImg" destination="W84-B6-0bO" id="p67-B6-VOl"/>
                                             <outlet property="userName" destination="K6z-fP-0yq" id="Qbk-AK-hZJ"/>

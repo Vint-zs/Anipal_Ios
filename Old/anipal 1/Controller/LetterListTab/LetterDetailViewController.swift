@@ -114,6 +114,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
         senderAnimal.contentMode = .scaleAspectFit
         // senderAnimal.image = senderAnimal.image?.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         
+        // 대표동물 이미지
         senderAnimal.backgroundColor = .white
         senderAnimal.layer.cornerRadius = senderAnimal.frame.height/2
         senderAnimal.layer.borderWidth = 0.3
@@ -188,12 +189,17 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
     
     @IBAction func letterMenu(_ sender: Any) {
         let alertcontroller = UIAlertController(title: "Menu".localized, message: nil, preferredStyle: .actionSheet)
+        
+        // 편지 삭제
         let deleteBtn = UIAlertAction(title: "Delete".localized, style: .default)
+        
+        // 유저 차단
         let blockBtn = UIAlertAction(title: "Block".localized, style: .default) { [self] (action) in
             if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
                 var putURL = "/users/ban/"
                 for idx in 0..<letters.count {
                     if letters[idx].senderID != ad?.id {
+                        ad?.blockUsers?.append(letters[idx].senderID)
                         putURL += letters[idx].senderID
                         break
                     }
@@ -206,7 +212,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
                     }
                     if let httpStatus = response as? HTTPURLResponse {
                         if httpStatus.statusCode == 200 {
-
+                            print("block user: \(ad?.blockUsers)")
                         } else {
                             print("error: \(httpStatus.statusCode)")
                         }

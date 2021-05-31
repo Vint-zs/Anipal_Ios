@@ -24,6 +24,9 @@ class SettingTab: UIViewController, sendBackDelegate {
     var animals: [AnimalPost] = []  // 서버 POST용
     var serverAnimals: [Animal] = [] // next page 데이터 전송용
     var images: [UIImage] = []
+    var blockUsers: [String] = []
+    var blockUserInfo: [User] = []
+    var languageList: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +53,7 @@ class SettingTab: UIViewController, sendBackDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         loadAnimal()
+        loadBlockUsers()
         favBtn.setImage(ad?.thumbnail, for: .normal)
     }
     
@@ -180,6 +184,51 @@ class SettingTab: UIViewController, sendBackDelegate {
         let image = UIImage(data: imageData)
         self.images.append(image!)
     }
+    
+    func loadBlockUsers() {
+        blockUsers = ad?.blockUsers ?? []
+        var blockURL: String
+        for id in 0..<blockUsers.count {
+            if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+                blockURL = "/users/" + blockUsers[id]
+                get(url: blockURL, token: session.value, completionHandler: { [self] data, response, error in
+                    guard let data = data, error == nil else {
+                        print("error=\(String(describing: error))")
+                        return
+                    }
+                    
+                    if let httpStatus = response as? HTTPURLResponse {
+                        if httpStatus.statusCode == 200 {
+                            let json = JSON(data)
+                            languageList = []
+                            let favorites = json["favorites"].arrayValue.map { $0.stringValue }
+                            let languages = json["languages"].arrayObject as? [[String: Any]]
+                            for row in languages ?? [] {
+                                if let name = row["name"] as? String {
+                                    languageList.append(name)
+                                }
+                            }
+                            let animalURLs: [String: String] = [
+                                "animal_url": json["favorite_animal"]["animal_url"].stringValue,
+                                "head_url": json["favorite_animal"]["head_url"].stringValue,
+                                "top_url": json["favorite_animal"]["top_url"].stringValue,
+                                "pants_url": json["favorite_animal"]["pants_url"].stringValue,
+                                "shoes_url": json["favorite_animal"]["shoes_url"].stringValue,
+                                "gloves_url": json["favorite_animal"]["gloves_url"].stringValue
+                            ]
+                            let animalImg = loadAnimals(urls: animalURLs)
+                            let userInfo = User(name: json["name"].stringValue, gender: json["gender"].stringValue, age: json["age"].uIntValue, birthday: json["birthday"].stringValue, email: json["email"].stringValue, favorites: favorites, languages: languageList, thumbnail: animalImg)
+                            blockUserInfo.append(userInfo)
+                        } else if httpStatus.statusCode == 400 {
+                            print("error: \(httpStatus.statusCode)")
+                        } else {
+                            print("error: \(httpStatus.statusCode)")
+                        }
+                    }
+                })
+            }
+        }
+    }
 }
 
 extension SettingTab: UITableViewDelegate, UITableViewDataSource {
@@ -230,6 +279,7 @@ extension SettingTab: UITableViewDelegate, UITableViewDataSource {
             blockSetVC.modalTransitionStyle = .coverVertical
             blockSetVC.modalPresentationStyle = .fullScreen
             
+            blockSetVC.blockedUsers = self.blockUserInfo
             self.present(blockSetVC, animated: true, completion: nil)
         default:
             return
