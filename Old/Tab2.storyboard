@@ -268,8 +268,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="animalImg" destination="Upm-8c-9wq" id="5Q9-wn-eGR"/>
                         <outlet property="innerView" destination="U5H-k9-SUd" id="RIE-Au-wVI"/>
+                        <outlet property="nameLbl" destination="QvW-Yy-Ozd" id="5kY-vF-uHx"/>
                         <outlet property="okBtn" destination="mT6-pt-Xjg" id="9ao-qG-W2g"/>
+                        <outlet property="storyView" destination="A2n-S5-XHQ" id="M9r-3o-BmS"/>
+                        <outlet property="timeLbl" destination="bd8-J2-4yh" id="mDI-V0-zty"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="upY-y9-HwZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -285,7 +289,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0iq-Y4-jQ0">
-                                <rect key="frame" x="40" y="224" width="334" height="418"/>
+                                <rect key="frame" x="40" y="264" width="334" height="378"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="head2" translatesAutoresizingMaskIntoConstraints="NO" id="Kpb-ys-jF9">
                                         <rect key="frame" x="117" y="20" width="100" height="100"/>
@@ -295,7 +299,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z1W-tJ-uvE">
-                                        <rect key="frame" x="137" y="363" width="60" height="30"/>
+                                        <rect key="frame" x="137" y="323" width="60" height="30"/>
                                         <color key="backgroundColor" red="0.15763545039999999" green="0.46614652870000001" blue="0.95071595909999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="2TG-IY-GY1"/>
@@ -308,11 +312,11 @@
                                             <action selector="clickOkBtn:" destination="LLN-dC-UA1" eventType="touchUpInside" id="gxs-vM-nkY"/>
                                         </connections>
                                     </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="이태리에서 장인이 직접만든 명품안경이에요 주문을 받아 제작하기때문에 희소성이 높은 안경으로 전 세계에 몇개 없는 VIP용 안경 이걸 끼는순간 달라진 세상을 느낄 수 있어요  " adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p1r-qz-SnF">
-                                        <rect key="frame" x="25" y="169" width="284" height="91"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p1r-qz-SnF">
+                                        <rect key="frame" x="25" y="190" width="284" height="103"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <color key="textColor" systemColor="labelColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" systemColor="systemBlueColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="명품 안경" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ChH-nn-SoE">
@@ -321,34 +325,28 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="** 획득조건 : 편지 100회이상 전송" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Tuc-Ib-MUu">
-                                        <rect key="frame" x="25" y="285" width="284" height="50"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="2h8-GN-KB5"/>
-                                        </constraints>
-                                        <color key="textColor" systemColor="systemBlueColor"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="획득방법:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L8P-ix-tDc">
+                                        <rect key="frame" x="142.5" y="174" width="49" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="p1r-qz-SnF" firstAttribute="top" secondItem="ChH-nn-SoE" secondAttribute="bottom" constant="20" id="67x-1b-XVh"/>
-                                    <constraint firstItem="Tuc-Ib-MUu" firstAttribute="leading" secondItem="0iq-Y4-jQ0" secondAttribute="leading" constant="25" id="8GQ-Jk-qJL"/>
+                                    <constraint firstItem="Z1W-tJ-uvE" firstAttribute="top" secondItem="p1r-qz-SnF" secondAttribute="bottom" constant="30" id="5M5-RG-7rI"/>
+                                    <constraint firstItem="L8P-ix-tDc" firstAttribute="top" secondItem="ChH-nn-SoE" secondAttribute="bottom" constant="25" id="8K1-DL-rC1"/>
                                     <constraint firstItem="ChH-nn-SoE" firstAttribute="top" secondItem="Kpb-ys-jF9" secondAttribute="bottom" constant="5" id="BSg-n5-xmF"/>
                                     <constraint firstItem="p1r-qz-SnF" firstAttribute="leading" secondItem="0iq-Y4-jQ0" secondAttribute="leading" constant="25" id="EiS-QU-rnm"/>
-                                    <constraint firstItem="Tuc-Ib-MUu" firstAttribute="top" secondItem="p1r-qz-SnF" secondAttribute="bottom" constant="25" id="FNd-u1-DWc"/>
                                     <constraint firstItem="ChH-nn-SoE" firstAttribute="centerX" secondItem="0iq-Y4-jQ0" secondAttribute="centerX" id="Pc2-n2-njx"/>
                                     <constraint firstItem="Kpb-ys-jF9" firstAttribute="centerX" secondItem="0iq-Y4-jQ0" secondAttribute="centerX" id="Vtx-sf-0qR"/>
                                     <constraint firstItem="Z1W-tJ-uvE" firstAttribute="centerX" secondItem="0iq-Y4-jQ0" secondAttribute="centerX" id="afO-7s-WG2"/>
                                     <constraint firstAttribute="bottom" secondItem="Z1W-tJ-uvE" secondAttribute="bottom" constant="25" id="dQw-yF-2ae"/>
-                                    <constraint firstAttribute="trailing" secondItem="Tuc-Ib-MUu" secondAttribute="trailing" constant="25" id="fxc-Si-do4"/>
+                                    <constraint firstItem="L8P-ix-tDc" firstAttribute="centerX" secondItem="0iq-Y4-jQ0" secondAttribute="centerX" id="fGw-Na-vNd"/>
                                     <constraint firstItem="Kpb-ys-jF9" firstAttribute="top" secondItem="0iq-Y4-jQ0" secondAttribute="top" constant="20" id="jmx-MI-iLs"/>
+                                    <constraint firstItem="p1r-qz-SnF" firstAttribute="top" secondItem="L8P-ix-tDc" secondAttribute="bottom" id="lG9-js-iKn"/>
                                     <constraint firstAttribute="trailing" secondItem="p1r-qz-SnF" secondAttribute="trailing" constant="25" id="lvl-qa-Iyc"/>
-                                    <constraint firstItem="Z1W-tJ-uvE" firstAttribute="top" secondItem="Tuc-Ib-MUu" secondAttribute="bottom" constant="28" id="m8F-Y2-ww1"/>
                                     <constraint firstItem="p1r-qz-SnF" firstAttribute="centerX" secondItem="0iq-Y4-jQ0" secondAttribute="centerX" id="poq-Hx-N3b"/>
-                                    <constraint firstItem="Tuc-Ib-MUu" firstAttribute="centerX" secondItem="0iq-Y4-jQ0" secondAttribute="centerX" id="yDO-CE-Ifq"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -356,16 +354,16 @@
                         <color key="backgroundColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="0.7020979117084023" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="JbH-x7-2Xg" firstAttribute="trailing" secondItem="0iq-Y4-jQ0" secondAttribute="trailing" constant="40" id="AvQ-xF-ev6"/>
-                            <constraint firstItem="0iq-Y4-jQ0" firstAttribute="top" secondItem="JbH-x7-2Xg" secondAttribute="top" constant="180" id="OuO-yg-c9I"/>
+                            <constraint firstItem="0iq-Y4-jQ0" firstAttribute="top" secondItem="JbH-x7-2Xg" secondAttribute="top" constant="220" id="OuO-yg-c9I"/>
                             <constraint firstItem="0iq-Y4-jQ0" firstAttribute="leading" secondItem="JbH-x7-2Xg" secondAttribute="leading" constant="40" id="Zyf-M8-U0Q"/>
                             <constraint firstItem="JbH-x7-2Xg" firstAttribute="bottom" secondItem="0iq-Y4-jQ0" secondAttribute="bottom" constant="220" id="b04-mL-ERA"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="accessoryImage" destination="Kpb-ys-jF9" id="ApB-c3-pS8"/>
+                        <outlet property="how" destination="L8P-ix-tDc" id="Vjg-ml-osz"/>
                         <outlet property="innerView" destination="0iq-Y4-jQ0" id="gXl-pd-4AM"/>
                         <outlet property="itemName" destination="ChH-nn-SoE" id="1gY-qb-7Kl"/>
-                        <outlet property="missionTitle" destination="Tuc-Ib-MUu" id="hAH-EE-Kqw"/>
                         <outlet property="okBtn" destination="Z1W-tJ-uvE" id="2kF-3W-45S"/>
                         <outlet property="textView" destination="p1r-qz-SnF" id="2cK-jY-5EC"/>
                     </connections>
