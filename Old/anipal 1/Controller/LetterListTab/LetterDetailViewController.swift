@@ -53,7 +53,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
         guard let replyVC = self.storyboard?.instantiateViewController(identifier: "ReplyPage") as? ReplyPage else { return }
         
         replyVC.modalTransitionStyle = .coverVertical
-        replyVC.modalPresentationStyle = .pageSheet
+        replyVC.modalPresentationStyle = .fullScreen
         
         replyVC.delegate = self
         replyVC.receiverID = letters[letterCtrl.currentPage].senderID
@@ -103,7 +103,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
         for (idx, lang) in letters[letterCtrl.currentPage].language.enumerated() {
             letters[letterCtrl.currentPage].language[idx] = lang.localized
         }
-        senderLang.text = letters[letterCtrl.currentPage].language.joined(separator: " ")
+        senderLang.text = letters[letterCtrl.currentPage].language.joined(separator: ", ")
         senderLang.sizeToFit()
         for (idx, fav) in letters[letterCtrl.currentPage].favorites.enumerated() {
             letters[letterCtrl.currentPage].favorites[idx] = fav.localized
@@ -112,7 +112,6 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
         senderFav.sizeToFit()
         senderAnimal.image = letters[letterCtrl.currentPage].animalImg
         senderAnimal.contentMode = .scaleAspectFit
-        // senderAnimal.image = senderAnimal.image?.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         
         // 대표동물 이미지
         senderAnimal.backgroundColor = .white
@@ -151,8 +150,16 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
                             let animalImg = loadAnimals(urls: animal)
                             let languages = json["sender"]["languages"].arrayObject as? [[String: Any]]
                             for row in languages ?? [] {
-                                if let name = row["name"] as? String {
-                                    languageList.append(name)
+                                if let name = row["name"] as? String, let level = row["level"] as? Int {
+                                    var lev = ""
+                                    if level == 1 {
+                                        lev = "Beginner"
+                                    } else if level == 2 {
+                                        lev = "Intermediate"
+                                    } else {
+                                        lev = "Advanced"
+                                    }
+                                    languageList.append("\(name.localized):\(lev.localized)")
                                 }
                             }
                             let letter = Letter(
@@ -183,7 +190,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
     // 편지 넘기기
     @IBAction func letterSlide(_ sender: UIPageControl) {
         scrollViewContent.contentOffset.x = CGFloat((Int(scrollViewContent.contentSize.width) / letters.count) * letterCtrl.currentPage)
-        senderLang.text = letters[letterCtrl.currentPage].language.joined(separator: " ")
+        senderLang.text = letters[letterCtrl.currentPage].language.joined(separator: ", ")
         senderFav.text = letters[letterCtrl.currentPage].favorites.joined(separator: " ")
     }
     
