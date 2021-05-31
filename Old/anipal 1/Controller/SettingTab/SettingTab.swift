@@ -187,6 +187,7 @@ class SettingTab: UIViewController, sendBackDelegate {
     
     func loadBlockUsers() {
         blockUsers = ad?.blockUsers ?? []
+        blockUserInfo = []
         var blockURL: String
         for id in 0..<blockUsers.count {
             if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {

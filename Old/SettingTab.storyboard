@@ -220,23 +220,8 @@
                                     <action selector="cancelFav:" destination="OVa-X9-Is2" eventType="touchUpInside" id="kWP-MF-kWr"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5zj-jE-icJ">
-                                <rect key="frame" x="0.0" y="782" width="414" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="y0T-28-ZXL"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="완료">
-                                    <color key="titleColor" red="0.3921665251" green="0.39214932920000001" blue="0.39215728640000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <connections>
-                                    <action selector="finishBlock:" destination="OOE-cg-dNp" eventType="touchUpInside" id="igw-l0-vDT"/>
-                                    <action selector="finishFav:" destination="OVa-X9-Is2" eventType="touchUpInside" id="xiT-36-zel"/>
-                                </connections>
-                            </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oW7-XF-HYa">
-                                <rect key="frame" x="0.0" y="100" width="414" height="682"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oW7-XF-HYa">
+                                <rect key="frame" x="0.0" y="100" width="414" height="796"/>
                                 <color key="backgroundColor" red="0.94518297910000004" green="0.97571974989999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="BlockSettingViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BlockSettingViewCell" rowHeight="89" id="eoy-cN-QbC" customClass="BlockSettingViewCell" customModule="anipal_1" customModuleProvider="target">
@@ -285,22 +270,18 @@
                         <color key="backgroundColor" red="0.94509803921568625" green="0.97254901960784312" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="Yph-aF-1z8" firstAttribute="trailing" secondItem="oW7-XF-HYa" secondAttribute="trailing" id="8dw-1x-fwg"/>
-                            <constraint firstItem="5zj-jE-icJ" firstAttribute="top" secondItem="oW7-XF-HYa" secondAttribute="bottom" id="9qi-Ty-Tse"/>
                             <constraint firstItem="kGP-cR-2SX" firstAttribute="top" secondItem="Yph-aF-1z8" secondAttribute="top" constant="28" id="Brn-D9-nFT"/>
                             <constraint firstItem="kGP-cR-2SX" firstAttribute="leading" secondItem="Yph-aF-1z8" secondAttribute="leading" constant="16" id="FDx-1h-KrM"/>
-                            <constraint firstItem="Yph-aF-1z8" firstAttribute="trailing" secondItem="5zj-jE-icJ" secondAttribute="trailing" id="HHK-nY-j4L"/>
                             <constraint firstItem="oW7-XF-HYa" firstAttribute="leading" secondItem="Yph-aF-1z8" secondAttribute="leading" id="LLz-73-YTn"/>
                             <constraint firstItem="l9J-I7-iVW" firstAttribute="top" secondItem="Yph-aF-1z8" secondAttribute="top" constant="28" id="OWR-3H-ao0"/>
                             <constraint firstItem="oW7-XF-HYa" firstAttribute="top" secondItem="kGP-cR-2SX" secondAttribute="bottom" constant="7.5" id="R8a-80-6F3"/>
+                            <constraint firstItem="oW7-XF-HYa" firstAttribute="bottom" secondItem="Yph-aF-1z8" secondAttribute="bottom" constant="34" id="YYP-gQ-vN6"/>
                             <constraint firstItem="Yph-aF-1z8" firstAttribute="trailing" secondItem="l9J-I7-iVW" secondAttribute="trailing" constant="16" id="dg3-2o-6o7"/>
                             <constraint firstItem="Yph-aF-1z8" firstAttribute="trailing" secondItem="kGP-cR-2SX" secondAttribute="trailing" constant="16" id="lBj-U0-4hu"/>
-                            <constraint firstItem="Yph-aF-1z8" firstAttribute="bottom" secondItem="5zj-jE-icJ" secondAttribute="bottom" id="lgt-QS-tjc"/>
-                            <constraint firstItem="5zj-jE-icJ" firstAttribute="leading" secondItem="Yph-aF-1z8" secondAttribute="leading" id="wbk-GV-9bV"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="blockTableView" destination="oW7-XF-HYa" id="qI4-4i-n5n"/>
-                        <outlet property="finishBtn" destination="5zj-jE-icJ" id="tNw-d2-a33"/>
                         <outlet property="titleLabel" destination="kGP-cR-2SX" id="yhm-on-35i"/>
                     </connections>
                 </viewController>

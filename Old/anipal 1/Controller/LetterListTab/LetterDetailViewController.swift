@@ -199,7 +199,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
                 var putURL = "/users/ban/"
                 for idx in 0..<letters.count {
                     if letters[idx].senderID != ad?.id {
-                        ad?.blockUsers?.append(letters[idx].senderID)
+                        ad?.blockUsers.append(letters[idx].senderID)
                         putURL += letters[idx].senderID
                         break
                     }
