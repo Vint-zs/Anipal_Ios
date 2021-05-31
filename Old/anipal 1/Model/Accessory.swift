@@ -20,16 +20,14 @@ struct AccessoryDetail {
     var price: Int
     var imgUrl: String
     var img: UIImage
-    var missionTitle: String
     var missionContent: String
     var category: String
     
-    init(name: String, price: Int, imgUrl: String, img: UIImage, missionTitle: String, missionContent: String , category: String) {
+    init(name: String, price: Int, imgUrl: String, img: UIImage, missionContent: String , category: String) {
         self.name = name
         self.price = price
         self.imgUrl = imgUrl
         self.img = img
-        self.missionTitle = missionTitle
         self.missionContent = missionContent
         self.category = category
     }

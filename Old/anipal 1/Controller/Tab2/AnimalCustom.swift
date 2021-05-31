@@ -20,6 +20,9 @@ class AnimalCustom: UIViewController {
     var myCharacterImage: UIImage?
     var accessoryDetail: AccessoryDetail?
     var animalId: String?
+    var animalName: String = ""
+    var delayTime: String = ""
+    var baseImage: UIImage?
     
     var data: [[UIImage]] = []
     let cellId = "accessory"
@@ -48,8 +51,13 @@ class AnimalCustom: UIViewController {
         p=0
         
     }
+    
+    // 자세기보기 버튼 클릭시
     @IBAction func clickDetailBtn(_ sender: UIButton) {
         guard let detailVC = self.storyboard?.instantiateViewController(identifier: "AnimalDetail") as? AnimalDetail else {return}
+        detailVC.img = baseImage
+        detailVC.name = animalName
+        detailVC.time = delayTime
         self.present(detailVC, animated: true, completion: nil)
         
     }
@@ -151,7 +159,7 @@ class AnimalCustom: UIViewController {
 
 extension AnimalCustom: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return serverData[p].count
+        return serverData[p].count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -160,39 +168,70 @@ extension AnimalCustom: UICollectionViewDelegate, UICollectionViewDataSource, UI
             return UICollectionViewCell()
         }
         
-        cell.accessoryImage.image = serverData[p][indexPath.row].img
-        cell.layer.cornerRadius = 10
-        return cell
+        if indexPath.row == 0 {
+            cell.layer.borderWidth = 0
+            cell.accessoryImage.image = #imageLiteral(resourceName: "no")
+            cell.layer.cornerRadius = 10
+            cell.accessoryImage.alpha = 1
+            cell.backgroundColor = .white
+            return cell
+        } else {
+            // 액세서리 보유시
+            if serverData[p][indexPath.row-1].isOwn == true {
+                cell.accessoryImage.image = serverData[p][indexPath.row-1].img
+                cell.layer.cornerRadius = 10
+                cell.accessoryImage.alpha = 1
+                cell.backgroundColor = .white
+                return cell
+            }
+            // 액세서리 미보유시
+            else {
+                cell.accessoryImage.image = serverData[p][indexPath.row-1].img
+                cell.layer.cornerRadius = 10
+                cell.accessoryImage.alpha = 0.5
+                cell.backgroundColor = .opaqueSeparator
+                return cell
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        // 액세서리 보유시
-        if serverData[p][indexPath.row].isOwn == true {
-            myCharacterUrls[p+1] = serverData[p][indexPath.row].imgUrl
-            makeImage()
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? AccessoryCollectionViewCell else {
+            return
         }
-        // 액세서리 미보유시
-        else {
-            var detail: AccessoryDetail?
-            if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
-                get(url: "/accessories/\(serverData[p][indexPath.row].accessoryId)", token: session.value) { [self] (data, response, error) in
-                    guard let data = data, error == nil else {
-                        print("error=\(String(describing: error))")
-                        return
-                    }
-                    if let httpStatus = response as? HTTPURLResponse {
-                        if httpStatus.statusCode == 200 {
-                            let json = JSON(data)
-                            print(json)
-                            detail = AccessoryDetail(name: json["name"].stringValue, price: json["price"].intValue, imgUrl: json["img_url"].stringValue, img: serverData[p][indexPath.row].img, missionTitle: json["mission"]["title"].stringValue, missionContent: json["mission"]["content"].stringValue, category: json["category"].stringValue)
+        guard let cell2 = collectionView.cellForItem(at: indexPath) else {return}
+        
+        if indexPath.row == 0 {
+            myCharacterUrls[p+1] = ""
+            makeImage()
+        } else {
+            // 액세서리 보유시
+            if serverData[p][indexPath.row-1].isOwn == true {
+                myCharacterUrls[p+1] = serverData[p][indexPath.row-1].imgUrl
+                makeImage()
+            }
+            // 액세서리 미보유시
+            else {
+                var detail: AccessoryDetail?
+                if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+                    get(url: "/accessories/\(serverData[p][indexPath.row-1].accessoryId)", token: session.value) { [self] (data, response, error) in
+                        guard let data = data, error == nil else {
+                            print("error=\(String(describing: error))")
+                            return
                         }
-                        // 뷰 생성
-                        DispatchQueue.main.async {
-                            guard let missionVC = self.storyboard?.instantiateViewController(identifier: "mission") as? MissionView else {return}
-                            missionVC.accessoryInfo = detail
-                            missionVC.modalPresentationStyle = .overCurrentContext
-                            self.present(missionVC, animated: true, completion: nil)
+                        if let httpStatus = response as? HTTPURLResponse {
+                            if httpStatus.statusCode == 200 {
+                                let json = JSON(data)
+                                print(json)
+                                detail = AccessoryDetail(name: json["name"].stringValue, price: json["price"].intValue, imgUrl: json["img_url"].stringValue, img: serverData[p][indexPath.row-1].img, missionContent: json["mission"].stringValue, category: json["category"].stringValue)
+                            }
+                            // 뷰 생성
+                            DispatchQueue.main.async {
+                                guard let missionVC = self.storyboard?.instantiateViewController(identifier: "mission") as? MissionView else {return}
+                                missionVC.accessoryInfo = detail
+                                missionVC.modalPresentationStyle = .overCurrentContext
+                                self.present(missionVC, animated: true, completion: nil)
+                            }
                         }
                     }
                 }
