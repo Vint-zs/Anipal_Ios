@@ -20,6 +20,9 @@ class AnimalCustom: UIViewController {
     var myCharacterImage: UIImage?
     var accessoryDetail: AccessoryDetail?
     var animalId: String?
+    var animalName: String = ""
+    var delayTime: String = ""
+    var baseImage: UIImage?
     
     var data: [[UIImage]] = []
     let cellId = "accessory"
@@ -48,8 +51,13 @@ class AnimalCustom: UIViewController {
         p=0
         
     }
+    
+    // 자세기보기 버튼 클릭시
     @IBAction func clickDetailBtn(_ sender: UIButton) {
         guard let detailVC = self.storyboard?.instantiateViewController(identifier: "AnimalDetail") as? AnimalDetail else {return}
+        detailVC.img = baseImage
+        detailVC.name = animalName
+        detailVC.time = delayTime
         self.present(detailVC, animated: true, completion: nil)
         
     }
@@ -215,7 +223,7 @@ extension AnimalCustom: UICollectionViewDelegate, UICollectionViewDataSource, UI
                             if httpStatus.statusCode == 200 {
                                 let json = JSON(data)
                                 print(json)
-                                detail = AccessoryDetail(name: json["name"].stringValue, price: json["price"].intValue, imgUrl: json["img_url"].stringValue, img: serverData[p][indexPath.row-1].img, missionTitle: json["mission"]["title"].stringValue, missionContent: json["mission"]["content"].stringValue, category: json["category"].stringValue)
+                                detail = AccessoryDetail(name: json["name"].stringValue, price: json["price"].intValue, imgUrl: json["img_url"].stringValue, img: serverData[p][indexPath.row-1].img, missionContent: json["mission"].stringValue, category: json["category"].stringValue)
                             }
                             // 뷰 생성
                             DispatchQueue.main.async {
