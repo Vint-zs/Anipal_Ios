@@ -149,16 +149,20 @@ class LetterListViewController: UICollectionViewController {
     
     // MARK: - 날짜 형식 변환
     func dateConvert(date: String) -> String {
-        let stringFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let stringFormatter = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         let formatter = DateFormatter()
-        formatter.dateFormat = stringFormat
+        formatter.dateFormat = stringFormatter
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
         // formatter.locale = Locale(identifier: "ko") 추후 국가별 문구 설정시 사용하기위해 주석처리
-        guard let tempDate = formatter.date(from: date) else {
-            return ""
-        }
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.string(from: tempDate)
+        if let tempDate = formatter.date(from: date) {
+            print("tempDate(UTC): \(tempDate)")
+            formatter.timeZone = TimeZone.current
+            formatter.dateFormat = "yyyy-MM-dd"
 
+            return formatter.string(from: tempDate)
+        }
+        
+        return ""
     }
 }
 
