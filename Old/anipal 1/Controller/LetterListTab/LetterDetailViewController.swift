@@ -23,6 +23,8 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
     var images: [UIImage] = []
     var languageList: [String] = []
     
+    var isBlocked: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +39,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
         replyBtn.layer.shadowOpacity = 1.0
         replyBtn.layer.shadowRadius = 3
         replyBtn.layer.masksToBounds = false
+        replyBtn.isHidden = true
         
         // 편지 로딩
         getLetters()
@@ -125,6 +128,11 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
         } else {
             replyBtn.isHidden = false
         }
+        
+        // 차단됐을 시 답장 버튼 숨기기
+        if isBlocked {
+            replyBtn.isHidden = true
+        }
     }
     
     func getLetters() {
@@ -173,6 +181,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
                                 animalImg: animalImg)
                             letters.append(letter)
                         }
+                        
                         // 화면 reload
                         DispatchQueue.main.async {
                             setLetters()

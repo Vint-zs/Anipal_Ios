@@ -16,6 +16,7 @@ class LetterListViewController: UICollectionViewController {
     var mailboxes: [MailBox] = []
     let dateFormatter = DateFormatter()
     var images: [UIImage] = []
+    var isBlocked: [Bool] = []
     
     var unOpenedMail = UIImage(named: "letterBox1.png")
     var openedMail = UIImage(named: "letterBox2.png")
@@ -66,6 +67,8 @@ class LetterListViewController: UICollectionViewController {
                             
                             mailboxes.append(mailBox)
                         }
+                        
+                        print("mailboxes: \(mailboxes)")
                         
                         // 화면 reload
                         DispatchQueue.main.async {
@@ -189,17 +192,19 @@ extension LetterListViewController {
             
             cell.senderName.text = mailboxes[indexPath.row - 1].partner["name"] as? String
             cell.senderName.sizeToFit()
-            cell.arrivalDate.text = mailboxes[indexPath.row - 1].arrivalDate
+            if mailboxes[indexPath.row - 1].partner["name"] as! String != "" {
+                cell.arrivalDate.text = mailboxes[indexPath.row - 1].arrivalDate
+                isBlocked.append(false)
+            } else {
+                cell.arrivalDate.text = ""
+                isBlocked.append(true)
+            }
             cell.arrivalDate.sizeToFit()
             
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WriteNewLetter", for: indexPath) as? WriteNewLetter else { fatalError("Can't dequeue WriteNewLetter")}
-            //cell.writeLabel.text = "+ New".localized
-            //cell.writeLabel.sizeToFit()
             cell.newWriteView.layer.cornerRadius = 10
-//            cell.newWriteView.layer.borderWidth = 0.3
-//            cell.newWriteView.layer.borderColor = UIColor.lightGray.cgColor
             cell.newWriteView.alpha = 0.8
             
             return cell
@@ -222,7 +227,7 @@ extension LetterListViewController {
             }
 
             letterDetailVC.mailBoxID = mailboxes[indexPath.row - 1].mailBoxID
-
+            letterDetailVC.isBlocked = isBlocked[indexPath.row - 1]
             self.navigationController?.pushViewController(letterDetailVC, animated: true)
         }
     }
