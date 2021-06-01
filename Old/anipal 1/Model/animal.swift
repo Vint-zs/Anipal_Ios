@@ -45,11 +45,13 @@ struct Animal {
     let name: String
     let img: UIImage
     let id: String
+    var aniTime: String
 
-    init(nameInit: String, image: UIImage, animalId: String) {
+    init(nameInit: String, image: UIImage, animalId: String, aniTime: String = "") {
         name = nameInit
         img = image
         id = animalId
+        self.aniTime = aniTime
     }
 
     // 테스트이미지용 임시 생성자. 모든코드 서버이미지로 전환작업 완료후 아래쪽 테스트데이터 삭제시 삭제예정
@@ -57,6 +59,7 @@ struct Animal {
         name = nameInit
         img = image
         id = ""
+        aniTime = ""
     }
 }
 

@@ -53,6 +53,11 @@ extension SelectAnimal: UICollectionViewDelegate, UICollectionViewDataSource, UI
         
         cell.img.image = serverAnimals[indexPath.row].img
         cell.name.text = serverAnimals[indexPath.row].name.localized
+        
+        if serverAnimals[indexPath.row].aniTime != "" {
+            cell.aniTime.text = serverAnimals[indexPath.row].aniTime
+        }
+        
         cell.layer.cornerRadius = 10
         cell.backgroundColor = .white
         
