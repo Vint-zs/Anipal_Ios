@@ -195,8 +195,12 @@ extension LetterListViewController {
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WriteNewLetter", for: indexPath) as? WriteNewLetter else { fatalError("Can't dequeue WriteNewLetter")}
-            cell.writeLabel.text = "+ New".localized
-            cell.writeLabel.sizeToFit()
+            //cell.writeLabel.text = "+ New".localized
+            //cell.writeLabel.sizeToFit()
+            cell.newWriteView.layer.cornerRadius = 10
+//            cell.newWriteView.layer.borderWidth = 0.3
+//            cell.newWriteView.layer.borderColor = UIColor.lightGray.cgColor
+            cell.newWriteView.alpha = 0.8
             
             return cell
         }
