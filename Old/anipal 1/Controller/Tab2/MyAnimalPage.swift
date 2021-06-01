@@ -42,6 +42,7 @@ class MyAnimalPage: UIViewController, reloadData {
     
     override func viewWillAppear(_ animated: Bool) {
         loadAccessories()
+        animalCollectionView.reloadData()
         // 네이베이션바 선 없애기
 //        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
 //        navigationController?.navigationBar.shadowImage = UIImage()
