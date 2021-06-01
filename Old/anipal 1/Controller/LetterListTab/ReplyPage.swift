@@ -197,6 +197,10 @@ class ReplyPage: UIViewController, sendBackDelegate {
                             pvc.present(missionVC, animated: true, completion: nil)
                         })
                     }
+                } else {
+                    DispatchQueue.main.async {
+                        self.presentingViewController?.dismiss(animated: true, completion: nil)
+                    }
                 }
                 print(String(data: data, encoding: .utf8)!)
             })
