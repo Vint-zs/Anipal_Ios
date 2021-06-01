@@ -289,7 +289,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0iq-Y4-jQ0">
-                                <rect key="frame" x="40" y="264" width="334" height="378"/>
+                                <rect key="frame" x="40" y="264" width="334" height="290"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="head2" translatesAutoresizingMaskIntoConstraints="NO" id="Kpb-ys-jF9">
                                         <rect key="frame" x="117" y="20" width="100" height="100"/>
@@ -299,7 +299,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z1W-tJ-uvE">
-                                        <rect key="frame" x="137" y="323" width="60" height="30"/>
+                                        <rect key="frame" x="137" y="235" width="60" height="30"/>
                                         <color key="backgroundColor" red="0.15763545039999999" green="0.46614652870000001" blue="0.95071595909999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="2TG-IY-GY1"/>
@@ -313,7 +313,7 @@
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p1r-qz-SnF">
-                                        <rect key="frame" x="25" y="190" width="284" height="103"/>
+                                        <rect key="frame" x="25" y="190" width="284" height="35"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <color key="textColor" systemColor="systemBlueColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -334,13 +334,14 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="Z1W-tJ-uvE" firstAttribute="top" secondItem="p1r-qz-SnF" secondAttribute="bottom" constant="30" id="5M5-RG-7rI"/>
+                                    <constraint firstItem="Z1W-tJ-uvE" firstAttribute="top" secondItem="p1r-qz-SnF" secondAttribute="bottom" constant="10" id="5M5-RG-7rI"/>
                                     <constraint firstItem="L8P-ix-tDc" firstAttribute="top" secondItem="ChH-nn-SoE" secondAttribute="bottom" constant="25" id="8K1-DL-rC1"/>
                                     <constraint firstItem="ChH-nn-SoE" firstAttribute="top" secondItem="Kpb-ys-jF9" secondAttribute="bottom" constant="5" id="BSg-n5-xmF"/>
                                     <constraint firstItem="p1r-qz-SnF" firstAttribute="leading" secondItem="0iq-Y4-jQ0" secondAttribute="leading" constant="25" id="EiS-QU-rnm"/>
                                     <constraint firstItem="ChH-nn-SoE" firstAttribute="centerX" secondItem="0iq-Y4-jQ0" secondAttribute="centerX" id="Pc2-n2-njx"/>
                                     <constraint firstItem="Kpb-ys-jF9" firstAttribute="centerX" secondItem="0iq-Y4-jQ0" secondAttribute="centerX" id="Vtx-sf-0qR"/>
                                     <constraint firstItem="Z1W-tJ-uvE" firstAttribute="centerX" secondItem="0iq-Y4-jQ0" secondAttribute="centerX" id="afO-7s-WG2"/>
+                                    <constraint firstAttribute="height" constant="290" id="dNm-b3-ShF"/>
                                     <constraint firstAttribute="bottom" secondItem="Z1W-tJ-uvE" secondAttribute="bottom" constant="25" id="dQw-yF-2ae"/>
                                     <constraint firstItem="L8P-ix-tDc" firstAttribute="centerX" secondItem="0iq-Y4-jQ0" secondAttribute="centerX" id="fGw-Na-vNd"/>
                                     <constraint firstItem="Kpb-ys-jF9" firstAttribute="top" secondItem="0iq-Y4-jQ0" secondAttribute="top" constant="20" id="jmx-MI-iLs"/>
@@ -356,7 +357,6 @@
                             <constraint firstItem="JbH-x7-2Xg" firstAttribute="trailing" secondItem="0iq-Y4-jQ0" secondAttribute="trailing" constant="40" id="AvQ-xF-ev6"/>
                             <constraint firstItem="0iq-Y4-jQ0" firstAttribute="top" secondItem="JbH-x7-2Xg" secondAttribute="top" constant="220" id="OuO-yg-c9I"/>
                             <constraint firstItem="0iq-Y4-jQ0" firstAttribute="leading" secondItem="JbH-x7-2Xg" secondAttribute="leading" constant="40" id="Zyf-M8-U0Q"/>
-                            <constraint firstItem="JbH-x7-2Xg" firstAttribute="bottom" secondItem="0iq-Y4-jQ0" secondAttribute="bottom" constant="220" id="b04-mL-ERA"/>
                         </constraints>
                     </view>
                     <connections>

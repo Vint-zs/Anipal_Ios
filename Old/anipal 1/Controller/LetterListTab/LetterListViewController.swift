@@ -20,13 +20,23 @@ class LetterListViewController: UICollectionViewController {
     
     var unOpenedMail = UIImage(named: "letterBox1.png")
     var openedMail = UIImage(named: "letterBox2.png")
-    
+    var refreshControl: UIRefreshControl?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Penpal".localized
         
         initCollectionView()
         setupFlowLayout()
+        
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh".localized)
+        refreshControl?.addTarget(self, action: #selector(pullRefresh(_:)), for: .valueChanged)
+        letterListCollectionView.refreshControl = refreshControl
+    }
+    
+    @objc func pullRefresh(_ sender: Any) {
+        getMailBoxes()
+        refreshControl?.endRefreshing()
     }
     
     override func viewWillAppear(_ animated: Bool) {

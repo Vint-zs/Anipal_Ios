@@ -80,7 +80,29 @@ class SettingTab: UIViewController, sendBackDelegate {
                 }
                 if let httpStatus = response as? HTTPURLResponse {
                     if httpStatus.statusCode == 200 {
-
+                        var json = JSON(data)
+                        if json["mission"].dictionary != nil {
+                            json = json["mission"]   
+                            var detail: AccessoryDetail?
+                            if let url = URL(string: json["img_url"].stringValue) {
+                                if let imgData = try? Data(contentsOf: url) {
+                                    if let image = UIImage(data: imgData) {
+                                        detail = AccessoryDetail(name: json["name"].stringValue, price: json["price"].intValue, imgUrl: json["img_url"].stringValue, img: image, missionContent: json["mission"].stringValue, category: json["category"].stringValue)
+                                    }
+                                }
+                            }
+                            
+                            DispatchQueue.main.async {
+                                let storyboard = UIStoryboard(name: "Tab2", bundle: nil)
+                                guard let missionVC = storyboard.instantiateViewController(identifier: "mission") as? MissionView else {return}
+                                missionVC.accessoryInfo = detail
+                                missionVC.okBtnTitle = "Get"
+                                missionVC.modalPresentationStyle = .overCurrentContext
+                                self.present(missionVC, animated: true, completion: nil)
+                            }
+                            
+                        }
+            
                     } else {
                         print("error: \(httpStatus.statusCode)")
                     }

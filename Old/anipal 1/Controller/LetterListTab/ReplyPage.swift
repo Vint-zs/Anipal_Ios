@@ -104,8 +104,6 @@ class ReplyPage: UIViewController, sendBackDelegate {
                             serverAnimals.append(Animal(nameInit: json["animal"]["localized"].stringValue, image: animalImg))
                         }
                         
-                        print("animal data: \(JSON(data))")
-                        print("animals: \(animals)")
                     } else if httpStatus.statusCode == 400 {
                         print("error: \(httpStatus.statusCode)")
                     } else {
@@ -174,11 +172,40 @@ class ReplyPage: UIViewController, sendBackDelegate {
                     print("error=\(String(describing: error))")
                     return
                 }
+                // 미션 성공시
+                var json = JSON(data)
+                if json["mission"].dictionary != nil {
+                    json = json["mission"]
+                    var detail: AccessoryDetail?
+                    if let url = URL(string: json["img_url"].stringValue) {
+                        if let imgData = try? Data(contentsOf: url) {
+                            if let image = UIImage(data: imgData) {
+                                detail = AccessoryDetail(name: json["name"].stringValue, price: json["price"].intValue, imgUrl: json["img_url"].stringValue, img: image, missionContent: json["mission"].stringValue, category: json["category"].stringValue)
+                            }
+                        }
+                    }
+                    
+                    DispatchQueue.main.async {
+                        let storyboard = UIStoryboard(name: "Tab2", bundle: nil)
+                        guard let missionVC = storyboard.instantiateViewController(identifier: "mission") as? MissionView else {return}
+                        missionVC.accessoryInfo = detail
+                        missionVC.okBtnTitle = "Get"
+                        missionVC.modalPresentationStyle = .overCurrentContext
+//                        self.delegate?.reloadDelegate()
+                        guard let pvc = self.presentingViewController else {return}
+                        self.presentingViewController?.dismiss(animated: true, completion: {
+                            pvc.present(missionVC, animated: true, completion: nil)
+                        })
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.presentingViewController?.dismiss(animated: true, completion: nil)
+                    }
+                }
                 print(String(data: data, encoding: .utf8)!)
             })
         }
         delegate?.reloadDelegate()
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
 

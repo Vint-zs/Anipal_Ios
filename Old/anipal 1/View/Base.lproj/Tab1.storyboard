@@ -445,8 +445,9 @@
         <scene sceneID="YTJ-vH-Yb2">
             <objects>
                 <navigationController storyboardIdentifier="UINavigationController-gec-h4-CnC" automaticallyAdjustsScrollViewInsets="NO" id="gec-h4-CnC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" selectedImage="pencil.circle" catalog="system" id="u5Z-h5-iou">
+                    <tabBarItem key="tabBarItem" title="Home" id="u5Z-h5-iou">
                         <imageReference key="image" image="homekit" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="homekit" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zRU-Mb-KEA">
@@ -468,7 +469,6 @@
         <image name="homekit" catalog="system" width="128" height="106"/>
         <image name="mainBackground" width="1172" height="2537.5"/>
         <image name="paperplane.circle" catalog="system" width="128" height="121"/>
-        <image name="pencil.circle" catalog="system" width="128" height="121"/>
         <image name="xmark.circle" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

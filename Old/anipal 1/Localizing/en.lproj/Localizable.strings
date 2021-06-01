@@ -200,6 +200,8 @@
 "postFirstRandomLetter" = "Send your first random letter";
 "changeFavoriteAnimal" = "Edit the first representative animal";
 
+"Get" = "Get";
+
 
 // 동물 스토리
 "CATSTORY" = "Unlike my cute appearance, I have a cold personality. I'm a driveway grown in Seoul... (Cold city cat?!) I usually hide away from people with quick movements, but I can be friends with just one chocolate pie. My favorite food in the world is Choco Pie!";
@@ -212,4 +214,5 @@
 
 
 
-
+// 새로고침
+"Pull to refresh" = "Pull to refresh";
