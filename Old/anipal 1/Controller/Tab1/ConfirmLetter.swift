@@ -16,6 +16,7 @@ protocol modalDelegate: class {
 class ConfirmLetter: UIViewController {
     var delegate: modalDelegate?
     var randomId: String! = ""
+    var senderId: String = ""
     
     @IBOutlet var languageLbl: UILabel!
     @IBOutlet var favLbl: UILabel!
@@ -25,7 +26,8 @@ class ConfirmLetter: UIViewController {
     @IBOutlet var innerView: UIView!
     @IBOutlet var replyButton: UIButton!
     @IBOutlet var deleteButton: UIButton!
-
+    @IBOutlet var banButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         innerView.layer.cornerRadius = 20
@@ -34,12 +36,57 @@ class ConfirmLetter: UIViewController {
         }
         replyButton.setTitle("Reply".localized, for: .normal)
         deleteButton.setTitle("Delete".localized, for: .normal)
+        banButton.setTitle("Block".localized, for: .normal)
+        
+        banButton.layer.borderWidth = 1
+        banButton.layer.borderColor = UIColor.red.cgColor
     }
     
     override func viewWillAppear(_ animated: Bool) {
 
     }
     
+    // MARK: - 차단버튼 클릭시
+    @IBAction func clickBan(_ sender: UIButton) {
+        let alertcontroller = UIAlertController(title: "Block".localized, message: "유저를 차단하시겠습니까?", preferredStyle: .alert)
+        let okBtn = UIAlertAction(title: "Ok".localized, style: .default) { [self] (action) in
+            if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+                var putURL = "/users/ban/\(senderId)"
+                ad?.blockUsers.append(senderId)
+//                for idx in 0..<letters.count {
+//                    if letters[idx].senderID != ad?.id {
+//                        ad?.blockUsers.append(letters[idx].senderID)
+//                        putURL += letters[idx].senderID
+//                        break
+//                    }
+//                }
+                
+                put(url: putURL, token: session.value, completionHandler: { data, response, error in
+                    guard let data = data, error == nil else {
+                        print("error=\(String(describing: error))")
+                        return
+                    }
+                    if let httpStatus = response as? HTTPURLResponse {
+                        if httpStatus.statusCode == 200 {
+                            print("block user: \(ad?.blockUsers)")
+                            DispatchQueue.main.async {
+                                print("delete err code: \(httpStatus.statusCode)")
+                                self.delegate?.refresh()
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        } else {
+                            print("error: \(httpStatus.statusCode)")
+                        }
+                    }
+                })
+            }
+        }
+        let cancelBtn = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
+        alertcontroller.addAction(okBtn)
+        alertcontroller.addAction(cancelBtn)
+        present(alertcontroller, animated: true, completion: nil)
+        
+    }
     // MARK: - 닫기버튼 클릭시
     @IBAction func clickCancel(_ sender: UIButton) {
         self.presentingViewController?.dismiss(animated: true, completion: {
@@ -107,7 +154,8 @@ class ConfirmLetter: UIViewController {
                         let sender = json["sender"]["name"].stringValue
                         let favorite = json["sender"]["favorites"].arrayValue.map {$0.stringValue}
                         let languages = json["sender"]["languages"].arrayObject as? [[String: Any]]
-                        
+                        let senderid = json["sender"]["user_id"].stringValue
+                        self.senderId = senderid
                         var fav: [String] = []
                         for favor in favorite {
                             fav.append(favor.localized)
