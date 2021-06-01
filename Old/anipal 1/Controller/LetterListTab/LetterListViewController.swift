@@ -36,11 +36,13 @@ class LetterListViewController: UICollectionViewController {
     
     @objc func pullRefresh(_ sender: Any) {
         getMailBoxes()
+        isBlocked.removeAll()
         refreshControl?.endRefreshing()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         getMailBoxes()
+        isBlocked.removeAll()
     }
     
     private func getMailBoxes() {
