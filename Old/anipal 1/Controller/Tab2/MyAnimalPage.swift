@@ -37,10 +37,11 @@ class MyAnimalPage: UIViewController, reloadData {
         animalCollectionView.register(nibCell, forCellWithReuseIdentifier: cellId )
         animalCollectionView.reloadData()
         refreshData()
-        loadAccessories()
+//        loadAccessories()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        loadAccessories()
         // 네이베이션바 선 없애기
 //        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
 //        navigationController?.navigationBar.shadowImage = UIImage()

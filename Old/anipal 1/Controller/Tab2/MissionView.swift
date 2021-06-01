@@ -15,6 +15,7 @@ class MissionView: UIViewController {
     @IBOutlet var textView: UITextView!
     @IBOutlet var itemName: UILabel!
     @IBOutlet var how: UILabel!
+    var okBtnTitle = ""
     
     var accessoryInfo: AccessoryDetail?
     
@@ -28,6 +29,7 @@ class MissionView: UIViewController {
         accessoryImage.image = accessoryInfo?.img
         itemName.text = accessoryInfo?.name.localized
         textView.text = accessoryInfo?.missionContent.localized
+        okBtn.setTitle(okBtnTitle.localized, for: .normal)
         
         // Do any additional setup after loading the view.
     }
