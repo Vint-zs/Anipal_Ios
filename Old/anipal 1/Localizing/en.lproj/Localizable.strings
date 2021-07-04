@@ -1,0 +1,218 @@
+/* 
+  Localizable.strings
+  anipal 1
+
+  Created by 이예주 on 2021/04/01.
+  
+*/
+
+// 로그인
+"Sign In with Facebook" = "Sign In with Facebook";
+
+"Sign In with Google" = "Sign In with Google";
+
+"Sign In with Apple" = "Sign In with Apple";
+
+// 회원가입 탭
+"Already Registered" = "Already Registered";
+
+"This email has already been signed up.\n Please login with another social account" = "This email has already been signed up.\n Please login with another social account";
+
+"Please enter your information." = "Please enter your information.";
+
+"Please enter your name" = "Please enter your name";
+
+"Next" = "Next";
+
+"Complete" = "Complete";
+
+"Choose your language." = "Choose your language.";
+
+"Femail" = "Femail";
+
+"Mail" = "Mail";
+
+"Ok" = "Ok";
+
+"Server Error" = "Server Error";
+
+"Internal server error" = "Internal server error";
+
+// 캐릭터 이름
+"penguin" = "penguin";
+"cat" = "cat";
+"dog" = "dog";
+"rabbit" = "rabbit";
+"turtle" = "turtle";
+
+// 언어 목록
+"en-GB" = "English(United Kingdom)";
+"en-AU" = "English(Australia)";
+"en-IN" = "English(India)";
+"zh-Hans" = "Chinese, Simplified";
+"zh-Hant" = "Chinese, Traditional";
+"zh-HK" = "Chinese(Hong Kong)";
+"ja" = "Japanese";
+"es" = "Spanish";
+"es-419" = "Spanish (Latin America)";
+"fr" = "French";
+"fr-CA" = "French(Canada)";
+"de" = "German";
+"ru" = "Russian";
+"pt-BR" = "Portuguese(Brazil)";
+"pt-PT" = "Portuguese(Portugal)";
+"it" = "Italian";
+"tr" = "Trukish";
+"nl" = "Dutch";
+"ar" = "Arabic";
+"th" = "Thai";
+"sv" = "Swedish";
+"da" = "Danish";
+"vi" = "Vietnamese";
+"nb" = "Norwegian Bokmal";
+"pl" = "Polish";
+"fi" = "Finnish";
+"id" = "Indonesian";
+"he" = "Hebrew";
+"el" = "Greek";
+"ro" = "Romanian";
+"hu" = "Hungarian";
+"cs" = "Czech";
+"ca" = "Catalan";
+"sk" = "Slovak";
+"uk" = "Ukrainian";
+"hr" = "Croatian";
+"ms" = "Malay";
+"hi" = "Hindi";
+"ko" = "Korean";
+"en" = "English";
+
+// 편지 리스트 탭
+"+ New" = "+ New";
+
+"Penpal" = "Penpal";
+
+"Letter" = "Letter";
+
+"Sorting" = "Sorting";
+
+"Newest" = "Newest";
+
+"Frequency" = "Frequency";
+
+"Menu" = "Menu";
+
+"Delete" = "Delete";
+
+"Block" = "Block";
+
+"Reply" = "Reply";
+
+"Send" = "Send";
+
+"Save" = "Save";
+
+// 설정 탭
+"User info" = "User info";
+
+"Language" = "Language";
+
+"Concept" = "Concept";
+
+"Favorite" = "Favorite";
+
+"Block List" = "Block";
+
+"Logout" = "Logout";
+
+// 관심사
+"Choose your favorites." = "Choose you favorites.";
+
+"Movie" = "🍿Movie";
+
+"Travel" = "✈️Travel";
+
+"Sing" = "🎤Sing";
+
+"Fitness" = "💪Fitness";
+
+"Design" = "🎨Design";
+
+"Cook" = "🍳Cook";
+
+"Dance" = "🕺Dance";
+
+"Book" = "📚Book";
+
+"Beauty" = "💅Beauty";
+
+"Shopping" = "🛍Shopping";
+
+"Game" = "🎮Game";
+
+"IT" = "💻IT";
+
+"Architecture" = "🏛Architecture";
+
+"Economy" = "💰Economy";
+
+// 언어레벨
+"Choose your language level" = "Choose your language level";
+
+"Beginner" = "Beginner";
+
+"Intermediate" = "Intermediate";
+
+"Advanced" = "Advanced";
+
+"Cancel" = "Cancel";
+
+"Level" = "Level";
+
+// 랜덤편지 확인
+"Reply" = "Reply";
+
+// 미션
+"Acquisition conditions" = "*Acquisition conditions*";
+"receiveLetter5" = "Receive 5 letters";
+"receiveLetter10" = "Receive 10 letters";
+"receiveLetter20" = "Receive 20 letters";
+"continuousLogin30" = "Continuous access to the app for 30 days";
+"continuousLogin60" = "Continuous access to the app for 60 days";
+"continuousLogin90" = "Continuous access to the app for 90 days";
+"continuousLogin120" = "Continuous access to the app for 120 days";
+"totalCountry5" = "Send and receive letters with people from 5 countries";
+"totalCountry8" = "Send and receive letters with people from 8 countries";
+"totalCountry10" = "Send and receive letters with people from 10 countries";
+"totalCountry15" = "Send and receive letters with people from 15 countries";
+"postLetterByCat" = "Send 30 hour letters as a Cat";
+"postLetterByRabbit" = "Send 30 hour letters as a Rabbit";
+"postLetterByPenguin" = "Send 30 hour letters as a Penguin";
+"postLetterByDog" = "Send 30 hour letters as a Dog";
+"postLetterByTurtle" = "Send 30 hour letters as a Turtle";
+"onePerson10" = "Send and receive 10 or more letters with one person";
+"collectAnimal7" = "Collect 7 animals";
+"sendReply10" = "Send reply letter 10 times";
+"sendReply100" = "Send reply letter 100 times";
+"sendReply200" = "Send reply letter 200 times";
+"collectAccessory10" = "Collect 10 Accessories";
+"collectAccessory20" = "Collect 20 Accessories";
+"postFirstRandomLetter" = "Send your first random letter";
+"changeFavoriteAnimal" = "Edit the first representative animal";
+
+"Get" = "Get";
+
+
+// 동물 스토리
+"CATSTORY" = "Unlike my cute appearance, I have a cold personality. I'm a driveway grown in Seoul... (Cold city cat?!) I usually hide away from people with quick movements, but I can be friends with just one chocolate pie. My favorite food in the world is Choco Pie!";
+"PENGUINSTROY" = "I'm a penguin from New Zealand. I liked to run a race with my local friends since I was young. I'm not fast, but I like to waddle! I'm shy, but when I get close, I'm cute! Drinking coke makes me feel better and gives me a lot of energy!";
+"TURTLESTORY" = "It's a rare natural monument turtle that grew up in Australia.\n being itself is precious, always loved and raised as a noble! I like decorating and being recognized by others. My hobby is collecting glasses! Rumor has it that he's a sunglasses enthusiast.";
+"DOGSTORY" = "It's a dog that used to play musical instruments on the street! His hometown is Bremen, the city of music? He who loves music and loves music is a romantic puppy! I have a dream of opening my own musical instrument store. Rumor has it that he's the one with the music coming in at night. ";
+"RABBITSTORY" = "It's a rabbit hopping around a wide field! I heard that her hometown is a vast field in Sweden. That's why he has a free personality. My hobby is collecting pretty shoes! I heard you have over 1,000 pairs of shoes at home.";
+
+// 액세서리 이름
+
+
+
+// 새로고침
+"Pull to refresh" = "Pull to refresh";

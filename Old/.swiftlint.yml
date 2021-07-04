@@ -1,0 +1,16 @@
+disabled_rules:
+  - trailing_whitespace
+
+force_cast: warning
+line_length: 500
+
+identifier_name:
+  min_length: 2
+
+cyclomatic_complexity:
+  warning: 20
+  error: 30
+
+excluded:
+
+  - Pods
