@@ -64,7 +64,7 @@ class AnimalCustom: UIViewController {
     
     // 저장버튼 클릭시
     @IBAction func clickSaveBtn(_ sender: UIButton) {
-        delegate?.reloadData() // put 함수안에 맨 마지막순서에
+//        delegate?.reloadData() // put 함수안에 맨 마지막순서에
         if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
             let body: NSMutableDictionary = NSMutableDictionary()
             body.setValue(myCharacterUrls[1], forKey: "head_url")
@@ -95,6 +95,7 @@ class AnimalCustom: UIViewController {
                     }
                 }
                 print(String(data: data, encoding: .utf8)!)
+                delegate?.reloadData()
         
             })
         }

@@ -81,7 +81,7 @@ class Login: UIViewController {
             Profile.loadCurrentProfile { (profile, error) in
                 fbEmail = profile?.email
             }
-            getData(url: "https://anipal.co.kr/auth/facebook", token: AccessToken.current!.tokenString, email: fbEmail!, provider: "facebook")
+            getData(url: "https://anipal.co.kr/auth/facebook", token: AccessToken.current!.tokenString, email: fbEmail ?? "", provider: "facebook")
         }
     }
     // MARK: - 서버 통신
