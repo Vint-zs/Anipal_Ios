@@ -63,6 +63,12 @@ class ReplyPage: UIViewController, sendBackDelegate {
         self.tabBarController?.tabBar.isHidden = false
     }
     
+    // 화면 터치시 키보드 내림
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.textView.resignFirstResponder()
+    }
+    
+    
     @IBAction func closeModal(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -231,7 +237,7 @@ extension ReplyPage: UITextViewDelegate {
     }
 
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-
+    
         let currentText: String = textView.text
         let updatedText = (currentText as NSString).replacingCharacters(in: range, with: text)
 
@@ -243,6 +249,8 @@ extension ReplyPage: UITextViewDelegate {
         } else if textView.textColor == UIColor.lightGray && !text.isEmpty {
             textView.textColor = UIColor.black
             textView.text = text
+        } else if text == "\n" {
+            textView.resignFirstResponder()
         } else {
             return true
         }
@@ -257,4 +265,7 @@ extension ReplyPage: UITextViewDelegate {
             }
         }
     }
+
 }
+
+
