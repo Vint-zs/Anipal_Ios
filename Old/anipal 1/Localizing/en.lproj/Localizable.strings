@@ -216,3 +216,8 @@
 
 // 새로고침
 "Pull to refresh" = "Pull to refresh";
+
+// 커스텀 화면
+"save" = "Save";
+
+"showdetail" = " + ShowDetail ";

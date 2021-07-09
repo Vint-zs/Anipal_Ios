@@ -91,7 +91,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Gb-zX-gyK">
-                                <rect key="frame" x="130" y="386.5" width="154" height="29"/>
+                                <rect key="frame" x="170" y="386.5" width="74" height="29"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="+ 자세히보기">
@@ -104,7 +104,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yPa-vZ-LPv">
                                 <rect key="frame" x="0.0" y="461.5" width="414" height="434.5"/>
                                 <color key="backgroundColor" red="0.95557875658492386" green="0.96239216287816642" blue="0.98283238175789378" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="R6X-w5-bg5">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="R6X-w5-bg5">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -155,6 +155,7 @@
                         <constraints>
                             <constraint firstItem="w1m-eI-eb6" firstAttribute="top" secondItem="Jfl-zq-7Wz" secondAttribute="top" constant="30" id="B7b-bH-ZIG"/>
                             <constraint firstItem="Jfl-zq-7Wz" firstAttribute="trailing" secondItem="LGd-BT-hof" secondAttribute="trailing" id="GX3-uB-6JU"/>
+                            <constraint firstItem="8Gb-zX-gyK" firstAttribute="centerX" secondItem="1HK-Bs-jn1" secondAttribute="centerX" id="GhV-zg-qpR"/>
                             <constraint firstAttribute="bottom" secondItem="yPa-vZ-LPv" secondAttribute="bottom" id="I0C-cQ-GPg"/>
                             <constraint firstItem="Jfl-zq-7Wz" firstAttribute="trailing" secondItem="w1m-eI-eb6" secondAttribute="trailing" constant="28" id="NRE-OU-pHQ"/>
                             <constraint firstItem="yPa-vZ-LPv" firstAttribute="top" secondItem="LGd-BT-hof" secondAttribute="bottom" id="Ohp-I2-HRT"/>
@@ -162,11 +163,9 @@
                             <constraint firstItem="Jfl-zq-7Wz" firstAttribute="trailing" secondItem="yPa-vZ-LPv" secondAttribute="trailing" id="Q5Y-K6-exz"/>
                             <constraint firstItem="LGd-BT-hof" firstAttribute="top" secondItem="8Gb-zX-gyK" secondAttribute="bottom" constant="15" id="axt-LF-paF"/>
                             <constraint firstItem="Jfl-zq-7Wz" firstAttribute="trailing" secondItem="bNP-Rs-7H8" secondAttribute="trailing" constant="110" id="jlT-fi-ZaS"/>
-                            <constraint firstItem="Jfl-zq-7Wz" firstAttribute="trailing" secondItem="8Gb-zX-gyK" secondAttribute="trailing" constant="130" id="pJg-B7-yf8"/>
                             <constraint firstItem="8Gb-zX-gyK" firstAttribute="top" secondItem="bNP-Rs-7H8" secondAttribute="bottom" constant="10" id="pkS-I2-gMT"/>
                             <constraint firstItem="bNP-Rs-7H8" firstAttribute="top" secondItem="Jfl-zq-7Wz" secondAttribute="top" constant="30" id="qZl-U1-2RH"/>
                             <constraint firstItem="yPa-vZ-LPv" firstAttribute="leading" secondItem="Jfl-zq-7Wz" secondAttribute="leading" id="u13-Wn-jtt"/>
-                            <constraint firstItem="8Gb-zX-gyK" firstAttribute="leading" secondItem="Jfl-zq-7Wz" secondAttribute="leading" constant="130" id="vee-1z-A7x"/>
                             <constraint firstItem="bNP-Rs-7H8" firstAttribute="leading" secondItem="Jfl-zq-7Wz" secondAttribute="leading" constant="110" id="zDP-SI-Yqy"/>
                         </constraints>
                     </view>

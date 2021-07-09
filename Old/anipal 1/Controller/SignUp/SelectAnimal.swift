@@ -86,7 +86,13 @@ extension SelectAnimal: UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     // 셀의 크기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 160, height: 190)
+        
+        let itemSpacing: CGFloat = 25
+        let inset: CGFloat = 25
+        let width = (collectionView.bounds.width - itemSpacing - inset * 2) / 2
+        let height = width * 1.3
+        return CGSize(width: width, height: height)
+//        return CGSize(width: 160, height: 190)
     }
     
 }
