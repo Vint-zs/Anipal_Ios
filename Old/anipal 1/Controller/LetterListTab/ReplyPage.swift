@@ -32,10 +32,8 @@ class ReplyPage: UIViewController, sendBackDelegate {
         super.viewDidLoad()
         
         placeholderSetting()
-        
-        // 동물 선택 버튼
         animalBtn.backgroundColor = .white
-        animalBtn.layer.cornerRadius = animalBtn.frame.height/2
+        animalBtn.layer.cornerRadius = animalBtn.layer.frame.size.width/2
         animalBtn.layer.borderWidth = 0.3
         animalBtn.layer.borderColor = UIColor.lightGray.cgColor
 //        animalBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
@@ -67,7 +65,6 @@ class ReplyPage: UIViewController, sendBackDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.textView.resignFirstResponder()
     }
-    
     
     @IBAction func closeModal(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -249,9 +246,7 @@ extension ReplyPage: UITextViewDelegate {
         } else if textView.textColor == UIColor.lightGray && !text.isEmpty {
             textView.textColor = UIColor.black
             textView.text = text
-        } else if text == "\n" {
-            textView.resignFirstResponder()
-        } else {
+        }  else {
             return true
         }
 

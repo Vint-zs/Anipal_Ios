@@ -192,37 +192,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U5H-k9-SUd">
-                                <rect key="frame" x="40" y="224" width="334" height="418"/>
+                                <rect key="frame" x="40" y="178.5" width="334" height="458"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ourCat" translatesAutoresizingMaskIntoConstraints="NO" id="Upm-8c-9wq">
                                         <rect key="frame" x="117" y="20" width="100" height="100"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="8sS-sU-TIL"/>
-                                            <constraint firstAttribute="height" constant="100" id="aHl-j0-yQX"/>
+                                            <constraint firstAttribute="width" secondItem="Upm-8c-9wq" secondAttribute="height" multiplier="1:1" id="1s1-vm-MlC"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="fqI-ys-Ske"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FHl-UD-STS">
-                                        <rect key="frame" x="128" y="120" width="78.5" height="24"/>
+                                        <rect key="frame" x="129" y="120" width="76" height="24"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="냥냥이" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvW-Yy-Ozd">
-                                                <rect key="frame" x="0.0" y="0.0" width="52" height="24"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="냥냥이" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QvW-Yy-Ozd">
+                                                <rect key="frame" x="0.0" y="0.0" width="49.5" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bd8-J2-4yh">
-                                                <rect key="frame" x="60" y="0.0" width="18.5" height="24"/>
+                                                <rect key="frame" x="57.5" y="0.0" width="18.5" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="4mS-gC-SCZ"/>
+                                        </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mT6-pt-Xjg">
-                                        <rect key="frame" x="137" y="363" width="60" height="30"/>
+                                        <rect key="frame" x="147" y="403" width="40" height="30"/>
                                         <color key="backgroundColor" red="0.15763545039999999" green="0.46614652870000001" blue="0.95071595909999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="hP9-yB-Tmn"/>
+                                            <constraint firstAttribute="width" constant="40" id="pYe-gz-vvp"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="확인">
@@ -233,7 +237,7 @@
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A2n-S5-XHQ">
-                                        <rect key="frame" x="25" y="164" width="284" height="174"/>
+                                        <rect key="frame" x="25" y="154" width="284" height="224"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <string key="text">귀여운 외모와는 달리 차가운 성격의 소유자에요 서울에서 자란 차도고.. (차가운 도시고양이?!) 평소 재빠른 몸놀림으로 사람들을 피해 숨어다니지만 초코파이 하나만 있으면 친구가 될 수 있어요 세상에서 제일 좋아하는 음식이 초코파이랍니다!</string>
                                         <color key="textColor" systemColor="labelColor"/>
@@ -243,17 +247,17 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="Upm-8c-9wq" firstAttribute="centerX" secondItem="U5H-k9-SUd" secondAttribute="centerX" id="2xl-Yb-fRE"/>
+                                    <constraint firstAttribute="bottom" secondItem="mT6-pt-Xjg" secondAttribute="bottom" constant="25" id="6L7-SS-Dz8"/>
                                     <constraint firstItem="FHl-UD-STS" firstAttribute="top" secondItem="Upm-8c-9wq" secondAttribute="bottom" id="6lv-2E-nKr"/>
                                     <constraint firstItem="Upm-8c-9wq" firstAttribute="top" secondItem="U5H-k9-SUd" secondAttribute="top" constant="20" id="9Zl-vC-xzL"/>
-                                    <constraint firstItem="A2n-S5-XHQ" firstAttribute="centerX" secondItem="U5H-k9-SUd" secondAttribute="centerX" id="F9u-6t-hZI"/>
-                                    <constraint firstItem="mT6-pt-Xjg" firstAttribute="top" secondItem="A2n-S5-XHQ" secondAttribute="bottom" constant="25" id="WTA-yK-xtn"/>
-                                    <constraint firstAttribute="trailing" secondItem="A2n-S5-XHQ" secondAttribute="trailing" constant="25" id="n6M-fb-8cd"/>
-                                    <constraint firstItem="mT6-pt-Xjg" firstAttribute="centerX" secondItem="U5H-k9-SUd" secondAttribute="centerX" id="oxa-la-EAe"/>
-                                    <constraint firstItem="A2n-S5-XHQ" firstAttribute="top" secondItem="FHl-UD-STS" secondAttribute="bottom" constant="20" id="qmn-06-O6f"/>
-                                    <constraint firstItem="Upm-8c-9wq" firstAttribute="centerX" secondItem="U5H-k9-SUd" secondAttribute="centerX" id="uwr-l6-c2i"/>
+                                    <constraint firstItem="mT6-pt-Xjg" firstAttribute="centerX" secondItem="U5H-k9-SUd" secondAttribute="centerX" id="JwZ-pW-EOh"/>
+                                    <constraint firstItem="A2n-S5-XHQ" firstAttribute="top" secondItem="FHl-UD-STS" secondAttribute="bottom" constant="10" id="Kf9-lg-lFq"/>
+                                    <constraint firstAttribute="width" secondItem="U5H-k9-SUd" secondAttribute="height" multiplier="167:229" priority="250" id="QZK-9j-0fS"/>
+                                    <constraint firstItem="mT6-pt-Xjg" firstAttribute="top" secondItem="A2n-S5-XHQ" secondAttribute="bottom" constant="25" id="UU3-2S-y0V"/>
+                                    <constraint firstAttribute="trailing" secondItem="A2n-S5-XHQ" secondAttribute="trailing" constant="25" id="mk5-Qx-jfB"/>
                                     <constraint firstItem="FHl-UD-STS" firstAttribute="centerX" secondItem="U5H-k9-SUd" secondAttribute="centerX" id="vXZ-Wl-Nt5"/>
-                                    <constraint firstAttribute="bottom" secondItem="mT6-pt-Xjg" secondAttribute="bottom" constant="25" id="yR1-TL-F6n"/>
-                                    <constraint firstItem="A2n-S5-XHQ" firstAttribute="leading" secondItem="U5H-k9-SUd" secondAttribute="leading" constant="25" id="yva-gt-VgF"/>
+                                    <constraint firstItem="A2n-S5-XHQ" firstAttribute="leading" secondItem="U5H-k9-SUd" secondAttribute="leading" constant="25" id="xse-7T-XLz"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -262,8 +266,7 @@
                         <constraints>
                             <constraint firstItem="UOO-wa-YTn" firstAttribute="trailing" secondItem="U5H-k9-SUd" secondAttribute="trailing" constant="40" id="Tcx-Bn-j5a"/>
                             <constraint firstItem="U5H-k9-SUd" firstAttribute="leading" secondItem="UOO-wa-YTn" secondAttribute="leading" constant="40" id="WKU-mY-mdF"/>
-                            <constraint firstItem="UOO-wa-YTn" firstAttribute="bottom" secondItem="U5H-k9-SUd" secondAttribute="bottom" constant="220" id="Y6o-ed-5CZ"/>
-                            <constraint firstItem="U5H-k9-SUd" firstAttribute="top" secondItem="UOO-wa-YTn" secondAttribute="top" constant="180" id="zUh-r7-651"/>
+                            <constraint firstItem="U5H-k9-SUd" firstAttribute="centerY" secondItem="UOO-wa-YTn" secondAttribute="centerY" multiplier="0.9" id="k9K-Ez-1Vq"/>
                         </constraints>
                     </view>
                     <connections>

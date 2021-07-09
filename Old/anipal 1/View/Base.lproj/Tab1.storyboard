@@ -32,9 +32,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Lon-Wt-h7z"/>
-                    <connections>
-                        <segue destination="TXx-ge-wDk" kind="show" id="f3M-yf-fIu"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zuh-Wp-8z7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -229,7 +226,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lAL-3g-H9I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7700.0000000000009" y="-1898.4375"/>
+            <point key="canvasLocation" x="9128" y="-1898"/>
         </scene>
         <!--편지 작성-->
         <scene sceneID="wti-cR-5G8">
@@ -255,13 +252,13 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ERS-ff-scI">
-                                <rect key="frame" x="28" y="208" width="358" height="534"/>
+                                <rect key="frame" x="28" y="164" width="358" height="578"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Frn-ao-O7n">
-                                <rect key="frame" x="0.0" y="103" width="414" height="85"/>
+                                <rect key="frame" x="0.0" y="59" width="414" height="85"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="itV-65-L0S">
                                         <rect key="frame" x="35" y="2.5" width="80" height="80"/>
@@ -312,7 +309,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cr0-ku-4NO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7701.449275362319" y="-1164.5089285714284"/>
+            <point key="canvasLocation" x="9129" y="-1165"/>
         </scene>
         <!--Select Animal Page-->
         <scene sceneID="hLU-Cc-qNn">
@@ -455,7 +452,7 @@
                     <blurEffect style="regular"/>
                 </visualEffectView>
             </objects>
-            <point key="canvasLocation" x="8626" y="-1164"/>
+            <point key="canvasLocation" x="10052" y="-1165"/>
         </scene>
         <!--Home-->
         <scene sceneID="YTJ-vH-Yb2">
