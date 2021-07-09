@@ -288,7 +288,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0iq-Y4-jQ0">
-                                <rect key="frame" x="40" y="264" width="334" height="290"/>
+                                <rect key="frame" x="40" y="258" width="334" height="290"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="head2" translatesAutoresizingMaskIntoConstraints="NO" id="Kpb-ys-jF9">
                                         <rect key="frame" x="117" y="20" width="100" height="100"/>
@@ -354,8 +354,8 @@
                         <color key="backgroundColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="0.7020979117084023" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="JbH-x7-2Xg" firstAttribute="trailing" secondItem="0iq-Y4-jQ0" secondAttribute="trailing" constant="40" id="AvQ-xF-ev6"/>
-                            <constraint firstItem="0iq-Y4-jQ0" firstAttribute="top" secondItem="JbH-x7-2Xg" secondAttribute="top" constant="220" id="OuO-yg-c9I"/>
                             <constraint firstItem="0iq-Y4-jQ0" firstAttribute="leading" secondItem="JbH-x7-2Xg" secondAttribute="leading" constant="40" id="Zyf-M8-U0Q"/>
+                            <constraint firstItem="0iq-Y4-jQ0" firstAttribute="centerY" secondItem="6EP-GA-3kU" secondAttribute="centerY" multiplier="0.9" id="gZa-jl-sln"/>
                         </constraints>
                     </view>
                     <connections>
