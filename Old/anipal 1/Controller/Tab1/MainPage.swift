@@ -8,6 +8,12 @@
 import UIKit
 import SwiftyJSON
 
+let bounds = UIScreen.main.bounds
+
+// 기종에 따른 버튼 좌표 및 사이즈 보정용 상수 (작업환경인 아이폰 11 기준 변환)
+let xConstant = bounds.size.width / 414
+let yConstant = bounds.size.height / 774
+
 class MainPage: UIViewController {
     
     enum CardState {
@@ -34,15 +40,9 @@ class MainPage: UIViewController {
     var imageUrls: [[String]] = []
     var images: [UIImage] = []
     
-    // 기종에 따른 보정계수 (아이폰 11기준 작업)
-    var xConstant: CGFloat!
-    var yConstant: CGFloat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        xConstant = self.view.frame.width / 414
-        yConstant = self.view.frame.height / 774
-        
         setupCard()
     }
     
