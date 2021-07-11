@@ -15,7 +15,6 @@ class MyAnimalPage: UIViewController, reloadData {
 
     @IBOutlet var animalCollectionView: UICollectionView!
     let cellId = "MyAnimalPageCollectionViewCell"
-   // let cellId = "AnimalSelectCell"
 
     var myAnimalList: [MyAnimal] = []
     var imageUrls: [[String]] = []
@@ -43,9 +42,6 @@ class MyAnimalPage: UIViewController, reloadData {
     override func viewWillAppear(_ animated: Bool) {
         loadAccessories()
         animalCollectionView.reloadData()
-        // 네이베이션바 선 없애기
-//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-//        navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -111,8 +107,7 @@ class MyAnimalPage: UIViewController, reloadData {
                                 temp = []
                             }
                         }
-    
-                        
+                            
                         // url -> 이미지로 변환 후 합성 및 저장
                         for i in 0..<imageUrls.count {
                             var ingredImage: [UIImage] = []
@@ -224,7 +219,7 @@ extension MyAnimalPage: UICollectionViewDelegate, UICollectionViewDataSource, UI
     // 섹션의 여백
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         let inset: CGFloat = 25
-        return UIEdgeInsets(top: 10, left: inset, bottom: inset, right: inset)
+        return UIEdgeInsets(top: 10, left: inset * xConstant, bottom: inset * yConstant, right: inset * xConstant)
     }
     
     // 셀 행의 최소간격
@@ -237,10 +232,9 @@ extension MyAnimalPage: UICollectionViewDelegate, UICollectionViewDataSource, UI
         
         let itemSpacing: CGFloat = 25
         let inset: CGFloat = 25
-        let width = (collectionView.bounds.width - itemSpacing - inset * 2) / 2
+        let width = (collectionView.bounds.width - itemSpacing - inset * xConstant * 2) / 2
         let height = width * 1.5
         return CGSize(width: width, height: height)
-//        return CGSize(width: 160, height: 230)
     }
     
 }
