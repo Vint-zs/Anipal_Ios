@@ -316,7 +316,16 @@ class MainPage: UIViewController {
             button3.addTarget(self, action: #selector(pressed3(_:)), for: .touchUpInside)
             button4.addTarget(self, action: #selector(pressed4(_:)), for: .touchUpInside)
             button5.addTarget(self, action: #selector(pressed5(_:)), for: .touchUpInside)
+
         }
+        
+        // 애니메이션
+//        UIView.animate(withDuration: 1, delay: 2, options: .repeat) {
+//            for view in self.view.subviews where view is UIButton {
+//                view.transform = CGAffineTransform(translationX: 0, y: 3)
+//            }
+//        }
+
     }
     // db 테스트용 아이디 6076f87f8df06a0080fca113, 6071ad3f4f29c9d6f5393307
     // MARK: - 데이터 수신 및 표출
