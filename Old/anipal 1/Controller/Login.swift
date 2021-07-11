@@ -70,7 +70,6 @@ class Login: UIViewController {
         googleBtn.layer.borderColor = UIColor.gray.cgColor
         googleBtn.layer.borderWidth = 1
         appleBtn.layer.cornerRadius = 10
-        logoImage.layer.cornerRadius = logoImage.frame.height/2
     }
     
     // 페이스북 자동로그인
