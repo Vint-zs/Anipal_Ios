@@ -34,8 +34,14 @@ class MainPage: UIViewController {
     var imageUrls: [[String]] = []
     var images: [UIImage] = []
     
+    // 기종에 따른 보정계수 (아이폰 11기준 작업)
+    var xConstant: CGFloat!
+    var yConstant: CGFloat!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        xConstant = self.view.frame.width / 414
+        yConstant = self.view.frame.height / 774
         
         setupCard()
     }
@@ -167,9 +173,9 @@ class MainPage: UIViewController {
     
     // MARK: - 버튼 오토레이아웃 설정
     func locateButton(button: UIButton, left: Int, bottom: Int) {
-        button.leftAnchor.constraint(equalTo: view.leftAnchor, constant: CGFloat(left)).isActive = true
-        button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: CGFloat(bottom)).isActive = true
-        button.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        button.leftAnchor.constraint(equalTo: view.leftAnchor, constant: CGFloat(left) * xConstant).isActive = true
+        button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: CGFloat(bottom) * yConstant).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 80 * xConstant).isActive = true
         button.heightAnchor.constraint(equalTo: button.widthAnchor, multiplier: 465/348).isActive = true
     }
     
@@ -266,9 +272,9 @@ class MainPage: UIViewController {
             view.addSubview(button1)
             view.addSubview(button2)
             view.addSubview(button3)
-            locateButton(button: button1, left: 30, bottom: -350)
-            locateButton(button: button2, left: 260, bottom: -130)
-            locateButton(button: button3, left: 190, bottom: -340)
+            locateButton(button: button1, left: 30, bottom: -320)
+            locateButton(button: button2, left: 260, bottom: -100)
+            locateButton(button: button3, left: 190, bottom: -310)
             button1.addTarget(self, action: #selector(pressed1(_:)), for: .touchUpInside)
             button2.addTarget(self, action: #selector(pressed2(_:)), for: .touchUpInside)
             button3.addTarget(self, action: #selector(pressed3(_:)), for: .touchUpInside)
@@ -281,10 +287,10 @@ class MainPage: UIViewController {
             view.addSubview(button2)
             view.addSubview(button3)
             view.addSubview(button4)
-            locateButton(button: button1, left: 230, bottom: -180)
+            locateButton(button: button1, left: 270, bottom: -180)
             locateButton(button: button2, left: 190, bottom: -250)
             locateButton(button: button3, left: 20, bottom: -200)
-            locateButton(button: button4, left: 100, bottom: -350)
+            locateButton(button: button4, left: 100, bottom: -320)
             button1.addTarget(self, action: #selector(pressed1(_:)), for: .touchUpInside)
             button2.addTarget(self, action: #selector(pressed2(_:)), for: .touchUpInside)
             button3.addTarget(self, action: #selector(pressed3(_:)), for: .touchUpInside)
@@ -301,10 +307,10 @@ class MainPage: UIViewController {
             view.addSubview(button4)
             view.addSubview(button5)
             locateButton(button: button1, left: 30, bottom: -170)
-            locateButton(button: button2, left: 160, bottom: -230)
-            locateButton(button: button3, left: 200, bottom: -350)
-            locateButton(button: button4, left: 300, bottom: -300)
-            locateButton(button: button5, left: 40, bottom: -320)
+            locateButton(button: button2, left: 160, bottom: -200)
+            locateButton(button: button3, left: 200, bottom: -310)
+            locateButton(button: button4, left: 300, bottom: -200)
+            locateButton(button: button5, left: 40, bottom: -280)
             button1.addTarget(self, action: #selector(pressed1(_:)), for: .touchUpInside)
             button2.addTarget(self, action: #selector(pressed2(_:)), for: .touchUpInside)
             button3.addTarget(self, action: #selector(pressed3(_:)), for: .touchUpInside)
