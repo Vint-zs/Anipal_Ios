@@ -82,7 +82,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="14w-sf-oKV">
-                                        <rect key="frame" x="158" y="15" width="18.5" height="25"/>
+                                        <rect key="frame" x="157.5" y="15" width="19" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="f11-ya-g3S"/>
                                         </constraints>
