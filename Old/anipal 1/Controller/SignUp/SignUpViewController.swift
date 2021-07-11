@@ -26,6 +26,7 @@ class SignUpViewController: UIViewController, sendBackDelegate {
         super.viewDidLoad()
         loadAnimal()
         textLocalize()
+        nameLabel.delegate = self
         
         // Make imgButton Circle
 //        imgButton.layer.borderWidth = 1
@@ -51,6 +52,10 @@ class SignUpViewController: UIViewController, sendBackDelegate {
         selectNum = data
         ad?.thumbnail = serverAnimals[data].img
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            self.nameLabel.resignFirstResponder()
+        }
     
     @IBAction func nextPageButton(_ sender: UIButton) {
         guard let nextVC = self.storyboard?.instantiateViewController(identifier: "signupVC2") else {
@@ -179,4 +184,12 @@ extension UITextField {
     @objc func tapCancel() {
         self.resignFirstResponder()
     }
+}
+
+extension SignUpViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.nameLabel.resignFirstResponder()
+        return true
+    }
+
 }
