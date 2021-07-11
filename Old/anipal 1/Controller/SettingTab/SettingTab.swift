@@ -35,10 +35,12 @@ class SettingTab: UIViewController, sendBackDelegate {
         
         // 동물 선택 버튼
         favBtn.backgroundColor = .white
-        favBtn.layer.cornerRadius = favBtn.frame.height/2
 //        favBtn.layer.borderWidth = 0.3
-//        favBtn.layer.borderColor = UIColor.lightGray.cgColor
+        favBtn.layer.borderColor = UIColor.lightGray.cgColor
         favBtn.imageView?.contentMode = .scaleAspectFit
+        favBtn.layer.masksToBounds = true
+        favBtn.imageView?.clipsToBounds = true
+        favBtn.layer.cornerRadius = favBtn.frame.size.width/2
 //        favBtn.imageEdgeInsets = UIEdgeInsets(top: -10, left: 0, bottom: 30, right: 0)
         
         // 유저 이름
