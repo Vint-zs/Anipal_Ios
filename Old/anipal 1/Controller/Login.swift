@@ -10,6 +10,7 @@ import GoogleSignIn
 import FBSDKLoginKit
 import Alamofire
 import SwiftyJSON
+import AuthenticationServices
 
 class Login: UIViewController {
     @IBOutlet var facebookBtn: UIButton!
@@ -57,7 +58,15 @@ class Login: UIViewController {
         GIDSignIn.sharedInstance()?.presentingViewController = self
         GIDSignIn.sharedInstance()?.signIn()
     }
+    
+    // 애플로그인
     @IBAction func appleLogin(_ sender: UIButton) {
+        let appleIdDetails = ASAuthorizationAppleIDProvider()
+        let request = appleIdDetails.createRequest()
+        request.requestedScopes = [.email, .fullName]
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.delegate = self
+        controller.performRequests()
     }
     
     func settingViewLayout() {
@@ -83,6 +92,48 @@ class Login: UIViewController {
             getData(url: "https://anipal.co.kr/auth/facebook", token: AccessToken.current!.tokenString, email: fbEmail ?? "", provider: "facebook")
         }
     }
+    
+//    // 애플 자동로그인
+//    func appleAutoLogin() {
+//
+//        let userId = UserDefaults.standard.string(forKey: "userId") ?? ""
+//        let appleIDProvider = ASAuthorizationAppleIDProvider()
+//        let request = appleIDProvider.createRequest()
+//        request.requestedScopes = [.email,.fullName]
+//
+//        if let details = authorization.credential as? ASAuthorizationAppleIDCredential {
+//            print("success apple login")
+//            print(details.user)
+//            print(details.fullName)
+//            print(details.email)
+//
+//            appleIDProvider.createRequest()
+//
+//            if let tokenString = String(data: details.identityToken!, encoding: .utf8),
+//               let email = details.email {
+//                print("값 넘김다")
+//                getData(url: "https://anipal.co.kr/auth/apple", token: tokenString, email: email, provider: "apple")
+//            }
+//
+//            appleIDProvider.getCredentialState(forUserID: userId) { (credentialState, error) in
+//                switch credentialState {
+//                case .authorized:
+//                    print("Auto login successful")
+//                    let tokenString = String(data: <#T##Data#>, encoding: <#T##String.Encoding#>)
+//                    getData(url: "https://anipal.co.kr/auth/apple", token: tokenString, email: email, provider: "apple")
+//                    //resume normal app flow
+//                    break
+//                case .revoked, .notFound:
+//                    print("Auto login not successful")
+//                    //show login screen or you also invoke handleAuthorizationAppleIDAction
+//                    break
+//                default:
+//                    break
+//                }
+//            }
+//        }
+//    }
+    
     // MARK: - 서버 통신
     func getData(url: String, token: String, email: String, provider: String) {
         
@@ -220,6 +271,30 @@ extension Login: GIDSignInDelegate {
     }
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         print("Disconnect")
+    }
+}
+
+// MARK: - 애플 로그인 설정
+extension Login: ASAuthorizationControllerDelegate {
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            print("success apple login")
+            print(credential.user)
+            print(credential.fullName)
+            print(credential.email)
+            
+            if let tokenString = String(data: credential.identityToken!, encoding: .utf8),
+               let email = credential.email {
+                print("값 넘김다")
+                getData(url: "https://anipal.co.kr/auth/apple", token: tokenString, email: email, provider: "apple") // 서버로 토큰 전송
+            }
+            
+        }
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("애플로그인 에러발생")
+        print(error.localizedDescription)
     }
 }
 
