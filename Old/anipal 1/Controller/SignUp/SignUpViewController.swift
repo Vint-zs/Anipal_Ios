@@ -26,6 +26,7 @@ class SignUpViewController: UIViewController, sendBackDelegate {
         super.viewDidLoad()
         loadAnimal()
         textLocalize()
+        self.nextButton.isEnabled = false
         nameLabel.delegate = self
         
         // Make imgButton Circle
@@ -189,6 +190,16 @@ extension UITextField {
 extension SignUpViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.nameLabel.resignFirstResponder()
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if self.nameLabel.text!.count < 2 || self.dateField.text!.count == 0 {
+            nextButton.isEnabled = false
+        } else {
+            nextButton.isEnabled = true
+        }
+
         return true
     }
 
