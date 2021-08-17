@@ -33,6 +33,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
         
         placeholderSetting()
         animalBtn.backgroundColor = .white
+        animalBtn.setTitle("Choose".localized, for: .normal)
         animalBtn.layer.cornerRadius = animalBtn.layer.frame.size.width/2
         animalBtn.layer.borderWidth = 0.3
         animalBtn.layer.borderColor = UIColor.lightGray.cgColor
