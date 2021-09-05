@@ -44,7 +44,7 @@ class Login: UIViewController {
                 Profile.loadCurrentProfile(completion: {(profile, error) in
                     fbEmail = profile?.email
                 })
-                self.getData(url: "https://anipal.co.kr/auth/facebook", token: AccessToken.current!.tokenString, email: fbEmail!, provider: "facebook") // 서버로 토큰 전송
+                self.getData(url: domain + "/auth/facebook", token: AccessToken.current!.tokenString, email: fbEmail!, provider: "facebook") // 서버로 토큰 전송
             
             case .cancelled:
                 print("user cancel the login")
@@ -89,7 +89,7 @@ class Login: UIViewController {
             Profile.loadCurrentProfile { (profile, error) in
                 fbEmail = profile?.email
             }
-            getData(url: "https://anipal.co.kr/auth/facebook", token: AccessToken.current!.tokenString, email: fbEmail ?? "", provider: "facebook")
+            getData(url: domain + "/auth/facebook", token: AccessToken.current!.tokenString, email: fbEmail ?? "", provider: "facebook")
         }
     }
     
@@ -267,7 +267,7 @@ extension Login: GIDSignInDelegate {
         print("success google login")
         print("access token : \(user.authentication.accessToken ?? "")")
 
-        getData(url: "https://anipal.co.kr/auth/google", token: user.authentication.accessToken, email: user.profile.email, provider: "google") // 서버로 토큰 전송
+        getData(url: domain + "/auth/google", token: user.authentication.accessToken, email: user.profile.email, provider: "google") // 서버로 토큰 전송
     }
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         print("Disconnect")
@@ -286,7 +286,7 @@ extension Login: ASAuthorizationControllerDelegate {
             if let tokenString = String(data: credential.identityToken!, encoding: .utf8),
                let email = credential.email {
                 print("값 넘김다")
-                getData(url: "https://anipal.co.kr/auth/apple", token: tokenString, email: email, provider: "apple") // 서버로 토큰 전송
+                getData(url: domain + "/auth/apple", token: tokenString, email: email, provider: "apple") // 서버로 토큰 전송
             }
             
         }
