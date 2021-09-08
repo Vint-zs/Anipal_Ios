@@ -38,10 +38,14 @@ class AnimalCustom: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Custom".localized
         layout()
         acceCollectionView.delegate = self
         acceCollectionView.dataSource = self
         makeImage()
+        saveBtn.setTitle("save".localized, for: .normal)
+        detailButton.setTitle("showdetail".localized, for: .normal)
+        
         
         // 셀 등록
         let nibCell = UINib(nibName: "AccessoryCollectionViewCell", bundle: nil)
@@ -254,6 +258,12 @@ extension AnimalCustom: UICollectionViewDelegate, UICollectionViewDataSource, UI
     
     // 셀의 크기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 110, height: 130)
+        
+        let itemSpacing: CGFloat = 10
+        let inset: CGFloat = 15
+        let width = (collectionView.bounds.width - (itemSpacing*2) - inset*2) / 3
+        let height = width * 1.15
+        return CGSize(width: width, height: height)
+//        return CGSize(width: 110, height: 130)
     }
 }

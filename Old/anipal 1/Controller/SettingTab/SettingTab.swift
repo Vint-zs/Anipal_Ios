@@ -35,11 +35,11 @@ class SettingTab: UIViewController, sendBackDelegate {
         
         // 동물 선택 버튼
         favBtn.backgroundColor = .white
-        favBtn.layer.cornerRadius = favBtn.frame.height/2
-//        favBtn.layer.borderWidth = 0.3
-//        favBtn.layer.borderColor = UIColor.lightGray.cgColor
+        favBtn.layer.borderColor = UIColor.lightGray.cgColor
         favBtn.imageView?.contentMode = .scaleAspectFit
-//        favBtn.imageEdgeInsets = UIEdgeInsets(top: -10, left: 0, bottom: 30, right: 0)
+        favBtn.layer.masksToBounds = true
+        favBtn.imageView?.clipsToBounds = true
+        favBtn.layer.cornerRadius = favBtn.frame.size.width/2
         
         // 유저 이름
         nameLabel.text = ad?.name
@@ -265,18 +265,24 @@ extension SettingTab: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
+        return tableView.frame.height / 7
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 20))
+
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 0))
         headerView.backgroundColor = UIColor(red: 0.95, green: 0.973, blue: 1, alpha: 1)
-        
+
         return headerView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let header = tableView.frame.height / 7
+        return (tableView.frame.height - header * 3) / 3 + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

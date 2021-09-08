@@ -13,6 +13,8 @@ class FavoriteCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        favBtn.titleLabel?.minimumScaleFactor = 0.5
+        favBtn.titleLabel?.adjustsFontSizeToFitWidth = true
     }
-    
+   
 }

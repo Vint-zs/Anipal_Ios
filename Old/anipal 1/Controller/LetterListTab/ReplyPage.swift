@@ -32,10 +32,9 @@ class ReplyPage: UIViewController, sendBackDelegate {
         super.viewDidLoad()
         
         placeholderSetting()
-        
-        // 동물 선택 버튼
         animalBtn.backgroundColor = .white
-        animalBtn.layer.cornerRadius = animalBtn.frame.height/2
+        animalBtn.setTitle("Choose".localized, for: .normal)
+        animalBtn.layer.cornerRadius = animalBtn.layer.frame.size.width/2
         animalBtn.layer.borderWidth = 0.3
         animalBtn.layer.borderColor = UIColor.lightGray.cgColor
 //        animalBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
@@ -61,6 +60,11 @@ class ReplyPage: UIViewController, sendBackDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    // 화면 터치시 키보드 내림
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.textView.resignFirstResponder()
     }
     
     @IBAction func closeModal(_ sender: UIButton) {
@@ -231,7 +235,7 @@ extension ReplyPage: UITextViewDelegate {
     }
 
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-
+    
         let currentText: String = textView.text
         let updatedText = (currentText as NSString).replacingCharacters(in: range, with: text)
 
@@ -243,7 +247,7 @@ extension ReplyPage: UITextViewDelegate {
         } else if textView.textColor == UIColor.lightGray && !text.isEmpty {
             textView.textColor = UIColor.black
             textView.text = text
-        } else {
+        }  else {
             return true
         }
 
@@ -257,4 +261,7 @@ extension ReplyPage: UITextViewDelegate {
             }
         }
     }
+
 }
+
+

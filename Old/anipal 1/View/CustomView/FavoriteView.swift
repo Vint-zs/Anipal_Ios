@@ -50,6 +50,7 @@ class FavoriteView: UIView, UICollectionViewDataSource {
         let nib = UINib(nibName: "FavoriteCell", bundle: nil)
         favCell.register(nib, forCellWithReuseIdentifier: "FavCell")
         favCell.dataSource = self
+        favCell.delegate = self
     }
     
     func loadFavorites() {
@@ -80,7 +81,7 @@ class FavoriteView: UIView, UICollectionViewDataSource {
 
 }
 
-extension FavoriteView {
+extension FavoriteView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return serverFavorites.count
     }
@@ -104,6 +105,27 @@ extension FavoriteView {
         cell.favBtn.addTarget(self, action: #selector(favBtnClick), for: .touchUpInside)
         
         return cell
+    }
+    
+    // 섹션의 여백
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        let inset: CGFloat = 5
+        return UIEdgeInsets(top: inset * yConstant, left: inset * xConstant, bottom: inset * yConstant, right: inset * xConstant)
+    }
+
+    // 셀 행의 최소간격
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    // 셀의 크기
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let itemSpacing: CGFloat = 10 * xConstant
+        let inset: CGFloat = 10 * xConstant
+        let width = (collectionView.frame.width - itemSpacing * 2 - inset * 2) / 3
+        let height = width / 2
+        return CGSize(width: width, height: height)
     }
     
     @objc func favBtnClick(sender: UIButton) {
