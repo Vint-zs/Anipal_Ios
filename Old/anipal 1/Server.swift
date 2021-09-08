@@ -9,9 +9,11 @@ import Foundation
 import UIKit
 
 let session: URLSession = URLSession.shared
+let domain = "http://6838-175-117-95-105.ngrok.io"
+//"https://anipal.co.kr"
 
 func get(url: String, token: String, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
-    guard let url = URL(string: "https://anipal.co.kr" + url) else { return }
+    guard let url = URL(string: domain + url) else { return }
 
     var request = URLRequest(url: url)
     request.httpMethod = "GET"
@@ -24,7 +26,7 @@ func get(url: String, token: String, completionHandler: @escaping (Data?, URLRes
 }
 
 func post(url: String, token: String, body: NSMutableDictionary, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) throws {
-    guard let url = URL(string: "https://anipal.co.kr" + url) else {
+    guard let url = URL(string: domain + url) else {
         print("url error")
         return }
     
@@ -41,7 +43,7 @@ func post(url: String, token: String, body: NSMutableDictionary, completionHandl
 }
 
 func put(url: String, token: String, body: NSMutableDictionary? = nil, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
-    guard let url = URL(string: "https://anipal.co.kr" + url) else { return }
+    guard let url = URL(string: domain + url) else { return }
     var request = URLRequest(url: url)
     request.httpMethod = "PUT"
 
@@ -59,7 +61,7 @@ func put(url: String, token: String, body: NSMutableDictionary? = nil, completio
 }
 
 func put2(url: String, token: String, body: NSMutableDictionary, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) throws {
-    guard let url = URL(string: "https://anipal.co.kr" + url) else {
+    guard let url = URL(string: domain + url) else {
         print("url error")
         return }
 
@@ -76,7 +78,7 @@ func put2(url: String, token: String, body: NSMutableDictionary, completionHandl
 }
 
 func del(url: String, token: String, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
-    guard let url = URL(string: "Https://anipal.co.kr" + url) else {
+    guard let url = URL(string: domain + url) else {
         print("url error")
         return }
     
