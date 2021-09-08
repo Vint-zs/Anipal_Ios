@@ -112,6 +112,8 @@
 
 "Save" = "Save";
 
+"Choose" = "Choose";
+
 // 설정 탭
 "User info" = "User info";
 
@@ -221,3 +223,9 @@
 "save" = "Save";
 
 "showdetail" = " + ShowStory ";
+
+// 내 동물 리스트
+"My Animal" = "My Animal";
+
+"Custom" = "Custom";
+

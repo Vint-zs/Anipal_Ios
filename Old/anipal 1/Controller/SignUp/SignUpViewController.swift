@@ -27,6 +27,12 @@ class SignUpViewController: UIViewController, sendBackDelegate {
         loadAnimal()
         textLocalize()
         nameLabel.delegate = self
+        dateField.delegate = self
+        nextButton.isEnabled = false
+        nextButton.alpha = 0.3
+        
+        nameLabel.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        dateField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         
         // Make imgButton Circle
 //        imgButton.layer.borderWidth = 1
@@ -35,6 +41,17 @@ class SignUpViewController: UIViewController, sendBackDelegate {
 //        imgButton.layer.cornerRadius = imgButton.frame.height/2
 //        imgButton.clipsToBounds = true
         self.dateField.setInputViewDatePicker(target: self, selector: #selector(tapDone))
+    }
+    
+    // 아래쪽 delegate와 기능 중복되기는 하나 추후 알아보기위해 일단 남겨둠
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if let text1 = nameLabel.text, let text2 = dateField.text, text1.count >= 2, !text2.isEmpty {
+            nextButton.isEnabled = true
+            nextButton.alpha = 1.0
+        } else {
+            nextButton.isEnabled = false
+            nextButton.alpha = 0.3
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -190,6 +207,36 @@ extension SignUpViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.nameLabel.resignFirstResponder()
         return true
+    }
+    
+    // 키보드 실시간 변화, 추후 확장시 오류수정 후 사용예정
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//
+//        guard let text1 = nameLabel.text else { return true}
+//        guard let text2 = dateField.text else { return true}
+//        let string1 = (text1 as NSString).replacingCharacters(in: range, with: string)
+//        let string2 = (text2 as NSString).replacingCharacters(in: range, with: string)
+//
+//        if string1.isEmpty || string2.isEmpty {
+//            nextButton.isEnabled = false
+//            nextButton.alpha = 0.3
+//        } else {
+//            nextButton.isEnabled = true
+//            nextButton.alpha = 1.0
+//        }
+//
+//        return true
+//    }
+    
+    // 입력정보 다 채우면 다음버튼 활성화
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let text1 = nameLabel.text, let text2 = dateField.text, text1.count >= 2, !text2.isEmpty {
+            nextButton.isEnabled = true
+            nextButton.alpha = 1.0
+        } else {
+            nextButton.isEnabled = false
+            nextButton.alpha = 0.3
+        }
     }
 
 }

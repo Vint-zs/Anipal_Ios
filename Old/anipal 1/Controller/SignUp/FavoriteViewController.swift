@@ -24,7 +24,7 @@ class FavoriteViewController: UIViewController {
     
     @IBAction func nextPageButton(_ sender: UIButton) {
         ad!.favorites = favTable.userFav
-        postData(url: "https://anipal.co.kr/auth/register", token: ad!.token!)
+        postData(url: domain + "/auth/register", token: ad!.token!)
     }
     
     @IBAction func cancelBarButton(_ sender: UIBarButtonItem) {

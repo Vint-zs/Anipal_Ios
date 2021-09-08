@@ -38,12 +38,14 @@ class AnimalCustom: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Custom".localized
         layout()
         acceCollectionView.delegate = self
         acceCollectionView.dataSource = self
         makeImage()
         saveBtn.setTitle("save".localized, for: .normal)
         detailButton.setTitle("showdetail".localized, for: .normal)
+        
         
         // 셀 등록
         let nibCell = UINib(nibName: "AccessoryCollectionViewCell", bundle: nil)

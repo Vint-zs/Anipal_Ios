@@ -41,6 +41,14 @@ struct MyAnimal {
     }
 }
 
+struct MyAnimalInfo {
+    static let shared = MyAnimalInfo()
+    var id: String?
+    var time: String?
+    var name: String?
+    var image: UIImage?
+}
+
 struct Animal {
     let name: String
     let img: UIImage
