@@ -135,30 +135,13 @@
                                     <action selector="switchSegment:" destination="D0J-ph-vER" eventType="valueChanged" id="Ay8-mq-aI3"/>
                                 </connections>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1m-eI-eb6">
-                                <rect key="frame" x="326" y="118" width="60" height="30"/>
-                                <color key="backgroundColor" systemColor="systemGray2Color"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="K9v-yy-AVQ"/>
-                                    <constraint firstAttribute="height" constant="30" id="oKv-WL-AXz"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                <state key="normal" title="저장">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="clickSaveBtn:" destination="D0J-ph-vER" eventType="touchUpInside" id="N1F-fI-Q1T"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Jfl-zq-7Wz"/>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.97254901959999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="w1m-eI-eb6" firstAttribute="top" secondItem="Jfl-zq-7Wz" secondAttribute="top" constant="30" id="B7b-bH-ZIG"/>
                             <constraint firstItem="Jfl-zq-7Wz" firstAttribute="trailing" secondItem="LGd-BT-hof" secondAttribute="trailing" id="GX3-uB-6JU"/>
                             <constraint firstItem="8Gb-zX-gyK" firstAttribute="centerX" secondItem="1HK-Bs-jn1" secondAttribute="centerX" id="GhV-zg-qpR"/>
                             <constraint firstAttribute="bottom" secondItem="yPa-vZ-LPv" secondAttribute="bottom" id="I0C-cQ-GPg"/>
-                            <constraint firstItem="Jfl-zq-7Wz" firstAttribute="trailing" secondItem="w1m-eI-eb6" secondAttribute="trailing" constant="28" id="NRE-OU-pHQ"/>
                             <constraint firstItem="yPa-vZ-LPv" firstAttribute="top" secondItem="LGd-BT-hof" secondAttribute="bottom" id="Ohp-I2-HRT"/>
                             <constraint firstItem="LGd-BT-hof" firstAttribute="leading" secondItem="Jfl-zq-7Wz" secondAttribute="leading" id="OxJ-G8-eUJ"/>
                             <constraint firstItem="Jfl-zq-7Wz" firstAttribute="trailing" secondItem="yPa-vZ-LPv" secondAttribute="trailing" id="Q5Y-K6-exz"/>
@@ -176,7 +159,6 @@
                         <outlet property="acceCollectionView" destination="yPa-vZ-LPv" id="Xbx-i9-VAa"/>
                         <outlet property="animalImage" destination="bNP-Rs-7H8" id="d9r-dz-aKw"/>
                         <outlet property="detailButton" destination="8Gb-zX-gyK" id="SVE-R6-TWx"/>
-                        <outlet property="saveBtn" destination="w1m-eI-eb6" id="kvv-kh-ryu"/>
                         <outlet property="segment" destination="LGd-BT-hof" id="aKd-vm-M9g"/>
                     </connections>
                 </viewController>
@@ -389,9 +371,6 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
