@@ -12,6 +12,8 @@ import Alamofire
 import SwiftyJSON
 import AuthenticationServices
 
+var singletonAnimal = SingletonAnimal.shared //동물 저장할 싱글톤
+
 class Login: UIViewController {
     @IBOutlet var facebookBtn: UIButton!
     @IBOutlet var googleBtn: UIButton!
@@ -182,6 +184,8 @@ class Login: UIViewController {
                         }
                         
                         // 메인화면 이동
+                        
+                        getAnimal()
                         moveMainScreen()
                     }
                 } else if httpResponse.statusCode == 400 {
@@ -303,4 +307,96 @@ func moveMainScreen() {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
     (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+}
+
+// MARK: - 이미지 합성
+func compositeImage(images: [UIImage]) -> UIImage {
+    var compositeImage: UIImage?
+    if images.count > 0 {
+        let size: CGSize = CGSize(width: images[0].size.width, height: images[0].size.height)
+        UIGraphicsBeginImageContext(size)
+        for image in images {
+            let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+            image.draw(in: rect)
+        }
+        compositeImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+    }
+    return compositeImage ?? #imageLiteral(resourceName: "emptyCheckBox")
+}
+
+func getAnimal() {
+    if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+        get(url: "/own/animals", token: session.value) { (data, response, error) in
+            guard let data = data, error == nil else {
+                print("error=\(String(describing: error))")
+                return
+            }
+
+            if let httpStatus = response as? HTTPURLResponse {
+                if httpStatus.statusCode == 200 {
+                    var myAnimalList: [MyAnimal] = []   // 동물들 정보 순서대로
+                    var imageUrls: [[String]] = [] //동물들 url 정보
+                    var images: [UIImage] = []  // 동물들 이미지 정보
+                    var order: [String: Int] = ["head": 1, "top": 2, "pants": 3, "shoes": 4, "gloves": 5 ]
+                    var baseAnimalImage: [UIImage] = []
+                    
+                    for idx in 0..<JSON(data).count {
+                        let json = JSON(data)[idx]
+                        let animalUrl: [String: String] = [
+                            "animal_url": json["animal_url"].stringValue,
+                            "head_url": json["head_url"].stringValue,
+                            "top_url": json["top_url"].stringValue,
+                            "pants_url": json["pants_url"].stringValue,
+                            "shoes_url": json["shoes_url"].stringValue,
+                            "gloves_url": json["gloves_url"].stringValue]
+                        myAnimalList.append(MyAnimal(id: json["_id"].stringValue, time: json["animal"]["delay_time"].stringValue, name: json["animal"]["localized"].stringValue, animalUrl: animalUrl))
+                    }
+                    
+                    // 이미지url 저장배열 생성 및 동물사진url 첫번쨰로 위치
+                    if imageUrls.count != myAnimalList.count {
+                        // imageUrls = []
+                        for i in 0..<myAnimalList.count {
+                            let sortedUrl = myAnimalList[i].animalUrl.sorted(by: <)
+                            var temp: [String] = []
+                            
+                            for row in sortedUrl {
+                                temp.append(row.value)
+                            }
+                            imageUrls.append(temp)
+                            temp = []
+                        }
+                    }
+                        
+                    // url -> 이미지로 변환 후 합성 및 저장
+                    for i in 0..<imageUrls.count {
+                        var ingredImage: [UIImage] = []
+                        // 기본동물
+                        if let imageURL = URL(string: imageUrls[i][0]) {
+                            if let imageData = try? Data(contentsOf: imageURL) {
+                                if let img = UIImage(data: imageData) {
+                                    baseAnimalImage.append(img)
+                                }
+                            }
+                        }
+                        // 꾸며진 동물
+                        for url in imageUrls[i] {
+                            if let imageURL = URL(string: url) {
+                                if let imageData = try? Data(contentsOf: imageURL) {
+                                    if let img = UIImage(data: imageData) {
+                                        ingredImage.append(img)
+                                    }
+                                }
+                            }
+                        }
+                        images.append(compositeImage(images: ingredImage))
+                        ingredImage = []
+                    }
+                    
+                    singletonAnimal.animal = myAnimalList
+                }
+            }
+        }
+    }
+    
 }
