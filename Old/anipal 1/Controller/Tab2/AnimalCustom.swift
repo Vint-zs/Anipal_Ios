@@ -149,7 +149,7 @@ class AnimalCustom: UIViewController {
         body.setValue(myCharacterUrls[5], forKey: "gloves_url")
         
         guard let id = animalId else {return}
-        try? put2(url: "/own/animals/\(id)", token: cookie2, body: body, completionHandler: { [self] data, response, error in
+        try? put2(url: "/own/animals/\(id)", token: cookie, body: body, completionHandler: { [self] data, response, error in
             guard let data = data, error == nil else {
                 print("error=\(String(describing: error))")
                 return
