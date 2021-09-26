@@ -32,7 +32,8 @@ struct MyAnimal {
     var time: String
     var name: String
     var animalUrl: [String: String]
-    var image: UIImage?
+    var combinedImage: UIImage?
+    var componentImages: [UIImage]?
     
     init(id: String, time: String, name: String, animalUrl: [String: String]) {
         self.id = id
@@ -45,6 +46,8 @@ struct MyAnimal {
 struct SingletonAnimal {
     static let shared = SingletonAnimal()
     var animal: [MyAnimal]?
+    
+    private init() {}
 }
 
 struct Animal {
