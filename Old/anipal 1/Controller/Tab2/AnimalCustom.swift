@@ -23,11 +23,11 @@ class AnimalCustom: UIViewController {
     var animalName: String = ""
     var delayTime: String = ""
     var baseImage: UIImage?
+    var animalIndex: Int!
     
     var data: [[UIImage]] = []
     let cellId = "accessory"
     
-    @IBOutlet var saveBtn: UIButton!
     @IBOutlet var segment: UISegmentedControl!
     
    // @IBOutlet var segmentedControl: UISegmentedControl!
@@ -43,9 +43,9 @@ class AnimalCustom: UIViewController {
         acceCollectionView.delegate = self
         acceCollectionView.dataSource = self
         makeImage()
-        saveBtn.setTitle("save".localized, for: .normal)
         detailButton.setTitle("showdetail".localized, for: .normal)
         
+    
         
         // 셀 등록
         let nibCell = UINib(nibName: "AccessoryCollectionViewCell", bundle: nil)
@@ -66,46 +66,6 @@ class AnimalCustom: UIViewController {
         
     }
     
-    // 저장버튼 클릭시
-    @IBAction func clickSaveBtn(_ sender: UIButton) {
-//        delegate?.reloadData() // put 함수안에 맨 마지막순서에
-        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
-            let body: NSMutableDictionary = NSMutableDictionary()
-            body.setValue(myCharacterUrls[1], forKey: "head_url")
-            body.setValue(myCharacterUrls[2], forKey: "top_url")
-            body.setValue(myCharacterUrls[3], forKey: "pants_url")
-            body.setValue(myCharacterUrls[4], forKey: "shoes_url")
-            body.setValue(myCharacterUrls[5], forKey: "gloves_url")
-            
-            guard let id = animalId else {return}
-            try? put2(url: "/own/animals/\(id)", token: session.value, body: body, completionHandler: { [self] data, response, error in
-                guard let data = data, error == nil else {
-                    print("error=\(String(describing: error))")
-                    return
-                }
-
-                if let httpStatus = response as? HTTPURLResponse {
-                    if httpStatus.statusCode == 200 {
-                        let json = JSON(data)
-                        
-                        DispatchQueue.main.async {
-                            self.navigationController?.popViewController(animated: true)
-                            if json["is_favorite"].boolValue == true {
-                                if let favImg = myCharacterImage {
-                                    ad?.thumbnail = favImg
-                                }
-                            }
-                        }
-                    }
-                }
-                print(String(data: data, encoding: .utf8)!)
-                delegate?.reloadData()
-        
-            })
-        }
-
-    }
-    
     @IBAction func switchSegment(_ sender: UISegmentedControl) {
         p = sender.selectedSegmentIndex
         acceCollectionView.reloadData()
@@ -117,12 +77,12 @@ class AnimalCustom: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
+        saveImage()
     }
     
     func layout() {
         animalImage.layer.cornerRadius = 5
         detailButton.layer.cornerRadius = 5
-        saveBtn.layer.cornerRadius = 5
     }
     
     // 이미지 생성
@@ -159,6 +119,59 @@ class AnimalCustom: UIViewController {
             UIGraphicsEndImageContext()
         }
         return compositeImage ?? #imageLiteral(resourceName: "emptyCheckBox")
+    }
+    
+    // 이미지 저장
+    func saveImage() {
+
+        // 싱글톤에 url 정보 저장
+        let imageUrls = [
+            "animal_url": myCharacterUrls[0],
+            "head_url": myCharacterUrls[1],
+            "top_url": myCharacterUrls[2],
+            "pants_url": myCharacterUrls[3],
+            "shoes_url": myCharacterUrls[4],
+            "gloves_url": myCharacterUrls[5]]
+        
+        singletonAnimal.animal?[animalIndex].animalUrl = imageUrls
+        singletonAnimal.animal?[animalIndex].image = myCharacterImage!
+        
+        // 동물목록 리로드
+        DispatchQueue.main.async {
+            self.delegate?.reloadData()
+        }
+
+        let body: NSMutableDictionary = NSMutableDictionary()
+        body.setValue(myCharacterUrls[1], forKey: "head_url")
+        body.setValue(myCharacterUrls[2], forKey: "top_url")
+        body.setValue(myCharacterUrls[3], forKey: "pants_url")
+        body.setValue(myCharacterUrls[4], forKey: "shoes_url")
+        body.setValue(myCharacterUrls[5], forKey: "gloves_url")
+        
+        guard let id = animalId else {return}
+        try? put2(url: "/own/animals/\(id)", token: cookie2, body: body, completionHandler: { [self] data, response, error in
+            guard let data = data, error == nil else {
+                print("error=\(String(describing: error))")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse {
+                if httpStatus.statusCode == 200 {
+                    let json = JSON(data)
+                    
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                        if json["is_favorite"].boolValue == true {
+                            if let favImg = myCharacterImage {
+                                ad?.thumbnail = favImg
+                            }
+                        }
+                    }
+                }
+            }
+            print(String(data: data, encoding: .utf8)!)
+            
+        })
     }
 }
 
