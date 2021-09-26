@@ -132,7 +132,7 @@ extension MyAnimalPage: UICollectionViewDelegate, UICollectionViewDataSource, UI
         cell.backgroundColor = .white
         cell.animalName.text = singletonAnimal.animal?[indexPath.row].name.localized
         cell.delayTime.text = singletonAnimal.animal?[indexPath.row].time
-        cell.animalImage.image = singletonAnimal.animal?[indexPath.row].image
+        cell.animalImage.image = singletonAnimal.animal?[indexPath.row].combinedImage
         
         return cell
     }
@@ -142,10 +142,11 @@ extension MyAnimalPage: UICollectionViewDelegate, UICollectionViewDataSource, UI
         guard let customVC = self.storyboard?.instantiateViewController(identifier: "customVC") as? AnimalCustom else {return}
         customVC.animalIndex = indexPath.row
         customVC.serverData = [singletonAccessory.accessory["head"]!, singletonAccessory.accessory["top"]!, singletonAccessory.accessory["pants"]!, singletonAccessory.accessory["shoes"]!, singletonAccessory.accessory["gloves"]!]
-        customVC.myCharacterUrls = [singletonAnimal.animal![indexPath.row].animalUrl["animal_url"]!, singletonAnimal.animal![indexPath.row].animalUrl["head_url"]!, singletonAnimal.animal![indexPath.row].animalUrl["top_url"]!, singletonAnimal.animal![indexPath.row].animalUrl["pants_url"]!, singletonAnimal.animal![indexPath.row].animalUrl["shoes_url"]!, singletonAnimal.animal![indexPath.row].animalUrl["gloves_url"]!]
+        customVC.componentUrls = [singletonAnimal.animal![indexPath.row].animalUrl["animal_url"]!, singletonAnimal.animal![indexPath.row].animalUrl["head_url"]!, singletonAnimal.animal![indexPath.row].animalUrl["top_url"]!, singletonAnimal.animal![indexPath.row].animalUrl["pants_url"]!, singletonAnimal.animal![indexPath.row].animalUrl["shoes_url"]!, singletonAnimal.animal![indexPath.row].animalUrl["gloves_url"]!]
+        customVC.componentImages = singletonAnimal.animal![indexPath.row].componentImages  // 부위별 이미지 만들어서 저장
         customVC.animalId = singletonAnimal.animal?[indexPath.row].id
         customVC.delegate = self
-        customVC.baseImage = singletonAnimal.animal![indexPath.row].image
+        customVC.baseImage = singletonAnimal.animal![indexPath.row].combinedImage
         customVC.delayTime = singletonAnimal.animal?[indexPath.row].time ?? ""
         customVC.animalName = singletonAnimal.animal?[indexPath.row].name ?? ""
         self.navigationController?.pushViewController(customVC, animated: true)
