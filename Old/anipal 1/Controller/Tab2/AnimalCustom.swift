@@ -16,8 +16,9 @@ class AnimalCustom: UIViewController {
     var delegate: reloadData?
     var serverHead: [Accessory] = []
     var serverData: [[Accessory]] = []
-    var myCharacterUrls: [String]! = []
-    var myCharacterImage: UIImage?
+    var componentUrls: [String]! = []
+    var componentImages: [UIImage]! = []
+    var composedImage: UIImage?
     var accessoryDetail: AccessoryDetail?
     var animalId: String?
     var animalName: String = ""
@@ -87,22 +88,8 @@ class AnimalCustom: UIViewController {
     
     // 이미지 생성
     func makeImage() {
-        // url -> 이미지로 변환 후 합성 및 저장
-        for _ in 0..<myCharacterUrls.count {
-            var ingredImage: [UIImage] = []
-            for url in myCharacterUrls {
-                if let imageURL = URL(string: url) {
-                    if let imageData = try? Data(contentsOf: imageURL) {
-                        if let img = UIImage(data: imageData) {
-                            ingredImage.append(img)
-                        }
-                    }
-                }
-            }
-            myCharacterImage = compositeImage(images: ingredImage)
-            ingredImage = []
-            animalImage.image = myCharacterImage
-        }
+        composedImage = compositeImage(images: componentImages)
+        animalImage.image = composedImage
     }
     
     // 이미지 합성
@@ -126,15 +113,16 @@ class AnimalCustom: UIViewController {
 
         // 싱글톤에 url 정보 저장
         let imageUrls = [
-            "animal_url": myCharacterUrls[0],
-            "head_url": myCharacterUrls[1],
-            "top_url": myCharacterUrls[2],
-            "pants_url": myCharacterUrls[3],
-            "shoes_url": myCharacterUrls[4],
-            "gloves_url": myCharacterUrls[5]]
+            "animal_url": componentUrls[0],
+            "head_url": componentUrls[1],
+            "top_url": componentUrls[2],
+            "pants_url": componentUrls[3],
+            "shoes_url": componentUrls[4],
+            "gloves_url": componentUrls[5]]
         
         singletonAnimal.animal?[animalIndex].animalUrl = imageUrls
-        singletonAnimal.animal?[animalIndex].image = myCharacterImage!
+        singletonAnimal.animal?[animalIndex].componentImages = componentImages
+        singletonAnimal.animal?[animalIndex].combinedImage = composedImage!
         
         // 동물목록 리로드
         DispatchQueue.main.async {
@@ -142,11 +130,11 @@ class AnimalCustom: UIViewController {
         }
 
         let body: NSMutableDictionary = NSMutableDictionary()
-        body.setValue(myCharacterUrls[1], forKey: "head_url")
-        body.setValue(myCharacterUrls[2], forKey: "top_url")
-        body.setValue(myCharacterUrls[3], forKey: "pants_url")
-        body.setValue(myCharacterUrls[4], forKey: "shoes_url")
-        body.setValue(myCharacterUrls[5], forKey: "gloves_url")
+        body.setValue(componentUrls[1], forKey: "head_url")
+        body.setValue(componentUrls[2], forKey: "top_url")
+        body.setValue(componentUrls[3], forKey: "pants_url")
+        body.setValue(componentUrls[4], forKey: "shoes_url")
+        body.setValue(componentUrls[5], forKey: "gloves_url")
         
         guard let id = animalId else {return}
         try? put2(url: "/own/animals/\(id)", token: cookie, body: body, completionHandler: { [self] data, response, error in
@@ -162,7 +150,7 @@ class AnimalCustom: UIViewController {
                     DispatchQueue.main.async {
                         self.navigationController?.popViewController(animated: true)
                         if json["is_favorite"].boolValue == true {
-                            if let favImg = myCharacterImage {
+                            if let favImg = composedImage {
                                 ad?.thumbnail = favImg
                             }
                         }
@@ -220,12 +208,14 @@ extension AnimalCustom: UICollectionViewDelegate, UICollectionViewDataSource, UI
         guard let cell2 = collectionView.cellForItem(at: indexPath) else {return}
         
         if indexPath.row == 0 {
-            myCharacterUrls[p+1] = ""
+            componentUrls[p+1] = ""
+            componentImages[p+1] = UIImage()
             makeImage()
         } else {
             // 액세서리 보유시
             if serverData[p][indexPath.row-1].isOwn == true {
-                myCharacterUrls[p+1] = serverData[p][indexPath.row-1].imgUrl
+                componentUrls[p+1] = serverData[p][indexPath.row-1].imgUrl
+                componentImages[p+1] = serverData[p][indexPath.row-1].img
                 makeImage()
             }
             // 액세서리 미보유시
@@ -277,6 +267,5 @@ extension AnimalCustom: UICollectionViewDelegate, UICollectionViewDataSource, UI
         let width = (collectionView.bounds.width - (itemSpacing*2) - inset*2) / 3
         let height = width * 1.15
         return CGSize(width: width, height: height)
-//        return CGSize(width: 110, height: 130)
     }
 }
