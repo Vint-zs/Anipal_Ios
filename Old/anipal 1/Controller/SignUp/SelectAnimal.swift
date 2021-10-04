@@ -19,6 +19,7 @@ class SelectAnimal: UIViewController {
     let animalSelectCellId = "AnimalSelectCell"
     var animals: [AnimalPost] = []
     var serverAnimals: [Animal] = []
+    var serverAnimals2: [MyAnimal] = singletonAnimal.animal ?? []  //싱글톤 변환용
     
     var isThumbnail = false
     
@@ -28,11 +29,17 @@ class SelectAnimal: UIViewController {
 
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
+        serverAnimals2 = singletonAnimal.animal ?? []
         // Do any additional setup after loading the view.
         
         // 셀등록
         let nibCell = UINib(nibName: "AnimalCollectionViewCell", bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: animalSelectCellId)
+        collectionView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        serverAnimals2 = singletonAnimal.animal ?? []
         collectionView.reloadData()
     }
 }
@@ -43,7 +50,7 @@ extension SelectAnimal: UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return serverAnimals.count
+        return serverAnimals2.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -51,21 +58,20 @@ extension SelectAnimal: UICollectionViewDelegate, UICollectionViewDataSource, UI
             return UICollectionViewCell()
         }
         
-        cell.img.image = serverAnimals[indexPath.row].img
-        cell.name.text = serverAnimals[indexPath.row].name.localized
+        cell.img.image = serverAnimals2[indexPath.row].combinedImage
+        cell.name.text = serverAnimals2[indexPath.row].name.localized
         
-        if serverAnimals[indexPath.row].aniTime != "" {
-            cell.aniTime.text = serverAnimals[indexPath.row].aniTime
+        if serverAnimals2[indexPath.row].time != "" {
+            cell.aniTime.text = serverAnimals2[indexPath.row].time
         }
         
         cell.layer.cornerRadius = 10
         cell.backgroundColor = .white
         
-        if isThumbnail == false {
-            if animals[indexPath.row].isUsed {
+        if serverAnimals2[indexPath.row].isUsed {
                 cell.isUserInteractionEnabled = false
                 cell.contentView.alpha = 0.5
-            }
+            
         }
         return cell
     }
@@ -92,12 +98,13 @@ extension SelectAnimal: UICollectionViewDelegate, UICollectionViewDataSource, UI
         let width = (collectionView.bounds.width - itemSpacing - inset * 2) / 2
         let height: CGFloat
         
-        if serverAnimals[indexPath.row].aniTime != "" {
+        
+        if serverAnimals2[indexPath.row].time != "" {
             height = width * 1.5
         } else {
             height = width * 1.3
-
         }
+        
         
         return CGSize(width: width, height: height)
     }
