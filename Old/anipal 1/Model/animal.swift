@@ -34,12 +34,14 @@ struct MyAnimal {
     var animalUrl: [String: String]
     var combinedImage: UIImage?
     var componentImages: [UIImage]?
+    var isUsed:Bool
     
     init(id: String, time: String, name: String, animalUrl: [String: String]) {
         self.id = id
         self.time = time
         self.name = name
         self.animalUrl = animalUrl
+        self.isUsed = false
     }
 }
 
