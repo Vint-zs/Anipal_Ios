@@ -37,12 +37,12 @@ class MyAnimalPage: UIViewController, reloadData {
         animalCollectionView.register(nibCell, forCellWithReuseIdentifier: cellId )
         animalCollectionView.reloadData()
         refreshData()
-//        loadAccessories()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         loadAccessories()
         animalCollectionView.reloadData()
+        myAnimalList = singletonAnimal.animal ?? []
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -73,75 +73,7 @@ class MyAnimalPage: UIViewController, reloadData {
     }
     
     func refreshData() {
-        reset()
-        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
-            get(url: "/own/animals", token: session.value) { [self] (data, response, error) in
-                guard let data = data, error == nil else {
-                    print("error=\(String(describing: error))")
-                    return
-                }
-                if let httpStatus = response as? HTTPURLResponse {
-                    if httpStatus.statusCode == 200 {
-                        for idx in 0..<JSON(data).count {
-                            let json = JSON(data)[idx]
-                            let animal: [String: String] = [
-                                "animal_url": json["animal_url"].stringValue,
-                                "head_url": json["head_url"].stringValue,
-                                "top_url": json["top_url"].stringValue,
-                                "pants_url": json["pants_url"].stringValue,
-                                "shoes_url": json["shoes_url"].stringValue,
-                                "gloves_url": json["gloves_url"].stringValue]
-                            self.myAnimalList.append(MyAnimal(id: json["_id"].stringValue, time: json["animal"]["delay_time"].stringValue, name: json["animal"]["localized"].stringValue, animal: animal))
-                        }
-                        
-                        // 이미지url 저장배열 생성 및 동물사진url 첫번쨰로 위치
-                        if imageUrls.count != myAnimalList.count {
-                            // imageUrls = []
-                            for i in 0..<myAnimalList.count {
-                                let sortedUrl = myAnimalList[i].animal.sorted(by: <)
-                                var temp: [String] = []
-                                
-                                for row in sortedUrl {
-                                    temp.append(row.value)
-                                }
-                                imageUrls.append(temp)
-                                temp = []
-                            }
-                        }
-                            
-                        // url -> 이미지로 변환 후 합성 및 저장
-                        for i in 0..<imageUrls.count {
-                            var ingredImage: [UIImage] = []
-                            // 기본동물
-                            if let imageURL = URL(string: imageUrls[i][0]) {
-                                if let imageData = try? Data(contentsOf: imageURL) {
-                                    if let img = UIImage(data: imageData) {
-                                        baseAnimalImage.append(img)
-                                    }
-                                }
-                            }
-                            // 꾸며진 동물
-                            for url in imageUrls[i] {
-                                if let imageURL = URL(string: url) {
-                                    if let imageData = try? Data(contentsOf: imageURL) {
-                                        if let img = UIImage(data: imageData) {
-                                            ingredImage.append(img)
-                                        }
-                                    }
-                                }
-                            }
-                            images.append(compositeImage(images: ingredImage))
-                            ingredImage = []
-                        }
-                        
-                        // 뷰 생성
-                        DispatchQueue.main.async {
-                            animalCollectionView.reloadData()
-                        }
-                    }
-                }
-            }
-        }
+        self.animalCollectionView.reloadData()
     }
     
     // 모든 악세서리 로드
@@ -188,7 +120,7 @@ class MyAnimalPage: UIViewController, reloadData {
 extension MyAnimalPage: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return myAnimalList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -198,22 +130,25 @@ extension MyAnimalPage: UICollectionViewDelegate, UICollectionViewDataSource, UI
 
         cell.layer.cornerRadius = 10
         cell.backgroundColor = .white
-        cell.animalName.text = myAnimalList[indexPath.row].name.localized
-        cell.delayTime.text = myAnimalList[indexPath.row].time
-        cell.animalImage.image = images[indexPath.row]
+        cell.animalName.text = singletonAnimal.animal?[indexPath.row].name.localized
+        cell.delayTime.text = singletonAnimal.animal?[indexPath.row].time
+        cell.animalImage.image = singletonAnimal.animal?[indexPath.row].combinedImage
+        
         return cell
     }
     
     // 셀 클릭시
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let customVC = self.storyboard?.instantiateViewController(identifier: "customVC") as? AnimalCustom else {return}
-        customVC.serverData = [serverData[1]!, serverData[2]!, serverData[3]!, serverData[4]!, serverData[5]!]
-        customVC.myCharacterUrls = [imageUrls[indexPath.row][0], imageUrls[indexPath.row][2], imageUrls[indexPath.row][5], imageUrls[indexPath.row][3], imageUrls[indexPath.row][4], imageUrls[indexPath.row][1]]
-        customVC.animalId = myAnimalList[indexPath.row].id
+        customVC.animalIndex = indexPath.row
+        customVC.serverData = [singletonAccessory.accessory["head"]!, singletonAccessory.accessory["top"]!, singletonAccessory.accessory["pants"]!, singletonAccessory.accessory["shoes"]!, singletonAccessory.accessory["gloves"]!]
+        customVC.componentUrls = [singletonAnimal.animal![indexPath.row].animalUrl["animal_url"]!, singletonAnimal.animal![indexPath.row].animalUrl["head_url"]!, singletonAnimal.animal![indexPath.row].animalUrl["top_url"]!, singletonAnimal.animal![indexPath.row].animalUrl["pants_url"]!, singletonAnimal.animal![indexPath.row].animalUrl["shoes_url"]!, singletonAnimal.animal![indexPath.row].animalUrl["gloves_url"]!]
+        customVC.componentImages = singletonAnimal.animal![indexPath.row].componentImages  // 부위별 이미지 만들어서 저장
+        customVC.animalId = singletonAnimal.animal?[indexPath.row].id
         customVC.delegate = self
-        customVC.baseImage = baseAnimalImage[indexPath.row]
-        customVC.delayTime = myAnimalList[indexPath.row].time
-        customVC.animalName = myAnimalList[indexPath.row].name
+        customVC.baseImage = singletonAnimal.animal![indexPath.row].combinedImage
+        customVC.delayTime = singletonAnimal.animal?[indexPath.row].time ?? ""
+        customVC.animalName = singletonAnimal.animal?[indexPath.row].name ?? ""
         self.navigationController?.pushViewController(customVC, animated: true)
     }
     

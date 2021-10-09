@@ -15,7 +15,6 @@ protocol reloadDelegate {
 class ReplyPage: UIViewController, sendBackDelegate {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var animalBtn: UIButton!
-    // @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var sendBtn: UIButton!
     @IBOutlet weak var closeBtn: UIButton!
 
@@ -37,11 +36,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
         animalBtn.layer.cornerRadius = animalBtn.layer.frame.size.width/2
         animalBtn.layer.borderWidth = 0.3
         animalBtn.layer.borderColor = UIColor.lightGray.cgColor
-//        animalBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         
-        // 저장&전송 버튼
-//        saveBtn.setTitle("Save".localized, for: .normal)
-//        setBtnUI(btn: saveBtn)
         sendBtn.setTitle("Send".localized, for: .normal)
         setBtnUI(btn: sendBtn)
         
@@ -73,49 +68,33 @@ class ReplyPage: UIViewController, sendBackDelegate {
     
     func dataReceived(data: Int) {
         selectedAnimal = data
-        animalBtn.setImage(animals[data].animalImg, for: .normal)
+        animalBtn.setImage(singletonAnimal.animal?[data].combinedImage, for: .normal)
         animalBtn.imageView?.contentMode = .scaleAspectFit
     }
     
     func loadAnimal() {
-        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
-            get(url: "/own/animals", token: session.value, completionHandler: { [self] data, response, error in
-                guard let data = data, error == nil else {
-                    print("error=\(String(describing: error))")
-                    return
-                }
-                
-                if let httpStatus = response as? HTTPURLResponse {
-                    if httpStatus.statusCode == 200 {
-                        for idx in 0..<JSON(data).count {
-                            let json = JSON(data)[idx]
-                            let animalURLs: [String: String] = [
-                                "animal_url": json["animal_url"].stringValue,
-                                "head_url": json["head_url"].stringValue,
-                                "top_url": json["top_url"].stringValue,
-                                "pants_url": json["pants_url"].stringValue,
-                                "shoes_url": json["shoes_url"].stringValue,
-                                "gloves_url": json["gloves_url"].stringValue
-                            ]
-                            let animalImg = loadAnimals(urls: animalURLs)
-                            let comingAnimal = [
-                                "animal_url": json["coming_animal"]["animal_url"].stringValue,
-                                "bar": json["coming_animal"]["bar"].stringValue,
-                                "background": json["coming_animal"]["background"].stringValue
-                            ]
-                            let animal = AnimalPost(animal: json["animal"]["localized"].stringValue, animalURLs: animalURLs, isUsed: json["is_used"].boolValue, delayTime: json["delay_time"].stringValue, comingAnimal: comingAnimal, animalImg: animalImg, ownAnimalId: json["_id"].stringValue)
-                            animals.append(animal)
-                            serverAnimals.append(Animal(nameInit: json["animal"]["localized"].stringValue, image: animalImg, animalId: json["_id"].stringValue, aniTime: json["delay_time"].stringValue))
-                        }
-                        
-                    } else if httpStatus.statusCode == 400 {
-                        print("error: \(httpStatus.statusCode)")
-                    } else {
-                        print("error: \(httpStatus.statusCode)")
+        get(url: "/own/animals", token: cookie, completionHandler: { [self] data, response, error in
+            guard let data = data, error == nil else {
+                print("error=\(String(describing: error))")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse {
+                if httpStatus.statusCode == 200 {
+                    print("200")
+                    for idx in 0..<JSON(data).count {
+                        let json = JSON(data)[idx]
+                        singletonAnimal.animal![idx].isUsed = json["is_used"].boolValue
                     }
+                    
+                } else if httpStatus.statusCode == 400 {
+                    print("error: \(httpStatus.statusCode)")
+                } else {
+                    print("error: \(httpStatus.statusCode)")
                 }
-            })
-        }
+            }
+        })
+        
     }
     
     // MARK: - 이미지 합성
@@ -162,53 +141,54 @@ class ReplyPage: UIViewController, sendBackDelegate {
     }
     
     @IBAction func sendDataBtn(_ sender: UIButton) {
-        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
-            let body: NSMutableDictionary = NSMutableDictionary()
-            body.setValue(textView.text, forKey: "content")
-            body.setValue(animals[selectedAnimal].ownAnimalId, forKey: "own_animal_id")
-            
-            if (postURL == "/letters") {
-                body.setValue(receiverID, forKey: "receiver")
+        
+        let body: NSMutableDictionary = NSMutableDictionary()
+        body.setValue(textView.text, forKey: "content")
+//        body.setValue(animals[selectedAnimal].ownAnimalId, forKey: "own_animal_id")
+        body.setValue(singletonAnimal.animal?[selectedAnimal].id, forKey: "own_animal_id")
+        
+        if (postURL == "/letters") {
+            body.setValue(receiverID, forKey: "receiver")
+        }
+        
+        try? post(url: postURL!, token: cookie, body: body, completionHandler: { data, response, error in
+            guard let data = data, error == nil else {
+                print("error=\(String(describing: error))")
+                return
             }
-            
-            try? post(url: postURL!, token: session.value, body: body, completionHandler: { data, response, error in
-                guard let data = data, error == nil else {
-                    print("error=\(String(describing: error))")
-                    return
-                }
-                // 미션 성공시
-                var json = JSON(data)
-                if json["mission"].dictionary != nil {
-                    json = json["mission"]
-                    var detail: AccessoryDetail?
-                    if let url = URL(string: json["img_url"].stringValue) {
-                        if let imgData = try? Data(contentsOf: url) {
-                            if let image = UIImage(data: imgData) {
-                                detail = AccessoryDetail(name: json["name"].stringValue, price: json["price"].intValue, imgUrl: json["img_url"].stringValue, img: image, missionContent: json["mission"].stringValue, category: json["category"].stringValue)
-                            }
+            // 미션 성공시
+            var json = JSON(data)
+            if json["mission"].dictionary != nil {
+                json = json["mission"]
+                var detail: AccessoryDetail?
+                if let url = URL(string: json["img_url"].stringValue) {
+                    if let imgData = try? Data(contentsOf: url) {
+                        if let image = UIImage(data: imgData) {
+                            detail = AccessoryDetail(name: json["name"].stringValue, price: json["price"].intValue, imgUrl: json["img_url"].stringValue, img: image, missionContent: json["mission"].stringValue, category: json["category"].stringValue)
                         }
                     }
-                    
-                    DispatchQueue.main.async {
-                        let storyboard = UIStoryboard(name: "Tab2", bundle: nil)
-                        guard let missionVC = storyboard.instantiateViewController(identifier: "mission") as? MissionView else {return}
-                        missionVC.accessoryInfo = detail
-                        missionVC.okBtnTitle = "Get"
-                        missionVC.modalPresentationStyle = .overCurrentContext
-//                        self.delegate?.reloadDelegate()
-                        guard let pvc = self.presentingViewController else {return}
-                        self.presentingViewController?.dismiss(animated: true, completion: {
-                            pvc.present(missionVC, animated: true, completion: nil)
-                        })
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        self.presentingViewController?.dismiss(animated: true, completion: nil)
-                    }
                 }
-                print(String(data: data, encoding: .utf8)!)
-            })
-        }
+                
+                DispatchQueue.main.async {
+                    let storyboard = UIStoryboard(name: "Tab2", bundle: nil)
+                    guard let missionVC = storyboard.instantiateViewController(identifier: "mission") as? MissionView else {return}
+                    missionVC.accessoryInfo = detail
+                    missionVC.okBtnTitle = "Get"
+                    missionVC.modalPresentationStyle = .overCurrentContext
+                    //                        self.delegate?.reloadDelegate()
+                    guard let pvc = self.presentingViewController else {return}
+                    self.presentingViewController?.dismiss(animated: true, completion: {
+                        pvc.present(missionVC, animated: true, completion: nil)
+                    })
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.presentingViewController?.dismiss(animated: true, completion: nil)
+                }
+            }
+            print(String(data: data, encoding: .utf8)!)
+        })
+        
         delegate?.reloadDelegate()
     }
 }

@@ -60,14 +60,12 @@ class SignUpViewController: UIViewController, sendBackDelegate {
                 return
             }
             secondVC.delegate = self
-            secondVC.serverAnimals = self.serverAnimals
-            secondVC.isThumbnail = true
         }
     }
     func dataReceived(data: Int) {
-        imgButton.setBackgroundImage(serverAnimals[data].img, for: . normal)
+        imgButton.setBackgroundImage(singletonAnimal.animal?[data].combinedImage, for: . normal)
         selectNum = data
-        ad?.thumbnail = serverAnimals[data].img
+        ad?.thumbnail = singletonAnimal.animal?[data].combinedImage
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
