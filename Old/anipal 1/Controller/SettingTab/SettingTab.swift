@@ -63,7 +63,7 @@ class SettingTab: UIViewController, sendBackDelegate {
     
     func dataReceived(data: Int) {
         selectedAnimal = data
-        ad?.thumbnail = animals[data].animalImg
+        ad?.thumbnail = singletonAnimal.animal![data].combinedImage!
         favBtn.setImage(ad?.thumbnail, for: .normal)
         
         // 변경된 대표 동물 이미지 서버 전송
@@ -120,6 +120,7 @@ class SettingTab: UIViewController, sendBackDelegate {
         
         nextVC.delegate = self
         nextVC.serverAnimals = self.serverAnimals
+        nextVC.serverAnimals2 = singletonAnimal.animal ?? []
         nextVC.isThumbnail = true
         
         self.present(nextVC, animated: true, completion: nil)
