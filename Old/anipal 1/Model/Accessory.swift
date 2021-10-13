@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftyJSON
 
 struct Accessory {
     var accessoryId: String
@@ -23,7 +24,7 @@ struct AccessoryDetail {
     var missionContent: String
     var category: String
     
-    init(name: String, price: Int, imgUrl: String, img: UIImage, missionContent: String , category: String) {
+    init(name: String, price: Int, imgUrl: String, img: UIImage, missionContent: String, category: String) {
         self.name = name
         self.price = price
         self.imgUrl = imgUrl
@@ -31,4 +32,12 @@ struct AccessoryDetail {
         self.missionContent = missionContent
         self.category = category
     }
+}
+
+struct SingletonAccessory{
+    static let shared = SingletonAccessory()
+    var accessory: [String: [Accessory]] = [:]
+    
+    private init() {}
+    
 }
