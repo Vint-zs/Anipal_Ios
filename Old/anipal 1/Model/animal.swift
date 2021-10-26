@@ -31,22 +31,25 @@ struct MyAnimal {
     var id: String
     var time: String
     var name: String
-    var animal: [String: String]
+    var animalUrl: [String: String]
+    var combinedImage: UIImage?
+    var componentImages: [UIImage]?
+    var isUsed:Bool
     
-    init(id: String, time: String, name: String, animal: [String: String]) {
+    init(id: String, time: String, name: String, animalUrl: [String: String]) {
         self.id = id
         self.time = time
         self.name = name
-        self.animal = animal
+        self.animalUrl = animalUrl
+        self.isUsed = false
     }
 }
 
-struct MyAnimalInfo {
-    static let shared = MyAnimalInfo()
-    var id: String?
-    var time: String?
-    var name: String?
-    var image: UIImage?
+struct SingletonAnimal {
+    static let shared = SingletonAnimal()
+    var animal: [MyAnimal]?
+    
+    private init() {}
 }
 
 struct Animal {
