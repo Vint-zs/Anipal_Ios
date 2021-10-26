@@ -14,13 +14,15 @@ class SettingTab: UIViewController, sendBackDelegate {
 
     let settings: [String] = ["Language".localized, "Favorite".localized, "Block List".localized]
     
-    @IBOutlet weak var favBtn: UIButton!
+    @IBOutlet weak var favAnimalBtn: UIButton!
     @IBOutlet weak var settingTableView: UITableView!
     @IBOutlet weak var logoutBtn: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var languageBtn: UIButton!
+    @IBOutlet weak var favBtn: UIButton!
+    @IBOutlet weak var blockBtn: UIButton!
     
     var selectedAnimal: Int = 0
-    
     var animals: [AnimalPost] = []  // 서버 POST용
     var serverAnimals: [Animal] = [] // next page 데이터 전송용
     var images: [UIImage] = []
@@ -30,41 +32,47 @@ class SettingTab: UIViewController, sendBackDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        logoutBtn.layer.cornerRadius = 10
-        logoutBtn.setTitle("Logout".localized, for: .normal)
-        
+        setUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadAnimal()
+        loadBlockUsers()
+        favAnimalBtn.setImage(ad?.thumbnail, for: .normal)
+    }
+    
+    func setUI() {
         // 동물 선택 버튼
-        favBtn.backgroundColor = .white
-        favBtn.layer.borderColor = UIColor.lightGray.cgColor
-        favBtn.imageView?.contentMode = .scaleAspectFit
-        favBtn.layer.masksToBounds = true
-        favBtn.imageView?.clipsToBounds = true
-        favBtn.layer.cornerRadius = favBtn.frame.size.width/2
+        favAnimalBtn.backgroundColor = .white
+        favAnimalBtn.layer.borderColor = UIColor.lightGray.cgColor
+        favAnimalBtn.imageView?.contentMode = .scaleAspectFit
+        favAnimalBtn.layer.masksToBounds = true
+        favAnimalBtn.imageView?.clipsToBounds = true
+        favAnimalBtn.layer.cornerRadius = favAnimalBtn.frame.size.width/2
         
         // 유저 이름
         nameLabel.text = ad?.name
         
+        // 버튼 제목
+        languageBtn.setTitle("Language".localized, for: .normal)
+        favBtn.setTitle("Favorite".localized, for: .normal)
+        blockBtn.setTitle("BlockList".localized, for: .normal)
+        
         // 로그아웃 버튼
+        logoutBtn.layer.cornerRadius = 10
+        logoutBtn.setTitle("Logout".localized, for: .normal)
         logoutBtn.layer.shadowColor = UIColor.lightGray.cgColor
         logoutBtn.layer.shadowOffset = CGSize(width: 2, height: 2)
         logoutBtn.layer.shadowOpacity = 1.0
         logoutBtn.layer.shadowRadius = 3
         logoutBtn.layer.masksToBounds = false
         
-        self.settingTableView.tableFooterView = UIView(frame: .zero)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        //settingTableView.frame = CGRect(x: settingTableView.frame.origin.x, y: settingTableView.frame.origin.y, width: settingTableView.bounds.width, height: settingTableView.rowHeight)
-        loadAnimal()
-        loadBlockUsers()
-        favBtn.setImage(ad?.thumbnail, for: .normal)
     }
     
     func dataReceived(data: Int) {
         selectedAnimal = data
-        ad?.thumbnail = animals[data].animalImg
-        favBtn.setImage(ad?.thumbnail, for: .normal)
+        ad?.thumbnail = singletonAnimal.animal![data].combinedImage!
+        favAnimalBtn.setImage(ad?.thumbnail, for: .normal)
         
         // 변경된 대표 동물 이미지 서버 전송
         if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
@@ -120,6 +128,7 @@ class SettingTab: UIViewController, sendBackDelegate {
         
         nextVC.delegate = self
         nextVC.serverAnimals = self.serverAnimals
+        nextVC.serverAnimals2 = singletonAnimal.animal ?? []
         nextVC.isThumbnail = true
         
         self.present(nextVC, animated: true, completion: nil)
