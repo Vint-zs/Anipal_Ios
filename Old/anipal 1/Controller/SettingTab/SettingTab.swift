@@ -34,6 +34,27 @@ class SettingTab: UIViewController, sendBackDelegate {
         super.viewDidLoad()
         setUI()
     }
+    @IBAction func clickLanguage(_ sender: UIButton) {
+        guard let langSetVC = self.storyboard?.instantiateViewController(identifier: "LanguageSettingVC") as? LanguageSettingVC else { return }
+            langSetVC.modalTransitionStyle = .coverVertical
+            langSetVC.modalPresentationStyle = .fullScreen
+            self.present(langSetVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func clickFav(_ sender: UIButton) {
+        guard let favSetVC = self.storyboard?.instantiateViewController(identifier: "FavoriteSettingVC") as? FavoriteSettingVC else { return }
+            favSetVC.modalTransitionStyle = .coverVertical
+            favSetVC.modalPresentationStyle = .fullScreen
+            self.present(favSetVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func clickBlocked(_ sender: UIButton) {
+        guard let blockSetVC = self.storyboard?.instantiateViewController(identifier: "BlockSettingVC") as? BlockSettingVC else { return }
+            blockSetVC.modalTransitionStyle = .coverVertical
+            blockSetVC.modalPresentationStyle = .fullScreen
+            blockSetVC.blockedUsers = self.blockUserInfo
+            self.present(blockSetVC, animated: true, completion: nil)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         loadAnimal()
@@ -130,7 +151,6 @@ class SettingTab: UIViewController, sendBackDelegate {
         nextVC.serverAnimals = self.serverAnimals
         nextVC.serverAnimals2 = singletonAnimal.animal ?? []
         nextVC.isThumbnail = true
-        
         self.present(nextVC, animated: true, completion: nil)
     }
     
@@ -265,67 +285,4 @@ class SettingTab: UIViewController, sendBackDelegate {
             }
         }
     }
-}
-
-extension SettingTab: UITableViewDelegate, UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return settings.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return tableView.frame.height / 7
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 0))
-        headerView.backgroundColor = UIColor(red: 0.95, green: 0.973, blue: 1, alpha: 1)
-
-        return headerView
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let header = tableView.frame.height / 7
-        return (tableView.frame.height - header * 3) / 3 + 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingPageTableViewCell", for: indexPath) as? SettingTableView else { return UITableViewCell() }
-        cell.settingLabel.text = settings[indexPath.section]
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        switch indexPath.section {
-        case 0: guard let langSetVC = self.storyboard?.instantiateViewController(identifier: "LanguageSettingVC") as? LanguageSettingVC else { return }
-            
-            langSetVC.modalTransitionStyle = .coverVertical
-            langSetVC.modalPresentationStyle = .fullScreen
-            
-            self.present(langSetVC, animated: true, completion: nil)
-        case 1: guard let favSetVC = self.storyboard?.instantiateViewController(identifier: "FavoriteSettingVC") as? FavoriteSettingVC else { return }
-            
-            favSetVC.modalTransitionStyle = .coverVertical
-            favSetVC.modalPresentationStyle = .fullScreen
-            
-            self.present(favSetVC, animated: true, completion: nil)
-        case 2: guard let blockSetVC = self.storyboard?.instantiateViewController(identifier: "BlockSettingVC") as? BlockSettingVC else { return }
-            
-            blockSetVC.modalTransitionStyle = .coverVertical
-            blockSetVC.modalPresentationStyle = .fullScreen
-            
-            blockSetVC.blockedUsers = self.blockUserInfo
-            self.present(blockSetVC, animated: true, completion: nil)
-        default:
-            return
-        }
-    }
-
 }
