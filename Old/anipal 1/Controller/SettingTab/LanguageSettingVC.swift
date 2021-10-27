@@ -38,9 +38,6 @@ class LanguageSettingVC: UIViewController {
         }
     }
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//    }
-    
     @IBAction func cancelBtn(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
