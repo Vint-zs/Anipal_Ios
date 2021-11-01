@@ -87,8 +87,7 @@ class MyAnimalPage: UIViewController, reloadData {
     
     // 악세서리 로드 함수
     func loadAccessory(category: String) {
-        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
-            get(url: "/accessories/all/\(category)", token: session.value) { [self] (data, response, error) in
+            get(url: "/accessories/all/\(category)", token: cookie) { [self] (data, response, error) in
                 guard let data = data, error == nil else {
                     print("error=\(String(describing: error))")
                     return
@@ -114,7 +113,7 @@ class MyAnimalPage: UIViewController, reloadData {
                     }
                 }
             }
-        }
+        
     }
 }
 extension MyAnimalPage: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

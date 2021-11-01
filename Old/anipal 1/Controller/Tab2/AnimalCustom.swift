@@ -221,8 +221,8 @@ extension AnimalCustom: UICollectionViewDelegate, UICollectionViewDataSource, UI
             // 액세서리 미보유시
             else {
                 var detail: AccessoryDetail?
-                if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
-                    get(url: "/accessories/\(serverData[p][indexPath.row-1].accessoryId)", token: session.value) { [self] (data, response, error) in
+
+                    get(url: "/accessories/\(serverData[p][indexPath.row-1].accessoryId)", token: cookie) { [self] (data, response, error) in
                         guard let data = data, error == nil else {
                             print("error=\(String(describing: error))")
                             return
@@ -243,7 +243,7 @@ extension AnimalCustom: UICollectionViewDelegate, UICollectionViewDataSource, UI
                             }
                         }
                     }
-                }
+                
             }
         }
     }

@@ -52,19 +52,19 @@ class LanguageSettingVC: UIViewController {
         ad?.languages = templanguages
         
         // 데이터 전송
-        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+
             let body: NSMutableDictionary = NSMutableDictionary()
             body.setValue(ad?.languages, forKey: "languages")
             
             let putURL = "/users/" + (ad?.id)!
             
-            put(url: putURL, token: session.value, body: body, completionHandler: { data, response, error in
+            put(url: putURL, token: cookie, body: body, completionHandler: { data, response, error in
                 guard let data = data, error == nil else {
                     print("error=\(String(describing: error))")
                     return
                 }
             })
-        }
+        
         self.dismiss(animated: true, completion: nil)
     }
     
