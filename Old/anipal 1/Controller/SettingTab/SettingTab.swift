@@ -121,12 +121,14 @@ class SettingTab: UIViewController, sendBackDelegate {
                             }
                             
                             DispatchQueue.main.async {
+                                loadAccessory(category: "head", cookieValue: cookie)
                                 let storyboard = UIStoryboard(name: "Tab2", bundle: nil)
                                 guard let missionVC = storyboard.instantiateViewController(identifier: "mission") as? MissionView else {return}
                                 missionVC.accessoryInfo = detail
                                 missionVC.okBtnTitle = "Get"
                                 missionVC.modalPresentationStyle = .overCurrentContext
                                 self.present(missionVC, animated: true, completion: nil)
+                                
                             }
                             
                         }
