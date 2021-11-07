@@ -48,7 +48,7 @@ class ConfirmLetter: UIViewController {
     
     // MARK: - 차단버튼 클릭시
     @IBAction func clickBan(_ sender: UIButton) {
-        let alertcontroller = UIAlertController(title: "Block".localized, message: "유저를 차단하시겠습니까?", preferredStyle: .alert)
+        let alertcontroller = UIAlertController(title: "Block".localized, message: "AskBlock".localized, preferredStyle: .alert)
         let okBtn = UIAlertAction(title: "Ok".localized, style: .default) { [self] (action) in
             var putURL = "/users/ban/\(senderId)"
             ad?.blockUsers.append(senderId)

@@ -223,7 +223,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
     
     // MARK: - 편지함 삭제
     func delMailBox() {
-        let alertcontroller = UIAlertController(title: "Delete".localized, message: "편지함을 삭제하시겠습니까?", preferredStyle: .alert)
+        let alertcontroller = UIAlertController(title: "Delete".localized, message: "AskDelete".localized, preferredStyle: .alert)
         let okBtn = UIAlertAction(title: "Ok".localized, style: .default) { [self] (action) in
                 let getURL = "/mailboxes/leave/" + mailBoxID!
                 get(url: getURL, token: cookie, completionHandler: { data, response, error in
@@ -252,7 +252,7 @@ class LetterDetailViewController: UIViewController, UIScrollViewDelegate, reload
     
     // MARK: - 유저 차단
     func blockNotify() {
-        let alertcontroller = UIAlertController(title: "Block".localized, message: "유저를 차단하시겠습니까?", preferredStyle: .alert)
+        let alertcontroller = UIAlertController(title: "Block".localized, message: "AskBlock".localized, preferredStyle: .alert)
         let okBtn = UIAlertAction(title: "Ok".localized, style: .default) { [self] (action) in
                 var putURL = "/users/ban/"
                 for idx in 0..<letters.count {

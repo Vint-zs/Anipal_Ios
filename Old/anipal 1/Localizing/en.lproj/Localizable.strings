@@ -7,7 +7,7 @@
 */
 
 // 로그인
-"Sign In with Facebook" = "Sign In with Facebook"
+"Sign In with Facebook" = "Sign In with Facebook";
 
 "Sign In with Google" = "Sign In with Google";
 
@@ -113,6 +113,9 @@
 "Save" = "Save";
 
 "Choose" = "Choose";
+
+"AskBlock" = "Do you really want to block the user?";
+"AskDelete" = "Do you really want to delete the mailbox?";
 
 // 설정 탭
 "User info" = "User Info";
@@ -226,6 +229,12 @@
 
 // 내 동물 리스트
 "My Pet" = "My Pet";
-
 "Custom" = "Customize";
+
+// 액세서리 부위
+"Head" = "Head";
+"Top" = "Top";
+"Bottom" = "Bottom";
+"Shoes" = "Shoes";
+"Hand" = "Hand";
 

@@ -41,12 +41,13 @@ class AnimalCustom: UIViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Custom".localized
         layout()
+        setSegmentTitle()
         acceCollectionView.delegate = self
         acceCollectionView.dataSource = self
         makeImage()
         detailButton.setTitle("showdetail".localized, for: .normal)
         
-    
+        
         
         // 셀 등록
         let nibCell = UINib(nibName: "AccessoryCollectionViewCell", bundle: nil)
@@ -55,6 +56,14 @@ class AnimalCustom: UIViewController {
         acceCollectionView.reloadData()
         p=0
         
+    }
+    
+    func setSegmentTitle() {
+        segment.setTitle("Head".localized, forSegmentAt: 0)
+        segment.setTitle("Top".localized, forSegmentAt: 1)
+        segment.setTitle("Bottom".localized, forSegmentAt: 2)
+        segment.setTitle("Shoes".localized, forSegmentAt: 3)
+        segment.setTitle("Hand".localized, forSegmentAt: 4)
     }
     
     // 자세기보기 버튼 클릭시
