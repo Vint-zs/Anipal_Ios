@@ -29,7 +29,7 @@ class MyAnimalPage: UIViewController, reloadData {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "My Animal".localized
+        self.navigationItem.title = "My Pet".localized
         animalCollectionView.delegate = self
         animalCollectionView.dataSource = self
         // 셀 등록

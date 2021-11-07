@@ -15,7 +15,7 @@ class FavoriteSettingVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        favLabelTitle.text = "Choose your favorites.".localized
+        favLabelTitle.text = "Select your interests.".localized
         favLabelTitle.textColor = UIColor(red: 0.392, green: 0.392, blue: 0.392, alpha: 1)
         finishBtn.setTitle("Complete".localized, for: .normal)
     }
