@@ -96,13 +96,12 @@ class SettingTab: UIViewController, sendBackDelegate {
         favAnimalBtn.setImage(ad?.thumbnail, for: .normal)
         
         // 변경된 대표 동물 이미지 서버 전송
-        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
             let body: NSMutableDictionary = NSMutableDictionary()
             body.setValue(animals[data].animalURLs, forKey: "favorite_animal")
 
             let putURL = "/users/" + (ad?.id)!
 
-            put(url: putURL, token: session.value, body: body, completionHandler: { data, response, error in
+            put(url: putURL, token: cookie, body: body, completionHandler: { data, response, error in
                 guard let data = data, error == nil else {
                     print("error=\(String(describing: error))")
                     return
@@ -122,12 +121,14 @@ class SettingTab: UIViewController, sendBackDelegate {
                             }
                             
                             DispatchQueue.main.async {
+                                loadAccessory(category: "head", cookieValue: cookie)
                                 let storyboard = UIStoryboard(name: "Tab2", bundle: nil)
                                 guard let missionVC = storyboard.instantiateViewController(identifier: "mission") as? MissionView else {return}
                                 missionVC.accessoryInfo = detail
                                 missionVC.okBtnTitle = "Get"
                                 missionVC.modalPresentationStyle = .overCurrentContext
                                 self.present(missionVC, animated: true, completion: nil)
+                                
                             }
                             
                         }
@@ -137,7 +138,7 @@ class SettingTab: UIViewController, sendBackDelegate {
                     }
                 }
             })
-        }
+        
     }
     
     // 대표 동물 변경
@@ -169,8 +170,8 @@ class SettingTab: UIViewController, sendBackDelegate {
         animals = []  // 서버 POST용
         serverAnimals = [] // next page 데이터 전송용
         images = []
-        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
-            get(url: "/own/animals", token: session.value, completionHandler: { [self] data, response, error in
+        
+            get(url: "/own/animals", token: cookie, completionHandler: { [self] data, response, error in
                 guard let data = data, error == nil else {
                     print("error=\(String(describing: error))")
                     return
@@ -205,7 +206,7 @@ class SettingTab: UIViewController, sendBackDelegate {
                     }
                 }
             })
-        }
+        
     }
     
     // MARK: - 이미지 합성
@@ -245,9 +246,9 @@ class SettingTab: UIViewController, sendBackDelegate {
         blockUserInfo = []
         var blockURL: String
         for id in 0..<blockUsers.count {
-            if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+            
                 blockURL = "/users/" + blockUsers[id]
-                get(url: blockURL, token: session.value, completionHandler: { [self] data, response, error in
+                get(url: blockURL, token: cookie, completionHandler: { [self] data, response, error in
                     guard let data = data, error == nil else {
                         print("error=\(String(describing: error))")
                         return
@@ -282,7 +283,7 @@ class SettingTab: UIViewController, sendBackDelegate {
                         }
                     }
                 })
-            }
+            
         }
     }
 }

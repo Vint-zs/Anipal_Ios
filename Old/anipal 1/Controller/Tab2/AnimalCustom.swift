@@ -41,12 +41,13 @@ class AnimalCustom: UIViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Custom".localized
         layout()
+        setSegmentTitle()
         acceCollectionView.delegate = self
         acceCollectionView.dataSource = self
         makeImage()
         detailButton.setTitle("showdetail".localized, for: .normal)
         
-    
+        
         
         // 셀 등록
         let nibCell = UINib(nibName: "AccessoryCollectionViewCell", bundle: nil)
@@ -55,6 +56,14 @@ class AnimalCustom: UIViewController {
         acceCollectionView.reloadData()
         p=0
         
+    }
+    
+    func setSegmentTitle() {
+        segment.setTitle("Head".localized, forSegmentAt: 0)
+        segment.setTitle("Top".localized, forSegmentAt: 1)
+        segment.setTitle("Bottom".localized, forSegmentAt: 2)
+        segment.setTitle("Shoes".localized, forSegmentAt: 3)
+        segment.setTitle("Hand".localized, forSegmentAt: 4)
     }
     
     // 자세기보기 버튼 클릭시
@@ -221,8 +230,8 @@ extension AnimalCustom: UICollectionViewDelegate, UICollectionViewDataSource, UI
             // 액세서리 미보유시
             else {
                 var detail: AccessoryDetail?
-                if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
-                    get(url: "/accessories/\(serverData[p][indexPath.row-1].accessoryId)", token: session.value) { [self] (data, response, error) in
+
+                    get(url: "/accessories/\(serverData[p][indexPath.row-1].accessoryId)", token: cookie) { [self] (data, response, error) in
                         guard let data = data, error == nil else {
                             print("error=\(String(describing: error))")
                             return
@@ -243,7 +252,7 @@ extension AnimalCustom: UICollectionViewDelegate, UICollectionViewDataSource, UI
                             }
                         }
                     }
-                }
+                
             }
         }
     }
