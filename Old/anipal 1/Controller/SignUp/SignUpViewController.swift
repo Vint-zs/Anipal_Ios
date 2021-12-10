@@ -20,7 +20,7 @@ class SignUpViewController: UIViewController, sendBackDelegate {
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet var nextButton: UIButton!
     var selectNum = 0
-    var serverAnimals: [Animal] = []
+    var serverAnimals: ArrayList<Animal> = ArrayList()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,7 +96,7 @@ class SignUpViewController: UIViewController, sendBackDelegate {
             ad?.gender = "Male"
         }
         
-        ad?.favAnimal = serverAnimals[selectNum].id
+        ad?.favAnimal = serverAnimals.get(index: selectNum)?.id
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
@@ -148,11 +148,11 @@ class SignUpViewController: UIViewController, sendBackDelegate {
                                 guard let imageURL = URL(string: strURL) else {return}
                                 guard let imageData = try? Data(contentsOf: imageURL) else {return}
                                 guard let img = UIImage(data: imageData) else {return}
-                                serverAnimals.append(Animal(nameInit: name, image: img, animalId: id))
+                                serverAnimals.append(data: Animal(nameInit: name, image: img, animalId: id))
                             }
                         // 화면 load
                         DispatchQueue.main.async {
-                            imgButton.setBackgroundImage(serverAnimals[0].img, for: .normal)
+                            imgButton.setBackgroundImage(serverAnimals.get(index: 0)?.img, for: .normal)
                             // imgButton.setImage(serverAnimals[0].img, for: .normal)
                         }
                     } else if httpStatus.statusCode == 400 {
