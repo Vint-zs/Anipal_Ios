@@ -20,7 +20,7 @@ class SignUpViewController: UIViewController, sendBackDelegate {
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet var nextButton: UIButton!
     var selectNum = 0
-    var serverAnimals: ArrayList<Animal> = ArrayList()
+    var serverAnimals: [Animal] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,7 +148,7 @@ class SignUpViewController: UIViewController, sendBackDelegate {
                                 guard let imageURL = URL(string: strURL) else {return}
                                 guard let imageData = try? Data(contentsOf: imageURL) else {return}
                                 guard let img = UIImage(data: imageData) else {return}
-                                serverAnimals.append(data: Animal(nameInit: name, image: img, animalId: id))
+                                serverAnimals.append(Animal(nameInit: name, image: img, animalId: id))
                             }
                         // 화면 load
                         DispatchQueue.main.async {
