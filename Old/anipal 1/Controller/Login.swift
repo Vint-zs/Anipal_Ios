@@ -30,6 +30,26 @@ class Login: UIViewController {
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.restorePreviousSignIn() // 구글 로그인여부 확인
 
+//        let manager = FileManager.default // 인스턴스 생성
+//        guard let url = manager.urls(for: .documentDirectory, // 도큐먼트 URL 가져오기
+//                                        in: .userDomainMask).first else {
+//            return
+//
+//        }
+//
+//        let newFolderUrl = url.appendingPathComponent("Petpal-image") // 생성할 폴더명 설정
+//
+//        do { // 폴더 생성
+//            try manager.createDirectory(
+//                at: newFolderUrl,
+//                withIntermediateDirectories: true,
+//                attributes: [:]
+//            )
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+//
+//        print(url.path)
         facebookAutoLogin()
         settingViewLayout()
     }

@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>810525462737-jfqaosavcbi35v91mg9nbeumhhnnodeo.apps.googleusercontent.com</string>
+	<string>1095324636702-m4j5ccrgvg6meci1knjgdbep7s04bmg5.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.810525462737-jfqaosavcbi35v91mg9nbeumhhnnodeo</string>
+	<string>com.googleusercontent.apps.1095324636702-m4j5ccrgvg6meci1knjgdbep7s04bmg5</string>
 	<key>API_KEY</key>
-	<string>AIzaSyA_Tl5D2oCbkUdicKLdXzo0waw3M4MPv7I</string>
+	<string>AIzaSyBMIi-OTVYOmTdFovTMAoC61IA3hX-oHO4</string>
 	<key>GCM_SENDER_ID</key>
-	<string>810525462737</string>
+	<string>1095324636702</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.joon.anipalR</string>
 	<key>PROJECT_ID</key>
-	<string>anipal-49beb</string>
+	<string>petpal-bb577</string>
 	<key>STORAGE_BUCKET</key>
-	<string>anipal-49beb.appspot.com</string>
+	<string>petpal-bb577.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:810525462737:ios:914e51b731a68d43f075f0</string>
+	<string>1:1095324636702:ios:284878cfd3aad7181dc00f</string>
 </dict>
 </plist>

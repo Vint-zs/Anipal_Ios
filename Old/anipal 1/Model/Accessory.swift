@@ -34,10 +34,11 @@ struct AccessoryDetail {
     }
 }
 
-struct SingletonAccessory{
+class SingletonAccessory{
     static let shared = SingletonAccessory()
     var accessory: [String: [Accessory]] = [:]
     
     private init() {}
     
 }
+ 

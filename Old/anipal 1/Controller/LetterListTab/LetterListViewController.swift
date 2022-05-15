@@ -49,8 +49,7 @@ class LetterListViewController: UICollectionViewController {
     
     private func getMailBoxes() {
         // Authorization 쿠키 확인 & 데이터 로딩
-        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
-            get(url: "/mailboxes/my", token: session.value, completionHandler: { [self] data, response, error in
+            get(url: "/mailboxes/my", token: cookie, completionHandler: { [self] data, response, error in
                 guard let data = data, error == nil else {
                     print("error=\(String(describing: error))")
                     return
@@ -97,7 +96,7 @@ class LetterListViewController: UICollectionViewController {
                     }
                 }
             })
-        }
+        
     }
     
     // MARK: - 이미지 합성

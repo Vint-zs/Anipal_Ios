@@ -330,65 +330,64 @@ class MainPage: UIViewController {
     // db 테스트용 아이디 6076f87f8df06a0080fca113, 6071ad3f4f29c9d6f5393307
     // MARK: - 데이터 수신 및 표출
     func refreshData() {
-        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
-            get(url: "/letters/random", token: session.value) { [self] (data, response, error) in
-                guard let data = data, error == nil else {
-                    print("error=\(String(describing: error))")
-                    return
-                }
-                if let httpStatus = response as? HTTPURLResponse {
-                    if httpStatus.statusCode == 200 {
-                        resetArray()
-                        for idx in 0..<JSON(data).count {
-                            let json = JSON(data)[idx]
-                            let animal: [String: String] = [
-                                "animal_url": json["post_animal"]["animal_url"].stringValue,
-                                "head_url": json["post_animal"]["head_url"].stringValue,
-                                "top_url": json["post_animal"]["top_url"].stringValue,
-                                "pants_url": json["post_animal"]["pants_url"].stringValue,
-                                "shoes_url": json["post_animal"]["shoes_url"].stringValue,
-                                "gloves_url": json["post_animal"]["gloves_url"].stringValue]
-                            self.receiveAnimal.append(RandomAnimal(id: json["_id"].stringValue, animal: animal))
-                        }
-                        // 이미지url 저장배열 생성 및 동물사진url 첫번쨰로 위치
-                        if imageUrls.count != receiveAnimal.count {
-                            // imageUrls = []
-                            for i in 0..<receiveAnimal.count {
-                                let sortedUrl = receiveAnimal[i].animal.sorted(by: <)
-                                var temp: [String] = []
-                                
-                                for row in sortedUrl {
-                                    temp.append(row.value)
-                                }
-                                imageUrls.append(temp)
-                                temp = []
+        get(url: "/letters/random", token: cookie) { [self] (data, response, error) in
+            guard let data = data, error == nil else {
+                print("error=\(String(describing: error))")
+                return
+            }
+            if let httpStatus = response as? HTTPURLResponse {
+                if httpStatus.statusCode == 200 {
+                    resetArray()
+                    for idx in 0..<JSON(data).count {
+                        let json = JSON(data)[idx]
+                        let animal: [String: String] = [
+                            "animal_url": json["post_animal"]["animal_url"].stringValue,
+                            "head_url": json["post_animal"]["head_url"].stringValue,
+                            "top_url": json["post_animal"]["top_url"].stringValue,
+                            "pants_url": json["post_animal"]["pants_url"].stringValue,
+                            "shoes_url": json["post_animal"]["shoes_url"].stringValue,
+                            "gloves_url": json["post_animal"]["gloves_url"].stringValue]
+                        self.receiveAnimal.append(RandomAnimal(id: json["_id"].stringValue, animal: animal))
+                    }
+                    // 이미지url 저장배열 생성 및 동물사진url 첫번쨰로 위치
+                    if imageUrls.count != receiveAnimal.count {
+                        // imageUrls = []
+                        for i in 0..<receiveAnimal.count {
+                            let sortedUrl = receiveAnimal[i].animal.sorted(by: <)
+                            var temp: [String] = []
+                            
+                            for row in sortedUrl {
+                                temp.append(row.value)
                             }
+                            imageUrls.append(temp)
+                            temp = []
                         }
-                        // url -> 이미지로 변환 후 합성 및 저장
-                        for i in 0..<imageUrls.count {
-                            var ingredImage: [UIImage] = []
-                            for url in imageUrls[i] {
-                                if let imageURL = URL(string: url) {
-                                    if let imageData = try? Data(contentsOf: imageURL) {
-                                        if let img = UIImage(data: imageData) {
-                                            ingredImage.append(img)
-                                        }
+                    }
+                    // url -> 이미지로 변환 후 합성 및 저장
+                    for i in 0..<imageUrls.count {
+                        var ingredImage: [UIImage] = []
+                        for url in imageUrls[i] {
+                            if let imageURL = URL(string: url) {
+                                if let imageData = try? Data(contentsOf: imageURL) {
+                                    if let img = UIImage(data: imageData) {
+                                        ingredImage.append(img)
                                     }
                                 }
                             }
-                            images.append(compositeImage(images: ingredImage))
-                            ingredImage = []
                         }
-                        
-                        // 뷰 생성
-                        DispatchQueue.main.async {
-                            makeView()
-                        }
+                        images.append(compositeImage(images: ingredImage))
+                        ingredImage = []
+                    }
+                    
+                    // 뷰 생성
+                    DispatchQueue.main.async {
+                        makeView()
                     }
                 }
             }
         }
     }
+    
 }
 
 // MARK: - 모달화면 delegate 함수

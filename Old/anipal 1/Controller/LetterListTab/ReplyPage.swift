@@ -170,6 +170,7 @@ class ReplyPage: UIViewController, sendBackDelegate {
                 }
                 
                 DispatchQueue.main.async {
+                    loadAccessory(category: "gloves", cookieValue: cookie)
                     let storyboard = UIStoryboard(name: "Tab2", bundle: nil)
                     guard let missionVC = storyboard.instantiateViewController(identifier: "mission") as? MissionView else {return}
                     missionVC.accessoryInfo = detail

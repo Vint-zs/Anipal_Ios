@@ -91,12 +91,12 @@ class SignUpViewController: UIViewController, sendBackDelegate {
         }
 
         if genderChoice.selectedSegmentIndex == 0 {
-            ad?.gender = "femail"
+            ad?.gender = "Female"
         } else {
-            ad?.gender = "male"
+            ad?.gender = "Male"
         }
         
-        ad?.favAnimal = serverAnimals[selectNum].id
+        ad?.favAnimal = serverAnimals.get(index: selectNum)?.id
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
@@ -128,8 +128,8 @@ class SignUpViewController: UIViewController, sendBackDelegate {
         titleLabel.text = "Please enter your information.".localized
         nameLabel.placeholder = "Please enter your name".localized
         nextButton.setTitle("Next".localized, for: .normal)
-        genderChoice.setTitle("Femail".localized, forSegmentAt: 0)
-        genderChoice.setTitle("Mail".localized, forSegmentAt: 1)
+        genderChoice.setTitle("Female".localized, forSegmentAt: 0)
+        genderChoice.setTitle("Male".localized, forSegmentAt: 1)
     }
     
     func loadAnimal() {
@@ -152,7 +152,7 @@ class SignUpViewController: UIViewController, sendBackDelegate {
                             }
                         // 화면 load
                         DispatchQueue.main.async {
-                            imgButton.setBackgroundImage(serverAnimals[0].img, for: .normal)
+                            imgButton.setBackgroundImage(serverAnimals.get(index: 0)?.img, for: .normal)
                             // imgButton.setImage(serverAnimals[0].img, for: .normal)
                         }
                     } else if httpStatus.statusCode == 400 {
