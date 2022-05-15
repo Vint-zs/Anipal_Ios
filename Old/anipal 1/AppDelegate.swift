@@ -8,6 +8,9 @@
 import UIKit
 import GoogleSignIn
 import FBSDKCoreKit
+import Firebase
+import UserNotifications
+import FirebaseMessaging
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,6 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var animals: [[String: Any]]?
     var blockUsers: [String] = []
     
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        UNUserNotificationCenter.current().delegate = self
+        return true
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -41,6 +49,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             didFinishLaunchingWithOptions:
             launchOptions
         )
+        
+        // Notification
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self
+        
+        // FCM 현재 등록 토큰 확인
+        Messaging.messaging().token { token, error in
+            if let error = error {
+                print("Error, can't get fcm token : \(error) ")
+            } else if let token = token {
+                print("FCM 등록토큰 = \(token)")
+            }
+            
+        }
+        
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { _, error in
+            print("Error, Request Notifications Authorization: \(error.debugDescription)")
+        }
+        
+        application.registerForRemoteNotifications()
+        
         return true
     }
 
@@ -67,4 +97,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )
     }
 
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+
+        if #available(iOS 14.0, *) {
+            completionHandler([.list, .banner, .badge, .sound])
+        } else {
+            completionHandler([.badge, .sound])
+        }
+   
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        guard let token = fcmToken else {return}
+        print("FCM 등록 토큰 갱신 \(token)")
+    }
 }
