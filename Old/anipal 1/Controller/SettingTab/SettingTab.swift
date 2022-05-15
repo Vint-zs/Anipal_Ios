@@ -14,15 +14,13 @@ class SettingTab: UIViewController, sendBackDelegate {
 
     let settings: [String] = ["Language".localized, "Favorite".localized, "Block List".localized]
     
-    @IBOutlet weak var favAnimalBtn: UIButton!
+    @IBOutlet weak var favBtn: UIButton!
     @IBOutlet weak var settingTableView: UITableView!
     @IBOutlet weak var logoutBtn: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var languageBtn: UIButton!
-    @IBOutlet weak var favBtn: UIButton!
-    @IBOutlet weak var blockBtn: UIButton!
     
     var selectedAnimal: Int = 0
+    
     var animals: [AnimalPost] = []  // 서버 POST용
     var serverAnimals: [Animal] = [] // next page 데이터 전송용
     var images: [UIImage] = []
@@ -32,76 +30,50 @@ class SettingTab: UIViewController, sendBackDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUI()
-    }
-    @IBAction func clickLanguage(_ sender: UIButton) {
-        guard let langSetVC = self.storyboard?.instantiateViewController(identifier: "LanguageSettingVC") as? LanguageSettingVC else { return }
-            langSetVC.modalTransitionStyle = .coverVertical
-            langSetVC.modalPresentationStyle = .fullScreen
-            self.present(langSetVC, animated: true, completion: nil)
-    }
-    
-    @IBAction func clickFav(_ sender: UIButton) {
-        guard let favSetVC = self.storyboard?.instantiateViewController(identifier: "FavoriteSettingVC") as? FavoriteSettingVC else { return }
-            favSetVC.modalTransitionStyle = .coverVertical
-            favSetVC.modalPresentationStyle = .fullScreen
-            self.present(favSetVC, animated: true, completion: nil)
-    }
-    
-    @IBAction func clickBlocked(_ sender: UIButton) {
-        guard let blockSetVC = self.storyboard?.instantiateViewController(identifier: "BlockSettingVC") as? BlockSettingVC else { return }
-            blockSetVC.modalTransitionStyle = .coverVertical
-            blockSetVC.modalPresentationStyle = .fullScreen
-            blockSetVC.blockedUsers = self.blockUserInfo
-            self.present(blockSetVC, animated: true, completion: nil)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        loadAnimal()
-        loadBlockUsers()
-        favAnimalBtn.setImage(ad?.thumbnail, for: .normal)
-    }
-    
-    func setUI() {
+        logoutBtn.layer.cornerRadius = 10
+        logoutBtn.setTitle("Logout".localized, for: .normal)
+        
         // 동물 선택 버튼
-        favAnimalBtn.backgroundColor = .white
-        favAnimalBtn.layer.borderColor = UIColor.lightGray.cgColor
-        favAnimalBtn.imageView?.contentMode = .scaleAspectFit
-        favAnimalBtn.layer.masksToBounds = true
-        favAnimalBtn.imageView?.clipsToBounds = true
-        favAnimalBtn.layer.cornerRadius = favAnimalBtn.frame.size.width/2
+        favBtn.backgroundColor = .white
+        favBtn.layer.borderColor = UIColor.lightGray.cgColor
+        favBtn.imageView?.contentMode = .scaleAspectFit
+        favBtn.layer.masksToBounds = true
+        favBtn.imageView?.clipsToBounds = true
+        favBtn.layer.cornerRadius = favBtn.frame.size.width/2
         
         // 유저 이름
         nameLabel.text = ad?.name
         
-        // 버튼 제목
-        languageBtn.setTitle("Language".localized, for: .normal)
-        favBtn.setTitle("Favorite".localized, for: .normal)
-        blockBtn.setTitle("BlockList".localized, for: .normal)
-        
         // 로그아웃 버튼
-        logoutBtn.layer.cornerRadius = 10
-        logoutBtn.setTitle("Logout".localized, for: .normal)
         logoutBtn.layer.shadowColor = UIColor.lightGray.cgColor
         logoutBtn.layer.shadowOffset = CGSize(width: 2, height: 2)
         logoutBtn.layer.shadowOpacity = 1.0
         logoutBtn.layer.shadowRadius = 3
         logoutBtn.layer.masksToBounds = false
         
+        self.settingTableView.tableFooterView = UIView(frame: .zero)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //settingTableView.frame = CGRect(x: settingTableView.frame.origin.x, y: settingTableView.frame.origin.y, width: settingTableView.bounds.width, height: settingTableView.rowHeight)
+        loadAnimal()
+        loadBlockUsers()
+        favBtn.setImage(ad?.thumbnail, for: .normal)
     }
     
     func dataReceived(data: Int) {
         selectedAnimal = data
         ad?.thumbnail = singletonAnimal.animal![data].combinedImage!
-        favAnimalBtn.setImage(ad?.thumbnail, for: .normal)
+        favBtn.setImage(ad?.thumbnail, for: .normal)
         
         // 변경된 대표 동물 이미지 서버 전송
+        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
             let body: NSMutableDictionary = NSMutableDictionary()
             body.setValue(animals[data].animalURLs, forKey: "favorite_animal")
 
             let putURL = "/users/" + (ad?.id)!
 
-            put(url: putURL, token: cookie, body: body, completionHandler: { data, response, error in
+            put(url: putURL, token: session.value, body: body, completionHandler: { data, response, error in
                 guard let data = data, error == nil else {
                     print("error=\(String(describing: error))")
                     return
@@ -121,14 +93,12 @@ class SettingTab: UIViewController, sendBackDelegate {
                             }
                             
                             DispatchQueue.main.async {
-                                loadAccessory(category: "head", cookieValue: cookie)
                                 let storyboard = UIStoryboard(name: "Tab2", bundle: nil)
                                 guard let missionVC = storyboard.instantiateViewController(identifier: "mission") as? MissionView else {return}
                                 missionVC.accessoryInfo = detail
                                 missionVC.okBtnTitle = "Get"
                                 missionVC.modalPresentationStyle = .overCurrentContext
                                 self.present(missionVC, animated: true, completion: nil)
-                                
                             }
                             
                         }
@@ -138,7 +108,7 @@ class SettingTab: UIViewController, sendBackDelegate {
                     }
                 }
             })
-        
+        }
     }
     
     // 대표 동물 변경
@@ -152,6 +122,7 @@ class SettingTab: UIViewController, sendBackDelegate {
         nextVC.serverAnimals = self.serverAnimals
         nextVC.serverAnimals2 = singletonAnimal.animal ?? []
         nextVC.isThumbnail = true
+        
         self.present(nextVC, animated: true, completion: nil)
     }
     
@@ -170,8 +141,8 @@ class SettingTab: UIViewController, sendBackDelegate {
         animals = []  // 서버 POST용
         serverAnimals = [] // next page 데이터 전송용
         images = []
-        
-            get(url: "/own/animals", token: cookie, completionHandler: { [self] data, response, error in
+        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+            get(url: "/own/animals", token: session.value, completionHandler: { [self] data, response, error in
                 guard let data = data, error == nil else {
                     print("error=\(String(describing: error))")
                     return
@@ -206,7 +177,7 @@ class SettingTab: UIViewController, sendBackDelegate {
                     }
                 }
             })
-        
+        }
     }
     
     // MARK: - 이미지 합성
@@ -246,9 +217,9 @@ class SettingTab: UIViewController, sendBackDelegate {
         blockUserInfo = []
         var blockURL: String
         for id in 0..<blockUsers.count {
-            
+            if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
                 blockURL = "/users/" + blockUsers[id]
-                get(url: blockURL, token: cookie, completionHandler: { [self] data, response, error in
+                get(url: blockURL, token: session.value, completionHandler: { [self] data, response, error in
                     guard let data = data, error == nil else {
                         print("error=\(String(describing: error))")
                         return
@@ -283,7 +254,70 @@ class SettingTab: UIViewController, sendBackDelegate {
                         }
                     }
                 })
-            
+            }
         }
     }
+}
+
+extension SettingTab: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return settings.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return tableView.frame.height / 7
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 0))
+        headerView.backgroundColor = UIColor(red: 0.95, green: 0.973, blue: 1, alpha: 1)
+
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let header = tableView.frame.height / 7
+        return (tableView.frame.height - header * 3) / 3 + 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingPageTableViewCell", for: indexPath) as? SettingTableView else { return UITableViewCell() }
+        cell.settingLabel.text = settings[indexPath.section]
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        switch indexPath.section {
+        case 0: guard let langSetVC = self.storyboard?.instantiateViewController(identifier: "LanguageSettingVC") as? LanguageSettingVC else { return }
+            
+            langSetVC.modalTransitionStyle = .coverVertical
+            langSetVC.modalPresentationStyle = .fullScreen
+            
+            self.present(langSetVC, animated: true, completion: nil)
+        case 1: guard let favSetVC = self.storyboard?.instantiateViewController(identifier: "FavoriteSettingVC") as? FavoriteSettingVC else { return }
+            
+            favSetVC.modalTransitionStyle = .coverVertical
+            favSetVC.modalPresentationStyle = .fullScreen
+            
+            self.present(favSetVC, animated: true, completion: nil)
+        case 2: guard let blockSetVC = self.storyboard?.instantiateViewController(identifier: "BlockSettingVC") as? BlockSettingVC else { return }
+            
+            blockSetVC.modalTransitionStyle = .coverVertical
+            blockSetVC.modalPresentationStyle = .fullScreen
+            
+            blockSetVC.blockedUsers = self.blockUserInfo
+            self.present(blockSetVC, animated: true, completion: nil)
+        default:
+            return
+        }
+    }
+
 }

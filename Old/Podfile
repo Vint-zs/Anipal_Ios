@@ -11,8 +11,6 @@ target 'anipal 1' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'DropDown'
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Messaging'
 
   # Pods for anipal 1
 

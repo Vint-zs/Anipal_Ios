@@ -45,7 +45,7 @@ struct MyAnimal {
     }
 }
 
-class SingletonAnimal {
+struct SingletonAnimal {
     static let shared = SingletonAnimal()
     var animal: [MyAnimal]?
     

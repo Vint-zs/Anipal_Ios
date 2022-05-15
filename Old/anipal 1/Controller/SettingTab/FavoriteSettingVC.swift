@@ -15,7 +15,7 @@ class FavoriteSettingVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        favLabelTitle.text = "Select your interests.".localized
+        favLabelTitle.text = "Choose your favorites.".localized
         favLabelTitle.textColor = UIColor(red: 0.392, green: 0.392, blue: 0.392, alpha: 1)
         finishBtn.setTitle("Complete".localized, for: .normal)
     }
@@ -30,19 +30,19 @@ class FavoriteSettingVC: UIViewController {
     
     @IBAction func finishFav(_ sender: UIButton) {
         ad?.favorites = favCollectionView.userFav
-       
+        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
             let body: NSMutableDictionary = NSMutableDictionary()
             body.setValue(ad?.favorites, forKey: "favorites")
             
             let putURL = "/users/" + (ad?.id)!
             
-            put(url: putURL, token: cookie, body: body, completionHandler: { data, response, error in
+            put(url: putURL, token: session.value, body: body, completionHandler: { data, response, error in
                 guard let data = data, error == nil else {
                     print("error=\(String(describing: error))")
                     return
                 }
             })
-        
+        }
         self.dismiss(animated: true, completion: nil)
     }
 }
