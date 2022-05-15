@@ -50,7 +50,8 @@ class ComingAnimalTableView: UIView, UITableViewDataSource {
     
     // 서버 데이터
     func loadComingAnimals() {
-            get(url: "/letters/coming", token: cookie, completionHandler: { [self] data, response, error in
+        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+            get(url: "/letters/coming", token: session.value, completionHandler: { [self] data, response, error in
                 guard let data = data, error == nil else {
                     print("error=\(String(describing: error))")
                     return
@@ -79,6 +80,7 @@ class ComingAnimalTableView: UIView, UITableViewDataSource {
                     }
                 }
             })
+        }
     }
     
     // HEX Color convert

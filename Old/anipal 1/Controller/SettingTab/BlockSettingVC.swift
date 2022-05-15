@@ -51,21 +51,22 @@ extension BlockSettingVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let deleteURL = "/users/ban/" + (ad?.blockUsers[indexPath.row])!
-            del(url: deleteURL, token: cookie, completionHandler: { data, response, error in
-                guard let data = data, error == nil else {
-                    print("error=\(String(describing: error))")
-                    return
-                }
-                if let httpStatus = response as? HTTPURLResponse {
-                    if httpStatus.statusCode == 200 {
-                        
-                    } else {
-                        print("error: \(httpStatus.statusCode)")
+            if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+                let deleteURL = "/users/ban/" + (ad?.blockUsers[indexPath.row])!
+                del(url: deleteURL, token: session.value, completionHandler: { data, response, error in
+                    guard let data = data, error == nil else {
+                        print("error=\(String(describing: error))")
+                        return
                     }
-                }
-            })
-            
+                    if let httpStatus = response as? HTTPURLResponse {
+                        if httpStatus.statusCode == 200 {
+                            
+                        } else {
+                            print("error: \(httpStatus.statusCode)")
+                        }
+                    }
+                })
+            }
             ad?.blockUsers.remove(at: indexPath.row)
             blockedUsers.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)

@@ -48,37 +48,38 @@ class ConfirmLetter: UIViewController {
     
     // MARK: - 차단버튼 클릭시
     @IBAction func clickBan(_ sender: UIButton) {
-        let alertcontroller = UIAlertController(title: "Block".localized, message: "AskBlock".localized, preferredStyle: .alert)
+        let alertcontroller = UIAlertController(title: "Block".localized, message: "유저를 차단하시겠습니까?", preferredStyle: .alert)
         let okBtn = UIAlertAction(title: "Ok".localized, style: .default) { [self] (action) in
-            var putURL = "/users/ban/\(senderId)"
-            ad?.blockUsers.append(senderId)
-            //                for idx in 0..<letters.count {
-            //                    if letters[idx].senderID != ad?.id {
-            //                        ad?.blockUsers.append(letters[idx].senderID)
-            //                        putURL += letters[idx].senderID
-            //                        break
-            //                    }
-            //                }
-            
-            put(url: putURL, token: cookie, completionHandler: { data, response, error in
-                guard let data = data, error == nil else {
-                    print("error=\(String(describing: error))")
-                    return
-                }
-                if let httpStatus = response as? HTTPURLResponse {
-                    if httpStatus.statusCode == 200 {
-                        print("block user: \(ad?.blockUsers)")
-                        DispatchQueue.main.async {
-                            print("delete err code: \(httpStatus.statusCode)")
-                            self.delegate?.refresh()
-                            self.dismiss(animated: true, completion: nil)
-                        }
-                    } else {
-                        print("error: \(httpStatus.statusCode)")
+            if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+                var putURL = "/users/ban/\(senderId)"
+                ad?.blockUsers.append(senderId)
+//                for idx in 0..<letters.count {
+//                    if letters[idx].senderID != ad?.id {
+//                        ad?.blockUsers.append(letters[idx].senderID)
+//                        putURL += letters[idx].senderID
+//                        break
+//                    }
+//                }
+                
+                put(url: putURL, token: session.value, completionHandler: { data, response, error in
+                    guard let data = data, error == nil else {
+                        print("error=\(String(describing: error))")
+                        return
                     }
-                }
-            })
-            
+                    if let httpStatus = response as? HTTPURLResponse {
+                        if httpStatus.statusCode == 200 {
+                            print("block user: \(ad?.blockUsers)")
+                            DispatchQueue.main.async {
+                                print("delete err code: \(httpStatus.statusCode)")
+                                self.delegate?.refresh()
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        } else {
+                            print("error: \(httpStatus.statusCode)")
+                        }
+                    }
+                })
+            }
         }
         let cancelBtn = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
         alertcontroller.addAction(okBtn)
@@ -108,24 +109,26 @@ class ConfirmLetter: UIViewController {
     // MARK: - 삭제버튼 클릭시
     @IBAction func clickDelete(_ sender: UIButton) {
         if let randomId = randomId {
-            put(url: "/letters/random/" + randomId, token: cookie) { (data, response, error) in
-                guard let _ = data, error == nil else {
-                    print("error=\(String(describing: error))")
-                    return
-                }
-                if let httpStatus = response as? HTTPURLResponse {
-                    if httpStatus.statusCode == 200 {
-                        DispatchQueue.main.async {
-                            print("delete success")
-                            self.dismiss(animated: true) {
-                                self.delegate?.refresh()
+            if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+                put(url: "/letters/random/" + randomId, token: session.value) { (data, response, error) in
+                    guard let _ = data, error == nil else {
+                        print("error=\(String(describing: error))")
+                        return
+                    }
+                    if let httpStatus = response as? HTTPURLResponse {
+                        if httpStatus.statusCode == 200 {
+                            DispatchQueue.main.async {
+                                print("delete success")
+                                self.dismiss(animated: true) {
+                                    self.delegate?.refresh()
+                                }
                             }
-                        }
-                    } else {
-                        DispatchQueue.main.async {
-                            print("delete err code: \(httpStatus.statusCode)")
-                            self.delegate?.refresh()
-                            self.dismiss(animated: true, completion: nil)
+                        } else {
+                            DispatchQueue.main.async {
+                                print("delete err code: \(httpStatus.statusCode)")
+                                self.delegate?.refresh()
+                                self.dismiss(animated: true, completion: nil)
+                            }
                         }
                     }
                 }
@@ -135,59 +138,60 @@ class ConfirmLetter: UIViewController {
     
     // MARK: - 데이터 수신 및 표출
     func reloadData(id: String) {
-        
-        get(url: "/letters/random/\(id)", token: cookie, completionHandler: { [self] data, response, error in
-            guard let data = data, error == nil else {
-                print("error=\(String(describing: error))")
-                return
-            }
-            if let httpStatus = response as? HTTPURLResponse {
-                if httpStatus.statusCode == 200 {
-                    let json = JSON(data)
-                    let content = json["content"].stringValue
-                    var date = json["send_time"].stringValue
-                    date = dateConvert(date: date)
-                    let sender = json["sender"]["name"].stringValue
-                    let favorite = json["sender"]["favorites"].arrayValue.map {$0.stringValue}
-                    let languages = json["sender"]["languages"].arrayObject as? [[String: Any]]
-                    let senderid = json["sender"]["user_id"].stringValue
-                    self.senderId = senderid
-                    var fav: [String] = []
-                    for favor in favorite {
-                        fav.append(favor.localized)
-                    }
-                    
-                    var lang: [String] = []
-                    for row in languages ?? [] {
-                        if let name = row["name"] as? String, let level = row["level"] as? Int {
-                            var lev = ""
-                            if level == 1 {
-                                lev = "Beginner"
-                            } else if level == 2 {
-                                lev = "Intermediate"
-                            } else {
-                                lev = "Advanced"
-                            }
-                            lang.append("\(name.localized):\(lev.localized)")
+        // Authorization 쿠키 확인 & 데이터 로딩
+        if let session = HTTPCookieStorage.shared.cookies?.filter({$0.name == "Authorization"}).first {
+            get(url: "/letters/random/\(id)", token: session.value, completionHandler: { [self] data, response, error in
+                guard let data = data, error == nil else {
+                    print("error=\(String(describing: error))")
+                    return
+                }
+                if let httpStatus = response as? HTTPURLResponse {
+                    if httpStatus.statusCode == 200 {
+                        let json = JSON(data)
+                        let content = json["content"].stringValue
+                        var date = json["send_time"].stringValue
+                        date = dateConvert(date: date)
+                        let sender = json["sender"]["name"].stringValue
+                        let favorite = json["sender"]["favorites"].arrayValue.map {$0.stringValue}
+                        let languages = json["sender"]["languages"].arrayObject as? [[String: Any]]
+                        let senderid = json["sender"]["user_id"].stringValue
+                        self.senderId = senderid
+                        var fav: [String] = []
+                        for favor in favorite {
+                            fav.append(favor.localized)
                         }
-                    }
-                    
-                    // 뷰생성
-                    DispatchQueue.main.async {
-                        textView.text = content
-                        senderLbl.text = sender
-                        dateLbl.text = date
-                        favLbl.text = fav.joined(separator: " ")
-                        languageLbl.text = lang.joined(separator: ", ")
-                    }
+                        
+                        var lang: [String] = []
+                        for row in languages ?? [] {
+                            if let name = row["name"] as? String, let level = row["level"] as? Int {
+                                var lev = ""
+                                if level == 1 {
+                                    lev = "Beginner"
+                                } else if level == 2 {
+                                    lev = "Intermediate"
+                                } else {
+                                    lev = "Advanced"
+                                }
+                                lang.append("\(name.localized):\(lev.localized)")
+                            }
+                        }
+
+                        // 뷰생성
+                        DispatchQueue.main.async {
+                            textView.text = content
+                            senderLbl.text = sender
+                            dateLbl.text = date
+                            favLbl.text = fav.joined(separator: " ")
+                            languageLbl.text = lang.joined(separator: ", ")
+                        }
                 } else if httpStatus.statusCode == 400 {
                     print("error: \(httpStatus.statusCode)")
                 } else {
                     print("error: \(httpStatus.statusCode)")
                 }
             }
-        })
-        
+            })
+        }
     }
     
     // MARK: - 날짜 형식 변환
