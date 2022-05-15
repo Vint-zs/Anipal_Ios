@@ -40,10 +40,10 @@
 		6CFB75A62615F7460017F160 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFB75A52615F7460017F160 /* StringExtension.swift */; };
 		761165F125D8308400577F92 /* SignUpViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761165F025D8308400577F92 /* SignUpViewController2.swift */; };
 		761D515E2618C86A00089040 /* LanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761D515D2618C86A00089040 /* LanguageTableViewCell.swift */; };
+		7621D28D266002B600A6C798 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7621D28C266002B600A6C798 /* GoogleService-Info.plist */; };
 		762A36D42621CCEE00BDC643 /* SelectAnimal1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762A36D32621CCEE00BDC643 /* SelectAnimal1.swift */; };
 		7636AE92264FFB1C0040F2F6 /* Accessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7636AE91264FFB1C0040F2F6 /* Accessory.swift */; };
 		7657F0BD25CAE46400403881 /* 구글로고.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7657F0BC25CAE46400403881 /* 구글로고.jpg */; };
-		765C7EFC2772257400A46853 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 765C7EFB2772257400A46853 /* GoogleService-Info.plist */; };
 		76686FC825CE2C5F00536E36 /* MainPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76686FC725CE2C5F00536E36 /* MainPage.swift */; };
 		76686FCB25CE2FFC00536E36 /* WritingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76686FCA25CE2FFC00536E36 /* WritingPage.swift */; };
 		76686FD225CE9F3E00536E36 /* SelectAnimalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76686FD125CE9F3E00536E36 /* SelectAnimalCollectionViewCell.swift */; };
@@ -125,11 +125,11 @@
 		761165F025D8308400577F92 /* SignUpViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController2.swift; sourceTree = "<group>"; };
 		761D515D2618C86A00089040 /* LanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTableViewCell.swift; sourceTree = "<group>"; };
 		7621D289265FFE4800A6C798 /* anipal 1Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "anipal 1Release.entitlements"; sourceTree = "<group>"; };
+		7621D28C266002B600A6C798 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7621D28E26600CDA00A6C798 /* anipal 1Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "anipal 1Debug.entitlements"; sourceTree = "<group>"; };
 		762A36D32621CCEE00BDC643 /* SelectAnimal1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAnimal1.swift; sourceTree = "<group>"; };
 		7636AE91264FFB1C0040F2F6 /* Accessory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accessory.swift; sourceTree = "<group>"; };
 		7657F0BC25CAE46400403881 /* 구글로고.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "구글로고.jpg"; sourceTree = "<group>"; };
-		765C7EFB2772257400A46853 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		76686FC725CE2C5F00536E36 /* MainPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage.swift; sourceTree = "<group>"; };
 		76686FCA25CE2FFC00536E36 /* WritingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WritingPage.swift; path = ../Tab1/WritingPage.swift; sourceTree = "<group>"; };
 		76686FD125CE9F3E00536E36 /* SelectAnimalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAnimalCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -383,7 +383,7 @@
 				76D1785525CA922900C5ED37 /* Assets.xcassets */,
 				7668701825D1318400536E36 /* Launch Screen2.storyboard */,
 				76D1785A25CA922900C5ED37 /* Info.plist */,
-				765C7EFB2772257400A46853 /* GoogleService-Info.plist */,
+				7621D28C266002B600A6C798 /* GoogleService-Info.plist */,
 			);
 			path = "anipal 1";
 			sourceTree = "<group>";
@@ -468,7 +468,6 @@
 				76D1785625CA922900C5ED37 /* Assets.xcassets in Resources */,
 				6C2C429726178B08007D2D71 /* FavoriteView.xib in Resources */,
 				76D1785425CA922900C5ED37 /* Main.storyboard in Resources */,
-				765C7EFC2772257400A46853 /* GoogleService-Info.plist in Resources */,
 				76867241261C4FCF0037A4F3 /* Tab2.storyboard in Resources */,
 				7657F0BD25CAE46400403881 /* 구글로고.jpg in Resources */,
 				7686724D261C51090037A4F3 /* SignUp.storyboard in Resources */,
@@ -476,6 +475,7 @@
 				7668701925D1318400536E36 /* Launch Screen2.storyboard in Resources */,
 				76A590BA263BDCC600C70EA4 /* LanguageSelectCell.xib in Resources */,
 				7673B8512647D799007D062C /* MyAnimalPageCollectionViewCell.xib in Resources */,
+				7621D28D266002B600A6C798 /* GoogleService-Info.plist in Resources */,
 				76F00001261AE184004D080E /* AnimalCollectionViewCell.xib in Resources */,
 				76867248261C501C0037A4F3 /* SettingTab.storyboard in Resources */,
 				76C30AE7264ADC4100035891 /* AccessoryCollectionViewCell.xib in Resources */,
@@ -800,7 +800,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8799W36SG3;
 				INFOPLIST_FILE = "anipal 1/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -822,7 +821,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8799W36SG3;
 				INFOPLIST_FILE = "anipal 1/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
